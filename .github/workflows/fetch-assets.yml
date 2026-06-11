@@ -1,0 +1,28 @@
+name: Fetch generated media assets
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download generated media from Higgsfield CDN
+        run: |
+          mkdir -p work
+          curl -fsSL -o work/hero.mp4 "https://d8j0ntlcm91z4.cloudfront.net/user_3EzgRoleznDLKIBHlEgNJvYcZmT/hf_20260611_195052_5467234a-1807-41f5-bf9d-ff1c7e40bdd4.mp4"
+          curl -fsSL -o work/balcony.png "https://d8j0ntlcm91z4.cloudfront.net/user_3EzgRoleznDLKIBHlEgNJvYcZmT/hf_20260611_195102_93526b99-01a4-44c6-ae21-90e519b0473a.png"
+          ls -la work/
+
+      - name: Commit media to branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f work/hero.mp4 work/balcony.png
+          git commit -m "Add generated media assets (temporary, for processing)"
+          git push
