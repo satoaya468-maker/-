@@ -1,8 +1,10 @@
 /* ============================================================
    Спектр — scroll-cinematic engine
-   - canvas frame scrubbing driven by scroll position
-   - chapter captions tied to scrub progress
-   - nav state, reveal-on-scroll, parallax showcase
+   Rendering modes, best first:
+     1. frame scrub  — webp sequence drawn on canvas (assets/frames/hero)
+     2. video scrub  — <video>.currentTime driven by scroll
+     3. static       — poster / gradient fallback
+   Plus: nav state, reveal-on-scroll, parallax showcase.
    ============================================================ */
 
 (() => {
@@ -10,6 +12,10 @@
 
   const FRAME_COUNT = 120;
   const FRAME_PATH = i => `assets/frames/hero/frame_${String(i).padStart(3, "0")}.webp`;
+  const VIDEO_SOURCES = [
+    "assets/video/hero.mp4",
+    "https://d8j0ntlcm91z4.cloudfront.net/user_3EzgRoleznDLKIBHlEgNJvYcZmT/hf_20260611_195052_5467234a-1807-41f5-bf9d-ff1c7e40bdd4.mp4",
+  ];
   // progress ranges for the three caption chapters (hero + 2)
   const CHAPTERS = [
     { from: 0.0, to: 0.34 },
@@ -40,23 +46,29 @@
   /* ---------- Showcase parallax ---------- */
   const showcase = document.getElementById("showcase-media");
   if (showcase && !reducedMotion) {
-    const img = showcase.querySelector("img");
+    const layer = showcase.firstElementChild;
     const parallax = () => {
       const rect = showcase.getBoundingClientRect();
       if (rect.bottom < 0 || rect.top > window.innerHeight) return;
       const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-      img.style.transform = `translateY(${(progress - 0.5) * -14}%)`;
+      layer.style.transform = `translateY(${(progress - 0.5) * -14}%)`;
     };
     window.addEventListener("scroll", () => requestAnimationFrame(parallax), { passive: true });
     parallax();
   }
 
-  /* ---------- Cinematic frame scrub ---------- */
+  /* ---------- Cinematic scrub ---------- */
   const cinema = document.getElementById("cinema");
   const canvas = document.getElementById("cinema-canvas");
   const fallback = document.getElementById("cinema-fallback");
   const chapters = Array.from(document.querySelectorAll(".cinema__chapter"));
   if (!cinema || !canvas) return;
+
+  const getProgress = () => {
+    const rect = cinema.getBoundingClientRect();
+    const runway = cinema.offsetHeight - window.innerHeight;
+    return Math.min(1, Math.max(0, -rect.top / runway));
+  };
 
   const updateChapters = progress => {
     chapters.forEach((el, i) => {
@@ -65,91 +77,122 @@
     });
   };
 
+  // chapters always follow scroll, whatever the rendering mode
+  window.addEventListener("scroll", () => updateChapters(getProgress()), { passive: true });
+  updateChapters(0);
+
   if (reducedMotion) {
     canvas.remove();
-    updateChapters(0);
     return;
   }
 
-  const ctx = canvas.getContext("2d");
-  const frames = new Array(FRAME_COUNT);
-  let loadedCount = 0;
-  let currentIndex = -1;
-  let canvasReady = false;
+  /* --- mode 1: canvas frame scrub --- */
+  const startFrameMode = () => {
+    const ctx = canvas.getContext("2d");
+    const frames = new Array(FRAME_COUNT);
+    let currentIndex = -1;
+    let revealed = false;
 
-  const sizeCanvas = () => {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = canvas.clientWidth * dpr;
-    canvas.height = canvas.clientHeight * dpr;
-    currentIndex = -1; // force redraw at new size
-    render();
+    const sizeCanvas = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = canvas.clientWidth * dpr;
+      canvas.height = canvas.clientHeight * dpr;
+      currentIndex = -1;
+      render();
+    };
+
+    const drawFrame = img => {
+      const cw = canvas.width, ch = canvas.height;
+      const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+      const w = img.naturalWidth * scale, h = img.naturalHeight * scale;
+      ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
+    };
+
+    const nearestLoaded = index => {
+      if (frames[index] && frames[index].complete && frames[index].naturalWidth) return index;
+      for (let d = 1; d < FRAME_COUNT; d++) {
+        const lo = index - d, hi = index + d;
+        if (lo >= 0 && frames[lo] && frames[lo].complete && frames[lo].naturalWidth) return lo;
+        if (hi < FRAME_COUNT && frames[hi] && frames[hi].complete && frames[hi].naturalWidth) return hi;
+      }
+      return -1;
+    };
+
+    const render = () => {
+      const progress = getProgress();
+      const target = Math.round(progress * (FRAME_COUNT - 1));
+      const index = nearestLoaded(target);
+      if (index === -1 || index === currentIndex) return;
+      currentIndex = index;
+      drawFrame(frames[index]);
+      if (!revealed) {
+        revealed = true;
+        fallback.classList.add("is-hidden");
+      }
+    };
+
+    const loadFrame = i => new Promise(resolve => {
+      if (frames[i]) return resolve();
+      const img = new Image();
+      img.decoding = "async";
+      img.onload = img.onerror = () => resolve();
+      img.src = FRAME_PATH(i + 1);
+      frames[i] = img;
+    });
+
+    // coarse pass first so scrubbing works early, then fill in the rest
+    (async () => {
+      const coarse = [];
+      for (let i = 0; i < FRAME_COUNT; i += 8) coarse.push(loadFrame(i));
+      coarse.push(loadFrame(FRAME_COUNT - 1));
+      await Promise.all(coarse);
+      render();
+      const rest = [];
+      for (let i = 0; i < FRAME_COUNT; i++) rest.push(loadFrame(i));
+      await Promise.all(rest);
+      render();
+    })();
+
+    window.addEventListener("scroll", () => requestAnimationFrame(render), { passive: true });
+    window.addEventListener("resize", sizeCanvas);
+    sizeCanvas();
   };
 
-  // draw image with cover fit
-  const drawFrame = img => {
-    const cw = canvas.width, ch = canvas.height;
-    const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
-    const w = img.naturalWidth * scale, h = img.naturalHeight * scale;
-    ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
-  };
+  /* --- mode 2: <video> currentTime scrub --- */
+  const startVideoMode = sourceIndex => {
+    if (sourceIndex >= VIDEO_SOURCES.length) return; // mode 3: keep static fallback
+    canvas.remove();
+    const video = document.createElement("video");
+    video.className = "cinema__video";
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = "auto";
+    video.src = VIDEO_SOURCES[sourceIndex];
 
-  // nearest loaded frame to the requested index
-  const nearestLoaded = index => {
-    if (frames[index] && frames[index].complete) return index;
-    for (let d = 1; d < FRAME_COUNT; d++) {
-      const lo = index - d, hi = index + d;
-      if (lo >= 0 && frames[lo] && frames[lo].complete) return lo;
-      if (hi < FRAME_COUNT && frames[hi] && frames[hi].complete) return hi;
-    }
-    return -1;
-  };
+    video.addEventListener("error", () => {
+      video.remove();
+      startVideoMode(sourceIndex + 1);
+    });
 
-  const getProgress = () => {
-    const rect = cinema.getBoundingClientRect();
-    const runway = cinema.offsetHeight - window.innerHeight;
-    return Math.min(1, Math.max(0, -rect.top / runway));
-  };
-
-  const render = () => {
-    const progress = getProgress();
-    updateChapters(progress);
-    const target = Math.round(progress * (FRAME_COUNT - 1));
-    const index = nearestLoaded(target);
-    if (index === -1 || index === currentIndex) return;
-    currentIndex = index;
-    drawFrame(frames[index]);
-    if (!canvasReady) {
-      canvasReady = true;
+    video.addEventListener("loadeddata", () => {
       fallback.classList.add("is-hidden");
-    }
+      let target = 0;
+      const tick = () => {
+        target = getProgress() * Math.max(0, video.duration - 0.05);
+        // ease toward the target time for smooth scrubbing
+        const diff = target - video.currentTime;
+        if (Math.abs(diff) > 0.01) video.currentTime += diff * 0.25;
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+
+    cinema.querySelector(".cinema__sticky").insertBefore(video, fallback);
   };
 
-  const loadFrame = i => new Promise(resolve => {
-    if (frames[i]) return resolve();
-    const img = new Image();
-    img.decoding = "async";
-    img.onload = () => { loadedCount++; resolve(); };
-    img.onerror = () => resolve();
-    img.src = FRAME_PATH(i + 1);
-    frames[i] = img;
-  });
-
-  // progressive preload: coarse pass first so scrubbing works early,
-  // then fill in the remaining frames
-  const preload = async () => {
-    const coarse = [];
-    for (let i = 0; i < FRAME_COUNT; i += 8) coarse.push(loadFrame(i));
-    coarse.push(loadFrame(FRAME_COUNT - 1));
-    await Promise.all(coarse);
-    render();
-    const rest = [];
-    for (let i = 0; i < FRAME_COUNT; i++) rest.push(loadFrame(i));
-    await Promise.all(rest);
-    render();
-  };
-
-  window.addEventListener("scroll", () => requestAnimationFrame(render), { passive: true });
-  window.addEventListener("resize", sizeCanvas);
-  sizeCanvas();
-  preload();
+  // pick a mode: probe the first frame of the webp sequence
+  const probe = new Image();
+  probe.onload = startFrameMode;
+  probe.onerror = () => startVideoMode(0);
+  probe.src = FRAME_PATH(1);
 })();

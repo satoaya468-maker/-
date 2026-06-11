@@ -1,28 +1,63 @@
-name: Fetch generated media assets
+name: Build media assets
 
+# Downloads the AI-generated hero video and balcony photo, slices the video
+# into scroll-scrub frames and commits everything back to the branch.
+# Runs automatically on push until the frames exist; can also be run manually.
 on:
+  push:
+    branches: ["**"]
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  fetch:
+  build-assets:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download generated media from Higgsfield CDN
+      - name: Skip if frames already built
+        id: guard
         run: |
-          mkdir -p work
-          curl -fsSL -o work/hero.mp4 "https://d8j0ntlcm91z4.cloudfront.net/user_3EzgRoleznDLKIBHlEgNJvYcZmT/hf_20260611_195052_5467234a-1807-41f5-bf9d-ff1c7e40bdd4.mp4"
-          curl -fsSL -o work/balcony.png "https://d8j0ntlcm91z4.cloudfront.net/user_3EzgRoleznDLKIBHlEgNJvYcZmT/hf_20260611_195102_93526b99-01a4-44c6-ae21-90e519b0473a.png"
-          ls -la work/
+          if [ -f assets/frames/hero/frame_001.webp ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
 
-      - name: Commit media to branch
+      - name: Download generated media from Higgsfield CDN
+        if: steps.guard.outputs.skip == 'false'
+        run: |
+          mkdir -p work assets/video assets/img assets/frames/hero
+          curl -fsSL -o assets/video/hero.mp4 "https://d8j0ntlcm91z4.cloudfront.net/user_3EzgRoleznDLKIBHlEgNJvYcZmT/hf_20260611_195052_5467234a-1807-41f5-bf9d-ff1c7e40bdd4.mp4"
+          curl -fsSL -o work/balcony.png "https://d8j0ntlcm91z4.cloudfront.net/user_3EzgRoleznDLKIBHlEgNJvYcZmT/hf_20260611_195102_93526b99-01a4-44c6-ae21-90e519b0473a.png"
+
+      - name: Slice video into scroll frames and derive images
+        if: steps.guard.outputs.skip == 'false'
+        run: |
+          sudo apt-get update -q && sudo apt-get install -yq ffmpeg
+          # 120 webp frames for the scroll scrub (8s @ 15fps)
+          ffmpeg -i assets/video/hero.mp4 -vf "fps=15,scale=1344:768:flags=lanczos" \
+            -c:v libwebp -quality 74 -compression_level 6 \
+            assets/frames/hero/frame_%03d.webp
+          # poster = first frame
+          ffmpeg -i assets/video/hero.mp4 -vf "select=eq(n\,0),scale=1344:768" -frames:v 1 \
+            -c:v libwebp -quality 80 assets/img/poster.webp -y
+          # og-cover for social sharing (jpg, 1200x675)
+          ffmpeg -i assets/video/hero.mp4 -ss 4 -frames:v 1 \
+            -vf "scale=1200:675:flags=lanczos" -q:v 3 assets/img/og-cover.jpg -y
+          # balcony showcase photo
+          ffmpeg -i work/balcony.png -vf "scale=1376:-1" -c:v libwebp -quality 80 \
+            assets/img/balcony.webp -y
+          rm -rf work
+          ls assets/frames/hero | wc -l
+
+      - name: Commit assets to branch
+        if: steps.guard.outputs.skip == 'false'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f work/hero.mp4 work/balcony.png
-          git commit -m "Add generated media assets (temporary, for processing)"
+          git add assets/
+          git commit -m "Add hero scroll frames and generated media assets"
           git push
