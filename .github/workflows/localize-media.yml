@@ -1,0 +1,33 @@
+name: Localize media
+
+# Скачивает медиа из Higgsfield CDN в assets/media/, переписывает ссылки в
+# index.html на локальные и коммитит результат. Запускается вручную:
+# вкладка Actions → Localize media → Run workflow.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  localize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run localize script
+        run: |
+          chmod +x scripts/localize-media.sh
+          ./scripts/localize-media.sh
+
+      - name: Commit localized media
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add assets/media index.html
+            git commit -m "Localize Higgsfield media into assets/media"
+            git push
+          else
+            echo "Nothing to commit."
+          fi
