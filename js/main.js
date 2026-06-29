@@ -56,13 +56,16 @@
     if (p && p.catch) { p.catch(function () { /* autoplay blocked — poster stays */ }); }
   }
 
-  /* ---- image fallback: swap to data-fallback URL, else reveal gradient ---- */
+  /* ---- image fallback: swap to data-fallback URL, else reveal gradient ----
+     also catches eager images that already failed before this script ran */
   document.querySelectorAll("img[data-fallback]").forEach(function (img) {
-    img.addEventListener("error", function () {
+    var onErr = function () {
       var fb = img.getAttribute("data-fallback");
       if (fb && img.src.indexOf(fb) === -1) { img.src = fb; }
       else { img.style.opacity = "0"; }
-    });
+    };
+    img.addEventListener("error", onErr);
+    if (img.complete && img.naturalWidth === 0) { onErr(); }
   });
 
   /* ---- parallax on showcase ---- */
