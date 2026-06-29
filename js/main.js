@@ -56,9 +56,13 @@
     if (p && p.catch) { p.catch(function () { /* autoplay blocked — poster stays */ }); }
   }
 
-  /* ---- broken images reveal their fallback gradient ---- */
+  /* ---- image fallback: swap to data-fallback URL, else reveal gradient ---- */
   document.querySelectorAll("img[data-fallback]").forEach(function (img) {
-    img.addEventListener("error", function () { img.style.opacity = "0"; });
+    img.addEventListener("error", function () {
+      var fb = img.getAttribute("data-fallback");
+      if (fb && img.src.indexOf(fb) === -1) { img.src = fb; }
+      else { img.style.opacity = "0"; }
+    });
   });
 
   /* ---- parallax on showcase ---- */
@@ -85,6 +89,8 @@
     var idx = 0;
     var show = function (i) {
       idx = (i + works.length) % works.length;
+      var thumb = works[idx].querySelector("img");
+      bImg.onerror = function () { bImg.onerror = null; if (thumb) bImg.src = thumb.currentSrc || thumb.src; };
       bImg.src = works[idx].getAttribute("data-full");
       bImg.alt = works[idx].getAttribute("data-alt") || "Работа компании Балкон для души";
     };
