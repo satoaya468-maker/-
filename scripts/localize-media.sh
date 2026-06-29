@@ -27,7 +27,9 @@ for f in "${FILES[@]}"; do
   curl -fsSL -o "assets/media/$f" "$BASE/$f"
 done
 
-# Заменяем CDN-префикс на локальный путь (имена файлов сохраняются)
-sed -i.bak "s#$BASE/#assets/media/#g" index.html && rm -f index.html.bak
+# Заменяем CDN-префикс на локальный путь во всех страницах (имена файлов сохраняются)
+for page in *.html; do
+  sed -i.bak "s#$BASE/#assets/media/#g" "$page" && rm -f "$page.bak"
+done
 
-echo "Готово: медиа в assets/media/, ссылки в index.html переписаны на локальные."
+echo "Готово: медиа в assets/media/, ссылки во всех .html переписаны на локальные."
