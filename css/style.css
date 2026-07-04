@@ -21,23 +21,6 @@
   src: url('../fonts/golos-var-lat.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400 500;
-  font-display: swap;
-  src: url('../fonts/jbmono-var-cyr.woff2') format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400 500;
-  font-display: swap;
-  src: url('../fonts/jbmono-var-lat.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
 :root {
   --paper: #f1eee8;
   --paper-2: #e7e3da;
@@ -56,7 +39,6 @@
   --spectr: linear-gradient(90deg, #b83c0c 0 25%, #d84e15 25% 50%, #ec8226 50% 75%, #f2ae3c 75% 100%);
 
   --font-sans: 'Golos Text', 'Arial', sans-serif;
-  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   --wrap: 84rem;
   --gutter: clamp(1.25rem, 4vw, 3rem);
@@ -111,9 +93,9 @@ ul, ol { list-style: none; }
 /* ---------- типографика ---------- */
 
 .kicker {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 500;
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -244,8 +226,9 @@ ul, ol { list-style: none; }
 }
 
 .brand-sub {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 550;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -291,9 +274,9 @@ ul, ol { list-style: none; }
 .head-cta { display: flex; align-items: center; gap: 1.25rem; }
 
 .head-phone {
-  font-family: var(--font-mono);
-  font-size: 0.86rem;
-  font-weight: 500;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
   letter-spacing: 0.04em;
   white-space: nowrap;
   border-bottom: 1px solid transparent;
@@ -374,9 +357,9 @@ body.head-over-video .site-head:not(.is-solid) .brand-sub { color: var(--bone-so
 }
 
 .menu-nav a small {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 400;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
   letter-spacing: 0.14em;
   color: var(--bone-soft);
 }
@@ -490,8 +473,9 @@ body.menu-locked { overflow: hidden; }
 }
 
 .hero-fact span {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--bone-soft);
@@ -556,8 +540,9 @@ body.menu-locked { overflow: hidden; }
 .dir-row:hover { padding-left: 1.25rem; }
 
 .dir-num {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 550;
   letter-spacing: 0.1em;
   color: var(--ink-soft);
   padding-top: 0.6rem;
@@ -582,8 +567,9 @@ body.menu-locked { overflow: hidden; }
 }
 
 .dir-tags li {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 500;
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -678,8 +664,9 @@ body.menu-locked { overflow: hidden; }
 }
 
 .step-num {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
   letter-spacing: 0.12em;
   color: var(--accent);
 }
@@ -812,9 +799,9 @@ body.menu-locked { overflow: hidden; }
 }
 
 .foot-col h4 {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 500;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--bone-soft);
@@ -838,8 +825,9 @@ body.menu-locked { overflow: hidden; }
   flex-wrap: wrap;
   gap: 0.5rem 2.5rem;
   justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--bone-soft);
@@ -856,8 +844,9 @@ body.menu-locked { overflow: hidden; }
 .page-head .wrap { position: relative; }
 
 .crumbs {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 550;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -878,8 +867,9 @@ body.menu-locked { overflow: hidden; }
   position: absolute;
   right: var(--gutter);
   bottom: 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
   line-height: 0.8;
   color: transparent;
   -webkit-text-stroke: 1px var(--line-strong);
@@ -902,8 +892,9 @@ body.menu-locked { overflow: hidden; }
 .rate-head { position: sticky; top: calc(var(--head-h) + 1.5rem); }
 
 .rate-head .rate-num {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
   letter-spacing: 0.12em;
   color: var(--accent);
   display: block;
@@ -967,8 +958,9 @@ body.menu-locked { overflow: hidden; }
 .duo-cell.is-dark p { color: var(--bone-soft); }
 
 .duo-cell .cell-tag {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1010,8 +1002,9 @@ body.menu-locked { overflow: hidden; }
 }
 
 .prin-num {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
   letter-spacing: 0.1em;
   color: var(--accent);
   padding-top: 0.35rem;
@@ -1047,8 +1040,9 @@ body.menu-locked { overflow: hidden; }
 }
 
 .contact-row .label {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 550;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-soft);
