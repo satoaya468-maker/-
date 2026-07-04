@@ -497,47 +497,6 @@ body.menu-locked { overflow: hidden; }
   color: var(--bone-soft);
 }
 
-/* ---------- бегущая строка ---------- */
-
-.ticker {
-  border-bottom: 1px solid var(--line);
-  overflow: hidden;
-  padding: 0.85rem 0;
-  background: var(--paper);
-}
-
-.ticker-track {
-  display: flex;
-  gap: 3rem;
-  width: max-content;
-  animation: ticker 46s linear infinite;
-}
-
-.ticker-track span {
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-}
-
-.ticker-track span::after {
-  content: '';
-  width: 5px;
-  height: 5px;
-  background: var(--accent);
-  flex: none;
-}
-
-@keyframes ticker {
-  to { transform: translateX(-50%); }
-}
-
 /* ---------- секции ---------- */
 
 .section { padding-block: var(--sect); }
@@ -1193,5 +1152,4 @@ html.js .reveal.is-in {
     transition-duration: 0.01ms !important;
   }
   html.js .reveal { opacity: 1; transform: none; }
-  .ticker-track { animation: none; }
 }
