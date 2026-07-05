@@ -19,6 +19,14 @@
   <meta property="og:description" content="Скол — за полчаса, новое лобовое — за два часа. Без выходных, с 8:30 до 22:00. Рейтинг 5,0 на 2ГИС.">
   <meta property="og:url" content="https://avtosteklo24-mgn.ru/">
   <meta property="og:image" content="https://avtosteklo24-mgn.ru/assets/img/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="900">
+  <meta property="og:image:alt" content="Автостекло24 — сервис автостёкол в Магнитогорске">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Автостекло24 — замена и ремонт автостёкол в Магнитогорске">
+  <meta name="twitter:description" content="Скол — за полчаса, новое лобовое — за два часа. Без выходных, с 8:30 до 22:00.">
+  <meta name="twitter:image" content="https://avtosteklo24-mgn.ru/assets/img/og-cover.jpg">
 
   <meta name="theme-color" content="#14171a">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
@@ -26,6 +34,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="assets/img/hero-poster.jpg" fetchpriority="high">
 
   <script>document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="css/style.css">
@@ -62,7 +72,49 @@
       "ratingValue": "5.0",
       "ratingCount": "46"
     },
+    "image": "https://avtosteklo24-mgn.ru/assets/img/og-cover.jpg",
+    "hasMap": "https://2gis.ru/magnitogorsk/firm/70000001069171264",
+    "areaServed": {
+      "@type": "City",
+      "name": "Магнитогорск"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Услуги по автостёклам",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {"@type": "Service", "name": "Замена лобового стекла", "url": "https://avtosteklo24-mgn.ru/uslugi.html#lobovoe"},
+          "priceSpecification": {"@type": "PriceSpecification", "minPrice": 3000, "priceCurrency": "RUB"}
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {"@type": "Service", "name": "Ремонт сколов и трещин", "url": "https://avtosteklo24-mgn.ru/uslugi.html#skoly"},
+          "priceSpecification": {"@type": "PriceSpecification", "minPrice": 800, "priceCurrency": "RUB"}
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {"@type": "Service", "name": "Замена боковых и задних стёкол", "url": "https://avtosteklo24-mgn.ru/uslugi.html#bokovye"},
+          "priceSpecification": {"@type": "PriceSpecification", "minPrice": 2000, "priceCurrency": "RUB"}
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {"@type": "Service", "name": "Полировка фар", "url": "https://avtosteklo24-mgn.ru/uslugi.html#fary"},
+          "priceSpecification": {"@type": "PriceSpecification", "minPrice": 1500, "priceCurrency": "RUB"}
+        }
+      ]
+    },
     "sameAs": ["https://2gis.ru/magnitogorsk/firm/70000001069171264"]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Автостекло24",
+    "url": "https://avtosteklo24-mgn.ru/",
+    "inLanguage": "ru"
   }
   </script>
 </head>
@@ -105,16 +157,16 @@
     <!-- ГЛАВНЫЙ ЭКРАН -->
     <section class="hero">
       <div class="hero-media" aria-hidden="true">
-        <img src="assets/img/hero-poster.jpg"
+        <img src="assets/img/hero-poster.jpg" width="1920" height="1440"
              data-fallback="https://images.pexels.com/photos/1765286/pexels-photo-1765286.jpeg?auto=compress&cs=tinysrgb&w=1920"
-             alt="" loading="eager">
+             alt="" loading="eager" fetchpriority="high">
         <video autoplay muted loop playsinline preload="metadata"
                poster="assets/img/hero-poster.jpg">
           <source src="assets/video/hero.mp4" type="video/mp4">
         </video>
       </div>
       <div class="wrap hero-content">
-        <span class="kicker">Магнитогорск · Набережная, 9 · у «Водопада Чудес»</span>
+        <span class="kicker">Автостекло в Магнитогорске · Набережная, 9 · у «Водопада Чудес»</span>
         <h1 class="h-display">Скол уберём за&nbsp;полчаса. Лобовое поменяем <em>за&nbsp;два часа</em>.</h1>
         <p class="lead">Замена и ремонт автостёкол, полировка фар. Стекло подбираем под марку, датчики и камеры — привозим, вклеиваем, даём год гарантии на работу.</p>
         <div class="hero-actions">
@@ -304,9 +356,9 @@
 
     <!-- ФОТОПОЛОСА -->
     <figure class="photo-band">
-      <img src="assets/img/band-master.jpg"
+      <img src="assets/img/band-master.jpg" width="1920" height="1280"
            data-fallback="https://images.pexels.com/photos/8478265/pexels-photo-8478265.jpeg?auto=compress&cs=tinysrgb&w=1920"
-           alt="Мастер за работой в сервисе" loading="lazy">
+           alt="Мастер за работой в сервисе автостёкол в Магнитогорске" loading="lazy">
       <figcaption>Набережная, 9 — работаем каждый день</figcaption>
     </figure>
 

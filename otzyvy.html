@@ -16,6 +16,14 @@
   <meta property="og:description" content="Рейтинг 5,0 из 5 на 2ГИС по 46 оценкам. Читайте, что пишут клиенты.">
   <meta property="og:url" content="https://avtosteklo24-mgn.ru/otzyvy.html">
   <meta property="og:image" content="https://avtosteklo24-mgn.ru/assets/img/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="900">
+  <meta property="og:image:alt" content="Отзывы об Автостекло24 — 5,0 на 2ГИС">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Отзывы — Автостекло24, Магнитогорск">
+  <meta name="twitter:description" content="Рейтинг 5,0 из 5 на 2ГИС по 46 оценкам.">
+  <meta name="twitter:image" content="https://avtosteklo24-mgn.ru/assets/img/og-cover.jpg">
 
   <meta name="theme-color" content="#14171a">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
@@ -26,6 +34,37 @@
 
   <script>document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://avtosteklo24-mgn.ru/"},
+          {"@type": "ListItem", "position": 2, "name": "Отзывы", "item": "https://avtosteklo24-mgn.ru/otzyvy.html"}
+        ]
+      },
+      {
+        "@type": "AutoRepair",
+        "name": "Автостекло24",
+        "url": "https://avtosteklo24-mgn.ru/",
+        "telephone": "+7-903-091-33-33",
+        "address": {"@type": "PostalAddress", "streetAddress": "Набережная улица, 9", "addressLocality": "Магнитогорск", "addressRegion": "Челябинская область", "addressCountry": "RU"},
+        "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "ratingCount": "46"},
+        "review": [
+          {"@type": "Review", "author": {"@type": "Person", "name": "Дмитрий"}, "reviewRating": {"@type": "Rating", "ratingValue": "5"}, "reviewBody": "Приехали из Челябинска в Магнитогорск в гости. В дороге получил скол. Сделали быстро и качественно. Очень понравилось. Ещё и в воскресенье работали. Рекомендую."},
+          {"@type": "Review", "author": {"@type": "Person", "name": "Владимир"}, "reviewRating": {"@type": "Rating", "ratingValue": "5"}, "reviewBody": "Менял сразу два стекла на РАВ 4 — сделали всё отлично, быстро и качественно, цена дешевле, чем у конкурентов. Да, ещё фары отполировать — тоже огонь! Одним словом, рекомендую!"},
+          {"@type": "Review", "author": {"@type": "Person", "name": "Игорь"}, "reviewRating": {"@type": "Rating", "ratingValue": "5"}, "reviewBody": "Мастер своего дела, рекомендую. Обращался по поводу трещины на лобовом и полировки фар — результат супер."},
+          {"@type": "Review", "author": {"@type": "Person", "name": "Наталья"}, "reviewRating": {"@type": "Rating", "ratingValue": "5"}, "reviewBody": "Установили стекло очень быстро и качественно, ещё и гарантию на работу дали — год. Спасибо!"},
+          {"@type": "Review", "author": {"@type": "Person", "name": "Сергей"}, "reviewRating": {"@type": "Rating", "ratingValue": "5"}, "reviewBody": "Работают профессионалы. В сервисе чисто, персонал вежливый. Рекомендую."},
+          {"@type": "Review", "author": {"@type": "Person", "name": "Марина"}, "reviewRating": {"@type": "Rating", "ratingValue": "5"}, "reviewBody": "Быстро подобрали замену и качественно всё сделали. Скорость, качество и адекватная цена — редкое сочетание."}
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -65,7 +104,9 @@
 
     <section class="page-hero">
       <div class="wrap">
-        <span class="kicker">Отзывы</span>
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+          <a href="index.html">Главная</a><span aria-hidden="true">/</span><span>Отзывы</span>
+        </nav>
         <h1 class="h-display">Нам не нужно себя хвалить</h1>
         <p class="lead">За нас это делают клиенты — на 2ГИС, где отзыв не отредактируешь и не удалишь.</p>
         <div class="reviews-summary" style="margin-top: clamp(36px, 5vw, 64px)">
