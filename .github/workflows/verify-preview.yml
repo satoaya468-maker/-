@@ -4,6 +4,9 @@ name: Verify preview URL
 # и корректно ли раздаются CSS/фото/видео. Запускается вручную.
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/verify-preview.yml"
 
 jobs:
   verify:
