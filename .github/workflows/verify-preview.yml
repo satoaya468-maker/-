@@ -1,0 +1,20 @@
+name: Verify preview URL
+
+# Разовая проверка: отвечает ли предпросмотр сайта на raw.githack.com
+# и корректно ли раздаются CSS/фото/видео. Запускается вручную.
+on:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check pages and assets
+        run: |
+          BASE="https://raw.githack.com/satoaya468-maker/-/claude/autoglass-website-sjitg5"
+          for path in index.html uslugi.html otzyvy.html kontakty.html css/style.css js/main.js assets/img/hero-poster.jpg assets/video/hero.mp4; do
+            code=$(curl -s -o /tmp/body -w '%{http_code}' -L "$BASE/$path")
+            size=$(stat -c%s /tmp/body)
+            echo "RESULT $path -> HTTP $code, $size bytes"
+          done
+          curl -sL "$BASE/index.html" | grep -o '<title>[^<]*' | head -1
