@@ -15,9 +15,16 @@ jobs:
       - name: Check pages and assets
         run: |
           BASE="https://raw.githack.com/satoaya468-maker/-/claude/autoglass-website-sjitg5"
-          for path in index.html uslugi.html otzyvy.html kontakty.html css/style.css js/main.js assets/img/hero-poster.jpg assets/video/hero.mp4; do
+          for path in index.html uslugi.html otzyvy.html kontakty.html css/style.css js/main.js assets/img/hero-poster.jpg assets/img/svc-maslo.jpg assets/img/svc-diagnostika.jpg assets/img/svc-tonirovka.jpg assets/video/hero.mp4; do
             code=$(curl -s -o /tmp/body -w '%{http_code}' -L "$BASE/$path")
             size=$(stat -c%s /tmp/body)
             echo "RESULT $path -> HTTP $code, $size bytes"
           done
           curl -sL "$BASE/index.html" | grep -o '<title>[^<]*' | head -1
+
+      - name: Check 2GIS map widget embeds
+        run: |
+          W='https://widgets.2gis.com/widget?type=firmsonmap&options=%7B%22pos%22%3A%7B%22lat%22%3A53.412382%2C%22lon%22%3A58.994137%2C%22zoom%22%3A16%7D%2C%22opt%22%3A%7B%22city%22%3A%22magnitogorsk%22%7D%2C%22org%22%3A%2270000001069171264%22%7D'
+          code=$(curl -s -o /tmp/w -w '%{http_code}' -L -A "Mozilla/5.0" "$W")
+          echo "WIDGET firmsonmap -> HTTP $code, $(stat -c%s /tmp/w) bytes"
+          head -c 300 /tmp/w; echo

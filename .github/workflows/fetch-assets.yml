@@ -21,7 +21,7 @@ jobs:
       - name: Skip if assets already fetched
         id: guard
         run: |
-          if [ -f assets/img/hero-poster.jpg ]; then
+          if [ -f assets/img/svc-maslo.jpg ]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
           else
             echo "skip=false" >> "$GITHUB_OUTPUT"
@@ -57,12 +57,19 @@ jobs:
           fetch_img assets/img/svc-bokovye.jpg 1280 5940151 14699971
           fetch_img assets/img/svc-fary.jpg    1280 11079820 999001 19292944
           fetch_img assets/img/band-master.jpg 1920 8478265 3855771 16350651
+          fetch_img assets/img/svc-tonirovka.jpg 1280 6873088 6872148 5940151
+          fetch_img assets/img/svc-maslo.jpg 1280 13065690 13065700 7600916
+          fetch_img assets/img/svc-diagnostika.jpg 1280 6870298 4439585 14472323
 
       - name: Download and compress hero video
         if: steps.guard.outputs.skip == 'false'
         continue-on-error: true
         run: |
           set -u
+          if [ -f assets/video/hero.mp4 ]; then
+            echo "Видео уже скачано — пропускаем."
+            exit 0
+          fi
           sudo apt-get update -q && sudo apt-get install -yq ffmpeg
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
 
