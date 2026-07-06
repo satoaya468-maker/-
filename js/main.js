@@ -104,6 +104,55 @@
     }
   });
 
+  /* ---------- виджет оценки: 5 звёзд → отзыв в 2ГИС ----------
+     Меньше пяти — предлагаем написать владельцу напрямую,
+     чтобы проблема решилась до публичного отзыва. */
+  document.querySelectorAll("[data-rate]").forEach(function (widget) {
+    var stars = Array.prototype.slice.call(
+      widget.querySelectorAll(".rate-stars button")
+    );
+    var high = widget.querySelector(".rate-result--high");
+    var low = widget.querySelector(".rate-result--low");
+    var hint = widget.querySelector(".rate-hint");
+    var picked = 0;
+
+    function paint(n) {
+      stars.forEach(function (s, i) {
+        s.classList.toggle("is-on", i < n);
+      });
+    }
+
+    stars.forEach(function (star, idx) {
+      star.addEventListener("mouseenter", function () {
+        paint(idx + 1);
+      });
+      star.addEventListener("click", function () {
+        picked = idx + 1;
+        paint(picked);
+        if (hint) hint.hidden = true;
+        if (picked === 5) {
+          if (low) low.hidden = true;
+          if (high) high.hidden = false;
+          window.open(
+            "https://2gis.ru/magnitogorsk/firm/70000001069171264/tab/reviews",
+            "_blank",
+            "noopener"
+          );
+        } else {
+          if (high) high.hidden = true;
+          if (low) low.hidden = false;
+        }
+      });
+    });
+
+    var strip = widget.querySelector(".rate-stars");
+    if (strip) {
+      strip.addEventListener("mouseleave", function () {
+        paint(picked);
+      });
+    }
+  });
+
   /* ---------- hero-видео: постер, если файла нет ---------- */
   var heroVideo = document.querySelector(".hero-media video");
   if (heroVideo) {

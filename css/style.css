@@ -891,6 +891,105 @@ body.menu-open {
   }
 }
 
+/* ---------- виджет оценки (5-star review) ---------- */
+
+.rate-us {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 24px 56px;
+  align-items: center;
+  border: 1px solid var(--line-dark);
+  padding: clamp(28px, 4vw, 52px);
+  margin-top: clamp(40px, 6vw, 72px);
+}
+
+.rate-title {
+  font-size: clamp(21px, 2.4vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.rate-sub {
+  font-size: 15px;
+  color: rgba(242, 240, 234, 0.6);
+  margin-top: 10px;
+  max-width: 26em;
+}
+
+.rate-stars {
+  display: flex;
+  gap: 4px;
+}
+
+.rate-stars button {
+  font-size: clamp(34px, 4.4vw, 48px);
+  line-height: 1;
+  padding: 2px 5px;
+  color: rgba(242, 240, 234, 0.22);
+  transition: color 0.15s, transform 0.2s var(--ease);
+}
+
+.rate-stars button:hover {
+  transform: scale(1.15) rotate(-4deg);
+}
+
+.rate-stars button.is-on {
+  color: var(--mint);
+}
+
+.rate-hint {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: rgba(242, 240, 234, 0.45);
+  margin-top: 10px;
+}
+
+.rate-result {
+  margin-top: 18px;
+}
+
+.rate-result p {
+  font-size: 15.5px;
+  margin-bottom: 16px;
+  max-width: 30em;
+}
+
+.rate-result .rate-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* светлый вариант (страница отзывов) */
+
+.rate-us--light {
+  border-color: var(--line-light);
+  background: #fff;
+}
+
+.rate-us--light .rate-sub {
+  color: rgba(20, 23, 26, 0.6);
+}
+
+.rate-us--light .rate-stars button {
+  color: rgba(20, 23, 26, 0.16);
+}
+
+.rate-us--light .rate-stars button.is-on {
+  color: var(--mint-deep);
+}
+
+.rate-us--light .rate-hint {
+  color: rgba(20, 23, 26, 0.45);
+}
+
+@media (max-width: 900px) {
+  .rate-us {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---------- цифры / почему мы ---------- */
 
 .facts {
