@@ -989,6 +989,92 @@ body.menu-open {
   margin-top: 16px;
 }
 
+/* ---------- работы: до и после ---------- */
+
+.works {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 3vw, 40px);
+}
+
+.work-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.work-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  background: var(--paper-2);
+}
+
+.work-pair figure {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+}
+
+.work-pair img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s var(--ease);
+}
+
+.work-pair figure:hover img {
+  transform: scale(1.04);
+}
+
+.work-pair figcaption {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(20, 23, 26, 0.72);
+  color: var(--paper);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.work-pair figure:last-child figcaption {
+  background: var(--mint);
+  color: var(--ink);
+}
+
+.work-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 18px;
+}
+
+.work-meta h3 {
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-weight: 800;
+}
+
+.work-meta span {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: rgba(20, 23, 26, 0.55);
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .works {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---------- фотополоса ---------- */
 
 .photo-band {

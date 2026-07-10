@@ -104,6 +104,39 @@
     }
   });
 
+  /* ---------- работы «до/после» ----------
+     Секция скрыта по умолчанию и появляется только когда
+     фотографии реально лежат в assets/img/ — без битых плиток. */
+  document.querySelectorAll("[data-works]").forEach(function (section) {
+    var cards = Array.prototype.slice.call(
+      section.querySelectorAll(".work-card")
+    );
+    var pending = cards.length;
+    cards.forEach(function (card) {
+      var imgs = Array.prototype.slice.call(card.querySelectorAll("img"));
+      var left = imgs.length;
+      var failed = false;
+      function done() {
+        left--;
+        if (left > 0) return;
+        if (failed) card.remove();
+        pending--;
+        if (pending === 0 && section.querySelector(".work-card")) {
+          section.hidden = false;
+        }
+      }
+      imgs.forEach(function (img) {
+        var probe = new Image();
+        probe.onload = done;
+        probe.onerror = function () {
+          failed = true;
+          done();
+        };
+        probe.src = img.getAttribute("src");
+      });
+    });
+  });
+
   /* ---------- виджет оценки: 5 звёзд → отзыв в 2ГИС ----------
      Меньше пяти — предлагаем написать владельцу напрямую,
      чтобы проблема решилась до публичного отзыва. */
