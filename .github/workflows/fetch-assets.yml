@@ -26,6 +26,11 @@ jobs:
           else
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
+          if [ -f assets/img/work-bmw-do.jpg ]; then
+            echo "skip_works=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip_works=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Download photos from Pexels
         if: steps.guard.outputs.skip == 'false'
@@ -125,8 +130,31 @@ jobs:
           rm -rf work
           [ -f assets/video/hero.mp4 ] || echo "Видео не удалось получить — hero останется с постером."
 
+      - name: Download work photos (before/after, uploaded by owner)
+        if: steps.guard.outputs.skip_works == 'false'
+        run: |
+          set -u
+          mkdir -p assets/img work
+          command -v convert >/dev/null || { sudo apt-get update -q && sudo apt-get install -yq imagemagick; }
+          BASE="https://d2ol7oe51mr4n9.cloudfront.net/user_3FfEK3Fe2DmNEO1Ae85VEOcjQYt"
+          fetch_work() {  # fetch_work <файл> <id>
+            local out="$1" id="$2"
+            if curl -fsSL -o "work/$id.png" "$BASE/$id.png" \
+               && [ "$(stat -c%s "work/$id.png")" -gt 20000 ]; then
+              convert "work/$id.png" -auto-orient -resize "1280x1280>" -quality 82 "assets/img/$out"
+              echo "OK  $out"
+            else
+              echo "WARN: не удалось скачать $out"
+            fi
+          }
+          fetch_work work-bmw-do.jpg     ba8ba4d6-0c03-4052-82b4-3f4884e1d2d5
+          fetch_work work-bmw-posle.jpg  6c5902f8-7048-48c8-88c9-7fd922897d1a
+          fetch_work work-xray-do.jpg    5ad29f7d-0bbe-4361-9e81-2da82f90d0f7
+          fetch_work work-xray-posle.jpg 90465089-f079-4e28-ab3c-1f1f4ee24f2f
+          rm -rf work
+
       - name: Commit assets to branch
-        if: steps.guard.outputs.skip == 'false'
+        if: steps.guard.outputs.skip == 'false' || steps.guard.outputs.skip_works == 'false'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
