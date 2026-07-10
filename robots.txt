@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://avtosteklo24-mgn.ru/sitemap.xml
+Sitemap: https://avtosteklo74-mgn.ru/sitemap.xml

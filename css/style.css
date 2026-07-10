@@ -1,5 +1,5 @@
 /* ============================================================
-   Автостекло24 — Магнитогорск
+   Автостекло74 — Магнитогорск
    Дизайн-система: графит + кость + стеклянная мята
    Шрифты: Golos Text (текст/заголовки), JetBrains Mono (детали),
    Lora italic (цитаты)
@@ -472,26 +472,6 @@ body.menu-open {
   margin-bottom: clamp(48px, 7vw, 88px);
 }
 
-.hero-promo {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 26px;
-  padding: 9px 18px;
-  border: 1px solid rgba(159, 220, 203, 0.5);
-  border-radius: 999px;
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  letter-spacing: 0.04em;
-  color: var(--mint);
-  transition: background 0.25s, color 0.25s;
-}
-
-.hero-promo:hover {
-  background: var(--mint);
-  color: var(--ink);
-}
-
 .hero-strip {
   border-top: 1px solid var(--line-dark);
   padding-top: 22px;
@@ -652,24 +632,6 @@ body.menu-open {
   transform: translate(2px, -2px);
 }
 
-.tag-gift {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--mint-deep);
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  padding: 4px 12px;
-  margin-left: 12px;
-  vertical-align: 4px;
-}
-
-.dark .tag-gift {
-  color: var(--mint);
-}
-
 /* ---------- живая линия отзывов ---------- */
 
 .ticker-section {
@@ -804,60 +766,6 @@ body.menu-open {
   white-space: nowrap;
 }
 
-/* ---------- разделитель в списке услуг ---------- */
-
-.rows-divider {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--mint-deep);
-  padding: clamp(28px, 4vw, 48px) 0 6px;
-}
-
-/* ---------- акции ---------- */
-
-.offers {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--line-dark);
-  border: 1px solid var(--line-dark);
-}
-
-.offer {
-  background: var(--ink);
-  padding: clamp(26px, 3vw, 44px);
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.offer .offer-tag {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--mint);
-}
-
-.offer h3 {
-  font-size: clamp(20px, 2.2vw, 27px);
-  font-weight: 800;
-}
-
-.offer p:last-child {
-  font-size: 15px;
-  color: rgba(242, 240, 234, 0.62);
-}
-
-.offer .old-price {
-  text-decoration: line-through;
-  text-decoration-color: #e08c6a;
-  color: rgba(242, 240, 234, 0.8);
-}
-
 /* ---------- липкая панель связи (мобильные) ---------- */
 
 .callbar {
@@ -885,9 +793,6 @@ body.menu-open {
   }
   body {
     padding-bottom: 76px;
-  }
-  .offers {
-    grid-template-columns: 1fr;
   }
 }
 
