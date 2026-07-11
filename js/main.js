@@ -186,7 +186,8 @@
     }
   });
 
-  /* ---------- hero-видео: постер, если файла нет ---------- */
+  /* ---------- hero-видео: постер, если файла нет,
+     и страховка автовоспроизведения ---------- */
   var heroVideo = document.querySelector(".hero-media video");
   if (heroVideo) {
     heroVideo.addEventListener("error", function () {
@@ -198,5 +199,17 @@
         heroVideo.remove();
       });
     }
+    var tryPlay = function () {
+      if (!heroVideo.isConnected || !heroVideo.paused) return;
+      var p = heroVideo.play();
+      if (p && p.catch) p.catch(function () {});
+    };
+    heroVideo.addEventListener("canplay", tryPlay);
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden) tryPlay();
+    });
+    /* если браузер заблокировал автоплей — запускаем по первому касанию */
+    window.addEventListener("pointerdown", tryPlay, { once: true });
+    tryPlay();
   }
 })();
