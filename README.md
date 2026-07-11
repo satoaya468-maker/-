@@ -67,9 +67,8 @@ https://github.com/satoaya468-maker/-/upload/claude/autoglass-website-sjitg5/ass
 
 ## Перед публикацией
 
-1. Замените `https://avtosteklo74-mgn.ru/` на реальный домен в
-   `index.html`, `uslugi.html`, `otzyvy.html`, `kontakty.html`,
-   `robots.txt` и `sitemap.xml`.
+1. Домен `https://avto-steklo74.ru/` уже прошит в метатегах,
+   разметке, robots.txt и sitemap.xml.
 2. Проверьте цены на странице услуг — сейчас указаны ориентировочные
    («от»), уточните их у владельца.
 3. Имена авторов отзывов на главной и в `otzyvy.html` — проверьте по
