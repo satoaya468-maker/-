@@ -5,13 +5,19 @@ Options -Indexes
 ErrorDocument 404 /404.html
 DirectoryIndex index.html
 
-# HTTPS и адрес без www (работает с любым доменом)
+# Редирект http -> https и www -> без www.
+# На reg.ru SSL терминируется прокси, поэтому исходный протокол
+# берём из заголовка X-Forwarded-Proto — иначе будет цикл редиректов.
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteCond %{HTTPS} off
-  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # www -> без www
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-  RewriteRule ^(.*)$ https://%1/$1 [L,R=301]
+  RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+  # http -> https (только если клиент реально пришёл по http)
+  RewriteCond %{HTTP:X-Forwarded-Proto} =http
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
 # Сжатие текстовых файлов
