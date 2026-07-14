@@ -685,6 +685,67 @@ body.menu-locked { overflow: hidden; }
   text-wrap: pretty;
 }
 
+/* ---------- отзывы ---------- */
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line-strong);
+  border: 1px solid var(--line-strong);
+}
+
+.review-card {
+  background: var(--paper);
+  padding: clamp(1.5rem, 2.8vw, 2.2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.review-stars {
+  display: flex;
+  gap: 4px;
+  color: var(--accent);
+}
+
+.review-stars svg { fill: currentColor; }
+
+.review-text {
+  font-size: 0.97rem;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.review-meta {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.review-meta b { font-size: 0.95rem; font-weight: 700; }
+
+.review-meta span {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.review-foot {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+}
+
+.review-foot .note { font-size: 0.92rem; color: var(--ink-soft); max-width: 34em; }
+
 /* ---------- сезонный блок ---------- */
 
 .season {
@@ -1104,6 +1165,7 @@ html.js .reveal.is-in {
   .dir-tags { grid-column: 2; padding-top: 0.75rem; }
   .dir-more { grid-column: 2; }
   .steps { grid-template-columns: 1fr 1fr; }
+  .review-grid { grid-template-columns: 1fr 1fr; }
   .foot-top { grid-template-columns: 1fr 1fr; }
   .rate-grid { grid-template-columns: 1fr; }
   .rate-head { position: static; }
@@ -1128,6 +1190,7 @@ html.js .reveal.is-in {
 
   .rate-list { grid-template-columns: 1fr; }
   .duo { grid-template-columns: 1fr; }
+  .review-grid { grid-template-columns: 1fr; }
   .prin { grid-template-columns: 3rem 1fr; }
   .prin p { grid-column: 2; }
   .steps { grid-template-columns: 1fr; }
