@@ -51,6 +51,31 @@
     }
   }
 
+  /* --- «оцените нашу работу»: 5 звёзд -> карты, ниже -> фидбэк во ВК --- */
+  document.querySelectorAll('[data-rate]').forEach(function (rate) {
+    var stars = rate.querySelectorAll('.rate-star');
+    var idle = rate.querySelector('[data-rate-idle]');
+    var good = rate.querySelector('[data-rate-good]');
+    var bad = rate.querySelector('[data-rate-bad]');
+    function paint(n) {
+      stars.forEach(function (s, i) { s.classList.toggle('is-on', i < n); });
+    }
+    stars.forEach(function (star, i) {
+      star.addEventListener('mouseenter', function () { paint(i + 1); });
+      star.addEventListener('click', function () {
+        var value = i + 1;
+        rate.dataset.value = String(value);
+        paint(value);
+        if (idle) idle.hidden = true;
+        good.hidden = value < 5;
+        bad.hidden = value === 5;
+      });
+    });
+    rate.addEventListener('mouseleave', function () {
+      paint(Number(rate.dataset.value || 0));
+    });
+  });
+
   /* --- появление блоков --- */
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {

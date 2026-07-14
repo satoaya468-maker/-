@@ -286,8 +286,39 @@
 
         <div class="review-foot reveal">
           <a class="btn btn--ghost" href="https://vk.ru/ooospectr" target="_blank" rel="noopener">Читать все отзывы во ВКонтакте <span class="arr" aria-hidden="true">→</span></a>
-          <p class="note">Сделали у нас балкон, окна или ремонт? Оставьте отзыв
-            в группе — для нас это лучшая благодарность.</p>
+        </div>
+
+        <!-- TODO: замените ссылки Яндекс.Карт и 2ГИС на прямые ссылки
+             карточки организации (сейчас стоят ссылки на поиск по названию). -->
+        <div class="rate-us reveal" data-rate>
+          <div>
+            <h3>Мы делали вам балкон, окна или ремонт?</h3>
+            <p class="rate-hint">Оцените нашу работу — это займёт минуту.</p>
+            <div class="rate-stars" role="group" aria-label="Оценка от 1 до 5 звёзд">
+              <button class="rate-star" type="button" aria-label="1 звезда"><svg viewBox="0 0 20 20" width="26" height="26" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.8z"/></svg></button>
+              <button class="rate-star" type="button" aria-label="2 звезды"><svg viewBox="0 0 20 20" width="26" height="26" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.8z"/></svg></button>
+              <button class="rate-star" type="button" aria-label="3 звезды"><svg viewBox="0 0 20 20" width="26" height="26" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.8z"/></svg></button>
+              <button class="rate-star" type="button" aria-label="4 звезды"><svg viewBox="0 0 20 20" width="26" height="26" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.8z"/></svg></button>
+              <button class="rate-star" type="button" aria-label="5 звёзд"><svg viewBox="0 0 20 20" width="26" height="26" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.8z"/></svg></button>
+            </div>
+          </div>
+          <p class="rate-idle" data-rate-idle>Нажмите на звёзды, чтобы поставить оценку.</p>
+          <div class="rate-result" data-rate-good hidden>
+            <p><b>Спасибо!</b> Поделитесь, пожалуйста, отзывом на картах —
+              для нас это лучшая поддержка.</p>
+            <div class="rate-actions">
+              <a class="btn btn--solid" href="https://yandex.ru/maps/?text=Спектр%20Магнитогорск" target="_blank" rel="noopener">Отзыв на Яндекс.Картах</a>
+              <a class="btn btn--ghost" href="https://2gis.ru/magnitogorsk/search/Спектр" target="_blank" rel="noopener">Отзыв в 2ГИС</a>
+            </div>
+          </div>
+          <div class="rate-result" data-rate-bad hidden>
+            <p><b>Что-то пошло не так?</b> Напишите нам во ВКонтакте, что случилось, —
+              разберёмся и исправим.</p>
+            <div class="rate-actions">
+              <a class="btn btn--solid" href="https://vk.ru/ooospectr" target="_blank" rel="noopener">Написать во ВКонтакте</a>
+              <a class="btn btn--ghost" href="tel:+79507488813">Позвонить напрямую</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

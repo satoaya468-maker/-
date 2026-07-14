@@ -746,6 +746,82 @@ body.menu-locked { overflow: hidden; }
 
 .review-foot .note { font-size: 0.92rem; color: var(--ink-soft); max-width: 34em; }
 
+/* виджет «оцените нашу работу» */
+
+.rate-us {
+  margin-top: 1.75rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 1.5rem 3rem;
+  align-items: center;
+  position: relative;
+}
+
+.rate-us::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--spectr);
+}
+
+.rate-us h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.rate-us .rate-hint {
+  margin-top: 0.4rem;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.rate-stars {
+  display: inline-flex;
+  gap: 0.3rem;
+  margin-top: 1rem;
+}
+
+.rate-star {
+  background: none;
+  border: 0;
+  padding: 0.15rem;
+  cursor: pointer;
+  color: #c9c2b6;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.rate-star svg { display: block; fill: currentColor; }
+
+.rate-star.is-on { color: var(--accent); }
+
+.rate-star:hover { transform: scale(1.12); }
+
+.rate-star:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.rate-result { display: flex; flex-direction: column; gap: 1rem; }
+
+.rate-result[hidden] { display: none; }
+
+.rate-result p { font-size: 0.97rem; color: var(--ink-soft); text-wrap: pretty; }
+
+.rate-result p b { color: var(--ink); }
+
+.rate-result .rate-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+.rate-idle {
+  font-size: 0.97rem;
+  color: var(--ink-soft);
+}
+
 /* ---------- сезонный блок ---------- */
 
 .season {
@@ -1191,6 +1267,7 @@ html.js .reveal.is-in {
   .rate-list { grid-template-columns: 1fr; }
   .duo { grid-template-columns: 1fr; }
   .review-grid { grid-template-columns: 1fr; }
+  .rate-us { grid-template-columns: 1fr; }
   .prin { grid-template-columns: 3rem 1fr; }
   .prin p { grid-column: 2; }
   .steps { grid-template-columns: 1fr; }
