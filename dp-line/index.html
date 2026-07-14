@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Dp line — автозапчасти в Магнитогорске | Поиск по артикулу, самовывоз</title>
+<meta name="description" content="Dp line — интернет-магазин автозапчастей в Магнитогорске. Поиск по 30+ поставщикам: цена, срок и наличие сразу. Заказ онлайн, самовывоз.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<header data-dp-header></header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Деталь. Цена. Срок.<br>Без лишнего.</h1>
+    <p class="sub">Ищем по <b>30+ поставщикам</b> и показываем главное сразу: сколько стоит, когда будет и где забрать. Самовывоз в&nbsp;Магнитогорске.</p>
+
+    <div class="searchtabs" role="tablist">
+      <button role="tab" aria-selected="true" class="on" data-tab="art">По артикулу</button>
+      <button role="tab" aria-selected="false" data-tab="veh">По марке и модели</button>
+      <button role="tab" aria-selected="false" disabled title="Подбор по VIN появится с подключением каталога TecDoc">По VIN <span class="soon">скоро</span></button>
+    </div>
+
+    <form class="searchbox" id="form-art" action="search.html" method="get">
+      <input type="search" name="q" placeholder="Артикул или название, напр. W 914/2" autocomplete="off" aria-label="Поиск по артикулу или названию">
+      <button class="go" type="submit" aria-label="Найти">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+        <span>Найти</span>
+      </button>
+    </form>
+
+    <form class="vehrow" id="form-veh" action="search.html" method="get" hidden>
+      <select id="veh-make" aria-label="Марка автомобиля">
+        <option value="">Марка</option>
+      </select>
+      <select id="veh-model" name="vehicle" aria-label="Модель автомобиля" disabled>
+        <option value="">Модель</option>
+      </select>
+      <button class="btn go" type="submit">Показать запчасти</button>
+    </form>
+
+    <div class="hint" id="hints"><span>Часто ищут:</span></div>
+  </div>
+</section>
+
+<section class="sect">
+  <div class="wrap">
+    <div class="sect-head reveal">
+      <span class="idx">01</span><h2>Категории</h2>
+    </div>
+    <div class="cats" id="cats"></div>
+  </div>
+</section>
+
+<section class="sect">
+  <div class="wrap">
+    <div class="sect-head reveal">
+      <span class="idx">02</span><h2>Часто покупают</h2>
+      <a class="more" href="search.html">весь каталог
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="pops" id="pops"></div>
+  </div>
+</section>
+
+<section class="sect" style="padding-bottom:26px">
+  <div class="wrap">
+    <div class="sect-head reveal">
+      <span class="idx">03</span><h2>Как это работает</h2>
+    </div>
+    <div class="steps reveal" id="steps"></div>
+  </div>
+</section>
+
+<footer data-dp-footer></footer>
+
+<script src="js/data.js"></script>
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+
+  /* Переключение вкладок поиска */
+  const tabs = document.querySelectorAll('.searchtabs [data-tab]');
+  const formArt = document.getElementById('form-art');
+  const formVeh = document.getElementById('form-veh');
+  tabs.forEach((t) => t.addEventListener('click', () => {
+    tabs.forEach((x) => { x.classList.toggle('on', x === t); x.setAttribute('aria-selected', x === t); });
+    formArt.hidden = t.dataset.tab !== 'art';
+    formVeh.hidden = t.dataset.tab !== 'veh';
+    if (t.dataset.tab === 'art') formArt.querySelector('input').focus();
+  }));
+
+  /* Подсказки */
+  const hints = document.getElementById('hints');
+  (await DP.api.getPopularQueries()).forEach((q) => {
+    const a = document.createElement('a');
+    a.href = 'search.html?q=' + encodeURIComponent(q);
+    a.textContent = q;
+    hints.appendChild(a);
+  });
+
+  /* Марка → модель */
+  const vehicles = await DP.api.getVehicles();
+  const selMake = document.getElementById('veh-make');
+  const selModel = document.getElementById('veh-model');
+  vehicles.forEach((v) => selMake.add(new Option(v.make, v.make)));
+  selMake.addEventListener('change', () => {
+    selModel.innerHTML = '<option value="">Модель</option>';
+    const v = vehicles.find((x) => x.make === selMake.value);
+    if (v) v.models.forEach((m) => selModel.add(new Option(m, m)));
+    selModel.disabled = !v;
+  });
+  formVeh.addEventListener('submit', (e) => {
+    if (!selModel.value) { e.preventDefault(); selModel.focus(); }
+  });
+
+  /* Категории */
+  const cats = await DP.api.getCategories();
+  document.getElementById('cats').innerHTML = cats.map((c, i) => `
+    <a class="cat reveal" style="transition-delay:${i * 30}ms" href="search.html?cat=${c.id}">
+      <span class="ic">${DP.icon(c.icon, 20)}</span>
+      <span><b>${c.name}</b>
+      <span>${c.count} ${DP.fmt.plural(c.count, 'позиция', 'позиции', 'позиций')}</span></span>
+    </a>`).join('');
+
+  /* Часто покупают */
+  const pops = await DP.api.getPopularParts(8);
+  document.getElementById('pops').innerHTML = pops.map((p) => `
+    <a class="pop reveal" href="product.html?id=${p.id}">
+      <span class="thumb">${DP.icon(DP_DB.categories.find((c) => c.id === p.cat).icon, 22)}</span>
+      <span>
+        <span class="n">${p.brand} · ${p.name}</span>
+        <span class="a"><span class="art">${p.article}</span></span>
+      </span>
+      <span class="price">${DP.fmt.price(p.best.price)}
+        <small>${p.best.days === 0 ? 'в наличии' : 'от ' + DP.fmt.days(p.best)}</small>
+      </span>
+    </a>`).join('');
+
+  /* Шаги */
+  const pk = await DP.api.getPickup();
+  const shop = await DP.api.getShop();
+  document.getElementById('steps').innerHTML = `
+    <div class="step"><span class="num">01</span><div>
+      <b>Найдите деталь</b>
+      <p>По артикулу или марке авто. Сравните цену и срок у разных поставщиков.</p>
+    </div></div>
+    <div class="step"><span class="num">02</span><div>
+      <b>Оформите заказ</b>
+      <p>Без предоплаты и лишних полей — имя и телефон. Позвоним, когда деталь поступит.</p>
+    </div></div>
+    <div class="step"><span class="num">03</span><div>
+      <b>Заберите на пункте выдачи</b>
+      <p>${pk.address}.<br><a class="flink" href="${shop.phoneHref}">${shop.phone}</a></p>
+    </div></div>`;
+
+  DP.reveal();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Карточка товара — Dp line</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<header data-dp-header></header>
+
+<main class="wrap" id="page"></main>
+
+<footer data-dp-footer></footer>
+
+<script src="js/data.js"></script>
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const $page = document.getElementById('page');
+  const id = DP.qs('id');
+
+  $page.innerHTML = `
+    <div class="skel" style="margin-top:20px"><div class="l" style="width:40%"></div><div class="l" style="width:75%"></div><div class="l" style="width:55%;margin-bottom:0"></div></div>
+    <div class="skel"><div class="l" style="width:65%"></div><div class="l" style="width:45%;margin-bottom:0"></div></div>`;
+
+  const p = await DP.api.getPart(id);
+
+  if (!p) {
+    $page.innerHTML = `
+      <div class="empty" style="margin-top:30px">
+        <div class="ic">${DP.icon('box', 30)}</div>
+        <b>Товар не найден</b>
+        <p>Возможно, позиция устарела. Попробуйте поиск по артикулу.</p>
+        <p><a class="btn" href="index.html" style="margin-top:12px">${DP.icon('arrowl', 16)} На главную</a></p>
+      </div>`;
+    return;
+  }
+
+  const cat = DP_DB.categories.find((c) => c.id === p.cat) || { icon: 'box', name: '' };
+  document.title = `${p.brand} ${p.article} — ${p.name} — Dp line`;
+
+  const sortedOffers = p.offers
+    .map((o, i) => ({ ...o, i }))
+    .sort((a, b) => a.price - b.price || a.days - b.days);
+  const bestIdx = sortedOffers[0].i;
+
+  $page.innerHTML = `
+    <nav class="bcrumb" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a><span class="sep">/</span>
+      <a href="search.html?cat=${p.cat}">${cat.name}</a><span class="sep">/</span>
+      <span class="mono" style="font-size:12px">${p.article}</span>
+    </nav>
+
+    <div class="pgrid">
+      <div>
+        <div class="pphoto">
+          ${DP.icon(cat.icon, 44)}
+          <span class="cap">фото появится<br>с подключением API поставщиков</span>
+        </div>
+        <div class="specs">
+          <span class="mlabel">Спецификация</span>
+          ${Object.entries(p.specs || {}).map(([k, v]) => `
+            <div class="spec"><span class="k">${k}</span><span class="dots"></span><span class="v">${v}</span></div>`).join('')}
+          <div class="spec"><span class="k">Применимость</span><span class="dots"></span><span class="v" style="font-family:var(--sans);font-weight:500">${p.fits}</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="artrow"><span class="art">${p.article}</span><span class="brand">${p.brand}</span></div>
+        <div class="ptitle">
+          <h1>${p.name}</h1>
+          <div class="cfits">${p.fits}</div>
+        </div>
+
+        <div class="pofers" id="pofers">
+          <div class="pofers-head">
+            <span class="mlabel">Предложения поставщиков</span>
+            <span class="cnt">${p.offers.length} ${DP.fmt.plural(p.offers.length, 'вариант', 'варианта', 'вариантов')}</span>
+          </div>
+          ${sortedOffers.map((o) => {
+            const sup = DP.api.getSupplier(o.sup);
+            return `
+            <div class="pofer">
+              ${o.i === bestIdx && p.offers.length > 1 ? '<span class="best">выгодно</span>' : ''}
+              <div class="sup"><b>${sup.name}</b><span>склад ${sup.city} · ${o.qty} шт</span></div>
+              <span class="days ${o.days === 0 ? 'today' : ''}">${DP.fmt.days(o)}</span>
+              <span class="p">${DP.fmt.price(o.price)}</span>
+              <button class="btn js-add" data-part="${p.id}" data-offer="${o.i}">
+                ${DP.icon('cart', 15)} <span>В корзину</span>
+              </button>
+            </div>`;
+          }).join('')}
+        </div>
+
+        <p style="margin-top:12px;font-size:12.5px;color:var(--ink-3);display:flex;gap:8px;align-items:flex-start">
+          ${DP.icon('info', 15)}
+          <span>Срок — ориентировочное поступление на пункт выдачи в Магнитогорске. Позвоним, как только заказ придёт.</span>
+        </p>
+      </div>
+    </div>
+
+    ${p.analogItems.length ? `
+    <section class="analogs">
+      <div class="sect-head">
+        <span class="idx">◦</span><h2>Аналоги и кроссы</h2>
+        <span class="idx">${p.analogItems.length}</span>
+      </div>
+      <div class="pops">
+        ${p.analogItems.map((a) => `
+          <a class="pop" href="product.html?id=${a.id}">
+            <span class="thumb">${DP.icon(cat.icon, 22)}</span>
+            <span>
+              <span class="n">${a.brand} · ${a.name}</span>
+              <span class="a"><span class="art">${a.article}</span></span>
+            </span>
+            <span class="price">${DP.fmt.price(a.best.price)}
+              <small>${a.best.days === 0 ? 'в наличии' : 'от ' + DP.fmt.days(a.best)}</small>
+            </span>
+          </a>`).join('')}
+      </div>
+    </section>` : ''}
+  `;
+
+  document.getElementById('pofers').addEventListener('click', (e) => {
+    const add = e.target.closest('.js-add');
+    if (!add) return;
+    DP.cart.add(add.dataset.part, Number(add.dataset.offer));
+    DP.buyFeedback(add);
+  });
+});
+</script>
+</body>
+</html>

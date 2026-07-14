@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Корзина — Dp line</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<header data-dp-header></header>
+
+<div class="wrap toolbar">
+  <h1>Корзина</h1>
+  <div class="meta" id="meta">&nbsp;</div>
+</div>
+
+<main class="wrap" id="page"></main>
+
+<footer data-dp-footer></footer>
+
+<script src="js/data.js"></script>
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const $page = document.getElementById('page');
+  const $meta = document.getElementById('meta');
+  const pickup = await DP.api.getPickup();
+
+  const pickupHTML = (tag) => `
+    <div class="panel-b">
+      <div class="pickup">
+        <span class="ic">${DP.icon('pin', 18)}</span>
+        <div>
+          ${tag ? '<span class="pickup-tag"><span class="dot" style="width:6px;height:6px;border-radius:50%;background:currentColor"></span>единственный способ получения</span>' : ''}
+          <b>${pickup.title}</b>
+          <div class="addr">${pickup.address}</div>
+          <div class="note">${pickup.note}</div>
+          <div class="hrs">
+            ${pickup.hours.map((h) => `<div><span>${h.d}</span><span>${h.h}</span></div>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  async function render() {
+    const items = DP.cart.items();
+
+    if (!items.length) {
+      $meta.innerHTML = '&nbsp;';
+      $page.innerHTML = `
+        <div class="empty" style="margin-top:4px">
+          <div class="ic">${DP.icon('cart', 30)}</div>
+          <b>Корзина пуста</b>
+          <p>Найдите деталь по артикулу или выберите категорию — добавленные позиции появятся здесь.</p>
+          <p><a class="btn" href="index.html" style="margin-top:12px">${DP.icon('search', 16)} Перейти к поиску</a></p>
+        </div>`;
+      return;
+    }
+
+    /* собираем данные позиций (параллельно) */
+    const parts = await Promise.all(items.map((it) => DP.api.getPart(it.partId)));
+    const rows = items
+      .map((it, i) => ({ it, p: parts[i], offer: parts[i] && parts[i].offers[it.offerIdx] }))
+      .filter((r) => r.p && r.offer);
+
+    const totalQty = rows.reduce((s, r) => s + r.it.qty, 0);
+    const totalSum = rows.reduce((s, r) => s + r.offer.price * r.it.qty, 0);
+    const maxDays = Math.max(...rows.map((r) => r.offer.daysMax || r.offer.days));
+
+    $meta.textContent = `${rows.length} ${DP.fmt.plural(rows.length, 'позиция', 'позиции', 'позиций')} · ${totalQty} шт`;
+
+    $page.innerHTML = `
+      <div class="cart-grid">
+        <div id="list">
+          ${rows.map(({ it, p, offer }) => {
+            const sup = DP.api.getSupplier(offer.sup);
+            const cat = DP_DB.categories.find((c) => c.id === p.cat) || { icon: 'box' };
+            return `
+            <div class="citem" data-part="${p.id}" data-offer="${it.offerIdx}">
+              <span class="thumb">${DP.icon(cat.icon, 20)}</span>
+              <div>
+                <a class="n" href="product.html?id=${p.id}">${p.brand} · ${p.name}</a>
+                <div class="meta">
+                  <span class="art">${p.article}</span> ·
+                  ${sup.name} · <span class="days">${offer.days === 0 ? 'в наличии' : 'поступит ' + DP.fmt.days(offer)}</span>
+                </div>
+              </div>
+              <div class="citem-foot">
+                <div class="qty" aria-label="Количество">
+                  <button class="js-dec" aria-label="Меньше">${DP.icon('minus', 14)}</button>
+                  <b>${it.qty}</b>
+                  <button class="js-inc" aria-label="Больше">${DP.icon('plus', 14)}</button>
+                </div>
+                <button class="rm js-rm" aria-label="Удалить позицию">${DP.icon('trash', 16)}</button>
+                <span class="sum">${DP.fmt.price(offer.price * it.qty)}</span>
+              </div>
+            </div>`;
+          }).join('')}
+        </div>
+
+        <div>
+          <div class="panel">
+            ${pickupHTML(true)}
+          </div>
+          <div class="panel" style="margin-top:14px">
+            <div class="panel-b">
+              <div class="trow"><span>Позиции</span><span class="p">${rows.length}</span></div>
+              <div class="trow"><span>Количество</span><span class="p">${totalQty} шт</span></div>
+              <div class="trow"><span>Полная комплектация</span><span class="p">${maxDays === 0 ? 'сегодня' : DP.fmt.days({ days: maxDays })}</span></div>
+              <div class="trow total"><span>Итого</span><span class="p">${DP.fmt.price(totalSum)}</span></div>
+            </div>
+            <div class="panel-b">
+              <a class="btn btn--lg btn--w" href="checkout.html">Оформить заказ ${DP.icon('arrowr', 17)}</a>
+              <p style="margin-top:10px;font-size:12px;color:var(--ink-3);text-align:center">Оплата при получении. Без предоплаты.</p>
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  document.getElementById('page').addEventListener('click', (e) => {
+    const item = e.target.closest('.citem');
+    if (!item) return;
+    const partId = item.dataset.part;
+    const offerIdx = Number(item.dataset.offer);
+    const cur = DP.cart.items().find((i) => i.partId === partId && i.offerIdx === offerIdx);
+    if (!cur) return;
+    if (e.target.closest('.js-inc')) { DP.cart.setQty(partId, offerIdx, cur.qty + 1); render(); }
+    else if (e.target.closest('.js-dec')) { DP.cart.setQty(partId, offerIdx, cur.qty - 1); render(); }
+    else if (e.target.closest('.js-rm')) { DP.cart.remove(partId, offerIdx); render(); }
+  });
+
+  render();
+});
+</script>
+</body>
+</html>

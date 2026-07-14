@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Dp line — Вариант A · «Каталожный лист»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF; --bg:#F6F7F9; --ink:#0F1319; --ink-2:#454C5C; --ink-3:#7C8494;
+  --line:#E5E8EE; --line-2:#CBD1DC;
+  --cyan:#2BC8EC; --violet:#7B5CFF; --magenta:#E650EC;
+  --grad:linear-gradient(105deg,var(--cyan),var(--violet) 52%,var(--magenta));
+  --ok:#0B9B54; --ok-bg:#E9F7EF; --warn:#A16207; --warn-bg:#FBF3E2;
+  --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:16px;line-height:1.5;font-feature-settings:'tnum','cv05'}
+.mono{font-family:var(--mono)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none}
+
+/* micro label — язык техдокументации */
+.mlabel{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+
+/* ===== header ===== */
+header{border-bottom:1px solid var(--line)}
+.topline{height:2px;background:var(--grad)}
+.hrow{display:flex;align-items:center;gap:14px;padding:12px 0}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+.logo small{display:block;font-family:var(--mono);font-weight:500;font-size:9px;letter-spacing:.32em;color:var(--ink-3);text-transform:uppercase;margin-top:1px}
+.hspacer{flex:1}
+.hphone{display:none;font-family:var(--mono);font-size:14px;font-weight:600}
+.hphone span{display:block;font-family:var(--sans);font-weight:400;font-size:11px;color:var(--ink-3)}
+.hcart{position:relative;display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--line);border-radius:10px}
+.hcart b{position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:var(--ink);color:#fff;font-family:var(--mono);font-size:10.5px;font-weight:600;display:flex;align-items:center;justify-content:center}
+@media(min-width:760px){.hphone{display:block}}
+
+/* ===== hero ===== */
+.hero{padding:34px 0 0;border-bottom:1px solid var(--line);background:
+  linear-gradient(var(--paper) 0 0) padding-box}
+.hero h1{font-size:clamp(26px,5vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.12}
+.hero .sub{margin-top:8px;color:var(--ink-2);font-size:15px;max-width:52ch}
+.searchtabs{display:flex;gap:0;margin-top:26px}
+.searchtabs button{padding:9px 16px;font-size:13.5px;font-weight:600;color:var(--ink-3);border:1px solid var(--line);border-bottom:0;border-radius:10px 10px 0 0;background:var(--bg)}
+.searchtabs button.on{color:var(--ink);background:var(--paper);position:relative}
+.searchtabs button.on::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--paper)}
+.searchbox{display:flex;border:1px solid var(--line-2);border-radius:0 12px 12px 12px;overflow:hidden;background:var(--paper)}
+.searchbox:focus-within{border-color:var(--violet);box-shadow:0 0 0 3px rgba(123,92,255,.15)}
+.searchbox input{flex:1;min-width:0;border:0;outline:0;padding:16px 16px;font-family:var(--mono);font-size:15px;color:var(--ink)}
+.searchbox input::placeholder{color:var(--ink-3)}
+.searchbox .go{display:flex;align-items:center;gap:8px;padding:0 22px;background:var(--ink);color:#fff;font-weight:600;font-size:15px}
+.searchbox .go:hover{background:#232936}
+.hint{display:flex;gap:18px;flex-wrap:wrap;margin:12px 0 26px}
+.hint span{font-size:12.5px;color:var(--ink-3)}
+.hint b{font-family:var(--mono);font-weight:500;color:var(--ink-2)}
+
+/* ===== results ===== */
+.rhead{display:flex;align-items:baseline;gap:14px;padding:26px 0 12px}
+.rhead h2{font-size:17px;font-weight:700;letter-spacing:-.01em}
+.rhead .cnt{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+.rhead .sort{margin-left:auto;font-size:12.5px;color:var(--ink-3)}
+.rhead .sort b{color:var(--ink);font-weight:600;border-bottom:1px dashed var(--line-2)}
+
+.card{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:14px;background:var(--paper)}
+.crow{display:grid;grid-template-columns:1fr;gap:0}
+.cmain{padding:16px;display:grid;grid-template-columns:56px 1fr;gap:14px}
+.thumb{width:56px;height:56px;border:1px solid var(--line);border-radius:10px;background:
+  repeating-linear-gradient(45deg,var(--bg) 0 6px,#fff 6px 12px);display:flex;align-items:center;justify-content:center;color:var(--ink-3)}
+.cart-art{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.art{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.02em;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+.brand{font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.cname{margin-top:5px;font-size:15px;font-weight:600;line-height:1.35;letter-spacing:-.01em}
+.cfits{margin-top:3px;font-size:12.5px;color:var(--ink-3)}
+.cbuy{border-top:1px dashed var(--line);padding:12px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.price{font-family:var(--mono);font-size:19px;font-weight:700;letter-spacing:-.02em}
+.price i{font-style:normal;font-size:13px;font-weight:500;color:var(--ink-3)}
+.stock{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ok);background:var(--ok-bg);border-radius:7px;padding:4px 9px}
+.stock.w{color:var(--warn);background:var(--warn-bg)}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.tobuy{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--ink);color:#fff;font-size:14px;font-weight:600;padding:11px 18px;border-radius:10px;position:relative}
+.tobuy:hover{background:#232936}
+.moreoffers{border-top:1px solid var(--line);background:var(--bg);padding:10px 16px;font-size:13px;color:var(--ink-2);display:flex;align-items:center;gap:8px}
+.moreoffers b{font-family:var(--mono);font-weight:600}
+.offers{border-top:1px solid var(--line)}
+.offer{display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid var(--line);font-size:13.5px}
+.offer:last-child{border-bottom:0}
+.offer .sup{flex:1;min-width:0}
+.offer .sup b{font-weight:600}
+.offer .sup span{display:block;font-size:11.5px;color:var(--ink-3)}
+.offer .days{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);white-space:nowrap}
+.offer .p{font-family:var(--mono);font-weight:700;font-size:15px;white-space:nowrap}
+.offer .mini{width:34px;height:34px;border:1px solid var(--line-2);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.offer .mini:hover{border-color:var(--ink)}
+.best{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.1em;color:var(--violet);border:1px solid currentColor;border-radius:5px;padding:1px 5px;text-transform:uppercase}
+@media(min-width:760px){
+  .cmain{grid-template-columns:64px 1fr;padding:18px}
+  .thumb{width:64px;height:64px}
+  .crow{grid-template-columns:1fr 340px}
+  .cbuy{border-top:0;border-left:1px dashed var(--line);flex-wrap:nowrap}
+}
+footer{padding:30px 0 60px;color:var(--ink-3);font-size:12px;font-family:var(--mono)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topline"></div>
+  <div class="wrap hrow">
+    <a class="logo" href="#">
+      <svg width="34" height="34" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <defs><linearGradient id="g" x1="4" y1="34" x2="44" y2="14" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#2BC8EC"/><stop offset=".52" stop-color="#7B5CFF"/><stop offset="1" stop-color="#E650EC"/>
+        </linearGradient></defs>
+        <path d="M22 6v22.5a8.5 8.5 0 1 1-3-6.5" stroke="url(#g)" stroke-width="4.6" stroke-linecap="round"/>
+        <path d="M26 42V19.5a8.5 8.5 0 1 1 3 6.5" stroke="url(#g)" stroke-width="4.6" stroke-linecap="round"/>
+      </svg>
+      <span>dp·line<small>автозапчасти</small></span>
+    </a>
+    <div class="hspacer"></div>
+    <div class="hphone">+7 (3519) 000-00-00<span>Магнитогорск · самовывоз</span></div>
+    <a class="hcart" href="#" aria-label="Корзина, 2 позиции">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+      <b>2</b>
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Деталь. Цена. Срок.<br>Без лишнего.</h1>
+    <p class="sub">Поиск по 30+ поставщикам. Заказ онлайн — самовывоз в&nbsp;Магнитогорске.</p>
+    <div class="searchtabs">
+      <button class="on">По артикулу</button>
+      <button>По марке и модели</button>
+    </div>
+    <div class="searchbox">
+      <input type="search" placeholder="Артикул или название, напр. 09.9772.11" value="09.9772.11">
+      <button class="go">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+        Найти
+      </button>
+    </div>
+    <div class="hint"><span>Часто ищут: <b>масляный фильтр</b> · <b>колодки Rio</b> · <b>5W-40</b></span></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="rhead">
+    <h2>Результаты</h2><span class="cnt">3 позиции · 6 предложений</span>
+    <span class="sort">Сначала: <b>дешевле</b> · быстрее</span>
+  </div>
+
+  <!-- карточка с несколькими предложениями -->
+  <article class="card">
+    <div class="crow">
+      <div class="cmain">
+        <div class="thumb">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21"/></svg>
+        </div>
+        <div>
+          <div class="cart-art"><span class="art">09.9772.11</span><span class="brand">Brembo</span></div>
+          <div class="cname">Диск тормозной передний вентилируемый, 256 мм</div>
+          <div class="cfits">Hyundai Solaris I/II · Kia Rio III/IV</div>
+        </div>
+      </div>
+      <div class="cbuy">
+        <div>
+          <div class="price">3 480 <i>₽</i></div>
+          <span class="stock"><span class="dot"></span>Завтра · Берг</span>
+        </div>
+        <button class="tobuy">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          В корзину
+        </button>
+      </div>
+    </div>
+    <div class="offers">
+      <div class="offer">
+        <span class="best">выгодно</span>
+        <div class="sup"><b>Берг</b><span>склад Екатеринбург · 6 шт</span></div>
+        <span class="days">завтра</span><span class="p">3 480 ₽</span>
+        <button class="mini" aria-label="В корзину"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+      </div>
+      <div class="offer">
+        <div class="sup"><b>ПартКом</b><span>склад Челябинск · 2 шт</span></div>
+        <span class="days">сегодня</span><span class="p">3 720 ₽</span>
+        <button class="mini" aria-label="В корзину"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+      </div>
+      <div class="offer">
+        <div class="sup"><b>Росско</b><span>склад Новосибирск · 14 шт</span></div>
+        <span class="days">3–4 дня</span><span class="p">3 390 ₽</span>
+        <button class="mini" aria-label="В корзину"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+      </div>
+    </div>
+  </article>
+
+  <!-- обычная карточка -->
+  <article class="card">
+    <div class="crow">
+      <div class="cmain">
+        <div class="thumb">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21"/></svg>
+        </div>
+        <div>
+          <div class="cart-art"><span class="art">DF4864</span><span class="brand">TRW</span></div>
+          <div class="cname">Диск тормозной передний, аналог, 256 мм</div>
+          <div class="cfits">Hyundai Solaris I/II · Kia Rio III/IV</div>
+        </div>
+      </div>
+      <div class="cbuy">
+        <div>
+          <div class="price">2 890 <i>₽</i></div>
+          <span class="stock"><span class="dot"></span>В наличии · сегодня</span>
+        </div>
+        <button class="tobuy">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          В корзину
+        </button>
+      </div>
+    </div>
+    <div class="moreoffers">ещё <b>2 предложения</b> от 2 690 ₽ · 2–5 дней</div>
+  </article>
+
+</section>
+
+<footer class="wrap">A · «КАТАЛОЖНЫЙ ЛИСТ» — светлая инженерная витрина</footer>
+
+</body>
+</html>

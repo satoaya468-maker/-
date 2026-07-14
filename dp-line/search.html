@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Поиск запчастей — Dp line</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<header data-dp-header></header>
+
+<div class="wrap toolbar">
+  <form class="searchbox" id="form-search" action="search.html" method="get" style="border-radius:12px">
+    <input type="search" name="q" id="q" placeholder="Артикул или название, напр. W 914/2" autocomplete="off" aria-label="Поиск по артикулу или названию">
+    <button class="go" type="submit" aria-label="Найти" style="border-radius:0 11px 11px 0">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+      <span>Найти</span>
+    </button>
+  </form>
+
+  <div class="controls">
+    <span class="mlabel">Сначала</span>
+    <div class="seg" role="group" aria-label="Сортировка">
+      <button id="sort-cheap" class="on">дешевле</button>
+      <button id="sort-fast">быстрее</button>
+    </div>
+    <label class="chk">
+      <input type="checkbox" id="instock">
+      <span class="tick">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5 5L20 6.5"/></svg>
+      </span>
+      только в наличии
+    </label>
+  </div>
+
+  <h1 id="title" style="margin-top:18px">Каталог</h1>
+  <div class="meta" id="meta">&nbsp;</div>
+</div>
+
+<main class="wrap results" id="results" aria-live="polite"></main>
+
+<footer data-dp-footer></footer>
+
+<script src="js/data.js"></script>
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  const state = {
+    q: DP.qs('q'),
+    cat: DP.qs('cat'),
+    vehicle: DP.qs('vehicle'),
+    sort: DP.qs('sort') === 'fast' ? 'fast' : 'cheap',
+    inStock: DP.qs('instock') === '1',
+  };
+
+  const $results = document.getElementById('results');
+  const $title = document.getElementById('title');
+  const $meta = document.getElementById('meta');
+  const $q = document.getElementById('q');
+  const $inStock = document.getElementById('instock');
+  const $sortCheap = document.getElementById('sort-cheap');
+  const $sortFast = document.getElementById('sort-fast');
+
+  $q.value = state.q;
+  $inStock.checked = state.inStock;
+  syncSortUI();
+
+  function syncSortUI() {
+    $sortCheap.classList.toggle('on', state.sort === 'cheap');
+    $sortFast.classList.toggle('on', state.sort === 'fast');
+  }
+
+  function syncURL() {
+    const p = new URLSearchParams();
+    if (state.q) p.set('q', state.q);
+    if (state.cat) p.set('cat', state.cat);
+    if (state.vehicle) p.set('vehicle', state.vehicle);
+    if (state.sort === 'fast') p.set('sort', 'fast');
+    if (state.inStock) p.set('instock', '1');
+    history.replaceState(null, '', 'search.html' + (p.toString() ? '?' + p : ''));
+  }
+
+  function heading() {
+    if (state.q) return `Результаты: «${state.q}»`;
+    if (state.vehicle) return `Запчасти для ${state.vehicle}`;
+    if (state.cat) {
+      const c = DP_DB.categories.find((x) => x.id === state.cat);
+      if (c) return c.name;
+    }
+    return 'Каталог';
+  }
+
+  const catIcon = (p) => (DP_DB.categories.find((c) => c.id === p.cat) || {}).icon || 'box';
+
+  function cardHTML(p) {
+    const rest = p.offers.length - 1;
+    const cheapest = Math.min(...p.offers.map((o) => o.price));
+    const stockCls = p.best.days === 0 ? '' : (p.best.days <= 2 ? '' : 'w');
+    const stockTxt = p.best.days === 0
+      ? 'в наличии · сегодня'
+      : `срок: ${DP.fmt.days(p.best)}`;
+    const bestIdx = p.offers.indexOf(p.offers.reduce((a, b) => (b.price < a.price ? b : a)));
+    return `
+    <article class="card reveal" data-id="${p.id}">
+      <div class="crow">
+        <div class="cmain">
+          <a class="thumb" href="product.html?id=${p.id}" aria-hidden="true" tabindex="-1">${DP.icon(catIcon(p), 24)}</a>
+          <div>
+            <div class="artrow"><span class="art">${p.article}</span><span class="brand">${p.brand}</span></div>
+            <a class="cname" href="product.html?id=${p.id}">${p.name}</a>
+            <div class="cfits">${p.fits}</div>
+          </div>
+        </div>
+        <div class="cbuy">
+          <div class="pr">
+            <div class="price">${DP.fmt.price(p.best.price)}</div>
+            <span class="stock ${stockCls}"><span class="dot"></span><em>${stockTxt}</em></span>
+          </div>
+          <button class="btn js-add" data-part="${p.id}" data-offer="${p.offers.indexOf(p.best) === -1 ? 0 : p.offers.indexOf(p.best)}">
+            ${DP.icon('cart', 16)} В корзину
+          </button>
+        </div>
+      </div>
+      ${rest > 0 ? `
+      <button class="offers-toggle" aria-expanded="false">
+        ещё <b>${rest} ${DP.fmt.plural(rest, 'предложение', 'предложения', 'предложений')}</b>
+        · от ${DP.fmt.price(cheapest)}
+        <span class="chev">${DP.icon('chevdown', 16)}</span>
+      </button>
+      <div class="offers">
+        ${p.offers.map((o, i) => DP.offerRow(p, o, i, { best: i === bestIdx && p.offers.length > 1 })).join('')}
+      </div>` : ''}
+    </article>`;
+  }
+
+  function skeletons(n = 4) {
+    return Array.from({ length: n }, () => `
+      <div class="skel" aria-hidden="true">
+        <div class="l" style="width:34%"></div>
+        <div class="l" style="width:72%"></div>
+        <div class="l" style="width:52%;margin-bottom:0"></div>
+      </div>`).join('');
+  }
+
+  async function run() {
+    $title.textContent = heading();
+    document.title = heading() + ' — Dp line';
+    $meta.innerHTML = '&nbsp;';
+    $results.innerHTML = skeletons();
+    syncURL();
+
+    const res = await DP.api.searchParts(state);
+
+    if (!res.total) {
+      $results.innerHTML = `
+        <div class="empty">
+          <div class="ic">${DP.icon('search', 30)}</div>
+          <b>Ничего не найдено</b>
+          <p>Проверьте артикул или попробуйте короче: часть номера, бренд или название детали. Если детали нет в каталоге — позвоните, найдём по прайсам поставщиков.</p>
+        </div>`;
+      return;
+    }
+
+    $meta.textContent =
+      `${res.total} ${DP.fmt.plural(res.total, 'позиция', 'позиции', 'позиций')} · ` +
+      `${res.offersTotal} ${DP.fmt.plural(res.offersTotal, 'предложение', 'предложения', 'предложений')}`;
+
+    let html = res.items.map(cardHTML).join('');
+    if (res.analogs.length) {
+      html += `<div class="analog-sep"><span class="mlabel">Аналоги и кроссы · ${res.analogs.length}</span></div>`;
+      html += res.analogs.map(cardHTML).join('');
+    }
+    $results.innerHTML = html;
+    DP.reveal();
+  }
+
+  /* события */
+  document.getElementById('form-search').addEventListener('submit', (e) => {
+    e.preventDefault();
+    state.q = $q.value.trim();
+    state.cat = '';
+    state.vehicle = '';
+    run();
+  });
+  $sortCheap.addEventListener('click', () => { state.sort = 'cheap'; syncSortUI(); run(); });
+  $sortFast.addEventListener('click', () => { state.sort = 'fast'; syncSortUI(); run(); });
+  $inStock.addEventListener('change', () => { state.inStock = $inStock.checked; run(); });
+
+  /* добавление в корзину (и с карточки, и из списка предложений) */
+  $results.addEventListener('click', (e) => {
+    const add = e.target.closest('.js-add');
+    if (add) {
+      DP.cart.add(add.dataset.part, Number(add.dataset.offer));
+      if (add.classList.contains('btn')) DP.buyFeedback(add);
+      else {
+        add.classList.add('ok');
+        add.innerHTML = DP.icon('check', 15);
+        setTimeout(() => { add.classList.remove('ok'); add.innerHTML = DP.icon('plus', 15); }, 1200);
+      }
+      return;
+    }
+    const tgl = e.target.closest('.offers-toggle');
+    if (tgl) {
+      const open = tgl.getAttribute('aria-expanded') === 'true';
+      tgl.setAttribute('aria-expanded', String(!open));
+      tgl.nextElementSibling.classList.toggle('open', !open);
+    }
+  });
+
+  run();
+});
+</script>
+</body>
+</html>
