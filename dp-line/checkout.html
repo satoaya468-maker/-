@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Оформление заказа — Dp line</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#FFFFFF">
+<meta name="theme-color" content="#191C23">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,10 +38,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (!rows.length) {
     $page.innerHTML = `
       <div class="empty" style="margin-top:30px">
-        <div class="ic">${DP.icon('cart', 30)}</div>
         <b>В корзине пусто</b>
         <p>Добавьте детали в корзину, чтобы оформить заказ.</p>
-        <p><a class="btn" href="index.html" style="margin-top:12px">${DP.icon('search', 16)} Перейти к поиску</a></p>
+        <p><a class="btn" href="index.html" style="margin-top:12px">Перейти к поиску</a></p>
       </div>`;
     return;
   }
@@ -52,8 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   $page.innerHTML = `
     <div class="toolbar" style="padding-inline:0">
       <nav class="bcrumb" style="padding-top:0" aria-label="Хлебные крошки">
-        <a href="cart.html">${DP.icon('arrowl', 13)}</a>
-        <a href="cart.html">Корзина</a><span class="sep">/</span><span>Оформление</span>
+        <a href="cart.html">← Корзина</a><span class="sep">/</span><span>Оформление</span>
       </nav>
       <h1 style="margin-top:10px">Оформление заказа</h1>
       <div class="meta">оплата при получении · без предоплаты</div>
@@ -63,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       <form id="form" novalidate>
         <div class="panel">
           <div class="panel-b">
-            <span class="mlabel" style="margin-bottom:12px">01 · Контакты</span>
+            <span class="lbl" style="margin-bottom:12px">1. Контакты</span>
             <div class="field">
               <label for="f-name">Имя <em>*</em></label>
               <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться">
@@ -81,9 +79,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           </div>
 
           <div class="panel-b">
-            <span class="mlabel" style="margin-bottom:12px">02 · Получение — самовывоз</span>
+            <span class="lbl" style="margin-bottom:12px">2. Получение — самовывоз</span>
             <div class="pickup">
-              <span class="ic">${DP.icon('pin', 18)}</span>
               <div>
                 <b>${pickup.title}</b>
                 <div class="addr">${pickup.address}</div>
@@ -108,7 +105,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       <div class="panel">
         <div class="panel-b">
-          <span class="mlabel" style="margin-bottom:10px">Ваш заказ</span>
+          <span class="lbl" style="margin-bottom:10px">Ваш заказ</span>
           <div class="co-items">
             ${rows.map(({ it, p, offer }) => `
               <div class="ci">
@@ -179,7 +176,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         <div class="panel">
           <div class="panel-b">
             <div class="pickup">
-              <span class="ic">${DP.icon('pin', 18)}</span>
               <div>
                 <b>${pickup.title}</b>
                 <div class="addr">${pickup.address}</div>
@@ -189,12 +185,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
           </div>
           <div class="panel-b" style="display:flex;align-items:center;gap:10px">
-            ${DP.icon('phone', 16)}
-            <a class="flink" href="${shop.phoneHref}">${shop.phone}</a>
-            <span class="fmut" style="margin-left:auto">вопросы по заказу</span>
+            <a href="${shop.phoneHref}" style="font-weight:700">${shop.phone}</a>
+            <span style="margin-left:auto;color:var(--ink-3);font-size:12px">вопросы по заказу</span>
           </div>
         </div>
-        <a class="btn btn--ghost" href="index.html">${DP.icon('arrowl', 16)} Вернуться в каталог</a>
+        <a class="btn btn--ghost" href="index.html">← Вернуться в каталог</a>
       </div>`;
     window.scrollTo({ top: 0 });
   });

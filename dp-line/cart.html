@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Корзина — Dp line</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#FFFFFF">
+<meta name="theme-color" content="#191C23">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,9 +37,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const pickupHTML = (tag) => `
     <div class="panel-b">
       <div class="pickup">
-        <span class="ic">${DP.icon('pin', 18)}</span>
         <div>
-          ${tag ? '<span class="pickup-tag"><span class="dot" style="width:6px;height:6px;border-radius:50%;background:currentColor"></span>единственный способ получения</span>' : ''}
+          ${tag ? '<span class="pickup-tag">единственный способ получения</span>' : ''}
           <b>${pickup.title}</b>
           <div class="addr">${pickup.address}</div>
           <div class="note">${pickup.note}</div>
@@ -57,10 +56,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       $meta.innerHTML = '&nbsp;';
       $page.innerHTML = `
         <div class="empty" style="margin-top:4px">
-          <div class="ic">${DP.icon('cart', 30)}</div>
           <b>Корзина пуста</b>
           <p>Найдите деталь по артикулу или выберите категорию — добавленные позиции появятся здесь.</p>
-          <p><a class="btn" href="index.html" style="margin-top:12px">${DP.icon('search', 16)} Перейти к поиску</a></p>
+          <p><a class="btn" href="index.html" style="margin-top:12px">Перейти к поиску</a></p>
         </div>`;
       return;
     }
@@ -82,10 +80,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         <div id="list">
           ${rows.map(({ it, p, offer }) => {
             const sup = DP.api.getSupplier(offer.sup);
-            const cat = DP_DB.categories.find((c) => c.id === p.cat) || { icon: 'box' };
             return `
             <div class="citem" data-part="${p.id}" data-offer="${it.offerIdx}">
-              <span class="thumb">${DP.icon(cat.icon, 20)}</span>
+              ${DP.noPhoto()}
               <div>
                 <a class="n" href="product.html?id=${p.id}">${p.brand} · ${p.name}</a>
                 <div class="meta">
@@ -118,7 +115,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               <div class="trow total"><span>Итого</span><span class="p">${DP.fmt.price(totalSum)}</span></div>
             </div>
             <div class="panel-b">
-              <a class="btn btn--lg btn--w" href="checkout.html">Оформить заказ ${DP.icon('arrowr', 17)}</a>
+              <a class="btn btn--lg btn--w" href="checkout.html">Оформить заказ →</a>
               <p style="margin-top:10px;font-size:12px;color:var(--ink-3);text-align:center">Оплата при получении. Без предоплаты.</p>
             </div>
           </div>

@@ -4,77 +4,92 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Dp line — автозапчасти в Магнитогорске | Поиск по артикулу, самовывоз</title>
-<meta name="description" content="Dp line — интернет-магазин автозапчастей в Магнитогорске. Поиск по 30+ поставщикам: цена, срок и наличие сразу. Заказ онлайн, самовывоз.">
-<meta name="theme-color" content="#FFFFFF">
+<meta name="description" content="Dp line — интернет-магазин автозапчастей в Магнитогорске. Поиск по 30+ поставщикам: цена, срок и наличие сразу. Заказ онлайн, выдача на Лесопарковой, 95а.">
+<meta name="theme-color" content="#191C23">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
 <header data-dp-header></header>
 
+<!-- Баннер -->
 <section class="hero">
-  <div class="wrap">
-    <h1>Деталь. Цена. Срок.<br>Без лишнего.</h1>
-    <p class="sub">Ищем по <b>30+ поставщикам</b> и показываем главное сразу: сколько стоит, когда будет и где забрать. Самовывоз в&nbsp;Магнитогорске.</p>
-
-    <div class="searchtabs" role="tablist">
-      <button role="tab" aria-selected="true" class="on" data-tab="art">По артикулу</button>
-      <button role="tab" aria-selected="false" data-tab="veh">По марке и модели</button>
-      <button role="tab" aria-selected="false" disabled title="Подбор по VIN появится с подключением каталога TecDoc">По VIN <span class="soon">скоро</span></button>
+  <img class="bgimg" src="assets/hero.jpg" alt="" loading="eager" onerror="this.remove()">
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="hero-in">
+    <h1>Запчасти в наличии и под заказ от 1 дня</h1>
+    <p>Сравниваем цены и сроки по <b>30+ поставщикам</b>. Оплата при получении, выдача заказов — <b>Лесопарковая, 95а</b>.</p>
+    <div class="acts">
+      <button class="btn btn--lg" id="to-search">Подобрать запчасть</button>
+      <a class="btn btn--lg btn--white" href="#service">Автосервис</a>
     </div>
-
-    <form class="searchbox" id="form-art" action="search.html" method="get">
-      <input type="search" name="q" placeholder="Артикул или название, напр. W 914/2" autocomplete="off" aria-label="Поиск по артикулу или названию">
-      <button class="go" type="submit" aria-label="Найти">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
-        <span>Найти</span>
-      </button>
-    </form>
-
-    <form class="vehrow" id="form-veh" action="search.html" method="get" hidden>
-      <select id="veh-make" aria-label="Марка автомобиля">
-        <option value="">Марка</option>
-      </select>
-      <select id="veh-model" name="vehicle" aria-label="Модель автомобиля" disabled>
-        <option value="">Модель</option>
-      </select>
-      <button class="btn go" type="submit">Показать запчасти</button>
-    </form>
-
-    <div class="hint" id="hints"><span>Часто ищут:</span></div>
   </div>
 </section>
 
+<!-- Автосервис -->
+<section class="sect" id="service">
+  <div class="wrap">
+    <div class="sect-head reveal"><h2>Автосервис Dp line</h2><span class="cnt">запись по телефону</span></div>
+    <div class="service reveal">
+      <div class="vframe">
+        <!-- TODO: заменить постер на реальное видео работ клиента:
+             <video controls preload="metadata" poster="assets/service-poster.jpg" src="assets/service.mp4"></video> -->
+        <img src="assets/hero.jpg" alt="Автосервис Dp line" onerror="this.remove()">
+        <span class="vtag">видео работ автосервиса — скоро</span>
+      </div>
+      <div class="service-info">
+        <h3>Купили запчасти — сразу установим</h3>
+        <p>Свои механики: заказанные детали не нужно никуда везти, ставим на месте.</p>
+        <ul class="service-list" id="service-list"></ul>
+        <div class="acts">
+          <a class="btn" id="srv-phone" href="#">Записаться в автосервис</a>
+          <a class="ph" id="srv-phone-num" href="#"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Категории -->
 <section class="sect">
   <div class="wrap">
-    <div class="sect-head reveal">
-      <span class="idx">01</span><h2>Категории</h2>
-    </div>
+    <div class="sect-head reveal"><h2>Каталог запчастей</h2></div>
     <div class="cats" id="cats"></div>
   </div>
 </section>
 
+<!-- Часто покупают -->
 <section class="sect">
   <div class="wrap">
-    <div class="sect-head reveal">
-      <span class="idx">02</span><h2>Часто покупают</h2>
-      <a class="more" href="search.html">весь каталог
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
-      </a>
-    </div>
-    <div class="pops" id="pops"></div>
+    <div class="sect-head reveal"><h2>Часто покупают</h2>
+      <a class="more" href="search.html">весь каталог →</a></div>
+    <div class="goods" id="pops"></div>
   </div>
 </section>
 
-<section class="sect" style="padding-bottom:26px">
+<!-- Подбор по авто -->
+<section class="sect">
   <div class="wrap">
-    <div class="sect-head reveal">
-      <span class="idx">03</span><h2>Как это работает</h2>
+    <div class="vehbox reveal">
+      <span class="lbl">Подбор по автомобилю</span>
+      <form class="vehrow" id="form-veh" action="search.html" method="get">
+        <select id="veh-make" aria-label="Марка автомобиля"><option value="">Марка</option></select>
+        <select id="veh-model" name="vehicle" aria-label="Модель автомобиля" disabled><option value="">Модель</option></select>
+        <button class="btn" type="submit">Показать запчасти</button>
+      </form>
+      <p style="margin-top:10px;font-size:12px;color:var(--ink-3)">Точный подбор по VIN появится с подключением каталога TecDoc. Пока — звоните, подберём вручную.</p>
     </div>
+  </div>
+</section>
+
+<!-- Как купить -->
+<section class="sect" style="padding-bottom:28px">
+  <div class="wrap">
+    <div class="sect-head reveal"><h2>Как купить</h2></div>
     <div class="steps reveal" id="steps"></div>
   </div>
 </section>
@@ -86,25 +101,46 @@
 <script src="js/ui.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
+  const shop = await DP.api.getShop();
+  const pk = await DP.api.getPickup();
 
-  /* Переключение вкладок поиска */
-  const tabs = document.querySelectorAll('.searchtabs [data-tab]');
-  const formArt = document.getElementById('form-art');
-  const formVeh = document.getElementById('form-veh');
-  tabs.forEach((t) => t.addEventListener('click', () => {
-    tabs.forEach((x) => { x.classList.toggle('on', x === t); x.setAttribute('aria-selected', x === t); });
-    formArt.hidden = t.dataset.tab !== 'art';
-    formVeh.hidden = t.dataset.tab !== 'veh';
-    if (t.dataset.tab === 'art') formArt.querySelector('input').focus();
-  }));
+  /* CTA баннера — фокус в поиск шапки */
+  document.getElementById('to-search').addEventListener('click', () => {
+    const inp = document.querySelector('#hdr-search input');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => inp.focus(), 350);
+  });
 
-  /* Подсказки */
-  const hints = document.getElementById('hints');
-  (await DP.api.getPopularQueries()).forEach((q) => {
-    const a = document.createElement('a');
-    a.href = 'search.html?q=' + encodeURIComponent(q);
-    a.textContent = q;
-    hints.appendChild(a);
+  /* Автосервис: услуги (мок-прайс, уточнить у клиента) */
+  document.getElementById('service-list').innerHTML = [
+    ['Замена масла и фильтров', 'от 500 ₽'],
+    ['Замена тормозных колодок и дисков', 'от 900 ₽'],
+    ['Диагностика и ремонт подвески', 'от 600 ₽'],
+    ['Замена ремня ГРМ', 'от 3 500 ₽'],
+  ].map(([n, p]) => `<li><span>${n}</span><span class="dots"></span><span class="sp">${p}</span></li>`).join('');
+  const srvPhone = document.getElementById('srv-phone');
+  const srvNum = document.getElementById('srv-phone-num');
+  srvPhone.href = shop.phone2Href;
+  srvNum.href = shop.phone2Href;
+  srvNum.textContent = shop.phone2;
+
+  /* Категории */
+  const cats = await DP.api.getCategories();
+  document.getElementById('cats').innerHTML = cats.map((c) => `
+    <a class="cat reveal" href="search.html?cat=${c.id}">
+      <b>${c.name}</b>
+      <span>${c.count} поз.</span>
+    </a>`).join('');
+
+  /* Часто покупают */
+  const pops = await DP.api.getPopularParts(8);
+  const $pops = document.getElementById('pops');
+  $pops.innerHTML = pops.map(DP.goodCard).join('');
+  $pops.addEventListener('click', (e) => {
+    const add = e.target.closest('.js-add');
+    if (!add) return;
+    DP.cart.add(add.dataset.part, Number(add.dataset.offer));
+    DP.buyFeedback(add);
   });
 
   /* Марка → модель */
@@ -118,48 +154,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (v) v.models.forEach((m) => selModel.add(new Option(m, m)));
     selModel.disabled = !v;
   });
-  formVeh.addEventListener('submit', (e) => {
+  document.getElementById('form-veh').addEventListener('submit', (e) => {
     if (!selModel.value) { e.preventDefault(); selModel.focus(); }
   });
 
-  /* Категории */
-  const cats = await DP.api.getCategories();
-  document.getElementById('cats').innerHTML = cats.map((c, i) => `
-    <a class="cat reveal" style="transition-delay:${i * 30}ms" href="search.html?cat=${c.id}">
-      <span class="ic">${DP.icon(c.icon, 20)}</span>
-      <span><b>${c.name}</b>
-      <span>${c.count} ${DP.fmt.plural(c.count, 'позиция', 'позиции', 'позиций')}</span></span>
-    </a>`).join('');
-
-  /* Часто покупают */
-  const pops = await DP.api.getPopularParts(8);
-  document.getElementById('pops').innerHTML = pops.map((p) => `
-    <a class="pop reveal" href="product.html?id=${p.id}">
-      <span class="thumb">${DP.icon(DP_DB.categories.find((c) => c.id === p.cat).icon, 22)}</span>
-      <span>
-        <span class="n">${p.brand} · ${p.name}</span>
-        <span class="a"><span class="art">${p.article}</span></span>
-      </span>
-      <span class="price">${DP.fmt.price(p.best.price)}
-        <small>${p.best.days === 0 ? 'в наличии' : 'от ' + DP.fmt.days(p.best)}</small>
-      </span>
-    </a>`).join('');
-
-  /* Шаги */
-  const pk = await DP.api.getPickup();
-  const shop = await DP.api.getShop();
+  /* Как купить */
   document.getElementById('steps').innerHTML = `
-    <div class="step"><span class="num">01</span><div>
-      <b>Найдите деталь</b>
-      <p>По артикулу или марке авто. Сравните цену и срок у разных поставщиков.</p>
+    <div class="step"><span class="num">1</span><div>
+      <b>Закажите на сайте</b>
+      <p>Найдите деталь, сравните цены и сроки поставщиков, оформите заказ.</p>
     </div></div>
-    <div class="step"><span class="num">02</span><div>
-      <b>Оформите заказ</b>
-      <p>Без предоплаты и лишних полей — имя и телефон. Позвоним, когда деталь поступит.</p>
+    <div class="step"><span class="num">2</span><div>
+      <b>Дождитесь звонка</b>
+      <p>Перезвоним, подтвердим заказ и сообщим, когда всё поступит.</p>
     </div></div>
-    <div class="step"><span class="num">03</span><div>
-      <b>Заберите на пункте выдачи</b>
-      <p>${pk.address}.<br><a class="flink" href="${shop.phoneHref}">${shop.phone}</a></p>
+    <div class="step"><span class="num">3</span><div>
+      <b>Заберите заказ</b>
+      <p>${pk.address.replace('Магнитогорск, ', '')} — оплата при получении, наличными или картой.</p>
+    </div></div>
+    <div class="step"><span class="num">4</span><div>
+      <b>Установите у нас</b>
+      <p>При желании — сразу запишитесь в автосервис на установку купленного.</p>
     </div></div>`;
 
   DP.reveal();

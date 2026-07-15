@@ -1,14 +1,14 @@
 /* ============================================================
    Dp line · ОБЩИЙ UI-СЛОЙ
-   Иконки (единый набор, stroke 1.7), форматирование,
-   корзина (localStorage), рендер шапки/подвала, микро-анимации.
+   Форматирование, корзина (localStorage), шапка/подвал магазина.
+   Иконки — только функциональные (поиск, корзина, количество).
    ============================================================ */
 
 window.DP = window.DP || {};
 
 (function () {
 
-  /* ---------- Иконки: один консистентный набор ---------- */
+  /* ---------- Функциональные глифы ---------- */
   const paths = {
     search:  '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/>',
     cart:    '<circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>',
@@ -16,30 +16,13 @@ window.DP = window.DP || {};
     minus:   '<path d="M5 12h14"/>',
     trash:   '<path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>',
     chevdown:'<path d="m6 9 6 6 6-6"/>',
-    arrowr:  '<path d="M5 12h14m-6-6 6 6-6 6"/>',
-    arrowl:  '<path d="M19 12H5m6 6-6-6 6-6"/>',
     check:   '<path d="m4 12.5 5 5L20 6.5"/>',
-    clock:   '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 1.8"/>',
-    pin:     '<path d="M12 21s-7-5.1-7-11a7 7 0 0 1 14 0c0 5.9-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/>',
-    phone:   '<path d="M5 4h4l1.5 4.5L8 10a12.5 12.5 0 0 0 6 6l1.5-2.5L20 15v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/>',
-    box:     '<path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="M3 8l9 5 9-5M12 13v8"/>',
-    info:    '<circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8v.5"/>',
-    vin:     '<rect x="3" y="7" width="18" height="10" rx="2"/><path d="M7 11h2m2 0h2m2 0h2"/>',
-    /* категории */
-    disc:    '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M12 3.6v2.2M12 18.2v2.2M3.6 12h2.2M18.2 12h2.2M6.3 6.3l1.5 1.5M16.2 16.2l1.5 1.5M17.7 6.3l-1.5 1.5M7.8 16.2l-1.5 1.5"/>',
-    filter:  '<path d="M4 5h16l-6 7v6l-4 2v-8L4 5Z"/>',
-    drop:    '<path d="M12 3s6.5 7 6.5 11.5a6.5 6.5 0 0 1-13 0C5.5 10 12 3 12 3Z"/><path d="M9.5 14.5a2.8 2.8 0 0 0 2.5 2.7"/>',
-    spark:   '<path d="M9 3h6M10 3v3h4V3M9 6h6v4l-1.5 1.5v3L15 16v2l-3 3-3-3v-2l1.5-1.5v-3L9 10V6Z"/>',
-    spring:  '<path d="M8 3h8M8 21h8M12 3v2m0 14v2M7 7l10 2M7 11l10 2M7 15l10 2M7 7v8M17 9v8"/>',
-    battery: '<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M7 8V5h3v3m4 0V5h3v3M6.5 13.5h3M14.8 13.5h3.2M16.4 11.9v3.2"/>',
-    belt:    '<circle cx="7" cy="12" r="3.6"/><circle cx="17" cy="12" r="3.6"/><path d="M7 8.4h10M7 15.6h10"/>',
-    lamp:    '<path d="M9 6a6 6 0 0 0 0 12h2.5V6H9Z"/><path d="M15 7.5h5M15 12h5M15 16.5h5"/>',
   };
 
   DP.icon = (name, size = 18) =>
-    `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name] || paths.box}</svg>`;
+    `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name] || ''}</svg>`;
 
-  DP.logoSvg = (size = 34) => `
+  DP.logoSvg = (size = 36) => `
     <svg width="${size}" height="${size}" viewBox="0 0 48 48" fill="none" aria-hidden="true">
       <defs><linearGradient id="dpg${size}" x1="4" y1="34" x2="44" y2="14" gradientUnits="userSpaceOnUse">
         <stop stop-color="#2BC8EC"/><stop offset=".52" stop-color="#7B5CFF"/><stop offset="1" stop-color="#E650EC"/>
@@ -50,7 +33,7 @@ window.DP = window.DP || {};
 
   /* ---------- Форматирование ---------- */
   DP.fmt = {
-    price: (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽',
+    price: (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽',
     days: (o) => {
       if (o.days === 0) return 'в наличии';
       if (o.days === 1 && !o.daysMax) return 'завтра';
@@ -79,6 +62,12 @@ window.DP = window.DP || {};
   DP.cart = {
     items: readCart,
     count: () => readCart().length,
+    /* сумма считается синхронно по мок-базе — для бейджа в шапке */
+    total: () => readCart().reduce((s, i) => {
+      const p = window.DP_DB.parts.find((x) => x.id === i.partId);
+      const o = p && p.offers[i.offerIdx];
+      return s + (o ? o.price * i.qty : 0);
+    }, 0),
     /* offerIdx — индекс предложения в part.offers */
     add(partId, offerIdx, qty = 1) {
       const items = readCart();
@@ -98,62 +87,106 @@ window.DP = window.DP || {};
     clear() { writeCart([]); },
   };
 
-  /* ---------- Шапка и подвал ---------- */
+  /* ---------- Шапка магазина ---------- */
   DP.renderHeader = function (mount) {
     const shop = window.DP_DB.shop;
+    const pk = window.DP_DB.pickup;
+    const cats = window.DP_DB.categories;
+    const curCat = DP.qs('cat');
+
     mount.innerHTML = `
-      <div class="topline" aria-hidden="true"></div>
-      <div class="wrap hrow">
+      <div class="ubar"><div class="wrap ubar-in">
+        <a class="ph" href="${shop.phoneHref}">${shop.phone}</a>
+        <a class="ph u2" href="${shop.phone2Href}">${shop.phone2}</a>
+        <a class="tg" href="${shop.telegram}" target="_blank" rel="noopener">написать в Telegram</a>
+        <span class="hrs u2">${pk.hours.map((h) => `${h.d} ${h.h}`).slice(0, 2).join(' · ')}</span>
+        <span class="right">${shop.city} · ${shop.branches}</span>
+      </div></div>
+
+      <div class="wrap mainrow" style="padding-left:0;padding-right:0">
         <a class="logo" href="index.html" aria-label="Dp line — на главную">
-          ${DP.logoSvg(34)}
-          <span class="logo-t">dp·line<small>автозапчасти</small></span>
+          ${DP.logoSvg(38)}
+          <span class="logo-t">dp line<small>автозапчасти</small></span>
         </a>
+        <div class="hpickup">
+          <b>Выдача заказов</b>
+          <span>${pk.address.replace('Магнитогорск, ', '')}</span>
+        </div>
         <div class="hspacer"></div>
-        <a class="hphone" href="${shop.phoneHref}">
-          ${shop.phone}<span>${shop.city} · самовывоз</span>
-        </a>
         <a class="hcart" href="cart.html" aria-label="Корзина">
-          ${DP.icon('cart', 19)}
-          <b class="hcart-n" hidden>0</b>
+          ${DP.icon('cart', 17)}
+          Корзина
+          <b class="hcart-n">0</b>
+          <span class="hcart-sum">0 ₽</span>
         </a>
-      </div>`;
+      </div>
+
+      <nav class="catnav" aria-label="Категории"><div class="wrap catnav-in" style="padding:0 16px">
+        <a href="index.html" class="${!curCat && /(index\.html|\/)$/.test(location.pathname) ? 'on' : ''}">Главная</a>
+        ${cats.map((c) => `<a href="search.html?cat=${c.id}" class="${curCat === c.id ? 'on' : ''}">${c.name}</a>`).join('')}
+        <a class="srv" href="index.html#service">Автосервис</a>
+      </div></nav>
+
+      <div class="searchband"><div class="wrap">
+        <form id="hdr-search" role="search">
+          <input type="search" name="q" placeholder="Введите артикул или название запчасти" autocomplete="off" aria-label="Поиск по каталогу" value="${(DP.qs('q') || '').replace(/"/g, '&quot;')}">
+          <button class="go" type="submit">${DP.icon('search', 16)}Найти</button>
+        </form>
+      </div></div>`;
+
+    /* поиск из шапки работает на любой странице */
+    mount.querySelector('#hdr-search').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = mount.querySelector('#hdr-search input').value.trim();
+      location.href = 'search.html' + (q ? '?q=' + encodeURIComponent(q) : '');
+    });
+
     const badge = mount.querySelector('.hcart-n');
-    const sync = (n) => {
-      badge.textContent = n;
-      badge.hidden = n === 0;
+    const sum = mount.querySelector('.hcart-sum');
+    const sync = () => {
+      badge.textContent = DP.cart.count();
+      sum.textContent = DP.fmt.price(DP.cart.total());
     };
-    sync(DP.cart.count());
-    document.addEventListener('dp:cart', (e) => {
-      sync(e.detail.count);
+    sync();
+    document.addEventListener('dp:cart', () => {
+      sync();
       badge.classList.remove('bump');
       void badge.offsetWidth; /* перезапуск CSS-анимации */
       badge.classList.add('bump');
     });
   };
 
+  /* ---------- Подвал ---------- */
   DP.renderFooter = function (mount) {
     const shop = window.DP_DB.shop;
     const pk = window.DP_DB.pickup;
+    const cats = window.DP_DB.categories;
     mount.innerHTML = `
       <div class="wrap frow">
         <div class="fcol fbrand">
-          ${DP.logoSvg(28)}
-          <div><b>dp·line</b> — автозапчасти под заказ<br>
-          <span class="fmut">Поиск по ${shop.supplierCount} поставщикам · только самовывоз</span></div>
+          <a class="logo" href="index.html">${DP.logoSvg(30)}<span class="logo-t" style="font-size:19px">dp line</span></a>
+          <p>Интернет-магазин автозапчастей в Магнитогорске. Поиск по ${shop.supplierCount} поставщикам, заказ онлайн, оплата при получении.</p>
         </div>
         <div class="fcol">
-          <span class="mlabel">Пункт выдачи</span>
-          <p>${pk.address}<br><span class="fmut">${pk.hours.map((h) => `${h.d} ${h.h}`).join(' · ')}</span></p>
+          <span class="lbl">Каталог</span>
+          ${cats.slice(0, 5).map((c) => `<a href="search.html?cat=${c.id}" style="display:block;padding:2px 0">${c.name}</a>`).join('')}
         </div>
         <div class="fcol">
-          <span class="mlabel">Связь</span>
-          <p><a href="${shop.phoneHref}" class="flink">${shop.phone}</a><br>
-          <span class="fmut">Позвоним, когда заказ поступит на пункт выдачи</span></p>
+          <span class="lbl">Контакты</span>
+          <a class="ph" href="${shop.phoneHref}">${shop.phone}</a>
+          <a class="ph" href="${shop.phone2Href}">${shop.phone2}</a>
+          <a class="tg" href="${shop.telegram}" target="_blank" rel="noopener">написать в Telegram</a>
+          <p class="fmut" style="margin-top:6px">${pk.hours.map((h) => `${h.d} ${h.h}`).join(' · ')}</p>
+        </div>
+        <div class="fcol">
+          <span class="lbl">Выдача заказов</span>
+          <p>${pk.address}<br><span class="fmut">${pk.note}</span></p>
+          <p class="fmut" style="margin-top:6px">${shop.branches} в Магнитогорске</p>
         </div>
       </div>
-      <div class="wrap fbottom">
-        <span>© ${new Date().getFullYear()} Dp line · Магнитогорск</span>
-        <span class="fmut mono-xs">данные каталога — демонстрационные</span>
+      <div class="fbottom">
+        <span>© ${new Date().getFullYear()} Dp line · Магнитогорск, 455025</span>
+        <span>данные каталога — демонстрационные</span>
       </div>`;
   };
 
@@ -180,7 +213,7 @@ window.DP = window.DP || {};
     btn.style.minWidth = w + 'px';
     const prev = btn.innerHTML;
     btn.classList.add('ok');
-    btn.innerHTML = `${DP.icon('check', 16)} Добавлено`;
+    btn.innerHTML = `${DP.icon('check', 15)} Добавлено`;
     setTimeout(() => {
       btn.classList.remove('ok');
       btn.innerHTML = prev;
@@ -189,7 +222,7 @@ window.DP = window.DP || {};
     }, 1300);
   };
 
-  /* ---------- Общий шаблон карточки-предложения ---------- */
+  /* ---------- Строка предложения поставщика ---------- */
   DP.offerRow = function (part, offer, idx, { best = false } = {}) {
     const sup = DP.api.getSupplier(offer.sup);
     return `
@@ -207,14 +240,32 @@ window.DP = window.DP || {};
       </div>`;
   };
 
+  /* ---------- Фото-заглушка ---------- */
+  DP.noPhoto = (cls = '') => `<span class="nophoto ${cls}">нет фото</span>`;
+
+  /* ---------- Товарная карточка (главная, аналоги) ---------- */
+  DP.goodCard = function (p) {
+    const availCls = p.best.days <= 2 ? 'g' : 'w';
+    const availTxt = p.best.days === 0 ? 'В наличии' : `Срок: ${DP.fmt.days(p.best)}`;
+    return `
+      <div class="good">
+        <a href="product.html?id=${p.id}" tabindex="-1" aria-hidden="true">${DP.noPhoto()}</a>
+        <div class="brand-l"><b>${p.brand}</b><span class="art">${p.article}</span></div>
+        <a class="n" href="product.html?id=${p.id}">${p.name}</a>
+        <div class="pr">${DP.fmt.price(p.best.price)} ${p.offersCount > 1 ? `<small>от ${p.offersCount} поставщиков</small>` : ''}</div>
+        <div class="avail ${availCls}">${availTxt}</div>
+        <button class="btn js-add" data-part="${p.id}" data-offer="${p.offers.indexOf(p.best) === -1 ? 0 : p.offers.indexOf(p.best)}">В корзину</button>
+      </div>`;
+  };
+
   /* ---------- Хелпер: URL-параметры ---------- */
   DP.qs = (key) => new URLSearchParams(location.search).get(key) || '';
 
   /* ---------- Автоинициализация шапки/подвала ---------- */
   document.addEventListener('DOMContentLoaded', () => {
     const h = document.querySelector('header[data-dp-header]');
-    if (h) DP.renderHeader(h);
+    if (h && !h.innerHTML.trim()) DP.renderHeader(h);
     const f = document.querySelector('footer[data-dp-footer]');
-    if (f) DP.renderFooter(f);
+    if (f && !f.innerHTML.trim()) DP.renderFooter(f);
   });
 })();
