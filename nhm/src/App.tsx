@@ -356,7 +356,7 @@ export default function App() {
             initial="initial"
             animate="animate"
             transition={{ staggerChildren: 0.15, delayChildren: 0.6 }}
-            className="px-10 md:px-16 mt-20 sm:mt-28 md:mt-32 w-[320px] flex flex-col gap-6"
+            className="px-10 md:px-16 mt-20 sm:mt-28 md:mt-32 pb-32 md:pb-36 w-[320px] flex flex-col gap-6"
           >
             <motion.div
               variants={fadeUp}
