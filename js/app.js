@@ -77,6 +77,35 @@
     return out + '</span>';
   }
 
+  /* Арт товара: реальное фото (p.img), а до его загрузки — SVG-иллюстрация */
+  function artOf(p) {
+    return p.img
+      ? '<img src="' + p.img + '" alt="" loading="lazy">'
+      : ART(p.art, p.tone);
+  }
+
+  /* Мини-копия товара летит в иконку корзины */
+  function flyToCart(fromEl, p) {
+    if (!fromEl || !p || !Element.prototype.animate) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var cartBtn = document.querySelector('.hdr .cartbtn');
+    if (!cartBtn) return;
+    var a = fromEl.getBoundingClientRect(), b = cartBtn.getBoundingClientRect();
+    var el = document.createElement('div');
+    el.className = 'fly';
+    el.innerHTML = artOf(p);
+    el.style.left = (a.left + a.width / 2 - 23) + 'px';
+    el.style.top = (a.top + a.height / 2 - 21) + 'px';
+    document.body.appendChild(el);
+    var dx = b.left + b.width / 2 - (a.left + a.width / 2);
+    var dy = b.top + b.height / 2 - (a.top + a.height / 2);
+    el.animate([
+      { transform: 'translate(0,0) scale(1)', opacity: 1 },
+      { transform: 'translate(' + dx * 0.5 + 'px,' + (dy * 0.5 - 70) + 'px) scale(.72)', opacity: .95, offset: .55 },
+      { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.18)', opacity: .25 }
+    ], { duration: 620, easing: 'cubic-bezier(.3,.7,.35,1)' }).onfinish = function () { el.remove(); };
+  }
+
   /* ---------- Корзина (localStorage) ---------- */
   var Cart = {
     KEY: 'raketa_cart_v1',
@@ -269,6 +298,17 @@
     mm.querySelector('.mmenu-bg').addEventListener('click', closeMenu);
 
     updateBadge(false);
+
+    /* Тень шапки после начала прокрутки */
+    if ('IntersectionObserver' in window) {
+      var sentry = document.createElement('div');
+      sentry.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;';
+      document.body.prepend(sentry);
+      var hdrEl = document.querySelector('.hdr');
+      new IntersectionObserver(function (en) {
+        hdrEl.classList.toggle('scrolled', !en[0].isIntersecting);
+      }).observe(sentry);
+    }
   }
 
   /* ---------- Карточка товара ---------- */
@@ -282,7 +322,7 @@
 
   function cardHTML(p) {
     return '<article class="pcard" data-href="product.html?id=' + p.id + '">' +
-      '<div class="pcard-art">' + badges(p) + ART(p.art, p.tone) + '</div>' +
+      '<div class="pcard-art">' + badges(p) + artOf(p) + '</div>' +
       '<button class="iconbtn pcard-fav ' + (Fav.has(p.id) ? 'act' : '') + '" data-fav="' + p.id + '" aria-label="В избранное">' +
       (Fav.has(p.id) ? IC.heartF : IC.heart) + '</button>' +
       '<div class="pcard-body">' +
@@ -303,6 +343,7 @@
         e.preventDefault(); e.stopPropagation();
         var p = byId(addBtn.dataset.add);
         Cart.add(p.id, 1);
+        flyToCart(addBtn, p);
         toast(p.name.length > 34 ? p.name.slice(0, 34) + '…' : p.name + ' в корзине', 'Оформить', 'cart.html');
         if (document.body.dataset.page === 'cart') renderCartPage();
         return;
@@ -378,7 +419,7 @@
       '<div class="modal" role="dialog" aria-modal="true" aria-label="Купить в один клик"><div class="modal-bg"></div>' +
       '<div class="modal-panel"><button class="iconbtn modal-x" aria-label="Закрыть">' + IC.x + '</button>' +
       '<h3>Купить в 1 клик</h3><p class="m-sub">Оставьте номер, менеджер перезвонит за 10 минут, подтвердит наличие и оформит заказ.</p>' +
-      '<div class="modal-prod"><span class="mp-art">' + ART(p.art, p.tone) + '</span><b>' + esc(p.name) + '</b><span>' + fmt(p.price) + '</span></div>' +
+      '<div class="modal-prod"><span class="mp-art">' + artOf(p) + '</span><b>' + esc(p.name) + '</b><span>' + fmt(p.price) + '</span></div>' +
       '<form class="oc-form"><div class="field"><label for="oc-phone">Телефон</label>' +
       '<input id="oc-phone" type="tel" inputmode="tel" placeholder="+7 ___ ___-__-__" required autocomplete="tel"></div>' +
       '<button class="btn btn-primary btn-lg btn-block" type="submit">Жду звонка</button>' +
@@ -408,6 +449,37 @@
      Страницы
      ============================================================ */
 
+  /* Лёгкий параллакс устройств в хиро за курсором */
+  function heroParallax() {
+    var box = document.querySelector('.hero-in');
+    if (!box) return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var layers = box.querySelectorAll('.hero-art .ha');
+    if (!layers.length) return;
+    var depths = { 'ha-laptop': 0.55, 'ha-phone': 1.05, 'ha-buds': 1.5 };
+    var tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+    function tick() {
+      cx += (tx - cx) * 0.09;
+      cy += (ty - cy) * 0.09;
+      layers.forEach(function (l) {
+        var d = 1;
+        Object.keys(depths).forEach(function (k) { if (l.classList.contains(k)) d = depths[k]; });
+        l.style.transform = 'translate3d(' + (cx * d).toFixed(2) + 'px,' + (cy * d).toFixed(2) + 'px,0)';
+      });
+      if (Math.abs(tx - cx) > 0.15 || Math.abs(ty - cy) > 0.15) raf = requestAnimationFrame(tick);
+      else raf = null;
+    }
+    function kick() { if (!raf) raf = requestAnimationFrame(tick); }
+    box.addEventListener('mousemove', function (e) {
+      var r = box.getBoundingClientRect();
+      tx = ((e.clientX - r.left) / r.width - 0.5) * 16;
+      ty = ((e.clientY - r.top) / r.height - 0.5) * 11;
+      kick();
+    });
+    box.addEventListener('mouseleave', function () { tx = 0; ty = 0; kick(); });
+  }
+
   /* ---------- Главная ---------- */
   function renderHome() {
     var hits = D.products.filter(function (p) { return p.hit; });
@@ -431,6 +503,8 @@
     document.getElementById('home-new').innerHTML = rail(news, {
       title: 'Новинки', sub: 'Только что на полках', link: 'catalog.html', linkText: 'Смотреть все'
     });
+
+    setTimeout(heroParallax, 900); /* после входной анимации хиро */
   }
 
   /* ---------- Каталог ---------- */
@@ -538,7 +612,7 @@
         '<p>' + esc(feat.desc) + '</p>' +
         '<div class="sc-price">' + fmt(feat.price) + (feat.old ? '<span class="price-old">' + fmt(feat.old) + '</span>' : '') + '</div>' +
         '<span class="btn btn-light">Подробнее' + IC.arrowR + '</span>' +
-        '<span class="promo-art">' + ART(feat.art, feat.tone) + '</span></a>';
+        '<span class="promo-art">' + artOf(feat) + '</span></a>';
     }
 
     var pages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
@@ -581,7 +655,7 @@
       '<span class="cur">' + esc(p.name) + '</span>';
 
     /* Галерея: три ракурса одной иллюстрации */
-    var art = ART(p.art, p.tone);
+    var art = artOf(p);
     document.getElementById('gallery').innerHTML =
       '<div class="gmain" id="gmain">' + badges(p, true) + art + '</div>' +
       '<div class="gthumbs">' +
@@ -593,8 +667,12 @@
       t.addEventListener('click', function () {
         document.querySelectorAll('.gthumb').forEach(function (x) { x.classList.remove('on'); });
         t.classList.add('on');
-        gmain.classList.toggle('zoom', t.dataset.v === '1');
-        gmain.classList.toggle('dark', t.dataset.v === '2');
+        gmain.classList.add('fading');
+        setTimeout(function () {
+          gmain.classList.toggle('zoom', t.dataset.v === '1');
+          gmain.classList.toggle('dark', t.dataset.v === '2');
+          gmain.classList.remove('fading');
+        }, 150);
       });
     });
 
@@ -620,7 +698,7 @@
       '</div>';
 
     document.getElementById('add-main').addEventListener('click', function () {
-      Cart.add(p.id, 1); toast('Товар в корзине', 'Оформить', 'cart.html');
+      Cart.add(p.id, 1); flyToCart(this, p); toast('Товар в корзине', 'Оформить', 'cart.html');
     });
     document.getElementById('oneclick').addEventListener('click', function () { oneClick(p); });
 
@@ -634,7 +712,7 @@
         '<div class="bundle-items">' +
         bitems.map(function (x, i) {
           return (i ? '<span class="bundle-plus">+</span>' : '') +
-            '<a class="bundle-item" href="product.html?id=' + x.id + '"><span class="bi-art">' + ART(x.art, x.tone) + '</span>' +
+            '<a class="bundle-item" href="product.html?id=' + x.id + '"><span class="bi-art">' + artOf(x) + '</span>' +
             '<span>' + esc(x.name.length > 30 ? x.name.slice(0, 30) + '…' : x.name) + '</span></a>';
         }).join('') + '</div>' +
         '<div class="bundle-total"><span class="bt-price">' + fmt(btotal - p.bundle.save) + '</span>' +
@@ -643,6 +721,7 @@
         '<button class="btn btn-dark" id="add-bundle">Добавить комплект</button></div>';
       document.getElementById('add-bundle').addEventListener('click', function () {
         Cart.addBundle(p.id);
+        flyToCart(this, p);
         toast('Комплект в корзине, скидка применится автоматически', 'Оформить', 'cart.html');
       });
     } else bwrap.remove();
@@ -653,7 +732,7 @@
     if (accs.length) {
       document.getElementById('acc-cards').innerHTML = accs.map(function (a) {
         return '<div class="minicard" data-href="product.html?id=' + a.id + '">' +
-          '<span class="mc-art">' + ART(a.art, a.tone) + '</span>' +
+          '<span class="mc-art">' + artOf(a) + '</span>' +
           '<div><b>' + esc(a.name) + '</b><div class="mc-price">' + fmt(a.price) + '</div></div>' +
           '<button class="mc-add" data-add="' + a.id + '" aria-label="Добавить в корзину">' + IC.plus + '</button></div>';
       }).join('');
@@ -698,7 +777,7 @@
     bar.innerHTML = '<div class="bb-price">' + fmt(p.price) + '<small>' + esc(p.name.slice(0, 26)) + (p.name.length > 26 ? '…' : '') + '</small></div>' +
       '<button class="btn btn-primary" id="bb-add">' + IC.cart + 'В корзину</button>';
     document.getElementById('bb-add').addEventListener('click', function () {
-      Cart.add(p.id, 1); toast('Товар в корзине', 'Оформить', 'cart.html');
+      Cart.add(p.id, 1); flyToCart(this, p); toast('Товар в корзине', 'Оформить', 'cart.html');
     });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (en) {
@@ -723,7 +802,7 @@
 
     var lines = t.lines.map(function (l) {
       return '<div class="cline">' +
-        '<a class="cline-art" href="product.html?id=' + l.p.id + '">' + ART(l.p.art, l.p.tone) + '</a>' +
+        '<a class="cline-art" href="product.html?id=' + l.p.id + '">' + artOf(l.p) + '</a>' +
         '<div class="cline-info"><a href="product.html?id=' + l.p.id + '"><b>' + esc(l.p.name) + '</b></a>' +
         '<span>' + esc(l.p.brand) + '</span>' +
         '<span class="cl-unit">' + fmt(l.p.price) + ' за шт.' + (l.p.old ? ' <span class="price-old">' + fmt(l.p.old) + '</span>' : '') + '</span>' +
@@ -752,7 +831,7 @@
       '<div class="sub">Подобрано к товарам в вашей корзине</div></div></div>' +
       '<div class="minicards">' + recs.map(function (a) {
         return '<div class="minicard" data-href="product.html?id=' + a.id + '">' +
-          '<span class="mc-art">' + ART(a.art, a.tone) + '</span>' +
+          '<span class="mc-art">' + artOf(a) + '</span>' +
           '<div><b>' + esc(a.name) + '</b><div class="mc-price">' + fmt(a.price) + '</div></div>' +
           '<button class="mc-add" data-add="' + a.id + '" aria-label="Добавить">' + IC.plus + '</button></div>';
       }).join('') + '</div></section>' : '';
@@ -911,9 +990,11 @@
     chrome();
     bindCardEvents(document);
 
-    /* Статичные арт-плейсхолдеры в HTML */
-    document.querySelectorAll('[data-art]').forEach(function (el) {
-      el.innerHTML = ART(el.dataset.art, el.dataset.tone);
+    /* Статичные арт-плейсхолдеры в HTML (data-img: реальное фото, иначе SVG) */
+    document.querySelectorAll('[data-art],[data-img]').forEach(function (el) {
+      el.innerHTML = el.dataset.img
+        ? '<img src="' + el.dataset.img + '" alt="">'
+        : ART(el.dataset.art, el.dataset.tone);
     });
 
     var page = document.body.dataset.page;
