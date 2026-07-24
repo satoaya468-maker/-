@@ -828,6 +828,11 @@ h1, h2, h3, h4 { line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance;
 }
 .gmain img { width: 86%; height: 86%; object-fit: contain; mix-blend-mode: multiply; }
 .gmain.zoom img { transform: scale(1.45); }
+/* Полнокадровое фото-обложка (интерьерные снимки, напр. ТВ) */
+.pcard-art .pimg-cover, .gthumb .pimg-cover, .mc-art .pimg-cover, .cline-art .pimg-cover, .bi-art .pimg-cover {
+  width: 100%; height: 100%; object-fit: cover; mix-blend-mode: normal; border-radius: inherit;
+}
+.gmain .pimg-cover { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: normal; }
 .gmain.dark img, .promo-dark .promo-art img, .showcase .promo-art img { mix-blend-mode: normal; }
 .promo-art img { width: 100%; object-fit: contain; }
 

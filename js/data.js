@@ -26,7 +26,7 @@
 
   var PRODUCTS = [
     /* ---------- Смартфоны ---------- */
-    P({ id: 'ip16pro', cat: 'smartphones', brand: 'Apple', name: 'iPhone 16 Pro 128 ГБ, титановый', price: 119990, art: 'phone', tone: 'titan',
+    P({ id: 'ip16pro', cat: 'smartphones', brand: 'Apple', name: 'iPhone 16 Pro 128 ГБ, чёрный титан', price: 119990, art: 'phone', tone: 'graphite', img: 'assets/products/iphone.jpg',
       hit: true, featured: true, rating: 4.9, votes: 64,
       desc: 'Титановый корпус, чип A18 Pro и лучшая камера в линейке. Кнопка управления камерой и Always-On дисплей.',
       specs: [['Дисплей', '6.3" OLED, 120 Гц, 2622×1206'], ['Процессор', 'Apple A18 Pro'], ['Память', '128 ГБ'], ['Камера', '48 + 48 + 12 Мп, 5x зум'], ['Аккумулятор', 'до 27 ч видео'], ['Гарантия', '1 год']],
@@ -70,7 +70,7 @@
       acc: ['acc-glass', 'acc-cable', 'acc-pb10'] }),
 
     /* ---------- Ноутбуки и планшеты ---------- */
-    P({ id: 'mba13', cat: 'laptops', brand: 'Apple', name: 'MacBook Air 13" M3 8/256 ГБ, полночный', price: 114990, art: 'laptop', tone: 'midnight',
+    P({ id: 'mba13', cat: 'laptops', brand: 'Apple', name: 'MacBook Air 13" M3 8/256 ГБ, серый космос', price: 114990, art: 'laptop', tone: 'graphite', img: 'assets/products/macbook.jpg',
       hit: true, featured: true, rating: 4.9, votes: 39,
       desc: 'Бесшумный, тонкий и до 18 часов работы. Чип M3 тянет монтаж и разработку.',
       specs: [['Дисплей', '13.6" Liquid Retina'], ['Процессор', 'Apple M3, 8 ядер'], ['Память', '8 ГБ / SSD 256 ГБ'], ['Батарея', 'до 18 ч'], ['Вес', '1.24 кг'], ['Гарантия', '1 год']],
@@ -108,7 +108,7 @@
       acc: ['acc-adapter30', 'acc-cable'] }),
 
     /* ---------- Телевизоры ---------- */
-    P({ id: 'lgc4-55', cat: 'tv', brand: 'LG', name: 'LG OLED evo C4 55", 4K 144 Гц', price: 129990, art: 'tv', tone: 'black',
+    P({ id: 'lgc4-55', cat: 'tv', brand: 'LG', name: 'LG OLED evo C4 55", 4K 144 Гц', price: 129990, art: 'tv', tone: 'black', img: 'assets/products/lgtv.jpg', imgFit: 'cover',
       hit: true, featured: true, rating: 4.9, votes: 26,
       desc: 'Эталонный OLED: идеальный чёрный, 144 Гц для консолей и webOS.',
       specs: [['Диагональ', '55", OLED evo'], ['Разрешение', '4K, 144 Гц'], ['HDR', 'Dolby Vision, HDR10'], ['Smart TV', 'webOS 24'], ['Гарантия', '1 год']],
@@ -141,7 +141,7 @@
       acc: ['acc-bracket', 'acc-hdmi', 'acc-surge'] }),
 
     /* ---------- Аудио ---------- */
-    P({ id: 'airpods-pro2', cat: 'audio', brand: 'Apple', name: 'AirPods Pro 2 (USB-C)', price: 24990, art: 'buds', tone: 'white',
+    P({ id: 'airpods-pro2', cat: 'audio', brand: 'Apple', name: 'AirPods Pro 2 (USB-C)', price: 24990, art: 'buds', tone: 'white', img: 'assets/products/airpods.png',
       hit: true, rating: 4.9, votes: 61,
       desc: 'Лучшее шумоподавление в классе, адаптивный звук и чехол MagSafe.',
       specs: [['Тип', 'TWS, вкладыши'], ['ANC', 'Активное шумоподавление'], ['Время работы', 'до 30 ч с кейсом'], ['Гарантия', '1 год']],
@@ -178,7 +178,7 @@
       acc: ['acc-pb10'] }),
 
     /* ---------- Гейминг ---------- */
-    P({ id: 'ps5-slim', cat: 'gaming', brand: 'Sony', name: 'PlayStation 5 Slim, дисковод', price: 54990, art: 'console', tone: 'white',
+    P({ id: 'ps5-slim', cat: 'gaming', brand: 'Sony', name: 'PlayStation 5 Slim, дисковод', price: 54990, art: 'console', tone: 'white', img: 'assets/products/ps5.jpg',
       hit: true, featured: true, rating: 4.9, votes: 53,
       desc: 'Обновлённая PS5: тише, компактнее, 1 ТБ памяти. В коробке DualSense.',
       specs: [['Накопитель', 'SSD 1 ТБ'], ['Разрешение', 'до 4K 120 fps'], ['Привод', 'Blu-ray'], ['Гарантия', '1 год']],

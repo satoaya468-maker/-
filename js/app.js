@@ -80,7 +80,7 @@
   /* Арт товара: реальное фото (p.img), а до его загрузки — SVG-иллюстрация */
   function artOf(p) {
     return p.img
-      ? '<img src="' + p.img + '" alt="" loading="lazy">'
+      ? '<img src="' + p.img + '" alt="" loading="lazy"' + (p.imgFit === 'cover' ? ' class="pimg-cover"' : '') + '>'
       : ART(p.art, p.tone);
   }
 
