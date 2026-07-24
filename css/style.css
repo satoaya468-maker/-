@@ -227,8 +227,9 @@ h1, h2, h3, h4 { line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance;
 .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
 .hero-art { position: relative; height: 380px; }
 .hero-art .ha { position: absolute; }
-.ha-phone { width: 78%; right: -2%; top: 50%; transform: translateY(-50%); z-index: 2; filter: drop-shadow(0 26px 34px rgba(14,14,18,.16)); }
-.ha-buds { width: 30%; left: 2%; bottom: 2%; z-index: 3; filter: drop-shadow(0 16px 22px rgba(14,14,18,.16)); }
+.hero-art { display: flex; align-items: center; justify-content: flex-end; }
+.ha-phone { position: static; width: 62%; z-index: 2; filter: drop-shadow(0 26px 34px rgba(14,14,18,.16)); }
+.ha-buds { width: 26%; left: 0; top: 50%; transform: translateY(-30%); z-index: 3; filter: drop-shadow(0 16px 22px rgba(14,14,18,.16)); }
 .ha-laptop { width: 74%; right: -4%; top: 16%; z-index: 1; filter: drop-shadow(0 20px 26px rgba(14,14,18,.12)); }
 @media (prefers-reduced-motion: no-preference) {
   .ha-phone svg, .ha-phone img { animation: float 7s var(--ease) infinite alternate; }
