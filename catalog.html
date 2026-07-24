@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Каталог · Ракета, магазин электроники в Магнитогорске</title>
+  <meta name="description" content="Каталог магазина «Ракета»: смартфоны, ноутбуки, телевизоры, аудио, гейминг и техника для дома. Фильтры по цене и бренду, наличие в Магнитогорске.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e0e12'/%3E%3Cpath d='M16 5c3.4 2.6 5.2 6.3 5.2 10.4 0 1.8-.3 3.6-1 5.3h-8.4a15.3 15.3 0 0 1-1-5.3C10.8 11.3 12.6 7.6 16 5z' fill='%23fff'/%3E%3Ccircle cx='16' cy='13.2' r='1.9' fill='%230e0e12'/%3E%3Cpath d='M11.9 17.8 9 22.4l3.4-.6zM20.1 17.8l2.9 4.6-3.4-.6z' fill='%23fff'/%3E%3Cpath d='M16 21.6c1 1.2 1.5 2.6 1.5 4-1-.6-2-.6-3 0 0-1.4.5-2.8 1.5-4z' fill='%235b8bff'/%3E%3C/svg%3E">
+  <link rel="preload" href="assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="catalog">
+<div id="app-header"></div>
+
+<main class="wrap">
+  <nav class="crumbs" aria-label="Хлебные крошки">
+    <a href="index.html">Главная</a>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg>
+    <span class="cur" id="crumb-cur">Каталог</span>
+  </nav>
+
+  <div class="cat-head">
+    <h1 id="cat-title">Каталог</h1>
+    <span class="cnt" id="cat-count"></span>
+  </div>
+
+  <div class="cat-chips" id="cat-chips"></div>
+
+  <div class="cat-layout">
+    <aside class="filters" aria-label="Фильтры">
+      <div class="fclose-row">
+        <b style="font-size:17px">Фильтры</b>
+        <button class="iconbtn fclose" aria-label="Закрыть фильтры">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <div class="fgroup">
+        <h4>Цена, ₽</h4>
+        <div class="pricein">
+          <label class="sr-only" for="f-min">Цена от</label>
+          <input id="f-min" type="number" inputmode="numeric" placeholder="от 990" min="0">
+          <label class="sr-only" for="f-max">Цена до</label>
+          <input id="f-max" type="number" inputmode="numeric" placeholder="до 190 000" min="0">
+        </div>
+      </div>
+      <div class="fgroup">
+        <h4>Бренд</h4>
+        <div id="f-brands"></div>
+      </div>
+      <div class="fgroup">
+        <label class="check"><input type="checkbox" id="f-sale">
+          <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+          Только со скидкой</label>
+      </div>
+      <button class="btn btn-ghost freset">Сбросить фильтры</button>
+    </aside>
+    <button class="btn btn-primary btn-lg fapply">Показать товары</button>
+
+    <div>
+      <div class="cat-top">
+        <button class="btn btn-ghost fbtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+          Фильтры
+        </button>
+        <label class="sr-only" for="sort">Сортировка</label>
+        <select class="sortsel" id="sort">
+          <option value="pop">Сначала популярные</option>
+          <option value="cheap">Сначала дешевле</option>
+          <option value="exp">Сначала дороже</option>
+          <option value="disc">По размеру скидки</option>
+          <option value="new">Сначала новинки</option>
+        </select>
+      </div>
+      <div class="cat-grid" id="cat-grid"></div>
+      <div class="pager" id="cat-pager"></div>
+    </div>
+  </div>
+</main>
+
+<div id="app-footer"></div>
+<script src="js/art.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
