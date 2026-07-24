@@ -26,7 +26,7 @@
 
   var PRODUCTS = [
     /* ---------- Смартфоны ---------- */
-    P({ id: 'ip16pro', cat: 'smartphones', brand: 'Apple', name: 'iPhone 16 Pro 128 ГБ, чёрный титан', price: 119990, art: 'phone', tone: 'graphite', img: 'assets/products/iphone.jpg',
+    P({ id: 'ip16pro', cat: 'smartphones', brand: 'Apple', name: 'iPhone 16 Pro 128 ГБ, чёрный титан', price: 119990, art: 'phone', tone: 'graphite', img: 'assets/products/iphone.png',
       hit: true, featured: true, rating: 4.9, votes: 64,
       desc: 'Титановый корпус, чип A18 Pro и лучшая камера в линейке. Кнопка управления камерой и Always-On дисплей.',
       specs: [['Дисплей', '6.3" OLED, 120 Гц, 2622×1206'], ['Процессор', 'Apple A18 Pro'], ['Память', '128 ГБ'], ['Камера', '48 + 48 + 12 Мп, 5x зум'], ['Аккумулятор', 'до 27 ч видео'], ['Гарантия', '1 год']],
@@ -70,7 +70,7 @@
       acc: ['acc-glass', 'acc-cable', 'acc-pb10'] }),
 
     /* ---------- Ноутбуки и планшеты ---------- */
-    P({ id: 'mba13', cat: 'laptops', brand: 'Apple', name: 'MacBook Air 13" M3 8/256 ГБ, серый космос', price: 114990, art: 'laptop', tone: 'graphite', img: 'assets/products/macbook.jpg',
+    P({ id: 'mba13', cat: 'laptops', brand: 'Apple', name: 'MacBook Air 13" M3 8/256 ГБ, серый космос', price: 114990, art: 'laptop', tone: 'graphite', img: 'assets/products/macbook.png',
       hit: true, featured: true, rating: 4.9, votes: 39,
       desc: 'Бесшумный, тонкий и до 18 часов работы. Чип M3 тянет монтаж и разработку.',
       specs: [['Дисплей', '13.6" Liquid Retina'], ['Процессор', 'Apple M3, 8 ядер'], ['Память', '8 ГБ / SSD 256 ГБ'], ['Батарея', 'до 18 ч'], ['Вес', '1.24 кг'], ['Гарантия', '1 год']],
@@ -178,7 +178,7 @@
       acc: ['acc-pb10'] }),
 
     /* ---------- Гейминг ---------- */
-    P({ id: 'ps5-slim', cat: 'gaming', brand: 'Sony', name: 'PlayStation 5 Slim, дисковод', price: 54990, art: 'console', tone: 'white', img: 'assets/products/ps5.jpg',
+    P({ id: 'ps5-slim', cat: 'gaming', brand: 'Sony', name: 'PlayStation 5 Slim, дисковод', price: 54990, art: 'console', tone: 'white', img: 'assets/products/ps5.png',
       hit: true, featured: true, rating: 4.9, votes: 53,
       desc: 'Обновлённая PS5: тише, компактнее, 1 ТБ памяти. В коробке DualSense.',
       specs: [['Накопитель', 'SSD 1 ТБ'], ['Разрешение', 'до 4K 120 fps'], ['Привод', 'Blu-ray'], ['Гарантия', '1 год']],
