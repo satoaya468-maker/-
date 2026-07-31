@@ -10,17 +10,15 @@
 </head>
 <body>
 
-<!-- ================= Топ-строка ================= -->
 <div class="topbar">
   <div class="wrap topbar__inner">
-    <span class="topbar__hours"><span class="topbar__dot"></span> Ежедневно 09:00–21:00</span>
+    <span class="topbar__hours"><span class="topbar__dot"></span> <span data-open-status>Ежедневно 09:00–21:00</span></span>
     <span class="topbar__addr">Магнитогорск, ул. Марджани, 9 — 1 этаж, 110-й м-н</span>
     <span class="topbar__spacer"></span>
     <a href="reviews.html">4.4 ★ · 267 отзывов на 2ГИС</a>
   </div>
 </div>
 
-<!-- ================= Хедер ================= -->
 <header class="header">
   <div class="header__inner">
     <a class="logo" href="index.html">
@@ -68,36 +66,26 @@
   </div>
 </header>
 
-<!-- ================= Навигация ================= -->
 <nav class="nav" aria-label="Разделы">
-  <ul class="nav__list">
-    <li><a class="nav__link is-active" href="index.html">Главная</a></li>
-    <li><a class="nav__link" href="catalog.html">Каталог</a></li>
-    <li><a class="nav__link" href="catalog.html?cat=oil">Масла и жидкости</a></li>
-    <li><a class="nav__link" href="catalog.html?cat=tire">Шины и диски</a></li>
-    <li><a class="nav__link" href="catalog.html?cat=chem">Автохимия</a></li>
-    <li><a class="nav__link" href="services.html">Услуги сервиса</a></li>
-    <li><a class="nav__link" href="reviews.html">Отзывы</a></li>
-    <li><a class="nav__link" href="contacts.html">Контакты</a></li>
-  </ul>
+  <ul class="nav__list"><li><a class="nav__link is-active" href="index.html">Главная</a></li><li><a class="nav__link" href="catalog.html">Каталог</a></li><li><a class="nav__link" href="catalog.html?cat=oil">Масла и жидкости</a></li><li><a class="nav__link" href="catalog.html?cat=tire">Шины и диски</a></li><li><a class="nav__link" href="catalog.html?cat=chem">Автохимия</a></li><li><a class="nav__link" href="services.html">Услуги сервиса</a></li><li><a class="nav__link" href="reviews.html">Отзывы</a></li><li><a class="nav__link" href="contacts.html">Контакты</a></li></ul>
 </nav>
 
-<!-- ================= Promo-баннер акции ================= -->
 <section class="promo wrap" aria-label="Акция">
   <div class="promo__inner">
     <span class="promo__term">Акция действует до 31.12.2026</span>
-
-    <div class="promo__side">
-      <div class="promo__thing">
-        <svg viewBox="0 0 64 64" aria-hidden="true">
-          <rect x="17" y="14" width="30" height="40" rx="5" fill="#e11b22"/>
-          <rect x="26" y="7" width="12" height="9" rx="2" fill="#0f1216"/>
-          <rect x="22" y="27" width="20" height="14" rx="2" fill="#fff"/>
-          <path d="M26 33h12M26 37h8" stroke="#e11b22" stroke-width="2.4" stroke-linecap="round"/>
-        </svg>
-      </div>
-    </div>
-
+    <div class="promo__side"><div class="promo__thing"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient></defs>
+<ellipse cx="48" cy="83" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<rect x="52" y="34" width="26" height="46" rx="6" fill="url(#dk)"/>
+<rect x="60" y="26" width="10" height="10" rx="2" fill="#0f1216"/>
+<rect x="57" y="46" width="16" height="20" rx="2" fill="#eef1f4"/>
+<path d="M60 53h10M60 58h7" stroke="#8d959f" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="16" y="24" width="38" height="56" rx="8" fill="url(#rd)"/>
+<path d="M16 32a8 8 0 0 1 8-8h6v56h-6a8 8 0 0 1-8-8z" fill="#fff" opacity=".14"/>
+<rect x="28" y="12" width="14" height="14" rx="3" fill="#16191d"/>
+<rect x="30" y="8" width="10" height="6" rx="2" fill="#3d444d"/>
+<rect x="22" y="40" width="26" height="26" rx="3" fill="#fff"/>
+<path d="M35 45c4 5 7 7.5 7 10.5a7 7 0 0 1-14 0c0-3 3-5.5 7-10.5z" fill="#e11b22"/>
+</svg></div></div>
     <div class="promo__body">
       <span class="promo__kicker">Акция автокомплекса «Оил Маркет»</span>
       <h2 class="promo__title">Купи масло — <em>замена бесплатно</em></h2>
@@ -107,125 +95,220 @@
         <a class="btn btn--red" href="catalog.html?cat=oil">Выбрать масло</a>
         <a class="btn btn--ghost" href="tel:+73519450574">Позвонить: +7 (3519) 45-05-74</a>
       </div>
-    </div>
-
-    <div class="promo__side">
-      <div class="promo__thing">
-        <svg viewBox="0 0 64 64" aria-hidden="true">
-          <rect x="20" y="17" width="24" height="32" rx="7" fill="#3d444d"/>
-          <rect x="24" y="10" width="16" height="9" rx="2" fill="#e11b22"/>
-          <path d="M25 27h14M25 33h14M25 39h14" stroke="#c9ced6" stroke-width="3" stroke-linecap="round"/>
-        </svg>
+      <div class="promo__stats">
+        <span class="promo__stat">★ <b>4.4</b> на 2ГИС</span>
+        <span class="promo__stat"><b>267</b> отзывов</span>
+        <span class="promo__stat"><b>09:00–21:00</b> без выходных</span>
       </div>
     </div>
-
+    <div class="promo__side"><div class="promo__thing"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="24" ry="4" fill="#16191d" opacity=".10"/>
+<rect x="28" y="24" width="40" height="56" rx="10" fill="url(#dk)"/>
+<path d="M28 34a10 10 0 0 1 10-10h6v56h-6a10 10 0 0 1-10-10z" fill="#fff" opacity=".12"/>
+<rect x="32" y="14" width="32" height="12" rx="4" fill="url(#rd)"/>
+<circle cx="48" cy="20" r="4" fill="#7d0f13"/>
+<g stroke="#c2c9d2" stroke-width="3.4" stroke-linecap="round" opacity=".85">
+<path d="M34 40h28M34 50h28M34 60h28M34 70h20"/></g>
+</svg></div></div>
     <div class="promo__side promo__side--mobile">
-      <div class="promo__thing"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="17" y="14" width="30" height="40" rx="5" fill="#e11b22"/><rect x="26" y="7" width="12" height="9" rx="2" fill="#0f1216"/><rect x="22" y="27" width="20" height="14" rx="2" fill="#fff"/></svg></div>
-      <div class="promo__thing"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="20" y="17" width="24" height="32" rx="7" fill="#3d444d"/><rect x="24" y="10" width="16" height="9" rx="2" fill="#e11b22"/><path d="M25 27h14M25 33h14M25 39h14" stroke="#c9ced6" stroke-width="3"/></svg></div>
+      <div class="promo__thing"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient></defs>
+<ellipse cx="48" cy="83" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<rect x="52" y="34" width="26" height="46" rx="6" fill="url(#dk)"/>
+<rect x="60" y="26" width="10" height="10" rx="2" fill="#0f1216"/>
+<rect x="57" y="46" width="16" height="20" rx="2" fill="#eef1f4"/>
+<path d="M60 53h10M60 58h7" stroke="#8d959f" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="16" y="24" width="38" height="56" rx="8" fill="url(#rd)"/>
+<path d="M16 32a8 8 0 0 1 8-8h6v56h-6a8 8 0 0 1-8-8z" fill="#fff" opacity=".14"/>
+<rect x="28" y="12" width="14" height="14" rx="3" fill="#16191d"/>
+<rect x="30" y="8" width="10" height="6" rx="2" fill="#3d444d"/>
+<rect x="22" y="40" width="26" height="26" rx="3" fill="#fff"/>
+<path d="M35 45c4 5 7 7.5 7 10.5a7 7 0 0 1-14 0c0-3 3-5.5 7-10.5z" fill="#e11b22"/>
+</svg></div>
+      <div class="promo__thing"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="24" ry="4" fill="#16191d" opacity=".10"/>
+<rect x="28" y="24" width="40" height="56" rx="10" fill="url(#dk)"/>
+<path d="M28 34a10 10 0 0 1 10-10h6v56h-6a10 10 0 0 1-10-10z" fill="#fff" opacity=".12"/>
+<rect x="32" y="14" width="32" height="12" rx="4" fill="url(#rd)"/>
+<circle cx="48" cy="20" r="4" fill="#7d0f13"/>
+<g stroke="#c2c9d2" stroke-width="3.4" stroke-linecap="round" opacity=".85">
+<path d="M34 40h28M34 50h28M34 60h28M34 70h20"/></g>
+</svg></div>
     </div>
   </div>
 </section>
 
-<!-- ================= Каталог-плитки ================= -->
 <section class="section wrap">
   <div class="section__head">
     <h1>Каталог Оил Маркет</h1>
     <span class="section__sub">Запчасти, масла, шины и услуги сервиса в одном месте</span>
     <a class="section__link" href="catalog.html">Весь каталог →</a>
   </div>
-
   <div class="tiles">
-    <a class="tile" href="catalog.html?cat=to">
-      <span class="tile__icon">
-        <svg viewBox="0 0 64 64" aria-hidden="true">
-          <rect x="19" y="16" width="26" height="34" rx="6" fill="#3d444d"/>
-          <rect x="24" y="9" width="16" height="9" rx="2" fill="#e11b22"/>
-          <path d="M25 27h14M25 34h14M25 41h9" stroke="#c9ced6" stroke-width="3" stroke-linecap="round"/>
-        </svg>
-      </span>
+    <a class="tile reveal" href="catalog.html?cat=to">
+      <span class="tile__icon"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient></defs>
+<ellipse cx="44" cy="82" rx="30" ry="5" fill="#16191d" opacity=".10"/>
+<circle cx="44" cy="46" r="33" fill="url(#mtl)"/>
+<circle cx="44" cy="46" r="33" fill="none" stroke="#79818b" stroke-width="1.6"/>
+<circle cx="44" cy="46" r="23" fill="#d3d9e0"/>
+<circle cx="44" cy="46" r="13" fill="#9aa3ad"/>
+<circle cx="44" cy="46" r="5.5" fill="#5f6771"/>
+<g fill="#aeb7c0"><circle cx="44" cy="28" r="2.6"/><circle cx="59" cy="38" r="2.6"/><circle cx="54" cy="60" r="2.6"/><circle cx="34" cy="60" r="2.6"/><circle cx="29" cy="38" r="2.6"/></g>
+<path d="M63 25h9a10 10 0 0 1 10 10v22a10 10 0 0 1-10 10h-9z" fill="url(#rd)"/>
+<rect x="66" y="34" width="12" height="24" rx="3" fill="#7d0f13" opacity=".55"/>
+<path d="M22 24a33 33 0 0 1 20-10" stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none" opacity=".65"/>
+</svg></span>
       <span class="tile__name">Запчасти для ТО</span>
-      <span class="tile__count">Фильтры, свечи, ремни</span>
+      <span class="tile__count">Фильтры, свечи, ремни, колодки</span>
+      <span class="tile__arrow">→</span>
     </a>
-
-    <a class="tile" href="catalog.html?cat=oil">
-      <span class="tile__icon">
-        <svg viewBox="0 0 64 64" aria-hidden="true">
-          <rect x="17" y="15" width="30" height="39" rx="5" fill="#e11b22"/>
-          <rect x="26" y="8" width="12" height="9" rx="2" fill="#16191d"/>
-          <rect x="22" y="28" width="20" height="14" rx="2" fill="#fff"/>
-          <path d="M26 34h12M26 38h8" stroke="#e11b22" stroke-width="2.4" stroke-linecap="round"/>
-        </svg>
-      </span>
+    <a class="tile reveal" href="catalog.html?cat=oil">
+      <span class="tile__icon"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient></defs>
+<ellipse cx="48" cy="83" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<rect x="52" y="34" width="26" height="46" rx="6" fill="url(#dk)"/>
+<rect x="60" y="26" width="10" height="10" rx="2" fill="#0f1216"/>
+<rect x="57" y="46" width="16" height="20" rx="2" fill="#eef1f4"/>
+<path d="M60 53h10M60 58h7" stroke="#8d959f" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="16" y="24" width="38" height="56" rx="8" fill="url(#rd)"/>
+<path d="M16 32a8 8 0 0 1 8-8h6v56h-6a8 8 0 0 1-8-8z" fill="#fff" opacity=".14"/>
+<rect x="28" y="12" width="14" height="14" rx="3" fill="#16191d"/>
+<rect x="30" y="8" width="10" height="6" rx="2" fill="#3d444d"/>
+<rect x="22" y="40" width="26" height="26" rx="3" fill="#fff"/>
+<path d="M35 45c4 5 7 7.5 7 10.5a7 7 0 0 1-14 0c0-3 3-5.5 7-10.5z" fill="#e11b22"/>
+</svg></span>
       <span class="tile__name">Масла и жидкости</span>
       <span class="tile__count">Собственный бренд</span>
+      <span class="tile__arrow">→</span>
     </a>
-
-    <a class="tile" href="catalog.html?cat=tire">
-      <span class="tile__icon">
-        <svg viewBox="0 0 64 64" aria-hidden="true">
-          <circle cx="32" cy="32" r="24" fill="#16191d"/>
-          <circle cx="32" cy="32" r="11" fill="#c9ced6"/>
-          <circle cx="32" cy="32" r="5" fill="#e11b22"/>
-          <path d="M32 8v6M32 50v6M8 32h6M50 32h6" stroke="#3d444d" stroke-width="3"/>
-        </svg>
-      </span>
+    <a class="tile reveal" href="catalog.html?cat=tire">
+      <span class="tile__icon"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<circle cx="64" cy="48" r="30" fill="#2a3038"/>
+<circle cx="64" cy="48" r="19" fill="url(#mtl)"/>
+<circle cx="64" cy="48" r="6" fill="#7a828c"/>
+<circle cx="36" cy="48" r="33" fill="#1b1f24"/>
+<circle cx="36" cy="48" r="33" fill="none" stroke="#0d1014" stroke-width="2"/>
+<g stroke="#3a424b" stroke-width="3" stroke-linecap="round">
+<path d="M36 15v9M56 27l-6 6M69 48h-9M56 69l-6-6M36 81v-9M16 69l6-6M3 48h9M16 27l6 6"/></g>
+<circle cx="36" cy="48" r="20" fill="url(#mtl)"/>
+<circle cx="36" cy="48" r="20" fill="none" stroke="#8d959f" stroke-width="1.4"/>
+<g fill="#e11b22"><circle cx="36" cy="48" r="6"/></g>
+<g stroke="#eef1f4" stroke-width="5" stroke-linecap="round">
+<path d="M36 32v8M50 48h-8M41 61l-3-7M31 61l3-7M23 44l7 4"/></g>
+</svg></span>
       <span class="tile__name">Шины и диски</span>
       <span class="tile__count">Лето, зима, литьё</span>
+      <span class="tile__arrow">→</span>
     </a>
-
-    <a class="tile" href="catalog.html?cat=chem">
-      <span class="tile__icon">
-        <svg viewBox="0 0 64 64" aria-hidden="true">
-          <path d="M26 12h12v9l10 25a6 6 0 0 1-5.6 8.4H21.6A6 6 0 0 1 16 46l10-25z" fill="#e11b22"/>
-          <rect x="24" y="6" width="16" height="7" rx="2" fill="#16191d"/>
-          <circle cx="32" cy="41" r="6" fill="#fff" opacity=".85"/>
-        </svg>
-      </span>
+    <a class="tile reveal" href="catalog.html?cat=chem">
+      <span class="tile__icon"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="30" ry="5" fill="#16191d" opacity=".10"/>
+<rect x="52" y="36" width="28" height="44" rx="6" fill="url(#dk)"/>
+<rect x="60" y="28" width="12" height="10" rx="2" fill="#0f1216"/>
+<rect x="57" y="48" width="18" height="18" rx="2" fill="#eef1f4"/>
+<circle cx="66" cy="57" r="5" fill="#e11b22"/>
+<path d="M24 34h20v10l6 30a8 8 0 0 1-8 9H26a8 8 0 0 1-8-9l6-30z" fill="url(#rd)"/>
+<rect x="26" y="22" width="16" height="13" rx="3" fill="#16191d"/>
+<path d="M42 24h12v5H42z" fill="#3d444d"/>
+<path d="M54 22l10-6" stroke="#3d444d" stroke-width="4" stroke-linecap="round"/>
+<rect x="22" y="56" width="22" height="14" rx="2" fill="#fff" opacity=".92"/>
+<path d="M26 61h14M26 66h9" stroke="#e11b22" stroke-width="2.4" stroke-linecap="round"/>
+<g fill="#7fd0ff" opacity=".9"><circle cx="72" cy="14" r="3"/><circle cx="80" cy="22" r="2.2"/><circle cx="66" cy="24" r="2"/></g>
+</svg></span>
       <span class="tile__name">Автохимия</span>
       <span class="tile__count">Присадки, очистители</span>
+      <span class="tile__arrow">→</span>
     </a>
-
-    <a class="tile tile--accent" href="services.html">
-      <span class="tile__flag"><span class="badge badge--red">Сервис</span></span>
-      <span class="tile__icon">
-        <svg viewBox="0 0 64 64" aria-hidden="true">
-          <path d="M40 12a12 12 0 0 0-15.6 15.6L11 41v11h11l13.4-13.4A12 12 0 0 0 52 24l-8 8-6-6z" fill="#e11b22"/>
-          <circle cx="20" cy="45" r="3" fill="#fff"/>
-        </svg>
-      </span>
+    <a class="tile reveal tile--accent" href="services.html"><span class="tile__flag"><span class="badge badge--red">Сервис</span></span>
+      <span class="tile__icon"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="30" ry="5" fill="#16191d" opacity=".10"/>
+<path d="M62 20a20 20 0 0 0-24 26L14 70a7 7 0 0 0 10 10l24-24a20 20 0 0 0 26-24L60 48 46 34z" fill="url(#rd)"/>
+<circle cx="21" cy="73" r="3.6" fill="#fff" opacity=".9"/>
+<path d="M62 20a20 20 0 0 0-18 10l16 16 14-14z" fill="#fff" opacity=".16"/>
+<g transform="translate(60 58)">
+<path d="M12 0l3.5 1 2.6-2.6 3.2 2-1 3.5 2.6 2.6-2 3.2-3.5-1-2.6 2.6-3.2-2 1-3.5L9.8 5.2z" fill="url(#mtl)" transform="scale(1.5) translate(-8 -4)"/>
+<circle cx="10" cy="8" r="6.5" fill="url(#mtl)" stroke="#8d959f" stroke-width="1.2"/>
+<circle cx="10" cy="8" r="2.6" fill="#2c333b"/>
+</g>
+</svg></span>
       <span class="tile__name">Услуги</span>
       <span class="tile__count">ТО · замена масла · шиномонтаж</span>
+      <span class="tile__arrow">→</span>
     </a>
   </div>
 </section>
 
-<!-- ================= Подбор по марке ================= -->
+<section class="section section--tight wrap">
+  <div class="minis">
+    <a class="mini mini--red reveal" href="services.html">
+      <span class="mini__icon"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="30" ry="5" fill="#16191d" opacity=".10"/>
+<path d="M62 20a20 20 0 0 0-24 26L14 70a7 7 0 0 0 10 10l24-24a20 20 0 0 0 26-24L60 48 46 34z" fill="url(#rd)"/>
+<circle cx="21" cy="73" r="3.6" fill="#fff" opacity=".9"/>
+<path d="M62 20a20 20 0 0 0-18 10l16 16 14-14z" fill="#fff" opacity=".16"/>
+<g transform="translate(60 58)">
+<path d="M12 0l3.5 1 2.6-2.6 3.2 2-1 3.5 2.6 2.6-2 3.2-3.5-1-2.6 2.6-3.2-2 1-3.5L9.8 5.2z" fill="url(#mtl)" transform="scale(1.5) translate(-8 -4)"/>
+<circle cx="10" cy="8" r="6.5" fill="url(#mtl)" stroke="#8d959f" stroke-width="1.2"/>
+<circle cx="10" cy="8" r="2.6" fill="#2c333b"/>
+</g>
+</svg></span>
+      <span><span class="mini__t">Купили — сразу поставили</span><span class="mini__d">Магазин и сервис на одной площадке, без второй поездки</span></span>
+    </a>
+    <a class="mini reveal" href="catalog.html?cat=oil">
+      <span class="mini__icon"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient></defs>
+<ellipse cx="48" cy="83" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<rect x="52" y="34" width="26" height="46" rx="6" fill="url(#dk)"/>
+<rect x="60" y="26" width="10" height="10" rx="2" fill="#0f1216"/>
+<rect x="57" y="46" width="16" height="20" rx="2" fill="#eef1f4"/>
+<path d="M60 53h10M60 58h7" stroke="#8d959f" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="16" y="24" width="38" height="56" rx="8" fill="url(#rd)"/>
+<path d="M16 32a8 8 0 0 1 8-8h6v56h-6a8 8 0 0 1-8-8z" fill="#fff" opacity=".14"/>
+<rect x="28" y="12" width="14" height="14" rx="3" fill="#16191d"/>
+<rect x="30" y="8" width="10" height="6" rx="2" fill="#3d444d"/>
+<rect x="22" y="40" width="26" height="26" rx="3" fill="#fff"/>
+<path d="M35 45c4 5 7 7.5 7 10.5a7 7 0 0 1-14 0c0-3 3-5.5 7-10.5z" fill="#e11b22"/>
+</svg></span>
+      <span><span class="mini__t">Масла собственного бренда</span><span class="mini__d">Свой продукт — своя цена без наценки посредников</span></span>
+    </a>
+    <a class="mini mini--dark reveal" href="catalog.html?cat=tire">
+      <span class="mini__icon"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<circle cx="64" cy="48" r="30" fill="#2a3038"/>
+<circle cx="64" cy="48" r="19" fill="url(#mtl)"/>
+<circle cx="64" cy="48" r="6" fill="#7a828c"/>
+<circle cx="36" cy="48" r="33" fill="#1b1f24"/>
+<circle cx="36" cy="48" r="33" fill="none" stroke="#0d1014" stroke-width="2"/>
+<g stroke="#3a424b" stroke-width="3" stroke-linecap="round">
+<path d="M36 15v9M56 27l-6 6M69 48h-9M56 69l-6-6M36 81v-9M16 69l6-6M3 48h9M16 27l6 6"/></g>
+<circle cx="36" cy="48" r="20" fill="url(#mtl)"/>
+<circle cx="36" cy="48" r="20" fill="none" stroke="#8d959f" stroke-width="1.4"/>
+<g fill="#e11b22"><circle cx="36" cy="48" r="6"/></g>
+<g stroke="#eef1f4" stroke-width="5" stroke-linecap="round">
+<path d="M36 32v8M50 48h-8M41 61l-3-7M31 61l3-7M23 44l7 4"/></g>
+</svg></span>
+      <span><span class="mini__t">Шины, диски и шиномонтаж</span><span class="mini__d">Подберём размер и переобуем на месте</span></span>
+    </a>
+  </div>
+</section>
+
 <section class="section section--tight wrap">
   <div class="section__head">
     <h2>Найти запчасть по марке авто</h2>
     <span class="section__sub">Не знаете, что подойдёт? Выберите авто — эксперт подберёт и посчитает</span>
   </div>
-
-  <div class="picker">
+  <div class="picker reveal">
     <form data-stub>
       <div class="picker__grid">
         <div class="field">
           <label class="field__label" for="pick-brand">Марка</label>
-          <select id="pick-brand" name="brand" required>
-            <option value="">Выберите марку</option>
-          </select>
+          <select id="pick-brand" name="brand" required><option value="">Выберите марку</option></select>
         </div>
         <div class="field">
           <label class="field__label" for="pick-model">Модель</label>
-          <select id="pick-model" name="model" disabled>
-            <option value="">Выберите модель</option>
-          </select>
+          <select id="pick-model" name="model" disabled><option value="">Выберите модель</option></select>
         </div>
         <div class="field">
           <label class="field__label" for="pick-year">Год выпуска</label>
-          <select id="pick-year" name="year">
-            <option value="">Год</option>
-          </select>
+          <select id="pick-year" name="year"><option value="">Год</option></select>
         </div>
         <div class="field field--wide">
           <label class="field__label" for="pick-phone">Телефон для ответа</label>
@@ -242,115 +325,234 @@
   </div>
 </section>
 
-<!-- ================= Хиты ================= -->
 <section class="section section--tight wrap">
   <div class="section__head">
     <h2>Ходовые позиции</h2>
+    <span class="section__sub">Всё в наличии на ул. Марджани, 9</span>
     <a class="section__link" href="catalog.html">Смотреть все →</a>
   </div>
-
   <div class="products">
-    <article class="product">
-      <div class="product__media">
-        <div class="product__flags"><span class="badge badge--red">Акция</span></div>
-        <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="17" y="15" width="30" height="39" rx="5" fill="#e11b22"/><rect x="26" y="8" width="12" height="9" rx="2" fill="#16191d"/><rect x="22" y="28" width="20" height="14" rx="2" fill="#fff"/></svg>
-      </div>
-      <span class="product__brand">Оил Маркет</span>
-      <h3 class="product__name">Моторное масло 5W-40 синтетика, 4 л</h3>
-      <span class="product__meta">Собственный бренд · SN/CF</span>
-      <span class="product__stock">В наличии</span>
-      <div class="product__bottom">
-        <span class="product__price">2 490 ₽</span>
-        <button class="btn btn--sm btn--red" data-add="oil-5w40-4" data-name="Масло 5W-40, 4 л" data-price="2490" data-icon="oil">В корзину</button>
-      </div>
-    </article>
-
-    <article class="product">
-      <div class="product__media">
-        <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="20" y="17" width="24" height="32" rx="7" fill="#3d444d"/><rect x="24" y="10" width="16" height="9" rx="2" fill="#e11b22"/><path d="M25 27h14M25 33h14M25 39h14" stroke="#c9ced6" stroke-width="3"/></svg>
-      </div>
-      <span class="product__brand">Filtron</span>
-      <h3 class="product__name">Фильтр масляный OP 570</h3>
-      <span class="product__meta">Для ТО · популярные модели</span>
-      <span class="product__stock">В наличии</span>
-      <div class="product__bottom">
-        <span class="product__price">450 ₽</span>
-        <button class="btn btn--sm btn--red" data-add="filter-op570" data-name="Фильтр масляный OP 570" data-price="450" data-icon="filter">В корзину</button>
-      </div>
-    </article>
-
-    <article class="product">
-      <div class="product__media">
-        <div class="product__flags"><span class="badge badge--green">Хит</span></div>
-        <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="#16191d"/><circle cx="32" cy="32" r="11" fill="#c9ced6"/><circle cx="32" cy="32" r="5" fill="#e11b22"/></svg>
-      </div>
-      <span class="product__brand">Cordiant</span>
-      <h3 class="product__name">Шина зимняя 205/55 R16 шип</h3>
-      <span class="product__meta">Цена за 1 шт · монтаж на месте</span>
-      <span class="product__stock">В наличии</span>
-      <div class="product__bottom">
-        <span class="product__price">6 900 ₽</span>
-        <button class="btn btn--sm btn--red" data-add="tire-205-55-16" data-name="Шина зимняя 205/55 R16" data-price="6900" data-icon="tire">В корзину</button>
-      </div>
-    </article>
-
-    <article class="product">
-      <div class="product__media">
-        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M26 12h12v9l10 25a6 6 0 0 1-5.6 8.4H21.6A6 6 0 0 1 16 46l10-25z" fill="#e11b22"/><rect x="24" y="6" width="16" height="7" rx="2" fill="#16191d"/></svg>
-      </div>
-      <span class="product__brand">Оил Маркет</span>
-      <h3 class="product__name">Антифриз G12+ готовый, 5 кг</h3>
-      <span class="product__meta">Автохимия · до −40 °C</span>
-      <span class="product__stock">В наличии</span>
-      <div class="product__bottom">
-        <span class="product__price">1 190 ₽</span>
-        <button class="btn btn--sm btn--red" data-add="antifreeze-g12-5" data-name="Антифриз G12+, 5 кг" data-price="1190" data-icon="chem">В корзину</button>
-      </div>
-    </article>
+      <article class="product reveal" data-brand="Оил Маркет" data-price="2490" data-cat="oil">
+        <div class="product__media"><div class="product__flags"><span class="badge badge--red">Акция</span></div><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient></defs>
+<ellipse cx="48" cy="83" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<rect x="52" y="34" width="26" height="46" rx="6" fill="url(#dk)"/>
+<rect x="60" y="26" width="10" height="10" rx="2" fill="#0f1216"/>
+<rect x="57" y="46" width="16" height="20" rx="2" fill="#eef1f4"/>
+<path d="M60 53h10M60 58h7" stroke="#8d959f" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="16" y="24" width="38" height="56" rx="8" fill="url(#rd)"/>
+<path d="M16 32a8 8 0 0 1 8-8h6v56h-6a8 8 0 0 1-8-8z" fill="#fff" opacity=".14"/>
+<rect x="28" y="12" width="14" height="14" rx="3" fill="#16191d"/>
+<rect x="30" y="8" width="10" height="6" rx="2" fill="#3d444d"/>
+<rect x="22" y="40" width="26" height="26" rx="3" fill="#fff"/>
+<path d="M35 45c4 5 7 7.5 7 10.5a7 7 0 0 1-14 0c0-3 3-5.5 7-10.5z" fill="#e11b22"/>
+</svg></div>
+        <span class="product__brand">Оил Маркет</span>
+        <h3 class="product__name">Моторное масло 5W-40 синтетика, 4 л</h3>
+        <span class="product__meta">Собственный бренд · SN/CF</span>
+        <span class="product__stock">В наличии</span>
+        <div class="product__bottom">
+          <span class="product__price">2 490 ₽</span><span class="product__old">2 890 ₽</span>
+          <button class="btn btn--sm btn--red" data-add="oil-5w40-4" data-name="Моторное масло 5W-40 синтетика, 4 л" data-price="2490" data-icon="oil">В корзину</button>
+        </div>
+      </article>
+      <article class="product reveal" data-brand="Filtron" data-price="450" data-cat="to">
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="24" ry="4" fill="#16191d" opacity=".10"/>
+<rect x="28" y="24" width="40" height="56" rx="10" fill="url(#dk)"/>
+<path d="M28 34a10 10 0 0 1 10-10h6v56h-6a10 10 0 0 1-10-10z" fill="#fff" opacity=".12"/>
+<rect x="32" y="14" width="32" height="12" rx="4" fill="url(#rd)"/>
+<circle cx="48" cy="20" r="4" fill="#7d0f13"/>
+<g stroke="#c2c9d2" stroke-width="3.4" stroke-linecap="round" opacity=".85">
+<path d="M34 40h28M34 50h28M34 60h28M34 70h20"/></g>
+</svg></div>
+        <span class="product__brand">Filtron</span>
+        <h3 class="product__name">Фильтр масляный OP 570</h3>
+        <span class="product__meta">Ходовые модели</span>
+        <span class="product__stock">В наличии</span>
+        <div class="product__bottom">
+          <span class="product__price">450 ₽</span>
+          <button class="btn btn--sm btn--red" data-add="filter-op570" data-name="Фильтр масляный OP 570" data-price="450" data-icon="filter">В корзину</button>
+        </div>
+      </article>
+      <article class="product reveal" data-brand="Cordiant" data-price="6900" data-cat="tire">
+        <div class="product__media"><div class="product__flags"><span class="badge badge--green">Хит</span></div><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<circle cx="64" cy="48" r="30" fill="#2a3038"/>
+<circle cx="64" cy="48" r="19" fill="url(#mtl)"/>
+<circle cx="64" cy="48" r="6" fill="#7a828c"/>
+<circle cx="36" cy="48" r="33" fill="#1b1f24"/>
+<circle cx="36" cy="48" r="33" fill="none" stroke="#0d1014" stroke-width="2"/>
+<g stroke="#3a424b" stroke-width="3" stroke-linecap="round">
+<path d="M36 15v9M56 27l-6 6M69 48h-9M56 69l-6-6M36 81v-9M16 69l6-6M3 48h9M16 27l6 6"/></g>
+<circle cx="36" cy="48" r="20" fill="url(#mtl)"/>
+<circle cx="36" cy="48" r="20" fill="none" stroke="#8d959f" stroke-width="1.4"/>
+<g fill="#e11b22"><circle cx="36" cy="48" r="6"/></g>
+<g stroke="#eef1f4" stroke-width="5" stroke-linecap="round">
+<path d="M36 32v8M50 48h-8M41 61l-3-7M31 61l3-7M23 44l7 4"/></g>
+</svg></div>
+        <span class="product__brand">Cordiant</span>
+        <h3 class="product__name">Шина зимняя 205/55 R16 шип</h3>
+        <span class="product__meta">Цена за 1 шт · монтаж на месте</span>
+        <span class="product__stock">В наличии</span>
+        <div class="product__bottom">
+          <span class="product__price">6 900 ₽</span>
+          <button class="btn btn--sm btn--red" data-add="tire-205-55-16" data-name="Шина зимняя 205/55 R16 шип" data-price="6900" data-icon="tire">В корзину</button>
+        </div>
+      </article>
+      <article class="product reveal" data-brand="Оил Маркет" data-price="1190" data-cat="chem">
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="bl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fd0ff"/><stop offset=".55" stop-color="#2f9fe0"/><stop offset="1" stop-color="#1c6fa5"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="26" ry="5" fill="#16191d" opacity=".10"/>
+<path d="M30 30h36v10l6 28a10 10 0 0 1-10 12H34a10 10 0 0 1-10-12l6-28z" fill="url(#rd)"/>
+<rect x="36" y="16" width="24" height="15" rx="4" fill="#16191d"/>
+<rect x="39" y="10" width="18" height="8" rx="3" fill="#3d444d"/>
+<rect x="30" y="52" width="36" height="20" rx="3" fill="#fff" opacity=".94"/>
+<path d="M36 60h24M36 66h16" stroke="#e11b22" stroke-width="3" stroke-linecap="round"/>
+<path d="M76 26c3 4 5 6 5 8a5 5 0 0 1-10 0c0-2 2-4 5-8z" fill="url(#bl)"/>
+</svg></div>
+        <span class="product__brand">Оил Маркет</span>
+        <h3 class="product__name">Антифриз G12+ готовый, 5 кг</h3>
+        <span class="product__meta">До −40 °C</span>
+        <span class="product__stock">В наличии</span>
+        <div class="product__bottom">
+          <span class="product__price">1 190 ₽</span>
+          <button class="btn btn--sm btn--red" data-add="antifreeze-g12-5" data-name="Антифриз G12+ готовый, 5 кг" data-price="1190" data-icon="fluid">В корзину</button>
+        </div>
+      </article>
   </div>
 </section>
 
-<!-- ================= Преимущества ================= -->
 <section class="section section--tight wrap">
+  <div class="livebar reveal">
+    <span class="livebar__dot"></span>
+    <b data-open-status>Ежедневно 09:00–21:00</b>
+    <span style="color:#a9b2bb">·&nbsp; ул. Марджани, 9, 1 этаж · 110-й микрорайон</span>
+    <a class="btn btn--red btn--sm" href="tel:+73519450574">Позвонить: 45-05-74</a>
+  </div>
+</section>
+
+<section class="section section--tight wrap">
+  <div class="section__head"><h2>Бренды в наличии</h2>
+    <span class="section__sub">И собственная линейка масел «Оил Маркет»</span></div>
+  <div class="brands">
+    <a class="brand-chip reveal" href="catalog.html">Оил Маркет</a>
+    <a class="brand-chip reveal" href="catalog.html">Filtron</a>
+    <a class="brand-chip reveal" href="catalog.html">Cordiant</a>
+    <a class="brand-chip reveal" href="catalog.html">Nokian</a>
+    <a class="brand-chip reveal" href="catalog.html">Kama</a>
+    <a class="brand-chip reveal" href="catalog.html">NGK</a>
+    <a class="brand-chip reveal" href="catalog.html">Gates</a>
+    <a class="brand-chip reveal" href="catalog.html">TRW</a>
+    <a class="brand-chip reveal" href="catalog.html">Liqui Moly</a>
+    <a class="brand-chip reveal" href="catalog.html">Mobil</a>
+    <a class="brand-chip reveal" href="catalog.html">K&K</a>
+    <a class="brand-chip reveal" href="catalog.html">Trebl</a>
+  </div>
+</section>
+
+<section class="section section--tight wrap">
+  <div class="section__head"><h2>Почему к нам едут</h2></div>
   <div class="strip">
-    <div class="strip__item">
+    <div class="strip__item reveal">
       <span class="strip__icon"><svg viewBox="0 0 24 24"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></span>
       <div><div class="strip__t">Магазин и сервис вместе</div><div class="strip__d">Купили масло — сразу заменили, без второй поездки</div></div>
     </div>
-    <div class="strip__item">
+    <div class="strip__item reveal">
       <span class="strip__icon"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
       <div><div class="strip__t">Масла собственного бренда</div><div class="strip__d">Свой продукт — своя цена без наценки посредников</div></div>
     </div>
-    <div class="strip__item">
+    <div class="strip__item reveal">
       <span class="strip__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
       <div><div class="strip__t">Работаем 7 дней в неделю</div><div class="strip__d">Ежедневно с 09:00 до 21:00, без выходных</div></div>
     </div>
-    <div class="strip__item">
+    <div class="strip__item reveal">
       <span class="strip__icon"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg></span>
       <div><div class="strip__t">Правобережный район</div><div class="strip__d">ул. Марджани, 9 — 110-й микрорайон, 1 этаж</div></div>
     </div>
   </div>
 </section>
 
-<!-- ================= Рейтинг ================= -->
 <section class="section section--tight wrap">
-  <div class="rating-bar">
-    <div>
-      <div class="rating-bar__score">4.4</div>
-      <div class="rating-bar__stars" aria-hidden="true">★★★★☆</div>
-    </div>
-    <div>
-      <div class="font-h" style="font-size:17px">267 отзывов на 2ГИС</div>
-      <div class="rating-bar__meta">Оценка автокомплекса «Оил Маркет», Магнитогорск</div>
-    </div>
-    <div class="rating-bar__cta">
-      <a class="btn btn--ghost" href="reviews.html">Читать отзывы</a>
-      <button class="btn btn--red" type="button" data-book="Запись на сервис" data-book-title="Запись на сервис">Записаться на сервис</button>
-    </div>
+  <div class="counters">
+    <div class="counter reveal"><div class="counter__n">4.4<span style="font-size:20px">★</span></div><div class="counter__l">рейтинг на 2ГИС</div></div>
+    <div class="counter reveal"><div class="counter__n" data-count="267">267</div><div class="counter__l">отзывов клиентов</div></div>
+    <div class="counter reveal"><div class="counter__n">7/7</div><div class="counter__l">дней в неделю, 09:00–21:00</div></div>
+    <div class="counter reveal"><div class="counter__n">2 в 1</div><div class="counter__l">магазин и автосервис</div></div>
   </div>
 </section>
 
-<!-- ================= Футер ================= -->
+<section class="section section--tight wrap">
+  <div class="section__head">
+    <h2>Отзывы клиентов</h2>
+    <span class="section__sub">4.4 ★ · 267 отзывов на 2ГИС</span>
+    <div class="carousel-nav">
+      <button type="button" data-carousel-prev aria-label="Назад"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button type="button" data-carousel-next aria-label="Вперёд"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </div>
+  <div class="reviews-track" data-carousel>
+    <article class="review">
+      <div class="review__head">
+        <span class="review__ava">А</span>
+        <div><div class="review__name">Алексей</div><div class="review__date">Отзыв с 2ГИС</div></div>
+      </div>
+      <div class="review__stars" aria-hidden="true">★★★★★</div>
+      <p class="review__text">Купил масло, тут же бесплатно поменяли. Быстро, ждать не пришлось. Цена на масло своего бренда заметно ниже магазинной.</p>
+      <div class="review__src">Источник: 2ГИС · демо-текст, будет заменён реальной выгрузкой</div>
+    </article>
+    <article class="review">
+      <div class="review__head">
+        <span class="review__ava">М</span>
+        <div><div class="review__name">Марина</div><div class="review__date">Отзыв с 2ГИС</div></div>
+      </div>
+      <div class="review__stars" aria-hidden="true">★★★★★</div>
+      <p class="review__text">Меняла резину на зиму. Шиномонтаж сделали аккуратно, балансировка нормальная. Удобно, что шины тут же и купила.</p>
+      <div class="review__src">Источник: 2ГИС · демо-текст, будет заменён реальной выгрузкой</div>
+    </article>
+    <article class="review">
+      <div class="review__head">
+        <span class="review__ava">С</span>
+        <div><div class="review__name">Сергей</div><div class="review__date">Отзыв с 2ГИС</div></div>
+      </div>
+      <div class="review__stars" aria-hidden="true">★★★★☆</div>
+      <p class="review__text">Нормальный комплекс: и магазин, и сервис. В выходной была небольшая очередь, но по времени уложились.</p>
+      <div class="review__src">Источник: 2ГИС · демо-текст, будет заменён реальной выгрузкой</div>
+    </article>
+    <article class="review">
+      <div class="review__head">
+        <span class="review__ava">И</span>
+        <div><div class="review__name">Ильдар</div><div class="review__date">Отзыв с 2ГИС</div></div>
+      </div>
+      <div class="review__stars" aria-hidden="true">★★★★★</div>
+      <p class="review__text">Прошёл ТО целиком: масло, фильтры, свечи. Всё подобрали по модели, ничего лишнего не навязывали.</p>
+      <div class="review__src">Источник: 2ГИС · демо-текст, будет заменён реальной выгрузкой</div>
+    </article>
+    <article class="review">
+      <div class="review__head">
+        <span class="review__ava">Е</span>
+        <div><div class="review__name">Евгений</div><div class="review__date">Отзыв с 2ГИС</div></div>
+      </div>
+      <div class="review__stars" aria-hidden="true">★★★★☆</div>
+      <p class="review__text">Брал антифриз и незамерзайку. Цены адекватные, работают до девяти вечера — можно заехать после работы.</p>
+      <div class="review__src">Источник: 2ГИС · демо-текст, будет заменён реальной выгрузкой</div>
+    </article>
+    <article class="review">
+      <div class="review__head">
+        <span class="review__ava">Н</span>
+        <div><div class="review__name">Наталья</div><div class="review__date">Отзыв с 2ГИС</div></div>
+      </div>
+      <div class="review__stars" aria-hidden="true">★★★★★</div>
+      <p class="review__text">Подсказали по телефону, какое масло нужно на мою машину. Приехала — всё уже было готово.</p>
+      <div class="review__src">Источник: 2ГИС · демо-текст, будет заменён реальной выгрузкой</div>
+    </article>
+  </div>
+  <div style="margin-top:12px"><a class="btn btn--ghost" href="reviews.html">Все отзывы →</a></div>
+</section>
+
+<section class="section section--tight wrap">
+  <div class="section__head"><h2>Частые вопросы</h2></div>
+  <div class="faq"><div class="faq__item"><button class="faq__q" type="button">Где вы находитесь и как работаете?</button><div class="faq__a">ул. Марджани, 9, 1 этаж, 110-й микрорайон, Правобережный район, Магнитогорск, 455000. Работаем ежедневно с 09:00 до 21:00, без выходных.</div></div><div class="faq__item"><button class="faq__q" type="button">Как получить бесплатную замену масла?</button><div class="faq__a">Купите моторное масло в «Оил Маркет» — замену масла в ДВС сделаем бесплатно и добавим фильтр в подарок. Акция действует до 31.12.2026.</div></div><div class="faq__item"><button class="faq__q" type="button">Нужно ли записываться заранее?</button><div class="faq__a">Записаться можно через форму на сайте или по телефону +7 (3519) 45-05-74 — администратор подтвердит удобное время. Так вы точно не попадёте в очередь.</div></div><div class="faq__item"><button class="faq__q" type="button">Поможете подобрать запчасть, если я не знаю артикул?</button><div class="faq__a">Да. Назовите марку, модель и год — или продиктуйте VIN по телефону, подберём по каталогу производителя.</div></div><div class="faq__item"><button class="faq__q" type="button">Можно купить товар и сразу установить его у вас?</button><div class="faq__a">Да, в этом смысл автокомплекса: магазин и сервис в одном месте. Купили масло, шины или фильтры — тут же поставили, без второй поездки.</div></div></div>
+</section>
+
 <footer class="footer">
   <div class="wrap">
     <div class="footer__grid">
@@ -360,6 +562,7 @@
           <span class="logo__text"><span class="logo__name">Оил Маркет</span><span class="logo__sub">Автокомплекс</span></span>
         </a>
         <p>Магазин автозапчастей и автосервис в Магнитогорске: масла, шины и диски, автохимия, ТО, замена масла, шиномонтаж.</p>
+        <div class="rating-bar__stars" style="font-size:16px">★★★★☆ <span style="color:#aeb6bf;font-size:14px">4.4 · 267 отзывов на 2ГИС</span></div>
       </div>
       <div>
         <div class="footer__title">Каталог</div>
@@ -401,7 +604,6 @@
   </div>
 </footer>
 
-<!-- ================= Чат-виджет ================= -->
 <div class="chat">
   <div class="chat__panel" data-chat-panel>
     <div class="chat__head">
@@ -431,7 +633,11 @@
   </button>
 </div>
 
-<!-- ================= Модалка записи ================= -->
+<div class="mobile-bar">
+  <a class="btn btn--ghost" href="tel:+73519450574">Позвонить</a>
+  <button class="btn btn--red" type="button" data-book="Запись на сервис" data-book-title="Запись на сервис">Записаться</button>
+</div>
+
 <div class="modal" id="lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-title">
   <div class="modal__box">
     <div class="modal__head">
@@ -456,10 +662,8 @@
         <div class="field">
           <label class="field__label" for="lm-time">Время</label>
           <select id="lm-time" name="time">
-            <option>09:00–12:00</option>
-            <option>12:00–15:00</option>
-            <option>15:00–18:00</option>
-            <option>18:00–21:00</option>
+            <option>09:00–12:00</option><option>12:00–15:00</option>
+            <option>15:00–18:00</option><option>18:00–21:00</option>
           </select>
         </div>
         <div class="field field--full">

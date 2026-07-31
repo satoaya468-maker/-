@@ -10,17 +10,15 @@
 </head>
 <body>
 
-<!-- ================= Топ-строка ================= -->
 <div class="topbar">
   <div class="wrap topbar__inner">
-    <span class="topbar__hours"><span class="topbar__dot"></span> Ежедневно 09:00–21:00</span>
+    <span class="topbar__hours"><span class="topbar__dot"></span> <span data-open-status>Ежедневно 09:00–21:00</span></span>
     <span class="topbar__addr">Магнитогорск, ул. Марджани, 9 — 1 этаж, 110-й м-н</span>
     <span class="topbar__spacer"></span>
     <a href="reviews.html">4.4 ★ · 267 отзывов на 2ГИС</a>
   </div>
 </div>
 
-<!-- ================= Хедер ================= -->
 <header class="header">
   <div class="header__inner">
     <a class="logo" href="index.html">
@@ -68,20 +66,9 @@
   </div>
 </header>
 
-<!-- ================= Навигация ================= -->
 <nav class="nav" aria-label="Разделы">
-  <ul class="nav__list">
-    <li><a class="nav__link" href="index.html">Главная</a></li>
-    <li><a class="nav__link" href="catalog.html">Каталог</a></li>
-    <li><a class="nav__link" href="catalog.html?cat=oil">Масла и жидкости</a></li>
-    <li><a class="nav__link" href="catalog.html?cat=tire">Шины и диски</a></li>
-    <li><a class="nav__link" href="catalog.html?cat=chem">Автохимия</a></li>
-    <li><a class="nav__link is-active" href="services.html">Услуги сервиса</a></li>
-    <li><a class="nav__link" href="reviews.html">Отзывы</a></li>
-    <li><a class="nav__link" href="contacts.html">Контакты</a></li>
-  </ul>
+  <ul class="nav__list"><li><a class="nav__link" href="index.html">Главная</a></li><li><a class="nav__link" href="catalog.html">Каталог</a></li><li><a class="nav__link" href="catalog.html?cat=oil">Масла и жидкости</a></li><li><a class="nav__link" href="catalog.html?cat=tire">Шины и диски</a></li><li><a class="nav__link" href="catalog.html?cat=chem">Автохимия</a></li><li><a class="nav__link is-active" href="services.html">Услуги сервиса</a></li><li><a class="nav__link" href="reviews.html">Отзывы</a></li><li><a class="nav__link" href="contacts.html">Контакты</a></li></ul>
 </nav>
-
 
 <div class="wrap breadcrumbs"><a href="index.html">Главная</a><span>/</span><span>Услуги сервиса</span></div>
 <section class="section wrap" style="padding-top:18px">
@@ -96,8 +83,19 @@
   </div>
 
   <div class="services">
-    <article class="service">
-      <span class="service__icon"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="23" fill="#c9ced6"/><circle cx="32" cy="32" r="10" fill="#3d444d"/><path d="M32 9v9M55 32h-9M32 55v-9M9 32h9" stroke="#e11b22" stroke-width="4"/></svg></span>
+    <article class="service reveal">
+      <span class="service__icon"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient></defs>
+<ellipse cx="44" cy="82" rx="30" ry="5" fill="#16191d" opacity=".10"/>
+<circle cx="44" cy="46" r="33" fill="url(#mtl)"/>
+<circle cx="44" cy="46" r="33" fill="none" stroke="#79818b" stroke-width="1.6"/>
+<circle cx="44" cy="46" r="23" fill="#d3d9e0"/>
+<circle cx="44" cy="46" r="13" fill="#9aa3ad"/>
+<circle cx="44" cy="46" r="5.5" fill="#5f6771"/>
+<g fill="#aeb7c0"><circle cx="44" cy="28" r="2.6"/><circle cx="59" cy="38" r="2.6"/><circle cx="54" cy="60" r="2.6"/><circle cx="34" cy="60" r="2.6"/><circle cx="29" cy="38" r="2.6"/></g>
+<path d="M63 25h9a10 10 0 0 1 10 10v22a10 10 0 0 1-10 10h-9z" fill="url(#rd)"/>
+<rect x="66" y="34" width="12" height="24" rx="3" fill="#7d0f13" opacity=".55"/>
+<path d="M22 24a33 33 0 0 1 20-10" stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none" opacity=".65"/>
+</svg></span>
       <h3>Техническое обслуживание</h3>
       <ul class="service__list"><li>Плановое ТО по регламенту</li><li>Замена фильтров: масляный, воздушный, салонный</li><li>Замена свечей зажигания</li><li>Диагностика перед ТО</li><li>Комплект ТО из нашего каталога — со скидкой</li></ul>
       <div class="service__price"><span>от</span> 1 500 ₽ <span>за услугу</span></div>
@@ -106,8 +104,20 @@
         <a class="btn btn--ghost" href="tel:+73519450574">Позвонить</a>
       </div>
     </article>
-    <article class="service">
-      <span class="service__icon"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="17" y="15" width="30" height="39" rx="5" fill="#e11b22"/><rect x="26" y="8" width="12" height="9" rx="2" fill="#16191d"/><rect x="22" y="28" width="20" height="14" rx="2" fill="#fff"/></svg></span>
+    <article class="service reveal">
+      <span class="service__icon"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient></defs>
+<ellipse cx="48" cy="83" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<rect x="52" y="34" width="26" height="46" rx="6" fill="url(#dk)"/>
+<rect x="60" y="26" width="10" height="10" rx="2" fill="#0f1216"/>
+<rect x="57" y="46" width="16" height="20" rx="2" fill="#eef1f4"/>
+<path d="M60 53h10M60 58h7" stroke="#8d959f" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="16" y="24" width="38" height="56" rx="8" fill="url(#rd)"/>
+<path d="M16 32a8 8 0 0 1 8-8h6v56h-6a8 8 0 0 1-8-8z" fill="#fff" opacity=".14"/>
+<rect x="28" y="12" width="14" height="14" rx="3" fill="#16191d"/>
+<rect x="30" y="8" width="10" height="6" rx="2" fill="#3d444d"/>
+<rect x="22" y="40" width="26" height="26" rx="3" fill="#fff"/>
+<path d="M35 45c4 5 7 7.5 7 10.5a7 7 0 0 1-14 0c0-3 3-5.5 7-10.5z" fill="#e11b22"/>
+</svg></span>
       <h3>Замена масла</h3>
       <ul class="service__list"><li>Замена масла в ДВС</li><li>Замена масляного фильтра</li><li>Долив и проверка уровня технических жидкостей</li><li>Утилизация отработки</li><li><b>При покупке масла у нас — замена бесплатно + фильтр в подарок</b></li></ul>
       <div class="service__price" style="color:var(--red)">Бесплатно <span>при покупке масла</span></div>
@@ -116,8 +126,22 @@
         <a class="btn btn--ghost" href="tel:+73519450574">Позвонить</a>
       </div>
     </article>
-    <article class="service">
-      <span class="service__icon"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="#16191d"/><circle cx="32" cy="32" r="11" fill="#c9ced6"/><circle cx="32" cy="32" r="5" fill="#e11b22"/></svg></span>
+    <article class="service reveal">
+      <span class="service__icon"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<circle cx="64" cy="48" r="30" fill="#2a3038"/>
+<circle cx="64" cy="48" r="19" fill="url(#mtl)"/>
+<circle cx="64" cy="48" r="6" fill="#7a828c"/>
+<circle cx="36" cy="48" r="33" fill="#1b1f24"/>
+<circle cx="36" cy="48" r="33" fill="none" stroke="#0d1014" stroke-width="2"/>
+<g stroke="#3a424b" stroke-width="3" stroke-linecap="round">
+<path d="M36 15v9M56 27l-6 6M69 48h-9M56 69l-6-6M36 81v-9M16 69l6-6M3 48h9M16 27l6 6"/></g>
+<circle cx="36" cy="48" r="20" fill="url(#mtl)"/>
+<circle cx="36" cy="48" r="20" fill="none" stroke="#8d959f" stroke-width="1.4"/>
+<g fill="#e11b22"><circle cx="36" cy="48" r="6"/></g>
+<g stroke="#eef1f4" stroke-width="5" stroke-linecap="round">
+<path d="M36 32v8M50 48h-8M41 61l-3-7M31 61l3-7M23 44l7 4"/></g>
+</svg></span>
       <h3>Шиномонтаж</h3>
       <ul class="service__list"><li>Снятие/установка колеса</li><li>Демонтаж и монтаж шины</li><li>Балансировка колеса</li><li>Ремонт проколов</li><li>Сезонное хранение — уточняйте по телефону</li></ul>
       <div class="service__price"><span>от</span> 600 ₽ <span>за услугу</span></div>
@@ -137,14 +161,109 @@
 <section class="section section--tight wrap">
   <div class="section__head"><h2>Как проходит запись</h2></div>
   <div class="strip">
-    <div class="strip__item"><span class="strip__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><text x="12" y="16" font-size="10" text-anchor="middle" fill="currentColor" stroke="none">1</text></svg></span>
+    <div class="strip__item reveal"><span class="strip__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><text x="12" y="16" font-size="10" text-anchor="middle" fill="currentColor" stroke="none">1</text></svg></span>
       <div><div class="strip__t">Оставляете заявку</div><div class="strip__d">Форма на сайте, звонок или сообщение в WhatsApp</div></div></div>
-    <div class="strip__item"><span class="strip__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><text x="12" y="16" font-size="10" text-anchor="middle" fill="currentColor" stroke="none">2</text></svg></span>
+    <div class="strip__item reveal"><span class="strip__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><text x="12" y="16" font-size="10" text-anchor="middle" fill="currentColor" stroke="none">2</text></svg></span>
       <div><div class="strip__t">Администратор перезванивает</div><div class="strip__d">Подтверждаем время и подбираем расходники</div></div></div>
-    <div class="strip__item"><span class="strip__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><text x="12" y="16" font-size="10" text-anchor="middle" fill="currentColor" stroke="none">3</text></svg></span>
+    <div class="strip__item reveal"><span class="strip__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><text x="12" y="16" font-size="10" text-anchor="middle" fill="currentColor" stroke="none">3</text></svg></span>
       <div><div class="strip__t">Приезжаете в назначенное время</div><div class="strip__d">ул. Марджани, 9 — 1 этаж, 110-й микрорайон</div></div></div>
-    <div class="strip__item"><span class="strip__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-5"/></svg></span>
+    <div class="strip__item reveal"><span class="strip__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-5"/></svg></span>
       <div><div class="strip__t">Делаем работу</div><div class="strip__d">Расходники можно купить здесь же в магазине</div></div></div>
+  </div>
+</section>
+
+<section class="section section--tight wrap">
+  <div class="section__head"><h2>Что можно купить сразу к услуге</h2>
+    <a class="section__link" href="catalog.html">Весь каталог →</a></div>
+  <div class="products">
+      <article class="product reveal" data-brand="Оил Маркет" data-price="2490" data-cat="oil">
+        <div class="product__media"><div class="product__flags"><span class="badge badge--red">Акция</span></div><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient></defs>
+<ellipse cx="48" cy="83" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<rect x="52" y="34" width="26" height="46" rx="6" fill="url(#dk)"/>
+<rect x="60" y="26" width="10" height="10" rx="2" fill="#0f1216"/>
+<rect x="57" y="46" width="16" height="20" rx="2" fill="#eef1f4"/>
+<path d="M60 53h10M60 58h7" stroke="#8d959f" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="16" y="24" width="38" height="56" rx="8" fill="url(#rd)"/>
+<path d="M16 32a8 8 0 0 1 8-8h6v56h-6a8 8 0 0 1-8-8z" fill="#fff" opacity=".14"/>
+<rect x="28" y="12" width="14" height="14" rx="3" fill="#16191d"/>
+<rect x="30" y="8" width="10" height="6" rx="2" fill="#3d444d"/>
+<rect x="22" y="40" width="26" height="26" rx="3" fill="#fff"/>
+<path d="M35 45c4 5 7 7.5 7 10.5a7 7 0 0 1-14 0c0-3 3-5.5 7-10.5z" fill="#e11b22"/>
+</svg></div>
+        <span class="product__brand">Оил Маркет</span>
+        <h3 class="product__name">Моторное масло 5W-40 синтетика, 4 л</h3>
+        <span class="product__meta">Собственный бренд · SN/CF</span>
+        <span class="product__stock">В наличии</span>
+        <div class="product__bottom">
+          <span class="product__price">2 490 ₽</span><span class="product__old">2 890 ₽</span>
+          <button class="btn btn--sm btn--red" data-add="oil-5w40-4" data-name="Моторное масло 5W-40 синтетика, 4 л" data-price="2490" data-icon="oil">В корзину</button>
+        </div>
+      </article>
+      <article class="product reveal" data-brand="Filtron" data-price="450" data-cat="to">
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="24" ry="4" fill="#16191d" opacity=".10"/>
+<rect x="28" y="24" width="40" height="56" rx="10" fill="url(#dk)"/>
+<path d="M28 34a10 10 0 0 1 10-10h6v56h-6a10 10 0 0 1-10-10z" fill="#fff" opacity=".12"/>
+<rect x="32" y="14" width="32" height="12" rx="4" fill="url(#rd)"/>
+<circle cx="48" cy="20" r="4" fill="#7d0f13"/>
+<g stroke="#c2c9d2" stroke-width="3.4" stroke-linecap="round" opacity=".85">
+<path d="M34 40h28M34 50h28M34 60h28M34 70h20"/></g>
+</svg></div>
+        <span class="product__brand">Filtron</span>
+        <h3 class="product__name">Фильтр масляный OP 570</h3>
+        <span class="product__meta">Ходовые модели</span>
+        <span class="product__stock">В наличии</span>
+        <div class="product__bottom">
+          <span class="product__price">450 ₽</span>
+          <button class="btn btn--sm btn--red" data-add="filter-op570" data-name="Фильтр масляный OP 570" data-price="450" data-icon="filter">В корзину</button>
+        </div>
+      </article>
+      <article class="product reveal" data-brand="NGK" data-price="1680" data-cat="to">
+        <div class="product__media"><div class="product__flags"><span class="badge badge--red">Акция</span></div><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient></defs>
+<ellipse cx="48" cy="85" rx="18" ry="4" fill="#16191d" opacity=".10"/>
+<rect x="40" y="8" width="16" height="26" rx="5" fill="url(#mtl)"/>
+<rect x="38" y="30" width="20" height="10" rx="2" fill="#2c333b"/>
+<path d="M36 40h24l-3 12H39z" fill="url(#mtl)"/>
+<rect x="39" y="52" width="18" height="18" rx="2" fill="#8d959f"/>
+<g stroke="#c2c9d2" stroke-width="2" opacity=".8"><path d="M39 57h18M39 62h18"/></g>
+<rect x="43" y="70" width="10" height="10" rx="1" fill="#5f6771"/>
+<path d="M53 74h6v6" stroke="#e11b22" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M70 22l-8 10h6l-6 10" stroke="#e11b22" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div>
+        <span class="product__brand">NGK</span>
+        <h3 class="product__name">Свечи зажигания, комплект 4 шт.</h3>
+        <span class="product__meta">Никелевый электрод</span>
+        <span class="product__stock">В наличии</span>
+        <div class="product__bottom">
+          <span class="product__price">1 680 ₽</span><span class="product__old">1 980 ₽</span>
+          <button class="btn btn--sm btn--red" data-add="spark-4" data-name="Свечи зажигания, комплект 4 шт." data-price="1680" data-icon="spark">В корзину</button>
+        </div>
+      </article>
+      <article class="product reveal" data-brand="Cordiant" data-price="6900" data-cat="tire">
+        <div class="product__media"><div class="product__flags"><span class="badge badge--green">Хит</span></div><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<circle cx="64" cy="48" r="30" fill="#2a3038"/>
+<circle cx="64" cy="48" r="19" fill="url(#mtl)"/>
+<circle cx="64" cy="48" r="6" fill="#7a828c"/>
+<circle cx="36" cy="48" r="33" fill="#1b1f24"/>
+<circle cx="36" cy="48" r="33" fill="none" stroke="#0d1014" stroke-width="2"/>
+<g stroke="#3a424b" stroke-width="3" stroke-linecap="round">
+<path d="M36 15v9M56 27l-6 6M69 48h-9M56 69l-6-6M36 81v-9M16 69l6-6M3 48h9M16 27l6 6"/></g>
+<circle cx="36" cy="48" r="20" fill="url(#mtl)"/>
+<circle cx="36" cy="48" r="20" fill="none" stroke="#8d959f" stroke-width="1.4"/>
+<g fill="#e11b22"><circle cx="36" cy="48" r="6"/></g>
+<g stroke="#eef1f4" stroke-width="5" stroke-linecap="round">
+<path d="M36 32v8M50 48h-8M41 61l-3-7M31 61l3-7M23 44l7 4"/></g>
+</svg></div>
+        <span class="product__brand">Cordiant</span>
+        <h3 class="product__name">Шина зимняя 205/55 R16 шип</h3>
+        <span class="product__meta">Цена за 1 шт · монтаж на месте</span>
+        <span class="product__stock">В наличии</span>
+        <div class="product__bottom">
+          <span class="product__price">6 900 ₽</span>
+          <button class="btn btn--sm btn--red" data-add="tire-205-55-16" data-name="Шина зимняя 205/55 R16 шип" data-price="6900" data-icon="tire">В корзину</button>
+        </div>
+      </article>
   </div>
 </section>
 
@@ -157,10 +276,8 @@
         <div class="field"><label class="field__label" for="s-phone">Телефон</label><input id="s-phone" name="phone" type="tel" required placeholder="+7 (___) ___-__-__"></div>
         <div class="field"><label class="field__label" for="s-service">Услуга</label>
           <select id="s-service" name="service">
-            <option>Техническое обслуживание</option>
-            <option>Замена масла</option>
-            <option>Шиномонтаж</option>
-            <option>Другое / уточню по телефону</option>
+            <option>Техническое обслуживание</option><option>Замена масла</option>
+            <option>Шиномонтаж</option><option>Другое / уточню по телефону</option>
           </select></div>
         <div class="field"><label class="field__label" for="s-date">Желаемая дата</label><input id="s-date" name="date" type="date"></div>
         <div class="field field--full"><label class="field__label" for="s-comment">Авто и комментарий</label>
@@ -172,7 +289,12 @@
     </form>
   </div>
 </section>
-<!-- ================= Футер ================= -->
+
+<section class="section section--tight wrap">
+  <div class="section__head"><h2>Частые вопросы</h2></div>
+  <div class="faq"><div class="faq__item"><button class="faq__q" type="button">Где вы находитесь и как работаете?</button><div class="faq__a">ул. Марджани, 9, 1 этаж, 110-й микрорайон, Правобережный район, Магнитогорск, 455000. Работаем ежедневно с 09:00 до 21:00, без выходных.</div></div><div class="faq__item"><button class="faq__q" type="button">Как получить бесплатную замену масла?</button><div class="faq__a">Купите моторное масло в «Оил Маркет» — замену масла в ДВС сделаем бесплатно и добавим фильтр в подарок. Акция действует до 31.12.2026.</div></div><div class="faq__item"><button class="faq__q" type="button">Нужно ли записываться заранее?</button><div class="faq__a">Записаться можно через форму на сайте или по телефону +7 (3519) 45-05-74 — администратор подтвердит удобное время. Так вы точно не попадёте в очередь.</div></div><div class="faq__item"><button class="faq__q" type="button">Поможете подобрать запчасть, если я не знаю артикул?</button><div class="faq__a">Да. Назовите марку, модель и год — или продиктуйте VIN по телефону, подберём по каталогу производителя.</div></div><div class="faq__item"><button class="faq__q" type="button">Можно купить товар и сразу установить его у вас?</button><div class="faq__a">Да, в этом смысл автокомплекса: магазин и сервис в одном месте. Купили масло, шины или фильтры — тут же поставили, без второй поездки.</div></div></div>
+</section>
+
 <footer class="footer">
   <div class="wrap">
     <div class="footer__grid">
@@ -182,6 +304,7 @@
           <span class="logo__text"><span class="logo__name">Оил Маркет</span><span class="logo__sub">Автокомплекс</span></span>
         </a>
         <p>Магазин автозапчастей и автосервис в Магнитогорске: масла, шины и диски, автохимия, ТО, замена масла, шиномонтаж.</p>
+        <div class="rating-bar__stars" style="font-size:16px">★★★★☆ <span style="color:#aeb6bf;font-size:14px">4.4 · 267 отзывов на 2ГИС</span></div>
       </div>
       <div>
         <div class="footer__title">Каталог</div>
@@ -223,7 +346,6 @@
   </div>
 </footer>
 
-<!-- ================= Чат-виджет ================= -->
 <div class="chat">
   <div class="chat__panel" data-chat-panel>
     <div class="chat__head">
@@ -253,7 +375,11 @@
   </button>
 </div>
 
-<!-- ================= Модалка записи ================= -->
+<div class="mobile-bar">
+  <a class="btn btn--ghost" href="tel:+73519450574">Позвонить</a>
+  <button class="btn btn--red" type="button" data-book="Запись на сервис" data-book-title="Запись на сервис">Записаться</button>
+</div>
+
 <div class="modal" id="lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-title">
   <div class="modal__box">
     <div class="modal__head">
@@ -278,10 +404,8 @@
         <div class="field">
           <label class="field__label" for="lm-time">Время</label>
           <select id="lm-time" name="time">
-            <option>09:00–12:00</option>
-            <option>12:00–15:00</option>
-            <option>15:00–18:00</option>
-            <option>18:00–21:00</option>
+            <option>09:00–12:00</option><option>12:00–15:00</option>
+            <option>15:00–18:00</option><option>18:00–21:00</option>
           </select>
         </div>
         <div class="field field--full">

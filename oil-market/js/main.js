@@ -3,6 +3,8 @@
 (function () {
   'use strict';
 
+  document.documentElement.classList.add('js');
+
   var CART_KEY = 'om_cart_v1';
 
   /* ---------------- Корзина ---------------- */
@@ -344,6 +346,71 @@
     renderCart();
   });
 
+  /* ---------------- Появление блоков при скролле ---------------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if (reveals.length && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e, n) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        setTimeout(function () { el.classList.add('is-in'); }, Math.min(n * 45, 220));
+        io.unobserve(el);
+      });
+    }, { rootMargin: '0px 0px -60px 0px', threshold: 0.06 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  /* ---------------- FAQ-аккордеон ---------------- */
+  document.querySelectorAll('.faq__q').forEach(function (q) {
+    q.addEventListener('click', function () {
+      q.parentNode.classList.toggle('is-open');
+    });
+  });
+
+  /* ---------------- «Сейчас открыто» ---------------- */
+  (function openStatus() {
+    var els = document.querySelectorAll('[data-open-status]');
+    if (!els.length) return;
+    var now = new Date();
+    var h = now.getHours(), m = now.getMinutes();
+    var open = h >= 9 && (h < 21);
+    var text;
+    if (open) {
+      var left = (21 - h) * 60 - m;
+      text = left <= 60
+        ? 'Открыто · закрываемся через ' + left + ' мин'
+        : 'Сейчас открыто · до 21:00';
+    } else {
+      text = 'Сейчас закрыто · откроемся в 09:00';
+    }
+    els.forEach(function (el) {
+      el.textContent = text;
+      var dot = el.parentNode.querySelector('.topbar__dot, .livebar__dot');
+      if (dot && !open) dot.style.background = '#f5a623';
+    });
+  })();
+
+  /* ---------------- Счётчики ---------------- */
+  var counters = document.querySelectorAll('[data-count]');
+  if (counters.length && 'IntersectionObserver' in window) {
+    var io2 = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target, target = parseInt(el.dataset.count, 10), t0 = null;
+        io2.unobserve(el);
+        requestAnimationFrame(function step(ts) {
+          if (!t0) t0 = ts;
+          var p = Math.min((ts - t0) / 900, 1);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(step);
+        });
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(function (el) { io2.observe(el); });
+  }
+
   function iconSvg(kind) {
     var i = {
       oil: '<svg viewBox="0 0 64 64"><rect x="18" y="14" width="28" height="38" rx="4" fill="#e11b22"/><rect x="26" y="8" width="12" height="8" rx="2" fill="#16191d"/><rect x="23" y="26" width="18" height="12" rx="2" fill="#fff"/></svg>',
@@ -351,6 +418,10 @@
       filter: '<svg viewBox="0 0 64 64"><rect x="20" y="16" width="24" height="32" rx="6" fill="#3d444d"/><rect x="24" y="10" width="16" height="8" rx="2" fill="#e11b22"/><path d="M24 26h16M24 32h16M24 38h16" stroke="#c9ced6" stroke-width="3"/></svg>',
       chem: '<svg viewBox="0 0 64 64"><path d="M26 10h12v10l10 24a6 6 0 0 1-5 10H21a6 6 0 0 1-5-10l10-24z" fill="#e11b22"/><rect x="24" y="6" width="16" height="6" rx="2" fill="#16191d"/></svg>',
       brake: '<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="21" fill="#c9ced6"/><circle cx="32" cy="32" r="9" fill="#3d444d"/><path d="M32 11v8M53 32h-8M32 53v-8M11 32h8" stroke="#e11b22" stroke-width="4"/></svg>',
+      fluid: '<svg viewBox="0 0 64 64"><path d="M24 18h16v6l5 18a6 6 0 0 1-6 8H25a6 6 0 0 1-6-8l5-18z" fill="#e11b22"/><rect x="26" y="10" width="12" height="9" rx="2" fill="#16191d"/><rect x="22" y="36" width="20" height="10" rx="2" fill="#fff"/></svg>',
+      spark: '<svg viewBox="0 0 64 64"><rect x="27" y="8" width="10" height="16" rx="4" fill="#c9ced6"/><rect x="25" y="22" width="14" height="8" rx="2" fill="#3d444d"/><path d="M24 30h16l-2 10H26z" fill="#c9ced6"/><rect x="27" y="40" width="10" height="14" rx="2" fill="#8d959f"/><path d="M44 20l-6 8h5l-5 8" stroke="#e11b22" stroke-width="3" fill="none" stroke-linecap="round"/></svg>',
+      pads: '<svg viewBox="0 0 64 64"><path d="M14 22h24a6 6 0 0 1 6 6v10a6 6 0 0 1-6 6H14z" fill="#c9ced6"/><path d="M8 24h6v20H8z" fill="#e11b22"/><path d="M30 18h22a6 6 0 0 1 6 6v10a6 6 0 0 1-6 6H30z" fill="#e3e7ec"/><path d="M24 20h6v20h-6z" fill="#e11b22" opacity=".8"/></svg>',
+      wrench: '<svg viewBox="0 0 64 64"><path d="M44 10a14 14 0 0 0-17 18L10 45a5 5 0 0 0 7 7l17-17a14 14 0 0 0 18-17L42 30l-8-8z" fill="#e11b22"/><circle cx="15" cy="47" r="2.6" fill="#fff"/></svg>',
       disk: '<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22" fill="#c9ced6"/><circle cx="32" cy="32" r="7" fill="#16191d"/><path d="M32 12v12M52 32H40M32 52V40M12 32h12" stroke="#fff" stroke-width="5"/></svg>'
     };
     return i[kind] || i.oil;

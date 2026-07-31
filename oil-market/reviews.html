@@ -10,17 +10,15 @@
 </head>
 <body>
 
-<!-- ================= Топ-строка ================= -->
 <div class="topbar">
   <div class="wrap topbar__inner">
-    <span class="topbar__hours"><span class="topbar__dot"></span> Ежедневно 09:00–21:00</span>
+    <span class="topbar__hours"><span class="topbar__dot"></span> <span data-open-status>Ежедневно 09:00–21:00</span></span>
     <span class="topbar__addr">Магнитогорск, ул. Марджани, 9 — 1 этаж, 110-й м-н</span>
     <span class="topbar__spacer"></span>
     <a href="reviews.html">4.4 ★ · 267 отзывов на 2ГИС</a>
   </div>
 </div>
 
-<!-- ================= Хедер ================= -->
 <header class="header">
   <div class="header__inner">
     <a class="logo" href="index.html">
@@ -68,20 +66,9 @@
   </div>
 </header>
 
-<!-- ================= Навигация ================= -->
 <nav class="nav" aria-label="Разделы">
-  <ul class="nav__list">
-    <li><a class="nav__link" href="index.html">Главная</a></li>
-    <li><a class="nav__link" href="catalog.html">Каталог</a></li>
-    <li><a class="nav__link" href="catalog.html?cat=oil">Масла и жидкости</a></li>
-    <li><a class="nav__link" href="catalog.html?cat=tire">Шины и диски</a></li>
-    <li><a class="nav__link" href="catalog.html?cat=chem">Автохимия</a></li>
-    <li><a class="nav__link" href="services.html">Услуги сервиса</a></li>
-    <li><a class="nav__link is-active" href="reviews.html">Отзывы</a></li>
-    <li><a class="nav__link" href="contacts.html">Контакты</a></li>
-  </ul>
+  <ul class="nav__list"><li><a class="nav__link" href="index.html">Главная</a></li><li><a class="nav__link" href="catalog.html">Каталог</a></li><li><a class="nav__link" href="catalog.html?cat=oil">Масла и жидкости</a></li><li><a class="nav__link" href="catalog.html?cat=tire">Шины и диски</a></li><li><a class="nav__link" href="catalog.html?cat=chem">Автохимия</a></li><li><a class="nav__link" href="services.html">Услуги сервиса</a></li><li><a class="nav__link is-active" href="reviews.html">Отзывы</a></li><li><a class="nav__link" href="contacts.html">Контакты</a></li></ul>
 </nav>
-
 
 <div class="wrap breadcrumbs"><a href="index.html">Главная</a><span>/</span><span>Отзывы</span></div>
 <section class="section wrap" style="padding-top:18px">
@@ -105,7 +92,15 @@
     </div>
   </div>
 
-  <div class="section__head">
+  <div class="counters">
+    <div class="counter reveal"><div class="counter__n">4.4<span style="font-size:20px">★</span></div><div class="counter__l">рейтинг на 2ГИС</div></div>
+    <div class="counter reveal"><div class="counter__n" data-count="267">267</div><div class="counter__l">отзывов клиентов</div></div>
+    <div class="counter reveal"><div class="counter__n">7/7</div><div class="counter__l">дней в неделю, 09:00–21:00</div></div>
+    <div class="counter reveal"><div class="counter__n">2 в 1</div><div class="counter__l">магазин и автосервис</div></div>
+  </div>
+
+
+  <div class="section__head" style="margin-top:26px">
     <h2>Что пишут клиенты</h2>
     <div class="carousel-nav">
       <button type="button" data-carousel-prev aria-label="Назад"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
@@ -120,7 +115,7 @@
         <div><div class="review__name">Алексей</div><div class="review__date">Отзыв с 2ГИС</div></div>
       </div>
       <div class="review__stars" aria-hidden="true">★★★★★</div>
-      <p class="review__text">Купил масло, тут же бесплатно поменяли. Быстро, без записи ждать не пришлось. Цена на масло своего бренда заметно ниже магазинной.</p>
+      <p class="review__text">Купил масло, тут же бесплатно поменяли. Быстро, ждать не пришлось. Цена на масло своего бренда заметно ниже магазинной.</p>
       <div class="review__src">Источник: 2ГИС · демо-текст, будет заменён реальной выгрузкой</div>
     </article>
     <article class="review">
@@ -138,7 +133,7 @@
         <div><div class="review__name">Сергей</div><div class="review__date">Отзыв с 2ГИС</div></div>
       </div>
       <div class="review__stars" aria-hidden="true">★★★★☆</div>
-      <p class="review__text">Нормальный комплекс: и магазин, и сервис. В выходной день была небольшая очередь, но по времени уложились.</p>
+      <p class="review__text">Нормальный комплекс: и магазин, и сервис. В выходной была небольшая очередь, но по времени уложились.</p>
       <div class="review__src">Источник: 2ГИС · демо-текст, будет заменён реальной выгрузкой</div>
     </article>
     <article class="review">
@@ -191,7 +186,7 @@
     </form>
   </div>
 </section>
-<!-- ================= Футер ================= -->
+
 <footer class="footer">
   <div class="wrap">
     <div class="footer__grid">
@@ -201,6 +196,7 @@
           <span class="logo__text"><span class="logo__name">Оил Маркет</span><span class="logo__sub">Автокомплекс</span></span>
         </a>
         <p>Магазин автозапчастей и автосервис в Магнитогорске: масла, шины и диски, автохимия, ТО, замена масла, шиномонтаж.</p>
+        <div class="rating-bar__stars" style="font-size:16px">★★★★☆ <span style="color:#aeb6bf;font-size:14px">4.4 · 267 отзывов на 2ГИС</span></div>
       </div>
       <div>
         <div class="footer__title">Каталог</div>
@@ -242,7 +238,6 @@
   </div>
 </footer>
 
-<!-- ================= Чат-виджет ================= -->
 <div class="chat">
   <div class="chat__panel" data-chat-panel>
     <div class="chat__head">
@@ -272,7 +267,11 @@
   </button>
 </div>
 
-<!-- ================= Модалка записи ================= -->
+<div class="mobile-bar">
+  <a class="btn btn--ghost" href="tel:+73519450574">Позвонить</a>
+  <button class="btn btn--red" type="button" data-book="Запись на сервис" data-book-title="Запись на сервис">Записаться</button>
+</div>
+
 <div class="modal" id="lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-title">
   <div class="modal__box">
     <div class="modal__head">
@@ -297,10 +296,8 @@
         <div class="field">
           <label class="field__label" for="lm-time">Время</label>
           <select id="lm-time" name="time">
-            <option>09:00–12:00</option>
-            <option>12:00–15:00</option>
-            <option>15:00–18:00</option>
-            <option>18:00–21:00</option>
+            <option>09:00–12:00</option><option>12:00–15:00</option>
+            <option>15:00–18:00</option><option>18:00–21:00</option>
           </select>
         </div>
         <div class="field field--full">

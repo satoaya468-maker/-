@@ -10,17 +10,15 @@
 </head>
 <body>
 
-<!-- ================= Топ-строка ================= -->
 <div class="topbar">
   <div class="wrap topbar__inner">
-    <span class="topbar__hours"><span class="topbar__dot"></span> Ежедневно 09:00–21:00</span>
+    <span class="topbar__hours"><span class="topbar__dot"></span> <span data-open-status>Ежедневно 09:00–21:00</span></span>
     <span class="topbar__addr">Магнитогорск, ул. Марджани, 9 — 1 этаж, 110-й м-н</span>
     <span class="topbar__spacer"></span>
     <a href="reviews.html">4.4 ★ · 267 отзывов на 2ГИС</a>
   </div>
 </div>
 
-<!-- ================= Хедер ================= -->
 <header class="header">
   <div class="header__inner">
     <a class="logo" href="index.html">
@@ -68,20 +66,9 @@
   </div>
 </header>
 
-<!-- ================= Навигация ================= -->
 <nav class="nav" aria-label="Разделы">
-  <ul class="nav__list">
-    <li><a class="nav__link" href="index.html">Главная</a></li>
-    <li><a class="nav__link" href="catalog.html">Каталог</a></li>
-    <li><a class="nav__link" href="catalog.html?cat=oil">Масла и жидкости</a></li>
-    <li><a class="nav__link" href="catalog.html?cat=tire">Шины и диски</a></li>
-    <li><a class="nav__link" href="catalog.html?cat=chem">Автохимия</a></li>
-    <li><a class="nav__link" href="services.html">Услуги сервиса</a></li>
-    <li><a class="nav__link" href="reviews.html">Отзывы</a></li>
-    <li><a class="nav__link is-active" href="contacts.html">Контакты</a></li>
-  </ul>
+  <ul class="nav__list"><li><a class="nav__link" href="index.html">Главная</a></li><li><a class="nav__link" href="catalog.html">Каталог</a></li><li><a class="nav__link" href="catalog.html?cat=oil">Масла и жидкости</a></li><li><a class="nav__link" href="catalog.html?cat=tire">Шины и диски</a></li><li><a class="nav__link" href="catalog.html?cat=chem">Автохимия</a></li><li><a class="nav__link" href="services.html">Услуги сервиса</a></li><li><a class="nav__link" href="reviews.html">Отзывы</a></li><li><a class="nav__link is-active" href="contacts.html">Контакты</a></li></ul>
 </nav>
-
 
 <div class="wrap breadcrumbs"><a href="index.html">Главная</a><span>/</span><span>Контакты</span></div>
 <section class="section wrap" style="padding-top:18px">
@@ -89,6 +76,14 @@
     <h1>Контакты</h1>
     <span class="section__sub">Автокомплекс «Оил Маркет» — магазин и сервис в одном месте</span>
   </div>
+
+  <div style="margin-bottom:16px">  <div class="livebar reveal">
+    <span class="livebar__dot"></span>
+    <b data-open-status>Ежедневно 09:00–21:00</b>
+    <span style="color:#a9b2bb">·&nbsp; ул. Марджани, 9, 1 этаж · 110-й микрорайон</span>
+    <a class="btn btn--red btn--sm" href="tel:+73519450574">Позвонить: 45-05-74</a>
+  </div>
+</div>
 
   <div class="contact-grid">
     <div class="card">
@@ -159,7 +154,12 @@
     </div>
   </div>
 </section>
-<!-- ================= Футер ================= -->
+
+<section class="section section--tight wrap">
+  <div class="section__head"><h2>Частые вопросы</h2></div>
+  <div class="faq"><div class="faq__item"><button class="faq__q" type="button">Где вы находитесь и как работаете?</button><div class="faq__a">ул. Марджани, 9, 1 этаж, 110-й микрорайон, Правобережный район, Магнитогорск, 455000. Работаем ежедневно с 09:00 до 21:00, без выходных.</div></div><div class="faq__item"><button class="faq__q" type="button">Как получить бесплатную замену масла?</button><div class="faq__a">Купите моторное масло в «Оил Маркет» — замену масла в ДВС сделаем бесплатно и добавим фильтр в подарок. Акция действует до 31.12.2026.</div></div><div class="faq__item"><button class="faq__q" type="button">Нужно ли записываться заранее?</button><div class="faq__a">Записаться можно через форму на сайте или по телефону +7 (3519) 45-05-74 — администратор подтвердит удобное время. Так вы точно не попадёте в очередь.</div></div><div class="faq__item"><button class="faq__q" type="button">Поможете подобрать запчасть, если я не знаю артикул?</button><div class="faq__a">Да. Назовите марку, модель и год — или продиктуйте VIN по телефону, подберём по каталогу производителя.</div></div><div class="faq__item"><button class="faq__q" type="button">Можно купить товар и сразу установить его у вас?</button><div class="faq__a">Да, в этом смысл автокомплекса: магазин и сервис в одном месте. Купили масло, шины или фильтры — тут же поставили, без второй поездки.</div></div></div>
+</section>
+
 <footer class="footer">
   <div class="wrap">
     <div class="footer__grid">
@@ -169,6 +169,7 @@
           <span class="logo__text"><span class="logo__name">Оил Маркет</span><span class="logo__sub">Автокомплекс</span></span>
         </a>
         <p>Магазин автозапчастей и автосервис в Магнитогорске: масла, шины и диски, автохимия, ТО, замена масла, шиномонтаж.</p>
+        <div class="rating-bar__stars" style="font-size:16px">★★★★☆ <span style="color:#aeb6bf;font-size:14px">4.4 · 267 отзывов на 2ГИС</span></div>
       </div>
       <div>
         <div class="footer__title">Каталог</div>
@@ -210,7 +211,6 @@
   </div>
 </footer>
 
-<!-- ================= Чат-виджет ================= -->
 <div class="chat">
   <div class="chat__panel" data-chat-panel>
     <div class="chat__head">
@@ -240,7 +240,11 @@
   </button>
 </div>
 
-<!-- ================= Модалка записи ================= -->
+<div class="mobile-bar">
+  <a class="btn btn--ghost" href="tel:+73519450574">Позвонить</a>
+  <button class="btn btn--red" type="button" data-book="Запись на сервис" data-book-title="Запись на сервис">Записаться</button>
+</div>
+
 <div class="modal" id="lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-title">
   <div class="modal__box">
     <div class="modal__head">
@@ -265,10 +269,8 @@
         <div class="field">
           <label class="field__label" for="lm-time">Время</label>
           <select id="lm-time" name="time">
-            <option>09:00–12:00</option>
-            <option>12:00–15:00</option>
-            <option>15:00–18:00</option>
-            <option>18:00–21:00</option>
+            <option>09:00–12:00</option><option>12:00–15:00</option>
+            <option>15:00–18:00</option><option>18:00–21:00</option>
           </select>
         </div>
         <div class="field field--full">

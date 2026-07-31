@@ -553,3 +553,150 @@ button, input, select, textarea { font: inherit; color: inherit; }
 @media (max-width: 400px) {
   .action--phone { display: none; }
 }
+
+/* ==========================================================================
+   Живость: анимации, доп. блоки
+   ========================================================================== */
+
+/* Появление при скролле */
+.reveal { opacity: 0; transform: translateY(16px); }
+.reveal.is-in { opacity: 1; transform: none; transition: opacity .5s ease, transform .5s cubic-bezier(.22,.8,.3,1); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.is-in { opacity: 1; transform: none; transition: none; }
+}
+
+/* Плитки — оживляем иконку */
+.tile__icon { transition: transform .25s cubic-bezier(.22,.8,.3,1); }
+.tile:hover .tile__icon { transform: translateY(-4px) scale(1.06); }
+.tile__icon { width: 84px; height: 84px; }
+.tile { min-height: 194px; }
+.tile__arrow {
+  position: absolute; right: 12px; bottom: 10px; color: var(--red);
+  opacity: 0; transform: translateX(-4px); transition: .2s; font-size: 15px;
+}
+.tile:hover .tile__arrow { opacity: 1; transform: none; }
+
+/* Товар — зум картинки */
+.product__media svg { transition: transform .25s cubic-bezier(.22,.8,.3,1); }
+.product:hover .product__media svg { transform: scale(1.07); }
+
+/* Promo — фактура и блик */
+.promo__inner::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; opacity: .5;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.035) 0 12px, transparent 12px 24px),
+    radial-gradient(120% 130% at 50% 0%, rgba(225,27,34,.30) 0%, transparent 62%);
+}
+.promo__inner::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 130px; z-index: 1;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.13), transparent);
+  animation: shine 5.5s ease-in-out infinite;
+}
+@keyframes shine { 0% { left: -20%; } 55%, 100% { left: 115%; } }
+@media (prefers-reduced-motion: reduce) { .promo__inner::after { animation: none; opacity: 0; } }
+.promo__side { position: relative; z-index: 2; }
+.promo__thing {
+  background: rgba(255,255,255,.06); backdrop-filter: blur(2px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.45); animation: float 6s ease-in-out infinite;
+}
+.promo__side:last-of-type .promo__thing { animation-delay: -3s; }
+@keyframes float { 0%,100% { transform: translateY(-6px); } 50% { transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce) { .promo__thing { animation: none; } }
+.promo__accent { box-shadow: 0 10px 26px rgba(225,27,34,.42); }
+.promo__stats { display: flex; gap: 22px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+.promo__stat { font-size: 13px; color: #b9c1ca; display: flex; align-items: center; gap: 7px; }
+.promo__stat b { color: #fff; font-family: 'Rubik', sans-serif; font-size: 15px; }
+
+/* Мини-баннеры */
+.minis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.mini {
+  border-radius: var(--r-lg); padding: 18px 20px; display: flex; align-items: center; gap: 14px;
+  border: 1px solid var(--line); background: var(--surface); overflow: hidden; position: relative;
+  transition: box-shadow .18s, transform .18s;
+}
+.mini:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+.mini__icon { width: 56px; height: 56px; flex: none; }
+.mini__t { font-family: 'Rubik', sans-serif; font-weight: 600; font-size: 16px; line-height: 1.2; }
+.mini__d { font-size: 13px; color: var(--muted); margin-top: 3px; }
+.mini--dark { background: var(--dark); border-color: var(--dark); color: #fff; }
+.mini--dark .mini__d { color: #a9b2bb; }
+.mini--red { background: linear-gradient(120deg, #e11b22, #b31419); border-color: transparent; color: #fff; }
+.mini--red .mini__d { color: #ffd7d8; }
+
+/* Бренды */
+.brands { display: flex; gap: 10px; flex-wrap: wrap; }
+.brand-chip {
+  border: 1px solid var(--line); background: var(--surface); border-radius: var(--r);
+  padding: 12px 18px; font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 15px;
+  color: var(--ink-2); flex: 1 1 120px; text-align: center; transition: .15s;
+}
+.brand-chip:hover { border-color: var(--red); color: var(--red); }
+
+/* Счётчики */
+.counters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.counter {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: 18px; text-align: center;
+}
+.counter__n {
+  font-family: 'Rubik', sans-serif; font-weight: 700; font-size: 32px; line-height: 1;
+  letter-spacing: -.02em; color: var(--red); margin-bottom: 6px;
+}
+.counter__l { font-size: 13px; color: var(--muted); }
+
+/* FAQ */
+.faq { display: grid; gap: 8px; }
+.faq__item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; }
+.faq__q {
+  width: 100%; text-align: left; border: 0; background: none; cursor: pointer;
+  padding: 15px 46px 15px 18px; font-family: 'Rubik', sans-serif; font-weight: 500; font-size: 15px;
+  position: relative;
+}
+.faq__q::after {
+  content: '+'; position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+  color: var(--red); font-size: 21px; line-height: 1; transition: transform .2s;
+}
+.faq__item.is-open .faq__q::after { content: '−'; }
+.faq__a { padding: 0 18px 16px; font-size: 14px; color: var(--ink-2); display: none; }
+.faq__item.is-open .faq__a { display: block; }
+
+/* Дежурная полоса «сейчас открыто» */
+.livebar {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  background: linear-gradient(120deg, #14181d, #262c33); color: #fff;
+  border-radius: var(--r-lg); padding: 14px 18px; font-size: 14px;
+}
+.livebar__dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); animation: blink 2s infinite; }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+.livebar b { font-family: 'Rubik', sans-serif; }
+.livebar .btn { margin-left: auto; }
+
+/* Мобильная нижняя панель */
+.mobile-bar { display: none; }
+@media (max-width: 640px) {
+  .mobile-bar {
+    display: flex; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 95;
+    background: rgba(255,255,255,.96); backdrop-filter: blur(6px);
+    border-top: 1px solid var(--line); padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+  }
+  .mobile-bar .btn { flex: 1; }
+  body { padding-bottom: 66px; }
+  .chat { bottom: 76px; }
+  .minis { grid-template-columns: 1fr; }
+  .counters { grid-template-columns: 1fr 1fr; }
+  .livebar .btn { margin-left: 0; width: 100%; }
+}
+@media (max-width: 1080px) and (min-width: 641px) {
+  .minis { grid-template-columns: 1fr; }
+}
+
+/* Reveal работает только когда JS жив — иначе контент виден сразу */
+html:not(.js) .reveal { opacity: 1; transform: none; }
+.mini__t, .mini__d { display: block; }
+.mini > span:last-child { min-width: 0; }
+
+.mini__icon svg, .service__icon svg, .strip__icon svg { width: 100%; height: 100%; }
+.mini__icon { width: 64px; height: 64px; }
+.brands { display: grid; grid-template-columns: repeat(6, 1fr); }
+@media (max-width: 900px) { .brands { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 480px) { .brands { grid-template-columns: repeat(2, 1fr); } }

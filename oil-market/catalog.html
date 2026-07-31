@@ -10,17 +10,15 @@
 </head>
 <body>
 
-<!-- ================= Топ-строка ================= -->
 <div class="topbar">
   <div class="wrap topbar__inner">
-    <span class="topbar__hours"><span class="topbar__dot"></span> Ежедневно 09:00–21:00</span>
+    <span class="topbar__hours"><span class="topbar__dot"></span> <span data-open-status>Ежедневно 09:00–21:00</span></span>
     <span class="topbar__addr">Магнитогорск, ул. Марджани, 9 — 1 этаж, 110-й м-н</span>
     <span class="topbar__spacer"></span>
     <a href="reviews.html">4.4 ★ · 267 отзывов на 2ГИС</a>
   </div>
 </div>
 
-<!-- ================= Хедер ================= -->
 <header class="header">
   <div class="header__inner">
     <a class="logo" href="index.html">
@@ -68,20 +66,9 @@
   </div>
 </header>
 
-<!-- ================= Навигация ================= -->
 <nav class="nav" aria-label="Разделы">
-  <ul class="nav__list">
-    <li><a class="nav__link" href="index.html">Главная</a></li>
-    <li><a class="nav__link is-active" href="catalog.html">Каталог</a></li>
-    <li><a class="nav__link" href="catalog.html?cat=oil">Масла и жидкости</a></li>
-    <li><a class="nav__link" href="catalog.html?cat=tire">Шины и диски</a></li>
-    <li><a class="nav__link" href="catalog.html?cat=chem">Автохимия</a></li>
-    <li><a class="nav__link" href="services.html">Услуги сервиса</a></li>
-    <li><a class="nav__link" href="reviews.html">Отзывы</a></li>
-    <li><a class="nav__link" href="contacts.html">Контакты</a></li>
-  </ul>
+  <ul class="nav__list"><li><a class="nav__link" href="index.html">Главная</a></li><li><a class="nav__link is-active" href="catalog.html">Каталог</a></li><li><a class="nav__link" href="catalog.html?cat=oil">Масла и жидкости</a></li><li><a class="nav__link" href="catalog.html?cat=tire">Шины и диски</a></li><li><a class="nav__link" href="catalog.html?cat=chem">Автохимия</a></li><li><a class="nav__link" href="services.html">Услуги сервиса</a></li><li><a class="nav__link" href="reviews.html">Отзывы</a></li><li><a class="nav__link" href="contacts.html">Контакты</a></li></ul>
 </nav>
-
 
 <div class="wrap breadcrumbs"><a href="index.html">Главная</a><span>/</span><span>Каталог</span></div>
 <section class="section wrap" style="padding-top:18px">
@@ -96,23 +83,22 @@
     <aside class="filters">
       <div class="filters__group">
         <div class="filters__title">Категория</div>
-        <label class="check"><input type="radio" name="cat" data-filter-cat value="all" checked><span>Все категории</span></label>
+<label class="check"><input type="radio" name="cat" data-filter-cat value="all" checked><span>Все категории</span></label>
 <label class="check"><input type="radio" name="cat" data-filter-cat value="to"><span>Запчасти для ТО</span></label>
 <label class="check"><input type="radio" name="cat" data-filter-cat value="oil"><span>Масла и жидкости</span></label>
 <label class="check"><input type="radio" name="cat" data-filter-cat value="tire"><span>Шины и диски</span></label>
 <label class="check"><input type="radio" name="cat" data-filter-cat value="chem"><span>Автохимия</span></label>
-
       </div>
       <div class="filters__group">
         <div class="filters__title">Цена, ₽</div>
         <div class="filters__row">
-          <input class="field" id="price-min" type="number" min="0" placeholder="от" style="width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 10px">
-          <input class="field" id="price-max" type="number" min="0" placeholder="до" style="width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 10px">
+          <input id="price-min" type="number" min="0" placeholder="от" style="width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 10px">
+          <input id="price-max" type="number" min="0" placeholder="до" style="width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 10px">
         </div>
       </div>
       <div class="filters__group">
         <div class="filters__title">Бренд</div>
-        <label class="check"><input type="checkbox" data-filter-brand value="Оил Маркет"><span>Оил Маркет</span><span class="count">7</span></label>
+<label class="check"><input type="checkbox" data-filter-brand value="Оил Маркет"><span>Оил Маркет</span><span class="count">7</span></label>
 <label class="check"><input type="checkbox" data-filter-brand value="Filtron"><span>Filtron</span><span class="count">3</span></label>
 <label class="check"><input type="checkbox" data-filter-brand value="Cordiant"><span>Cordiant</span><span class="count">2</span></label>
 <label class="check"><input type="checkbox" data-filter-brand value="Nokian"><span>Nokian</span><span class="count">1</span></label>
@@ -124,7 +110,6 @@
 <label class="check"><input type="checkbox" data-filter-brand value="Mobil"><span>Mobil</span><span class="count">1</span></label>
 <label class="check"><input type="checkbox" data-filter-brand value="K&K"><span>K&K</span><span class="count">1</span></label>
 <label class="check"><input type="checkbox" data-filter-brand value="Trebl"><span>Trebl</span><span class="count">1</span></label>
-
       </div>
       <button class="btn btn--ghost btn--full btn--sm" type="button" data-filters-reset style="margin-top:14px">Сбросить фильтры</button>
     </aside>
@@ -144,7 +129,19 @@
 
       <div class="products" data-product-grid>
       <article class="product" data-brand="Оил Маркет" data-price="2490" data-cat="oil">
-        <div class="product__media"><div class="product__flags"><span class="badge badge--red">Акция</span></div><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="17" y="15" width="30" height="39" rx="5" fill="#e11b22"/><rect x="26" y="8" width="12" height="9" rx="2" fill="#16191d"/><rect x="22" y="28" width="20" height="14" rx="2" fill="#fff"/></svg></div>
+        <div class="product__media"><div class="product__flags"><span class="badge badge--red">Акция</span></div><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient></defs>
+<ellipse cx="48" cy="83" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<rect x="52" y="34" width="26" height="46" rx="6" fill="url(#dk)"/>
+<rect x="60" y="26" width="10" height="10" rx="2" fill="#0f1216"/>
+<rect x="57" y="46" width="16" height="20" rx="2" fill="#eef1f4"/>
+<path d="M60 53h10M60 58h7" stroke="#8d959f" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="16" y="24" width="38" height="56" rx="8" fill="url(#rd)"/>
+<path d="M16 32a8 8 0 0 1 8-8h6v56h-6a8 8 0 0 1-8-8z" fill="#fff" opacity=".14"/>
+<rect x="28" y="12" width="14" height="14" rx="3" fill="#16191d"/>
+<rect x="30" y="8" width="10" height="6" rx="2" fill="#3d444d"/>
+<rect x="22" y="40" width="26" height="26" rx="3" fill="#fff"/>
+<path d="M35 45c4 5 7 7.5 7 10.5a7 7 0 0 1-14 0c0-3 3-5.5 7-10.5z" fill="#e11b22"/>
+</svg></div>
         <span class="product__brand">Оил Маркет</span>
         <h3 class="product__name">Моторное масло 5W-40 синтетика, 4 л</h3>
         <span class="product__meta">Собственный бренд · SN/CF</span>
@@ -155,7 +152,19 @@
         </div>
       </article>
       <article class="product" data-brand="Оил Маркет" data-price="2590" data-cat="oil">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="17" y="15" width="30" height="39" rx="5" fill="#e11b22"/><rect x="26" y="8" width="12" height="9" rx="2" fill="#16191d"/><rect x="22" y="28" width="20" height="14" rx="2" fill="#fff"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient></defs>
+<ellipse cx="48" cy="83" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<rect x="52" y="34" width="26" height="46" rx="6" fill="url(#dk)"/>
+<rect x="60" y="26" width="10" height="10" rx="2" fill="#0f1216"/>
+<rect x="57" y="46" width="16" height="20" rx="2" fill="#eef1f4"/>
+<path d="M60 53h10M60 58h7" stroke="#8d959f" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="16" y="24" width="38" height="56" rx="8" fill="url(#rd)"/>
+<path d="M16 32a8 8 0 0 1 8-8h6v56h-6a8 8 0 0 1-8-8z" fill="#fff" opacity=".14"/>
+<rect x="28" y="12" width="14" height="14" rx="3" fill="#16191d"/>
+<rect x="30" y="8" width="10" height="6" rx="2" fill="#3d444d"/>
+<rect x="22" y="40" width="26" height="26" rx="3" fill="#fff"/>
+<path d="M35 45c4 5 7 7.5 7 10.5a7 7 0 0 1-14 0c0-3 3-5.5 7-10.5z" fill="#e11b22"/>
+</svg></div>
         <span class="product__brand">Оил Маркет</span>
         <h3 class="product__name">Моторное масло 5W-30 синтетика, 4 л</h3>
         <span class="product__meta">Собственный бренд · SN</span>
@@ -166,7 +175,19 @@
         </div>
       </article>
       <article class="product" data-brand="Оил Маркет" data-price="2190" data-cat="oil">
-        <div class="product__media"><div class="product__flags"><span class="badge badge--green">Хит</span></div><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="17" y="15" width="30" height="39" rx="5" fill="#e11b22"/><rect x="26" y="8" width="12" height="9" rx="2" fill="#16191d"/><rect x="22" y="28" width="20" height="14" rx="2" fill="#fff"/></svg></div>
+        <div class="product__media"><div class="product__flags"><span class="badge badge--green">Хит</span></div><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient></defs>
+<ellipse cx="48" cy="83" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<rect x="52" y="34" width="26" height="46" rx="6" fill="url(#dk)"/>
+<rect x="60" y="26" width="10" height="10" rx="2" fill="#0f1216"/>
+<rect x="57" y="46" width="16" height="20" rx="2" fill="#eef1f4"/>
+<path d="M60 53h10M60 58h7" stroke="#8d959f" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="16" y="24" width="38" height="56" rx="8" fill="url(#rd)"/>
+<path d="M16 32a8 8 0 0 1 8-8h6v56h-6a8 8 0 0 1-8-8z" fill="#fff" opacity=".14"/>
+<rect x="28" y="12" width="14" height="14" rx="3" fill="#16191d"/>
+<rect x="30" y="8" width="10" height="6" rx="2" fill="#3d444d"/>
+<rect x="22" y="40" width="26" height="26" rx="3" fill="#fff"/>
+<path d="M35 45c4 5 7 7.5 7 10.5a7 7 0 0 1-14 0c0-3 3-5.5 7-10.5z" fill="#e11b22"/>
+</svg></div>
         <span class="product__brand">Оил Маркет</span>
         <h3 class="product__name">Моторное масло 10W-40 полусинтетика, 5 л</h3>
         <span class="product__meta">Собственный бренд · SL/CF</span>
@@ -177,18 +198,38 @@
         </div>
       </article>
       <article class="product" data-brand="Оил Маркет" data-price="690" data-cat="oil">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="17" y="15" width="30" height="39" rx="5" fill="#e11b22"/><rect x="26" y="8" width="12" height="9" rx="2" fill="#16191d"/><rect x="22" y="28" width="20" height="14" rx="2" fill="#fff"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="bl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fd0ff"/><stop offset=".55" stop-color="#2f9fe0"/><stop offset="1" stop-color="#1c6fa5"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="26" ry="5" fill="#16191d" opacity=".10"/>
+<path d="M30 30h36v10l6 28a10 10 0 0 1-10 12H34a10 10 0 0 1-10-12l6-28z" fill="url(#rd)"/>
+<rect x="36" y="16" width="24" height="15" rx="4" fill="#16191d"/>
+<rect x="39" y="10" width="18" height="8" rx="3" fill="#3d444d"/>
+<rect x="30" y="52" width="36" height="20" rx="3" fill="#fff" opacity=".94"/>
+<path d="M36 60h24M36 66h16" stroke="#e11b22" stroke-width="3" stroke-linecap="round"/>
+<path d="M76 26c3 4 5 6 5 8a5 5 0 0 1-10 0c0-2 2-4 5-8z" fill="url(#bl)"/>
+</svg></div>
         <span class="product__brand">Оил Маркет</span>
         <h3 class="product__name">Масло трансмиссионное ATF Dexron III, 1 л</h3>
         <span class="product__meta">АКПП · минеральная основа</span>
         <span class="product__stock">В наличии</span>
         <div class="product__bottom">
           <span class="product__price">690 ₽</span>
-          <button class="btn btn--sm btn--red" data-add="oil-atf-1" data-name="Масло трансмиссионное ATF Dexron III, 1 л" data-price="690" data-icon="oil">В корзину</button>
+          <button class="btn btn--sm btn--red" data-add="oil-atf-1" data-name="Масло трансмиссионное ATF Dexron III, 1 л" data-price="690" data-icon="fluid">В корзину</button>
         </div>
       </article>
       <article class="product" data-brand="Mobil" data-price="3290" data-cat="oil">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="17" y="15" width="30" height="39" rx="5" fill="#e11b22"/><rect x="26" y="8" width="12" height="9" rx="2" fill="#16191d"/><rect x="22" y="28" width="20" height="14" rx="2" fill="#fff"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient></defs>
+<ellipse cx="48" cy="83" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<rect x="52" y="34" width="26" height="46" rx="6" fill="url(#dk)"/>
+<rect x="60" y="26" width="10" height="10" rx="2" fill="#0f1216"/>
+<rect x="57" y="46" width="16" height="20" rx="2" fill="#eef1f4"/>
+<path d="M60 53h10M60 58h7" stroke="#8d959f" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="16" y="24" width="38" height="56" rx="8" fill="url(#rd)"/>
+<path d="M16 32a8 8 0 0 1 8-8h6v56h-6a8 8 0 0 1-8-8z" fill="#fff" opacity=".14"/>
+<rect x="28" y="12" width="14" height="14" rx="3" fill="#16191d"/>
+<rect x="30" y="8" width="10" height="6" rx="2" fill="#3d444d"/>
+<rect x="22" y="40" width="26" height="26" rx="3" fill="#fff"/>
+<path d="M35 45c4 5 7 7.5 7 10.5a7 7 0 0 1-14 0c0-3 3-5.5 7-10.5z" fill="#e11b22"/>
+</svg></div>
         <span class="product__brand">Mobil</span>
         <h3 class="product__name">Mobil Ultra 10W-40, 4 л</h3>
         <span class="product__meta">Полусинтетика</span>
@@ -199,29 +240,58 @@
         </div>
       </article>
       <article class="product" data-brand="Оил Маркет" data-price="1190" data-cat="chem">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M26 12h12v9l10 25a6 6 0 0 1-5.6 8.4H21.6A6 6 0 0 1 16 46l10-25z" fill="#e11b22"/><rect x="24" y="6" width="16" height="7" rx="2" fill="#16191d"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="bl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fd0ff"/><stop offset=".55" stop-color="#2f9fe0"/><stop offset="1" stop-color="#1c6fa5"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="26" ry="5" fill="#16191d" opacity=".10"/>
+<path d="M30 30h36v10l6 28a10 10 0 0 1-10 12H34a10 10 0 0 1-10-12l6-28z" fill="url(#rd)"/>
+<rect x="36" y="16" width="24" height="15" rx="4" fill="#16191d"/>
+<rect x="39" y="10" width="18" height="8" rx="3" fill="#3d444d"/>
+<rect x="30" y="52" width="36" height="20" rx="3" fill="#fff" opacity=".94"/>
+<path d="M36 60h24M36 66h16" stroke="#e11b22" stroke-width="3" stroke-linecap="round"/>
+<path d="M76 26c3 4 5 6 5 8a5 5 0 0 1-10 0c0-2 2-4 5-8z" fill="url(#bl)"/>
+</svg></div>
         <span class="product__brand">Оил Маркет</span>
         <h3 class="product__name">Антифриз G12+ готовый, 5 кг</h3>
         <span class="product__meta">До −40 °C</span>
         <span class="product__stock">В наличии</span>
         <div class="product__bottom">
           <span class="product__price">1 190 ₽</span>
-          <button class="btn btn--sm btn--red" data-add="antifreeze-g12-5" data-name="Антифриз G12+ готовый, 5 кг" data-price="1190" data-icon="chem">В корзину</button>
+          <button class="btn btn--sm btn--red" data-add="antifreeze-g12-5" data-name="Антифриз G12+ готовый, 5 кг" data-price="1190" data-icon="fluid">В корзину</button>
         </div>
       </article>
       <article class="product" data-brand="Оил Маркет" data-price="490" data-cat="chem">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M26 12h12v9l10 25a6 6 0 0 1-5.6 8.4H21.6A6 6 0 0 1 16 46l10-25z" fill="#e11b22"/><rect x="24" y="6" width="16" height="7" rx="2" fill="#16191d"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="bl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fd0ff"/><stop offset=".55" stop-color="#2f9fe0"/><stop offset="1" stop-color="#1c6fa5"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="26" ry="5" fill="#16191d" opacity=".10"/>
+<path d="M30 30h36v10l6 28a10 10 0 0 1-10 12H34a10 10 0 0 1-10-12l6-28z" fill="url(#rd)"/>
+<rect x="36" y="16" width="24" height="15" rx="4" fill="#16191d"/>
+<rect x="39" y="10" width="18" height="8" rx="3" fill="#3d444d"/>
+<rect x="30" y="52" width="36" height="20" rx="3" fill="#fff" opacity=".94"/>
+<path d="M36 60h24M36 66h16" stroke="#e11b22" stroke-width="3" stroke-linecap="round"/>
+<path d="M76 26c3 4 5 6 5 8a5 5 0 0 1-10 0c0-2 2-4 5-8z" fill="url(#bl)"/>
+</svg></div>
         <span class="product__brand">Оил Маркет</span>
         <h3 class="product__name">Тормозная жидкость DOT-4, 1 л</h3>
         <span class="product__meta">Для всех типов систем</span>
         <span class="product__stock">В наличии</span>
         <div class="product__bottom">
           <span class="product__price">490 ₽</span>
-          <button class="btn btn--sm btn--red" data-add="brake-dot4" data-name="Тормозная жидкость DOT-4, 1 л" data-price="490" data-icon="chem">В корзину</button>
+          <button class="btn btn--sm btn--red" data-add="brake-dot4" data-name="Тормозная жидкость DOT-4, 1 л" data-price="490" data-icon="fluid">В корзину</button>
         </div>
       </article>
       <article class="product" data-brand="Liqui Moly" data-price="640" data-cat="chem">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M26 12h12v9l10 25a6 6 0 0 1-5.6 8.4H21.6A6 6 0 0 1 16 46l10-25z" fill="#e11b22"/><rect x="24" y="6" width="16" height="7" rx="2" fill="#16191d"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="30" ry="5" fill="#16191d" opacity=".10"/>
+<rect x="52" y="36" width="28" height="44" rx="6" fill="url(#dk)"/>
+<rect x="60" y="28" width="12" height="10" rx="2" fill="#0f1216"/>
+<rect x="57" y="48" width="18" height="18" rx="2" fill="#eef1f4"/>
+<circle cx="66" cy="57" r="5" fill="#e11b22"/>
+<path d="M24 34h20v10l6 30a8 8 0 0 1-8 9H26a8 8 0 0 1-8-9l6-30z" fill="url(#rd)"/>
+<rect x="26" y="22" width="16" height="13" rx="3" fill="#16191d"/>
+<path d="M42 24h12v5H42z" fill="#3d444d"/>
+<path d="M54 22l10-6" stroke="#3d444d" stroke-width="4" stroke-linecap="round"/>
+<rect x="22" y="56" width="22" height="14" rx="2" fill="#fff" opacity=".92"/>
+<path d="M26 61h14M26 66h9" stroke="#e11b22" stroke-width="2.4" stroke-linecap="round"/>
+<g fill="#7fd0ff" opacity=".9"><circle cx="72" cy="14" r="3"/><circle cx="80" cy="22" r="2.2"/><circle cx="66" cy="24" r="2"/></g>
+</svg></div>
         <span class="product__brand">Liqui Moly</span>
         <h3 class="product__name">Очиститель карбюратора, 500 мл</h3>
         <span class="product__meta">Аэрозоль</span>
@@ -232,7 +302,20 @@
         </div>
       </article>
       <article class="product" data-brand="Liqui Moly" data-price="780" data-cat="chem">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M26 12h12v9l10 25a6 6 0 0 1-5.6 8.4H21.6A6 6 0 0 1 16 46l10-25z" fill="#e11b22"/><rect x="24" y="6" width="16" height="7" rx="2" fill="#16191d"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="30" ry="5" fill="#16191d" opacity=".10"/>
+<rect x="52" y="36" width="28" height="44" rx="6" fill="url(#dk)"/>
+<rect x="60" y="28" width="12" height="10" rx="2" fill="#0f1216"/>
+<rect x="57" y="48" width="18" height="18" rx="2" fill="#eef1f4"/>
+<circle cx="66" cy="57" r="5" fill="#e11b22"/>
+<path d="M24 34h20v10l6 30a8 8 0 0 1-8 9H26a8 8 0 0 1-8-9l6-30z" fill="url(#rd)"/>
+<rect x="26" y="22" width="16" height="13" rx="3" fill="#16191d"/>
+<path d="M42 24h12v5H42z" fill="#3d444d"/>
+<path d="M54 22l10-6" stroke="#3d444d" stroke-width="4" stroke-linecap="round"/>
+<rect x="22" y="56" width="22" height="14" rx="2" fill="#fff" opacity=".92"/>
+<path d="M26 61h14M26 66h9" stroke="#e11b22" stroke-width="2.4" stroke-linecap="round"/>
+<g fill="#7fd0ff" opacity=".9"><circle cx="72" cy="14" r="3"/><circle cx="80" cy="22" r="2.2"/><circle cx="66" cy="24" r="2"/></g>
+</svg></div>
         <span class="product__brand">Liqui Moly</span>
         <h3 class="product__name">Присадка для очистки инжектора</h3>
         <span class="product__meta">На полный бак</span>
@@ -243,7 +326,20 @@
         </div>
       </article>
       <article class="product" data-brand="Оил Маркет" data-price="390" data-cat="chem">
-        <div class="product__media"><div class="product__flags"><span class="badge badge--green">Хит</span></div><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M26 12h12v9l10 25a6 6 0 0 1-5.6 8.4H21.6A6 6 0 0 1 16 46l10-25z" fill="#e11b22"/><rect x="24" y="6" width="16" height="7" rx="2" fill="#16191d"/></svg></div>
+        <div class="product__media"><div class="product__flags"><span class="badge badge--green">Хит</span></div><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="30" ry="5" fill="#16191d" opacity=".10"/>
+<rect x="52" y="36" width="28" height="44" rx="6" fill="url(#dk)"/>
+<rect x="60" y="28" width="12" height="10" rx="2" fill="#0f1216"/>
+<rect x="57" y="48" width="18" height="18" rx="2" fill="#eef1f4"/>
+<circle cx="66" cy="57" r="5" fill="#e11b22"/>
+<path d="M24 34h20v10l6 30a8 8 0 0 1-8 9H26a8 8 0 0 1-8-9l6-30z" fill="url(#rd)"/>
+<rect x="26" y="22" width="16" height="13" rx="3" fill="#16191d"/>
+<path d="M42 24h12v5H42z" fill="#3d444d"/>
+<path d="M54 22l10-6" stroke="#3d444d" stroke-width="4" stroke-linecap="round"/>
+<rect x="22" y="56" width="22" height="14" rx="2" fill="#fff" opacity=".92"/>
+<path d="M26 61h14M26 66h9" stroke="#e11b22" stroke-width="2.4" stroke-linecap="round"/>
+<g fill="#7fd0ff" opacity=".9"><circle cx="72" cy="14" r="3"/><circle cx="80" cy="22" r="2.2"/><circle cx="66" cy="24" r="2"/></g>
+</svg></div>
         <span class="product__brand">Оил Маркет</span>
         <h3 class="product__name">Незамерзающая жидкость −30 °C, 5 л</h3>
         <span class="product__meta">Стеклоомыватель</span>
@@ -254,7 +350,15 @@
         </div>
       </article>
       <article class="product" data-brand="Filtron" data-price="450" data-cat="to">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="20" y="17" width="24" height="32" rx="7" fill="#3d444d"/><rect x="24" y="10" width="16" height="9" rx="2" fill="#e11b22"/><path d="M25 27h14M25 33h14M25 39h14" stroke="#c9ced6" stroke-width="3"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="24" ry="4" fill="#16191d" opacity=".10"/>
+<rect x="28" y="24" width="40" height="56" rx="10" fill="url(#dk)"/>
+<path d="M28 34a10 10 0 0 1 10-10h6v56h-6a10 10 0 0 1-10-10z" fill="#fff" opacity=".12"/>
+<rect x="32" y="14" width="32" height="12" rx="4" fill="url(#rd)"/>
+<circle cx="48" cy="20" r="4" fill="#7d0f13"/>
+<g stroke="#c2c9d2" stroke-width="3.4" stroke-linecap="round" opacity=".85">
+<path d="M34 40h28M34 50h28M34 60h28M34 70h20"/></g>
+</svg></div>
         <span class="product__brand">Filtron</span>
         <h3 class="product__name">Фильтр масляный OP 570</h3>
         <span class="product__meta">Ходовые модели</span>
@@ -265,7 +369,15 @@
         </div>
       </article>
       <article class="product" data-brand="Filtron" data-price="590" data-cat="to">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="20" y="17" width="24" height="32" rx="7" fill="#3d444d"/><rect x="24" y="10" width="16" height="9" rx="2" fill="#e11b22"/><path d="M25 27h14M25 33h14M25 39h14" stroke="#c9ced6" stroke-width="3"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="24" ry="4" fill="#16191d" opacity=".10"/>
+<rect x="28" y="24" width="40" height="56" rx="10" fill="url(#dk)"/>
+<path d="M28 34a10 10 0 0 1 10-10h6v56h-6a10 10 0 0 1-10-10z" fill="#fff" opacity=".12"/>
+<rect x="32" y="14" width="32" height="12" rx="4" fill="url(#rd)"/>
+<circle cx="48" cy="20" r="4" fill="#7d0f13"/>
+<g stroke="#c2c9d2" stroke-width="3.4" stroke-linecap="round" opacity=".85">
+<path d="M34 40h28M34 50h28M34 60h28M34 70h20"/></g>
+</svg></div>
         <span class="product__brand">Filtron</span>
         <h3 class="product__name">Фильтр воздушный AP 051</h3>
         <span class="product__meta">Бумажный элемент</span>
@@ -276,7 +388,15 @@
         </div>
       </article>
       <article class="product" data-brand="Filtron" data-price="720" data-cat="to">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="20" y="17" width="24" height="32" rx="7" fill="#3d444d"/><rect x="24" y="10" width="16" height="9" rx="2" fill="#e11b22"/><path d="M25 27h14M25 33h14M25 39h14" stroke="#c9ced6" stroke-width="3"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="dk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a525c"/><stop offset=".55" stop-color="#2c333b"/><stop offset="1" stop-color="#171b20"/></linearGradient><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="24" ry="4" fill="#16191d" opacity=".10"/>
+<rect x="28" y="24" width="40" height="56" rx="10" fill="url(#dk)"/>
+<path d="M28 34a10 10 0 0 1 10-10h6v56h-6a10 10 0 0 1-10-10z" fill="#fff" opacity=".12"/>
+<rect x="32" y="14" width="32" height="12" rx="4" fill="url(#rd)"/>
+<circle cx="48" cy="20" r="4" fill="#7d0f13"/>
+<g stroke="#c2c9d2" stroke-width="3.4" stroke-linecap="round" opacity=".85">
+<path d="M34 40h28M34 50h28M34 60h28M34 70h20"/></g>
+</svg></div>
         <span class="product__brand">Filtron</span>
         <h3 class="product__name">Фильтр салонный угольный</h3>
         <span class="product__meta">С активированным углём</span>
@@ -287,18 +407,39 @@
         </div>
       </article>
       <article class="product" data-brand="NGK" data-price="1680" data-cat="to">
-        <div class="product__media"><div class="product__flags"><span class="badge badge--red">Акция</span></div><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="23" fill="#c9ced6"/><circle cx="32" cy="32" r="10" fill="#3d444d"/><path d="M32 9v9M55 32h-9M32 55v-9M9 32h9" stroke="#e11b22" stroke-width="4"/></svg></div>
+        <div class="product__media"><div class="product__flags"><span class="badge badge--red">Акция</span></div><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient></defs>
+<ellipse cx="48" cy="85" rx="18" ry="4" fill="#16191d" opacity=".10"/>
+<rect x="40" y="8" width="16" height="26" rx="5" fill="url(#mtl)"/>
+<rect x="38" y="30" width="20" height="10" rx="2" fill="#2c333b"/>
+<path d="M36 40h24l-3 12H39z" fill="url(#mtl)"/>
+<rect x="39" y="52" width="18" height="18" rx="2" fill="#8d959f"/>
+<g stroke="#c2c9d2" stroke-width="2" opacity=".8"><path d="M39 57h18M39 62h18"/></g>
+<rect x="43" y="70" width="10" height="10" rx="1" fill="#5f6771"/>
+<path d="M53 74h6v6" stroke="#e11b22" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M70 22l-8 10h6l-6 10" stroke="#e11b22" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div>
         <span class="product__brand">NGK</span>
         <h3 class="product__name">Свечи зажигания, комплект 4 шт.</h3>
         <span class="product__meta">Никелевый электрод</span>
         <span class="product__stock">В наличии</span>
         <div class="product__bottom">
           <span class="product__price">1 680 ₽</span><span class="product__old">1 980 ₽</span>
-          <button class="btn btn--sm btn--red" data-add="spark-4" data-name="Свечи зажигания, комплект 4 шт." data-price="1680" data-icon="brake">В корзину</button>
+          <button class="btn btn--sm btn--red" data-add="spark-4" data-name="Свечи зажигания, комплект 4 шт." data-price="1680" data-icon="spark">В корзину</button>
         </div>
       </article>
       <article class="product" data-brand="Gates" data-price="3450" data-cat="to">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="23" fill="#c9ced6"/><circle cx="32" cy="32" r="10" fill="#3d444d"/><path d="M32 9v9M55 32h-9M32 55v-9M9 32h9" stroke="#e11b22" stroke-width="4"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient></defs>
+<ellipse cx="44" cy="82" rx="30" ry="5" fill="#16191d" opacity=".10"/>
+<circle cx="44" cy="46" r="33" fill="url(#mtl)"/>
+<circle cx="44" cy="46" r="33" fill="none" stroke="#79818b" stroke-width="1.6"/>
+<circle cx="44" cy="46" r="23" fill="#d3d9e0"/>
+<circle cx="44" cy="46" r="13" fill="#9aa3ad"/>
+<circle cx="44" cy="46" r="5.5" fill="#5f6771"/>
+<g fill="#aeb7c0"><circle cx="44" cy="28" r="2.6"/><circle cx="59" cy="38" r="2.6"/><circle cx="54" cy="60" r="2.6"/><circle cx="34" cy="60" r="2.6"/><circle cx="29" cy="38" r="2.6"/></g>
+<path d="M63 25h9a10 10 0 0 1 10 10v22a10 10 0 0 1-10 10h-9z" fill="url(#rd)"/>
+<rect x="66" y="34" width="12" height="24" rx="3" fill="#7d0f13" opacity=".55"/>
+<path d="M22 24a33 33 0 0 1 20-10" stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none" opacity=".65"/>
+</svg></div>
         <span class="product__brand">Gates</span>
         <h3 class="product__name">Ремень ГРМ с роликом</h3>
         <span class="product__meta">Комплект</span>
@@ -309,18 +450,39 @@
         </div>
       </article>
       <article class="product" data-brand="TRW" data-price="2890" data-cat="to">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="23" fill="#c9ced6"/><circle cx="32" cy="32" r="10" fill="#3d444d"/><path d="M32 9v9M55 32h-9M32 55v-9M9 32h9" stroke="#e11b22" stroke-width="4"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient><linearGradient id="rd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff4a50"/><stop offset=".55" stop-color="#e11b22"/><stop offset="1" stop-color="#a5141a"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="28" ry="5" fill="#16191d" opacity=".10"/>
+<path d="M20 30h30a8 8 0 0 1 8 8v20a8 8 0 0 1-8 8H20z" fill="url(#mtl)"/>
+<path d="M14 32h8v34h-8z" fill="url(#rd)"/>
+<path d="M40 26h30a8 8 0 0 1 8 8v20a8 8 0 0 1-8 8H40z" fill="#d3d9e0"/>
+<path d="M34 28h8v34h-8z" fill="#e11b22" opacity=".85"/>
+<g stroke="#9aa3ad" stroke-width="2" opacity=".7"><path d="M48 36h24M48 44h24M48 52h18"/></g>
+</svg></div>
         <span class="product__brand">TRW</span>
         <h3 class="product__name">Колодки тормозные передние</h3>
         <span class="product__meta">Дисковые</span>
         <span class="product__stock">В наличии</span>
         <div class="product__bottom">
           <span class="product__price">2 890 ₽</span>
-          <button class="btn btn--sm btn--red" data-add="brake-pads" data-name="Колодки тормозные передние" data-price="2890" data-icon="brake">В корзину</button>
+          <button class="btn btn--sm btn--red" data-add="brake-pads" data-name="Колодки тормозные передние" data-price="2890" data-icon="pads">В корзину</button>
         </div>
       </article>
       <article class="product" data-brand="Cordiant" data-price="6900" data-cat="tire">
-        <div class="product__media"><div class="product__flags"><span class="badge badge--green">Хит</span></div><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="#16191d"/><circle cx="32" cy="32" r="11" fill="#c9ced6"/><circle cx="32" cy="32" r="5" fill="#e11b22"/></svg></div>
+        <div class="product__media"><div class="product__flags"><span class="badge badge--green">Хит</span></div><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<circle cx="64" cy="48" r="30" fill="#2a3038"/>
+<circle cx="64" cy="48" r="19" fill="url(#mtl)"/>
+<circle cx="64" cy="48" r="6" fill="#7a828c"/>
+<circle cx="36" cy="48" r="33" fill="#1b1f24"/>
+<circle cx="36" cy="48" r="33" fill="none" stroke="#0d1014" stroke-width="2"/>
+<g stroke="#3a424b" stroke-width="3" stroke-linecap="round">
+<path d="M36 15v9M56 27l-6 6M69 48h-9M56 69l-6-6M36 81v-9M16 69l6-6M3 48h9M16 27l6 6"/></g>
+<circle cx="36" cy="48" r="20" fill="url(#mtl)"/>
+<circle cx="36" cy="48" r="20" fill="none" stroke="#8d959f" stroke-width="1.4"/>
+<g fill="#e11b22"><circle cx="36" cy="48" r="6"/></g>
+<g stroke="#eef1f4" stroke-width="5" stroke-linecap="round">
+<path d="M36 32v8M50 48h-8M41 61l-3-7M31 61l3-7M23 44l7 4"/></g>
+</svg></div>
         <span class="product__brand">Cordiant</span>
         <h3 class="product__name">Шина зимняя 205/55 R16 шип</h3>
         <span class="product__meta">Цена за 1 шт · монтаж на месте</span>
@@ -331,7 +493,21 @@
         </div>
       </article>
       <article class="product" data-brand="Cordiant" data-price="5400" data-cat="tire">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="#16191d"/><circle cx="32" cy="32" r="11" fill="#c9ced6"/><circle cx="32" cy="32" r="5" fill="#e11b22"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<circle cx="64" cy="48" r="30" fill="#2a3038"/>
+<circle cx="64" cy="48" r="19" fill="url(#mtl)"/>
+<circle cx="64" cy="48" r="6" fill="#7a828c"/>
+<circle cx="36" cy="48" r="33" fill="#1b1f24"/>
+<circle cx="36" cy="48" r="33" fill="none" stroke="#0d1014" stroke-width="2"/>
+<g stroke="#3a424b" stroke-width="3" stroke-linecap="round">
+<path d="M36 15v9M56 27l-6 6M69 48h-9M56 69l-6-6M36 81v-9M16 69l6-6M3 48h9M16 27l6 6"/></g>
+<circle cx="36" cy="48" r="20" fill="url(#mtl)"/>
+<circle cx="36" cy="48" r="20" fill="none" stroke="#8d959f" stroke-width="1.4"/>
+<g fill="#e11b22"><circle cx="36" cy="48" r="6"/></g>
+<g stroke="#eef1f4" stroke-width="5" stroke-linecap="round">
+<path d="M36 32v8M50 48h-8M41 61l-3-7M31 61l3-7M23 44l7 4"/></g>
+</svg></div>
         <span class="product__brand">Cordiant</span>
         <h3 class="product__name">Шина зимняя 185/65 R15 шип</h3>
         <span class="product__meta">Цена за 1 шт</span>
@@ -342,7 +518,21 @@
         </div>
       </article>
       <article class="product" data-brand="Nokian" data-price="8900" data-cat="tire">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="#16191d"/><circle cx="32" cy="32" r="11" fill="#c9ced6"/><circle cx="32" cy="32" r="5" fill="#e11b22"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<circle cx="64" cy="48" r="30" fill="#2a3038"/>
+<circle cx="64" cy="48" r="19" fill="url(#mtl)"/>
+<circle cx="64" cy="48" r="6" fill="#7a828c"/>
+<circle cx="36" cy="48" r="33" fill="#1b1f24"/>
+<circle cx="36" cy="48" r="33" fill="none" stroke="#0d1014" stroke-width="2"/>
+<g stroke="#3a424b" stroke-width="3" stroke-linecap="round">
+<path d="M36 15v9M56 27l-6 6M69 48h-9M56 69l-6-6M36 81v-9M16 69l6-6M3 48h9M16 27l6 6"/></g>
+<circle cx="36" cy="48" r="20" fill="url(#mtl)"/>
+<circle cx="36" cy="48" r="20" fill="none" stroke="#8d959f" stroke-width="1.4"/>
+<g fill="#e11b22"><circle cx="36" cy="48" r="6"/></g>
+<g stroke="#eef1f4" stroke-width="5" stroke-linecap="round">
+<path d="M36 32v8M50 48h-8M41 61l-3-7M31 61l3-7M23 44l7 4"/></g>
+</svg></div>
         <span class="product__brand">Nokian</span>
         <h3 class="product__name">Шина летняя 215/60 R17</h3>
         <span class="product__meta">Цена за 1 шт</span>
@@ -353,7 +543,21 @@
         </div>
       </article>
       <article class="product" data-brand="Kama" data-price="4200" data-cat="tire">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="#16191d"/><circle cx="32" cy="32" r="11" fill="#c9ced6"/><circle cx="32" cy="32" r="5" fill="#e11b22"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="32" ry="5" fill="#16191d" opacity=".10"/>
+<circle cx="64" cy="48" r="30" fill="#2a3038"/>
+<circle cx="64" cy="48" r="19" fill="url(#mtl)"/>
+<circle cx="64" cy="48" r="6" fill="#7a828c"/>
+<circle cx="36" cy="48" r="33" fill="#1b1f24"/>
+<circle cx="36" cy="48" r="33" fill="none" stroke="#0d1014" stroke-width="2"/>
+<g stroke="#3a424b" stroke-width="3" stroke-linecap="round">
+<path d="M36 15v9M56 27l-6 6M69 48h-9M56 69l-6-6M36 81v-9M16 69l6-6M3 48h9M16 27l6 6"/></g>
+<circle cx="36" cy="48" r="20" fill="url(#mtl)"/>
+<circle cx="36" cy="48" r="20" fill="none" stroke="#8d959f" stroke-width="1.4"/>
+<g fill="#e11b22"><circle cx="36" cy="48" r="6"/></g>
+<g stroke="#eef1f4" stroke-width="5" stroke-linecap="round">
+<path d="M36 32v8M50 48h-8M41 61l-3-7M31 61l3-7M23 44l7 4"/></g>
+</svg></div>
         <span class="product__brand">Kama</span>
         <h3 class="product__name">Шина летняя 195/65 R15</h3>
         <span class="product__meta">Цена за 1 шт</span>
@@ -364,7 +568,15 @@
         </div>
       </article>
       <article class="product" data-brand="K&K" data-price="5800" data-cat="tire">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="#c9ced6"/><circle cx="32" cy="32" r="8" fill="#16191d"/><path d="M32 10v13M54 32H41M32 54V41M10 32h13" stroke="#fff" stroke-width="6"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="30" ry="5" fill="#16191d" opacity=".10"/>
+<circle cx="48" cy="46" r="34" fill="#39414a"/>
+<circle cx="48" cy="46" r="30" fill="url(#mtl)"/>
+<g fill="#39414a">
+<path d="M48 20l7 20h-14z"/><path d="M74 40l-16 14-4-13z"/><path d="M64 70l-16-12 12-8z"/><path d="M32 70l6-20 10 8z"/><path d="M22 40l18 1-4 13z"/></g>
+<circle cx="48" cy="46" r="9" fill="#c2c9d2" stroke="#8d959f" stroke-width="1.4"/>
+<circle cx="48" cy="46" r="3.4" fill="#e11b22"/>
+</svg></div>
         <span class="product__brand">K&K</span>
         <h3 class="product__name">Диск литой R16 5x114.3</h3>
         <span class="product__meta">Цена за 1 шт</span>
@@ -375,7 +587,15 @@
         </div>
       </article>
       <article class="product" data-brand="Trebl" data-price="2300" data-cat="tire">
-        <div class="product__media"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="#c9ced6"/><circle cx="32" cy="32" r="8" fill="#16191d"/><path d="M32 10v13M54 32H41M32 54V41M10 32h13" stroke="#fff" stroke-width="6"/></svg></div>
+        <div class="product__media"><svg viewBox="0 0 96 96" aria-hidden="true"><defs><linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2f4f7"/><stop offset=".55" stop-color="#c2c9d2"/><stop offset="1" stop-color="#8d959f"/></linearGradient></defs>
+<ellipse cx="48" cy="84" rx="30" ry="5" fill="#16191d" opacity=".10"/>
+<circle cx="48" cy="46" r="34" fill="#39414a"/>
+<circle cx="48" cy="46" r="30" fill="url(#mtl)"/>
+<g fill="#39414a">
+<path d="M48 20l7 20h-14z"/><path d="M74 40l-16 14-4-13z"/><path d="M64 70l-16-12 12-8z"/><path d="M32 70l6-20 10 8z"/><path d="M22 40l18 1-4 13z"/></g>
+<circle cx="48" cy="46" r="9" fill="#c2c9d2" stroke="#8d959f" stroke-width="1.4"/>
+<circle cx="48" cy="46" r="3.4" fill="#e11b22"/>
+</svg></div>
         <span class="product__brand">Trebl</span>
         <h3 class="product__name">Диск штампованный R15 4x100</h3>
         <span class="product__meta">Цена за 1 шт</span>
@@ -398,7 +618,15 @@
     </div>
   </div>
 </section>
-<!-- ================= Футер ================= -->
+
+<section class="section section--tight wrap">  <div class="livebar reveal">
+    <span class="livebar__dot"></span>
+    <b data-open-status>Ежедневно 09:00–21:00</b>
+    <span style="color:#a9b2bb">·&nbsp; ул. Марджани, 9, 1 этаж · 110-й микрорайон</span>
+    <a class="btn btn--red btn--sm" href="tel:+73519450574">Позвонить: 45-05-74</a>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="wrap">
     <div class="footer__grid">
@@ -408,6 +636,7 @@
           <span class="logo__text"><span class="logo__name">Оил Маркет</span><span class="logo__sub">Автокомплекс</span></span>
         </a>
         <p>Магазин автозапчастей и автосервис в Магнитогорске: масла, шины и диски, автохимия, ТО, замена масла, шиномонтаж.</p>
+        <div class="rating-bar__stars" style="font-size:16px">★★★★☆ <span style="color:#aeb6bf;font-size:14px">4.4 · 267 отзывов на 2ГИС</span></div>
       </div>
       <div>
         <div class="footer__title">Каталог</div>
@@ -449,7 +678,6 @@
   </div>
 </footer>
 
-<!-- ================= Чат-виджет ================= -->
 <div class="chat">
   <div class="chat__panel" data-chat-panel>
     <div class="chat__head">
@@ -479,7 +707,11 @@
   </button>
 </div>
 
-<!-- ================= Модалка записи ================= -->
+<div class="mobile-bar">
+  <a class="btn btn--ghost" href="tel:+73519450574">Позвонить</a>
+  <button class="btn btn--red" type="button" data-book="Запись на сервис" data-book-title="Запись на сервис">Записаться</button>
+</div>
+
 <div class="modal" id="lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-title">
   <div class="modal__box">
     <div class="modal__head">
@@ -504,10 +736,8 @@
         <div class="field">
           <label class="field__label" for="lm-time">Время</label>
           <select id="lm-time" name="time">
-            <option>09:00–12:00</option>
-            <option>12:00–15:00</option>
-            <option>15:00–18:00</option>
-            <option>18:00–21:00</option>
+            <option>09:00–12:00</option><option>12:00–15:00</option>
+            <option>15:00–18:00</option><option>18:00–21:00</option>
           </select>
         </div>
         <div class="field field--full">
