@@ -346,6 +346,32 @@
     renderCart();
   });
 
+  /* ---------------- Большой поиск: VIN / каталог ---------------- */
+  var searchTabs = document.querySelectorAll('.searchbox__tab');
+  if (searchTabs.length) {
+    var bigInput = document.querySelector('.bigsearch input');
+    searchTabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        searchTabs.forEach(function (t) { t.classList.remove('is-active'); });
+        tab.classList.add('is-active');
+        bigInput.placeholder = tab.dataset.mode === 'vin'
+          ? 'Введите VIN или номер кузова'
+          : 'Название запчасти, масла или артикул';
+        bigInput.focus();
+      });
+    });
+  }
+
+  /* Подбор по марке — раскрытие */
+  var pickerToggle = document.querySelector('[data-picker-toggle]');
+  if (pickerToggle) {
+    pickerToggle.addEventListener('click', function () {
+      var box = document.querySelector('[data-picker]');
+      box.classList.toggle('is-open');
+      if (box.classList.contains('is-open')) document.getElementById('pick-brand').focus();
+    });
+  }
+
   /* ---------------- Появление блоков при скролле ---------------- */
   var reveals = document.querySelectorAll('.reveal');
   if (reveals.length && 'IntersectionObserver' in window) {
