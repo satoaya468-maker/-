@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Деталькин — запчасти для бытовой техники с доставкой по всей России</title>
+<meta name="description" content="Интернет-магазин запчастей для стиральных и посудомоечных машин, холодильников, плит, микроволновок, пылесосов и водонагревателей. 100 000+ артикулов, подбор по модели техники или артикулу, доставка по всей России.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23E31E24'/%3E%3Ctext x='16' y='23' font-family='Arial,sans-serif' font-size='19' font-weight='bold' fill='%23fff' text-anchor='middle'%3EД%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --red:#E31E24;
+  --red-dark:#C4161B;
+  --red-deep:#A31015;
+  --ink:#1A1A1A;
+  --gray-60:#6B6B6B;
+  --gray-40:#9B9B9B;
+  --tile:#F5F5F5;
+  --line:#E8E8E8;
+  --white:#FFFFFF;
+  --r-sm:12px;
+  --r-md:16px;
+  --shadow-hover:0 12px 28px rgba(26,26,26,.12);
+  --font-head:"Manrope","Roboto",system-ui,sans-serif;
+  --font-body:"Inter","Roboto",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--white);
+  font-size:15px;
+  line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input{font-family:inherit;border:none;outline:none}
+.container{width:min(1280px,100% - 32px);margin-inline:auto}
+:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.header :focus-visible,.topbar :focus-visible{outline-color:var(--white)}
+
+/* ─── ТОП-БАР ─── */
+.topbar{background:var(--red-dark);color:#fff;font-size:13px}
+.topbar__in{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:36px;padding:4px 0}
+.topbar__left,.topbar__right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.topbar__city{display:flex;align-items:center;gap:6px;font-weight:600}
+.topbar__dot{opacity:.55}
+.topbar__muted{opacity:.85}
+.topbar__link{text-decoration:underline;text-underline-offset:3px;opacity:.95}
+.topbar__link:hover{opacity:1}
+.topbar__phone{font-weight:700;font-size:14px;letter-spacing:.2px}
+.topbar__soc{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.16);transition:background .15s}
+.topbar__soc:hover{background:rgba(255,255,255,.3)}
+.topbar__soc svg{width:14px;height:14px;fill:#fff}
+
+/* ─── ХЕДЕР ─── */
+.header{background:var(--red);color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(163,16,21,.25)}
+.header__in{display:flex;align-items:center;gap:24px;padding:14px 0}
+.burger{display:none;flex-direction:column;gap:5px;padding:8px;margin-left:-8px;border-radius:8px}
+.burger span{display:block;width:22px;height:2.5px;border-radius:2px;background:#fff;transition:transform .2s,opacity .2s}
+.burger.is-open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger.is-open span:nth-child(2){opacity:0}
+.burger.is-open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+.logo{flex-shrink:0;display:block}
+.logo__word{display:flex;align-items:center;gap:2px;font-family:var(--font-head);font-weight:800;font-size:28px;letter-spacing:-.5px;line-height:1}
+.logo__slash{display:inline-block;width:12px;height:26px;margin:0 4px;background:#fff;border-radius:3px;transform:skewX(-18deg)}
+.logo__tag{margin-top:3px;font-size:10.5px;font-weight:500;letter-spacing:.4px;opacity:.85;text-transform:uppercase}
+.search{flex:1;position:relative}
+.search__form{display:flex;background:#fff;border-radius:var(--r-sm);overflow:hidden;height:48px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.04)}
+.search__input{flex:1;padding:0 18px;font-size:15px;color:var(--ink);min-width:0}
+.search__input::placeholder{color:var(--gray-40)}
+.search__btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:0 22px;background:#fff;color:var(--red);font-weight:700;font-size:15px;border-left:1px solid var(--line);transition:background .15s}
+.search__btn:hover{background:#FFF0F0}
+.search__btn svg{width:19px;height:19px;stroke:var(--red)}
+.suggest{position:absolute;top:calc(100% + 6px);left:0;right:0;background:#fff;border-radius:var(--r-sm);box-shadow:0 16px 40px rgba(26,26,26,.18);padding:8px;display:none;z-index:60;color:var(--ink)}
+.suggest.is-open{display:block}
+.suggest__label{padding:8px 12px 4px;font-size:12px;font-weight:600;color:var(--gray-40);text-transform:uppercase;letter-spacing:.4px}
+.suggest__item{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border-radius:8px;font-size:14.5px;text-align:left;color:var(--ink);transition:background .1s}
+.suggest__item:hover{background:var(--tile)}
+.suggest__item svg{width:15px;height:15px;stroke:var(--gray-40);flex-shrink:0}
+.suggest__empty{padding:12px;font-size:14px;color:var(--gray-60)}
+.suggest__empty b{color:var(--ink)}
+.hactions{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.haction{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 12px;border-radius:10px;color:#fff;font-size:12px;font-weight:500;position:relative;transition:background .15s}
+.haction:hover{background:rgba(255,255,255,.14)}
+.haction svg{width:24px;height:24px;stroke:#fff}
+.haction__badge{position:absolute;top:2px;right:8px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#fff;color:var(--red);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* мобильная строка поиска */
+.msearch{display:none;padding:0 0 12px}
+
+/* мобильное меню */
+.drawer{display:none;background:var(--red-deep);color:#fff}
+.drawer.is-open{display:block}
+.drawer__in{display:flex;flex-direction:column;padding:8px 0 14px}
+.drawer__link{padding:11px 4px;font-size:15px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.12)}
+.drawer__link:last-child{border-bottom:none}
+
+/* ─── СТРОКА ПОПУЛЯРНЫХ ЗАПРОСОВ ─── */
+.popular{border-bottom:1px solid var(--line);background:#fff}
+.popular__in{display:flex;align-items:center;gap:8px;padding:10px 0;overflow-x:auto;scrollbar-width:none}
+.popular__in::-webkit-scrollbar{display:none}
+.popular__label{font-size:13px;color:var(--gray-60);flex-shrink:0;font-weight:500}
+.chip{flex-shrink:0;padding:6px 13px;border-radius:999px;background:var(--tile);font-size:13px;font-weight:500;color:var(--ink);transition:background .15s,color .15s}
+.chip:hover{background:var(--red);color:#fff}
+
+/* ─── ПРОМО-СЛАЙДЕР ─── */
+.promo{padding:20px 0 8px}
+.slider{position:relative}
+.slider__viewport{overflow:hidden;border-radius:var(--r-md)}
+.slider__track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.slide{flex:0 0 100%;min-height:360px;display:flex;align-items:stretch;position:relative;overflow:hidden;color:#fff}
+.slide--dark{background:linear-gradient(105deg,#3A3A3E 0%,#232326 45%,#131315 100%)}
+.slide--red{background:linear-gradient(105deg,var(--red) 0%,var(--red-dark) 55%,#8E0D12 100%)}
+.slide__content{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;gap:14px;padding:48px 40px 56px 56px;max-width:560px}
+.slide__kicker{display:inline-flex;align-self:flex-start;padding:5px 12px;border-radius:999px;background:var(--red);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase}
+.slide--red .slide__kicker{background:rgba(255,255,255,.18)}
+.slide__title{font-family:var(--font-head);font-weight:800;font-size:40px;line-height:1.08;letter-spacing:-.5px}
+.slide__title em{font-style:normal;color:#FF5A5F}
+.slide--red .slide__title em{color:#FFD3D4}
+.slide__sub{font-size:16.5px;opacity:.85;max-width:420px}
+.slide__cta{align-self:flex-start;margin-top:6px;padding:13px 26px;border-radius:var(--r-sm);background:#fff;color:var(--ink);font-weight:700;font-size:15px;transition:transform .15s,box-shadow .15s}
+.slide__cta:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.slide__art{position:absolute;inset:0 0 0 auto;width:52%;z-index:1;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.slide__glow{position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(227,30,36,.5) 0%,rgba(227,30,36,.15) 45%,transparent 70%)}
+.slide__art svg{position:relative;width:min(440px,90%);height:auto}
+.slide__legal{position:absolute;right:18px;bottom:12px;z-index:3;font-size:10.5px;opacity:.5}
+.slider__arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 4px 14px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;transition:background .15s,transform .15s}
+.slider__arrow:hover{background:#fff;transform:translateY(-50%) scale(1.06)}
+.slider__arrow svg{width:18px;height:18px;stroke:var(--ink)}
+.slider__arrow--prev{left:-14px}
+.slider__arrow--next{right:-14px}
+.slider__dots{position:absolute;left:0;right:0;bottom:16px;z-index:4;display:flex;justify-content:center;gap:8px}
+.slider__dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);transition:background .2s,width .2s}
+.slider__dot.is-active{background:#fff;width:22px;border-radius:4px}
+
+/* ─── КАТАЛОГ ─── */
+.catalog{padding:44px 0 12px}
+.catalog__title{font-family:var(--font-head);font-weight:800;font-size:32px;letter-spacing:-.4px;text-align:center;margin-bottom:28px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tile{background:var(--tile);border-radius:var(--r-sm);padding:30px 16px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;transition:transform .18s,box-shadow .18s,background .18s}
+.tile:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);background:#fff}
+.tile__icon{width:60px;height:60px}
+.tile__icon svg{width:100%;height:100%;stroke:var(--ink);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tile__icon .acc{stroke:var(--red)}
+.tile__icon .accf{fill:var(--red);stroke:none}
+.tile__name{font-weight:600;font-size:15px;line-height:1.3}
+.tile__count{font-size:12.5px;color:var(--gray-60);margin-top:-10px}
+
+/* ─── БЛОК ПОДБОРА ─── */
+.picker{padding:40px 0 8px}
+.picker__grid{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
+.picker__col{border-radius:var(--r-md);padding:44px 40px;position:relative;overflow:hidden;color:#fff}
+.picker__col--dark{background:linear-gradient(120deg,#26262A 0%,#1A1A1D 100%)}
+.picker__col--red{background:linear-gradient(120deg,var(--red) 0%,var(--red-dark) 100%);display:flex;align-items:center;gap:20px}
+.picker__title{font-family:var(--font-head);font-weight:800;font-size:26px;letter-spacing:-.3px;line-height:1.15}
+.picker__sub{margin-top:8px;font-size:14.5px;opacity:.75}
+.picker__form{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.picker__input{flex:1;min-width:220px;height:50px;border-radius:var(--r-sm);padding:0 16px;font-size:15px;background:#fff;color:var(--ink)}
+.picker__input::placeholder{color:var(--gray-40)}
+.btn-red{height:50px;padding:0 28px;border-radius:var(--r-sm);background:var(--red);color:#fff;font-weight:700;font-size:15px;transition:background .15s,transform .15s}
+.btn-red:hover{background:var(--red-dark);transform:translateY(-1px)}
+.picker__hint{margin-top:14px;font-size:12.5px;opacity:.55}
+.picker__body{position:relative;z-index:2;flex:1}
+.btn-white{display:inline-block;margin-top:22px;height:50px;line-height:50px;padding:0 26px;border-radius:var(--r-sm);background:#fff;color:var(--red);font-weight:700;font-size:15px;transition:transform .15s,box-shadow .15s}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,0,0,.25)}
+.picker__expert{flex-shrink:0;width:150px;position:relative;z-index:2}
+.picker__expert svg{width:100%;height:auto}
+
+/* ─── ФУТЕР-СТРОКА ─── */
+.footline{margin-top:44px;border-top:1px solid var(--line);padding:18px 0 22px}
+.footline__in{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--gray-60)}
+
+/* ─── ЧАТ-ВИДЖЕТ ─── */
+.chat{position:fixed;right:22px;bottom:22px;z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.chat__hello{display:flex;align-items:center;gap:10px}
+.chat__bubble{background:var(--ink);color:#fff;font-size:13.5px;font-weight:600;padding:9px 14px;border-radius:12px 12px 4px 12px;box-shadow:0 8px 20px rgba(0,0,0,.2)}
+.chat__ava{width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.2);position:relative;background:#F1D8C4}
+.chat__ava svg{width:100%;height:100%}
+.chat__ava::after{content:"";position:absolute;right:1px;bottom:1px;width:10px;height:10px;border-radius:50%;background:#2ECC5E;border:2px solid #fff}
+.chat__btn{width:58px;height:58px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(227,30,36,.45);transition:transform .15s,background .15s}
+.chat__btn:hover{transform:scale(1.07);background:var(--red-dark)}
+.chat__btn svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:1.8}
+.chat__panel{display:none;width:320px;background:#fff;border-radius:var(--r-md);box-shadow:0 20px 50px rgba(26,26,26,.28);overflow:hidden}
+.chat__panel.is-open{display:block}
+.chat__head{background:var(--red);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px}
+.chat__head-ava{width:36px;height:36px;border-radius:50%;overflow:hidden;background:#F1D8C4;flex-shrink:0}
+.chat__head-name{font-weight:700;font-size:14.5px}
+.chat__head-status{font-size:12px;opacity:.85}
+.chat__msgs{padding:16px;display:flex;flex-direction:column;gap:8px;background:#FAFAFA;min-height:120px}
+.chat__msg{align-self:flex-start;max-width:85%;background:#fff;border:1px solid var(--line);border-radius:12px 12px 12px 4px;padding:9px 13px;font-size:14px}
+.chat__chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 16px;background:#FAFAFA}
+.chat__chip{padding:7px 12px;border-radius:999px;border:1.5px solid var(--red);color:var(--red);font-size:13px;font-weight:600;background:#fff;transition:background .15s,color .15s}
+.chat__chip:hover{background:var(--red);color:#fff}
+
+/* ─── АДАПТИВ ─── */
+@media (max-width:1024px){
+  .slide__title{font-size:33px}
+  .slide__content{padding:40px 32px 52px 40px}
+  .slide__art{width:46%}
+  .tiles{grid-template-columns:repeat(3,1fr)}
+  .picker__grid{grid-template-columns:1fr}
+  .haction span{display:none}
+  .haction{padding:8px}
+}
+@media (max-width:760px){
+  .topbar__right .topbar__label{display:none}
+  .topbar__pts{display:none}
+  .burger{display:flex}
+  .header__in{gap:12px;padding:10px 0}
+  .search{display:none}
+  .msearch{display:block}
+  .msearch .search{display:block}
+  .logo__word{font-size:23px}
+  .logo__slash{height:21px;width:10px}
+  .logo__tag{display:none}
+  .slide{min-height:300px}
+  .slide__content{max-width:none;padding:28px 22px 80px}
+  .slide__legal{left:18px;right:18px;bottom:38px}
+  .slide__title{font-size:26px}
+  .slide__sub{font-size:14.5px}
+  .slide__art{opacity:.22;width:100%}
+  .slide__legal{left:18px;right:auto}
+  .slider__arrow{display:none}
+  .catalog__title{font-size:24px}
+  .tiles{grid-template-columns:repeat(2,1fr);gap:10px}
+  .tile{padding:22px 10px 18px;gap:12px}
+  .tile__icon{width:48px;height:48px}
+  .tile__name{font-size:13.5px}
+  .picker__col{padding:30px 22px}
+  .picker__title{font-size:21px}
+  .picker__expert{display:none}
+  .btn-red{width:100%}
+  .chat{right:14px;bottom:14px}
+  .chat__panel{width:min(320px,calc(100vw - 28px))}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ ТОП-БАР ══════════ -->
+<div class="topbar">
+  <div class="container topbar__in">
+    <div class="topbar__left">
+      <span class="topbar__city">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Москва
+      </span>
+      <span class="topbar__dot">·</span>
+      <span class="topbar__muted topbar__pts">467 пунктов выдачи</span>
+      <span class="topbar__dot topbar__pts">·</span>
+      <a class="topbar__link" href="#">Указать адрес</a>
+    </div>
+    <div class="topbar__right">
+      <span class="topbar__muted topbar__label">Помощь в подборе</span>
+      <a class="topbar__phone" href="tel:88005503131">8 800 550-31-31</a>
+      <a class="topbar__soc" href="#" aria-label="Telegram">
+        <svg viewBox="0 0 24 24"><path d="M21.9 4.6 18.9 19c-.2 1-.8 1.2-1.7.8l-4.6-3.4-2.2 2.1c-.3.3-.5.5-.9.5l.3-4.7L18.4 6.6c.4-.3-.1-.5-.6-.2L7.3 13l-4.5-1.4c-1-.3-1-1 .2-1.4L20.6 3.3c.8-.3 1.5.2 1.3 1.3Z"/></svg>
+      </a>
+      <a class="topbar__soc" href="#" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.3c-.2.6-1.2 1.2-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1.1-1.4-1.1-2.7 0-1.3.7-1.9.9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4-.1.6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.5 1.9 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l1-1.1c.2-.3.4-.2.6-.1l2 .9c.3.2.5.3.5.4.1.1.1.5-.1 1.1Z"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ХЕДЕР ══════════ -->
+<header class="header">
+  <div class="container">
+    <div class="header__in">
+      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <a class="logo" href="#" aria-label="Деталькин — на главную">
+        <span class="logo__word">Деталь<span class="logo__slash" aria-hidden="true"></span>кин</span>
+        <span class="logo__tag">запчасти для бытовой техники</span>
+      </a>
+      <div class="search" id="searchDesk">
+        <form class="search__form" role="search" onsubmit="return false">
+          <input class="search__input" type="search" placeholder="Модель техники, название детали или артикул" aria-label="Поиск по каталогу" autocomplete="off">
+          <button class="search__btn" type="submit">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+            Найти
+          </button>
+        </form>
+        <div class="suggest" role="listbox"></div>
+      </div>
+      <nav class="hactions" aria-label="Личный кабинет">
+        <a class="haction" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M2 3h2.5l2.5 12.5a1.8 1.8 0 0 0 1.8 1.5h8.6a1.8 1.8 0 0 0 1.8-1.4L21 8H5.2"/></svg>
+          <span class="haction__badge">2</span>
+          <span>Корзина</span>
+        </a>
+        <a class="haction" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-3.4 4-5 7.5-5s6.3 1.6 7.5 5"/></svg>
+          <span>Войти</span>
+        </a>
+      </nav>
+    </div>
+    <div class="msearch">
+      <div class="search" id="searchMob">
+        <form class="search__form" role="search" onsubmit="return false">
+          <input class="search__input" type="search" placeholder="Модель, деталь или артикул" aria-label="Поиск по каталогу" autocomplete="off">
+          <button class="search__btn" type="submit" aria-label="Найти">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+          </button>
+        </form>
+        <div class="suggest" role="listbox"></div>
+      </div>
+    </div>
+  </div>
+  <div class="drawer" id="drawer">
+    <nav class="container drawer__in" aria-label="Мобильное меню">
+      <a class="drawer__link" href="#catalog">Каталог запчастей</a>
+      <a class="drawer__link" href="#picker">Подбор по модели</a>
+      <a class="drawer__link" href="#">Доставка и оплата</a>
+      <a class="drawer__link" href="#">Пункты выдачи</a>
+      <a class="drawer__link" href="#">Помощь эксперта</a>
+      <a class="drawer__link" href="#">Войти</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ══════════ ПОПУЛЯРНЫЕ ЗАПРОСЫ ══════════ -->
+<div class="popular">
+  <div class="container popular__in">
+    <span class="popular__label">Часто ищут:</span>
+    <a class="chip" href="#">Ремень стиральной машины</a>
+    <a class="chip" href="#">ТЭН для водонагревателя</a>
+    <a class="chip" href="#">Сливной насос</a>
+    <a class="chip" href="#">Уплотнитель двери холодильника</a>
+    <a class="chip" href="#">Фильтр для пылесоса</a>
+    <a class="chip" href="#">Тарелка для микроволновки</a>
+    <a class="chip" href="#">Термостат</a>
+  </div>
+</div>
+
+<main>
+  <!-- ══════════ ПРОМО-СЛАЙДЕР ══════════ -->
+  <section class="promo" aria-label="Акции и предложения">
+    <div class="container">
+      <div class="slider" id="slider">
+        <div class="slider__viewport">
+          <div class="slider__track" id="sliderTrack">
+
+            <!-- Слайд 1 -->
+            <article class="slide slide--dark">
+              <div class="slide__content">
+                <span class="slide__kicker">Акция до 31 августа</span>
+                <h2 class="slide__title">Скидка <em>20%</em> на комплект ТО стиралки</h2>
+                <p class="slide__sub">Ремень + подшипники + сальник — всё, что нужно для планового ремонта, одним набором</p>
+                <a class="slide__cta" href="#">Собрать комплект</a>
+              </div>
+              <div class="slide__art" aria-hidden="true">
+                <div class="slide__glow"></div>
+                <svg viewBox="0 0 440 320">
+                  <defs>
+                    <linearGradient id="mtl" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="#E8E8EC"/><stop offset=".5" stop-color="#9DA1A8"/><stop offset="1" stop-color="#5C6066"/>
+                    </linearGradient>
+                    <linearGradient id="mtl2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#C9CCD2"/><stop offset="1" stop-color="#7A7E86"/>
+                    </linearGradient>
+                    <linearGradient id="rub" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="#4A4A4E"/><stop offset="1" stop-color="#1C1C1F"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- ремень -->
+                  <g transform="rotate(-16 150 190)">
+                    <ellipse cx="150" cy="195" rx="118" ry="52" fill="none" stroke="url(#rub)" stroke-width="21"/>
+                    <ellipse cx="150" cy="195" rx="118" ry="52" fill="none" stroke="#E31E24" stroke-width="2.5" stroke-dasharray="3 8" opacity=".9"/>
+                  </g>
+                  <!-- подшипник -->
+                  <g transform="translate(300 120)">
+                    <circle r="78" fill="url(#mtl)"/>
+                    <circle r="62" fill="#26262A"/>
+                    <circle r="62" fill="none" stroke="url(#mtl2)" stroke-width="7"/>
+                    <g fill="url(#mtl2)">
+                      <circle cx="0" cy="-49" r="10"/><circle cx="34.6" cy="-34.6" r="10"/><circle cx="49" cy="0" r="10"/>
+                      <circle cx="34.6" cy="34.6" r="10"/><circle cx="0" cy="49" r="10"/><circle cx="-34.6" cy="34.6" r="10"/>
+                      <circle cx="-49" cy="0" r="10"/><circle cx="-34.6" cy="-34.6" r="10"/>
+                    </g>
+                    <circle r="30" fill="url(#mtl)"/>
+                    <circle r="17" fill="#131315"/>
+                  </g>
+                  <!-- сальник -->
+                  <g transform="translate(330 255)">
+                    <circle r="46" fill="url(#rub)"/>
+                    <circle r="46" fill="none" stroke="#E31E24" stroke-width="5"/>
+                    <circle r="27" fill="#131315"/>
+                    <circle r="27" fill="none" stroke="#5C6066" stroke-width="4"/>
+                    <path d="M-32-33a46 46 0 0 1 30-12" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".35"/>
+                  </g>
+                </svg>
+              </div>
+              <span class="slide__legal">Реклама. ООО «Деталькин», ИНН 7712345678. Подробности акции — у оператора</span>
+            </article>
+
+            <!-- Слайд 2 -->
+            <article class="slide slide--dark">
+              <div class="slide__content">
+                <span class="slide__kicker">Доставка</span>
+                <h2 class="slide__title">По всей России <em>от 1 дня</em></h2>
+                <p class="slide__sub">467 пунктов выдачи, курьером до двери или в постамат — как удобно вам</p>
+                <a class="slide__cta" href="#">Выбрать пункт выдачи</a>
+              </div>
+              <div class="slide__art" aria-hidden="true">
+                <div class="slide__glow"></div>
+                <svg viewBox="0 0 440 320" fill="none">
+                  <path d="M60 240c40-90 110-150 180-160 60-9 120 15 140 60" stroke="#4A4A4E" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round"/>
+                  <g transform="translate(60 240)"><circle r="10" fill="#E31E24"/><circle r="18" stroke="#E31E24" stroke-width="2" opacity=".4"/></g>
+                  <g transform="translate(380 140)">
+                    <path d="M0-58C-26-58-44-38-44-14 0-58-44-14 0 30-44-14 0 30 44-14c0-24-18-44-44-44Z" fill="#E31E24"/>
+                    <path d="M0-58c-26 0-44 20-44 44C-44 10 0 30 0 30S44 10 44-14c0-24-18-44-44-44Z" fill="#E31E24"/>
+                    <circle cy="-14" r="17" fill="#fff"/>
+                  </g>
+                </svg>
+              </div>
+            </article>
+
+            <!-- Слайд 3 -->
+            <article class="slide slide--red">
+              <div class="slide__content">
+                <span class="slide__kicker">Каталог</span>
+                <h2 class="slide__title">100 000+ артикулов <em>в наличии</em></h2>
+                <p class="slide__sub">Один запрос — одна точная деталь. Никакого мусора в выдаче, максимум 2–3 проверенных аналога</p>
+                <a class="slide__cta" href="#catalog">Открыть каталог</a>
+              </div>
+              <div class="slide__art" aria-hidden="true">
+                <svg viewBox="0 0 440 320" fill="none" stroke="#fff" stroke-width="2" opacity=".5">
+                  <rect x="90" y="60" width="90" height="90" rx="12"/><rect x="200" y="60" width="90" height="90" rx="12"/><rect x="310" y="60" width="90" height="90" rx="12"/>
+                  <rect x="90" y="170" width="90" height="90" rx="12"/><rect x="200" y="170" width="90" height="90" rx="12" fill="#fff" fill-opacity=".18"/><rect x="310" y="170" width="90" height="90" rx="12"/>
+                </svg>
+              </div>
+            </article>
+
+            <!-- Слайд 4 -->
+            <article class="slide slide--dark">
+              <div class="slide__content">
+                <span class="slide__kicker">Подбор экспертом</span>
+                <h2 class="slide__title">Пришлите модель — <em>найдём деталь</em></h2>
+                <p class="slide__sub">Ответим за 5 минут в чате, Telegram или WhatsApp. Бесплатно, даже если купите не у нас</p>
+                <a class="slide__cta" href="#picker">Написать эксперту</a>
+              </div>
+              <div class="slide__art" aria-hidden="true">
+                <div class="slide__glow"></div>
+                <svg viewBox="0 0 440 320" fill="none">
+                  <rect x="150" y="70" width="200" height="64" rx="18" fill="#fff"/>
+                  <circle cx="185" cy="102" r="6" fill="#E31E24"/><circle cx="215" cy="102" r="6" fill="#E31E24"/><circle cx="245" cy="102" r="6" fill="#E31E24"/>
+                  <rect x="200" y="160" width="200" height="64" rx="18" fill="#E31E24"/>
+                  <rect x="228" y="182" width="110" height="9" rx="4.5" fill="#fff" opacity=".85"/>
+                  <rect x="228" y="199" width="70" height="9" rx="4.5" fill="#fff" opacity=".55"/>
+                </svg>
+              </div>
+            </article>
+
+            <!-- Слайд 5 -->
+            <article class="slide slide--dark">
+              <div class="slide__content">
+                <span class="slide__kicker">Хит сезона</span>
+                <h2 class="slide__title">ТЭНы для водонагревателей <em>от 590 ₽</em></h2>
+                <p class="slide__sub">Оригинал и проверенные аналоги для Thermex, Ariston, Electrolux — с гарантией 12 месяцев</p>
+                <a class="slide__cta" href="#">Смотреть ТЭНы</a>
+              </div>
+              <div class="slide__art" aria-hidden="true">
+                <div class="slide__glow"></div>
+                <svg viewBox="0 0 440 320" fill="none" stroke-linecap="round">
+                  <path d="M150 90h150a40 40 0 0 1 0 80H170a40 40 0 0 0 0 80h150" stroke="url(#mtl)" stroke-width="17"/>
+                  <path d="M150 90h150a40 40 0 0 1 0 80H170a40 40 0 0 0 0 80h150" stroke="#E31E24" stroke-width="4" opacity=".55"/>
+                  <rect x="96" y="72" width="54" height="36" rx="8" fill="#9DA1A8"/>
+                  <rect x="96" y="232" width="54" height="36" rx="8" fill="#9DA1A8"/>
+                </svg>
+              </div>
+            </article>
+
+          </div>
+        </div>
+        <button class="slider__arrow slider__arrow--prev" id="prevBtn" aria-label="Предыдущий слайд">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m14 6-6 6 6 6"/></svg>
+        </button>
+        <button class="slider__arrow slider__arrow--next" id="nextBtn" aria-label="Следующий слайд">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m10 6 6 6-6 6"/></svg>
+        </button>
+        <div class="slider__dots" id="sliderDots" role="tablist" aria-label="Слайды"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ КАТАЛОГ ══════════ -->
+  <section class="catalog" id="catalog">
+    <div class="container">
+      <h1 class="catalog__title">Запчасти для любой бытовой техники</h1>
+      <div class="tiles">
+
+        <a class="tile" href="#">
+          <span class="tile__icon"><svg viewBox="0 0 48 48">
+            <rect x="8" y="6" width="32" height="36" rx="3"/>
+            <line x1="8" y1="14" x2="40" y2="14"/>
+            <circle cx="13.5" cy="10" r="1.4" class="accf"/><circle cx="19" cy="10" r="1.4" class="accf"/>
+            <circle cx="24" cy="28" r="9" class="acc"/>
+            <circle cx="24" cy="28" r="4.5"/>
+          </svg></span>
+          <span class="tile__name">Стиральные машины</span>
+          <span class="tile__count">28 400 деталей</span>
+        </a>
+
+        <a class="tile" href="#">
+          <span class="tile__icon"><svg viewBox="0 0 48 48">
+            <rect x="8" y="6" width="32" height="36" rx="3"/>
+            <line x1="8" y1="15" x2="40" y2="15"/>
+            <line x1="14" y1="10.5" x2="24" y2="10.5" class="acc"/>
+            <path d="M15 25a5 5 0 0 0 10 0M23 25a5 5 0 0 0 10 0"/>
+            <line x1="16" y1="34" x2="32" y2="34"/>
+          </svg></span>
+          <span class="tile__name">Посудомоечные машины</span>
+          <span class="tile__count">11 200 деталей</span>
+        </a>
+
+        <a class="tile" href="#">
+          <span class="tile__icon"><svg viewBox="0 0 48 48">
+            <rect x="12" y="4" width="24" height="40" rx="3"/>
+            <line x1="12" y1="19" x2="36" y2="19"/>
+            <line x1="17" y1="9" x2="17" y2="14" class="acc"/>
+            <line x1="17" y1="24" x2="17" y2="32" class="acc"/>
+          </svg></span>
+          <span class="tile__name">Холодильники</span>
+          <span class="tile__count">16 800 деталей</span>
+        </a>
+
+        <a class="tile" href="#">
+          <span class="tile__icon"><svg viewBox="0 0 48 48">
+            <rect x="7" y="8" width="34" height="34" rx="3"/>
+            <line x1="7" y1="17" x2="41" y2="17"/>
+            <circle cx="13.5" cy="12.5" r="1.5" class="accf"/><circle cx="20" cy="12.5" r="1.5" class="accf"/><circle cx="28" cy="12.5" r="1.5" class="accf"/><circle cx="34.5" cy="12.5" r="1.5" class="accf"/>
+            <rect x="13" y="23" width="22" height="12" rx="1.5" class="acc"/>
+          </svg></span>
+          <span class="tile__name">Плиты и духовки</span>
+          <span class="tile__count">9 600 деталей</span>
+        </a>
+
+        <a class="tile" href="#">
+          <span class="tile__icon"><svg viewBox="0 0 48 48">
+            <rect x="5" y="12" width="38" height="26" rx="3"/>
+            <rect x="10" y="17" width="19" height="16" rx="1.5"/>
+            <circle cx="36.5" cy="20" r="1.5" class="accf"/><circle cx="36.5" cy="26" r="1.5" class="accf"/>
+            <line x1="34" y1="32" x2="39" y2="32" class="acc"/>
+          </svg></span>
+          <span class="tile__name">Микроволновки</span>
+          <span class="tile__count">5 300 деталей</span>
+        </a>
+
+        <a class="tile" href="#">
+          <span class="tile__icon"><svg viewBox="0 0 48 48">
+            <circle cx="19" cy="30" r="11"/>
+            <circle cx="19" cy="30" r="4.5" class="acc"/>
+            <path d="M27 21.5C31 15 34 9 40 9c4 0 4 5 1 5-4 0-5 9-9 14"/>
+            <line x1="10" y1="42" x2="30" y2="42"/>
+          </svg></span>
+          <span class="tile__name">Пылесосы</span>
+          <span class="tile__count">7 900 деталей</span>
+        </a>
+
+        <a class="tile" href="#">
+          <span class="tile__icon"><svg viewBox="0 0 48 48">
+            <rect x="14" y="4" width="20" height="32" rx="9"/>
+            <path d="M24 13c-2.8 3.4-4.5 5.8-4.5 8.2a4.5 4.5 0 0 0 9 0c0-2.4-1.7-4.8-4.5-8.2Z" class="acc"/>
+            <line x1="19" y1="36" x2="19" y2="43"/><line x1="29" y1="36" x2="29" y2="43"/>
+            <line x1="16" y1="43" x2="22" y2="43"/><line x1="26" y1="43" x2="32" y2="43"/>
+          </svg></span>
+          <span class="tile__name">Водонагреватели</span>
+          <span class="tile__count">6 100 деталей</span>
+        </a>
+
+        <a class="tile" href="#">
+          <span class="tile__icon"><svg viewBox="0 0 48 48">
+            <rect x="8" y="5" width="32" height="12" rx="2.5"/>
+            <path d="M18 17v4h12v-4"/>
+            <path d="M21 21v3.5M27 21v3.5" class="acc"/>
+            <path d="M17 29h11v6a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5v-6ZM28 31h4a3 3 0 0 1 0 6h-4"/>
+            <line x1="12" y1="43" x2="34" y2="43"/>
+          </svg></span>
+          <span class="tile__name">Кофемашины</span>
+          <span class="tile__count">4 700 деталей</span>
+        </a>
+
+        <a class="tile" href="#">
+          <span class="tile__icon"><svg viewBox="0 0 48 48">
+            <path d="M14 18h18l-2.5 22a3 3 0 0 1-3 2.7h-7a3 3 0 0 1-3-2.7L14 18Z"/>
+            <path d="M32 20h5a3.5 3.5 0 0 1 0 7h-4.2"/>
+            <path d="M15 12c2-4 7-6.5 9-6.5S31 8 33 12" class="acc"/>
+            <line x1="12" y1="18" x2="34" y2="18"/>
+          </svg></span>
+          <span class="tile__name">Мелкая бытовая техника</span>
+          <span class="tile__count">8 200 деталей</span>
+        </a>
+
+        <a class="tile" href="#">
+          <span class="tile__icon"><svg viewBox="0 0 48 48">
+            <circle cx="24" cy="24" r="17"/>
+            <line x1="12" y1="19" x2="36" y2="19"/>
+            <line x1="12" y1="25" x2="36" y2="25" class="acc"/>
+            <line x1="14" y1="31" x2="34" y2="31"/>
+            <line x1="17" y1="37" x2="31" y2="37"/>
+          </svg></span>
+          <span class="tile__name">Аксессуары и фильтры</span>
+          <span class="tile__count">12 500 деталей</span>
+        </a>
+
+        <a class="tile" href="#">
+          <span class="tile__icon"><svg viewBox="0 0 48 48">
+            <path d="M18 10h10M20 10v6l-6.5 5A4 4 0 0 0 12 24v14a4 4 0 0 0 4 4h14a4 4 0 0 0 4-4V24a4 4 0 0 0-1.5-3L26 16v-6"/>
+            <path d="M12 29h22" class="acc"/>
+            <circle cx="23" cy="35" r="3" class="acc"/>
+          </svg></span>
+          <span class="tile__name">Бытовая химия для техники</span>
+          <span class="tile__count">1 900 товаров</span>
+        </a>
+
+        <a class="tile" href="#">
+          <span class="tile__icon"><svg viewBox="0 0 48 48">
+            <path d="M9 15a7 7 0 0 1 9.5-6.5L14 13l4.8 4.8L23.3 13A7 7 0 0 1 14 22.4L9.6 27"/>
+            <path d="M25 30l9 9a3.4 3.4 0 0 0 4.8-4.8l-9-9" class="acc"/>
+            <path d="M9.6 27 25 11.6M25 30 13.4 41.6a3.4 3.4 0 0 1-4.8-4.8L20 25.3"/>
+          </svg></span>
+          <span class="tile__name">Инструменты для ремонта</span>
+          <span class="tile__count">3 400 товаров</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ БЛОК ПОДБОРА ══════════ -->
+  <section class="picker" id="picker">
+    <div class="container">
+      <div class="picker__grid">
+        <div class="picker__col picker__col--dark">
+          <h2 class="picker__title">Найти запчасть по модели техники</h2>
+          <p class="picker__sub">Самостоятельный подбор — укажите марку и модель, покажем только совместимые детали</p>
+          <form class="picker__form" onsubmit="return false">
+            <input class="picker__input" type="text" placeholder="Марка и модель (например, Bosch WLG20265OE)" aria-label="Марка и модель техники">
+            <button class="btn-red" type="submit">Найти</button>
+          </form>
+          <p class="picker__hint">Модель указана на шильдике: на раме дверцы стиралки, на стенке внутри холодильника или на задней панели прибора</p>
+        </div>
+        <div class="picker__col picker__col--red">
+          <div class="picker__body">
+            <h2 class="picker__title">Подберём за вас</h2>
+            <p class="picker__sub">Наш эксперт поможет с подбором — просто пришлите модель или фото детали</p>
+            <a class="btn-white" href="#">Написать эксперту</a>
+          </div>
+          <div class="picker__expert" aria-hidden="true">
+            <svg viewBox="0 0 150 170">
+              <circle cx="75" cy="52" r="34" fill="#F1D8C4"/>
+              <path d="M41 50c0-22 15-34 34-34s34 12 34 34c0 3-1 5-2 5-2-14-13-19-32-19s-30 5-32 19c-1 0-2-2-2-5Z" fill="#3A2E28"/>
+              <circle cx="62" cy="54" r="3.2" fill="#2B2B2B"/><circle cx="88" cy="54" r="3.2" fill="#2B2B2B"/>
+              <path d="M66 68c3 3 15 3 18 0" stroke="#2B2B2B" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+              <path d="M22 170c0-32 24-48 53-48s53 16 53 48" fill="#E8E8EC"/>
+              <path d="M22 170c0-32 24-48 53-48s53 16 53 48" fill="none" stroke="#C9CCD2" stroke-width="2"/>
+              <path d="M53 126c6-4 15-6 22-6s16 2 22 6l-8 14H61l-8-14Z" fill="#fff"/>
+              <circle cx="75" cy="150" r="11" fill="#fff"/>
+              <text x="75" y="156" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#E31E24" text-anchor="middle">Д</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ФУТЕР-СТРОКА ══════════ -->
+  <div class="footline">
+    <div class="container footline__in">
+      <span>© 2026 ООО «Деталькин» — запчасти для бытовой техники</span>
+      <span>100 000+ артикулов · Доставка по всей России · 8 800 550-31-31</span>
+    </div>
+  </div>
+</main>
+
+<!-- ══════════ ЧАТ-ВИДЖЕТ ══════════ -->
+<div class="chat" id="chat">
+  <div class="chat__panel" id="chatPanel">
+    <div class="chat__head">
+      <span class="chat__head-ava">
+        <svg viewBox="0 0 42 42"><circle cx="21" cy="17" r="9" fill="#F1D8C4"/><path d="M12 16c0-6 4-9 9-9s9 3 9 9c-1-4-4-5-9-5s-8 1-9 5Z" fill="#3A2E28"/><circle cx="17.5" cy="17" r="1.1" fill="#2B2B2B"/><circle cx="24.5" cy="17" r="1.1" fill="#2B2B2B"/><path d="M7 42c1-9 7-13 14-13s13 4 14 13Z" fill="#fff"/></svg>
+      </span>
+      <div>
+        <div class="chat__head-name">Максим, эксперт по запчастям</div>
+        <div class="chat__head-status">Онлайн · отвечает ~2 мин</div>
+      </div>
+    </div>
+    <div class="chat__msgs" id="chatMsgs">
+      <div class="chat__msg">Здравствуйте! 👋</div>
+      <div class="chat__msg">Какую деталь нужно подобрать? Пришлите модель техники или артикул — найду за пару минут.</div>
+    </div>
+    <div class="chat__chips">
+      <button class="chat__chip" type="button">Ремень для стиралки</button>
+      <button class="chat__chip" type="button">ТЭН</button>
+      <button class="chat__chip" type="button">Фильтр для пылесоса</button>
+    </div>
+  </div>
+  <div class="chat__hello" id="chatHello">
+    <span class="chat__bubble">Помогу с подбором</span>
+    <span class="chat__ava">
+      <svg viewBox="0 0 42 42"><circle cx="21" cy="17" r="9" fill="#F1D8C4"/><path d="M12 16c0-6 4-9 9-9s9 3 9 9c-1-4-4-5-9-5s-8 1-9 5Z" fill="#3A2E28"/><circle cx="17.5" cy="17" r="1.1" fill="#2B2B2B"/><circle cx="24.5" cy="17" r="1.1" fill="#2B2B2B"/><path d="M7 42c1-9 7-13 14-13s13 4 14 13Z" fill="#fff"/></svg>
+    </span>
+  </div>
+  <button class="chat__btn" id="chatBtn" aria-label="Открыть чат с экспертом" aria-expanded="false">
+    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H4.5L6 16.7A8 8 0 1 1 21 12Z"/><line x1="8.5" y1="10.5" x2="15.5" y2="10.5"/><line x1="8.5" y1="14" x2="13" y2="14"/></svg>
+  </button>
+</div>
+
+<script>
+/* ── Слайдер ── */
+(function(){
+  var track = document.getElementById('sliderTrack');
+  var dotsBox = document.getElementById('sliderDots');
+  var slides = track.children.length;
+  var idx = 0, timer;
+
+  for (var i = 0; i < slides; i++) {
+    var d = document.createElement('button');
+    d.className = 'slider__dot';
+    d.setAttribute('aria-label', 'Слайд ' + (i + 1));
+    d.dataset.i = i;
+    dotsBox.appendChild(d);
+  }
+  var dots = dotsBox.children;
+
+  function go(n){
+    idx = (n + slides) % slides;
+    track.style.transform = 'translateX(-' + idx * 100 + '%)';
+    for (var i = 0; i < slides; i++) dots[i].classList.toggle('is-active', i === idx);
+  }
+  function auto(){
+    clearInterval(timer);
+    timer = setInterval(function(){ go(idx + 1); }, 6000);
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', function(){ go(idx - 1); auto(); });
+  document.getElementById('nextBtn').addEventListener('click', function(){ go(idx + 1); auto(); });
+  dotsBox.addEventListener('click', function(e){
+    var b = e.target.closest('.slider__dot');
+    if (b) { go(+b.dataset.i); auto(); }
+  });
+
+  var slider = document.getElementById('slider');
+  slider.addEventListener('mouseenter', function(){ clearInterval(timer); });
+  slider.addEventListener('mouseleave', auto);
+
+  /* свайп на мобильных */
+  var x0 = null;
+  slider.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+  slider.addEventListener('touchend', function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) { go(idx + (dx < 0 ? 1 : -1)); auto(); }
+    x0 = null;
+  }, {passive:true});
+
+  go(0); auto();
+})();
+
+/* ── Подсказки в поиске ── */
+(function(){
+  var POPULAR = [
+    'Ремень 1270 J5 для стиральной машины',
+    'ТЭН 2000W для водонагревателя Thermex',
+    'Сливной насос Askoll 40W',
+    'Уплотнитель двери холодильника Атлант',
+    'HEPA-фильтр для пылесоса Samsung',
+    'Тарелка для микроволновки 245 мм',
+    'Подшипник 6204 + сальник 25x50x10'
+  ];
+  document.querySelectorAll('.search').forEach(function(box){
+    var input = box.querySelector('.search__input');
+    var panel = box.querySelector('.suggest');
+
+    function render(list, q){
+      if (!list.length) {
+        panel.innerHTML = '<div class="suggest__empty">По запросу <b>«' + q +
+          '»</b> ничего не нашлось. Попробуйте артикул с шильдика или напишите эксперту в чат — подберём вручную.</div>';
+        return;
+      }
+      var h = '<div class="suggest__label">' + (q ? 'Похожие детали' : 'Часто ищут') + '</div>';
+      list.forEach(function(t){
+        h += '<button class="suggest__item" type="button">' +
+             '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>' +
+             '<span>' + t + '</span></button>';
+      });
+      panel.innerHTML = h;
+    }
+    function open(){
+      var q = input.value.trim().toLowerCase();
+      var list = q
+        ? POPULAR.filter(function(t){ return t.toLowerCase().indexOf(q) !== -1; })
+        : POPULAR.slice(0, 5);
+      render(list, input.value.trim());
+      panel.classList.add('is-open');
+    }
+    input.addEventListener('focus', open);
+    input.addEventListener('input', open);
+    panel.addEventListener('click', function(e){
+      var b = e.target.closest('.suggest__item');
+      if (b) { input.value = b.textContent.trim(); panel.classList.remove('is-open'); input.focus(); }
+    });
+    document.addEventListener('click', function(e){
+      if (!box.contains(e.target)) panel.classList.remove('is-open');
+    });
+  });
+})();
+
+/* ── Бургер-меню ── */
+(function(){
+  var burger = document.getElementById('burger');
+  var drawer = document.getElementById('drawer');
+  burger.addEventListener('click', function(){
+    var open = drawer.classList.toggle('is-open');
+    burger.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', open);
+  });
+  drawer.addEventListener('click', function(e){
+    if (e.target.closest('.drawer__link')) {
+      drawer.classList.remove('is-open');
+      burger.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+
+/* ── Чат-виджет ── */
+(function(){
+  var btn = document.getElementById('chatBtn');
+  var panel = document.getElementById('chatPanel');
+  var hello = document.getElementById('chatHello');
+  var msgs = document.getElementById('chatMsgs');
+
+  btn.addEventListener('click', function(){
+    var open = panel.classList.toggle('is-open');
+    hello.style.display = open ? 'none' : '';
+    btn.setAttribute('aria-expanded', open);
+  });
+  panel.addEventListener('click', function(e){
+    var chip = e.target.closest('.chat__chip');
+    if (!chip) return;
+    var mine = document.createElement('div');
+    mine.className = 'chat__msg';
+    mine.style.cssText = 'align-self:flex-end;background:#FDEBEC;border-color:#F5C6C8;border-radius:12px 12px 4px 12px';
+    mine.textContent = chip.textContent;
+    msgs.appendChild(mine);
+    setTimeout(function(){
+      var re = document.createElement('div');
+      re.className = 'chat__msg';
+      re.textContent = 'Отлично! Уточните, пожалуйста, марку и модель техники — и я скину точный артикул с ценой.';
+      msgs.appendChild(re);
+      msgs.scrollTop = msgs.scrollHeight;
+    }, 700);
+    msgs.scrollTop = msgs.scrollHeight;
+  });
+})();
+</script>
+</body>
+</html>
