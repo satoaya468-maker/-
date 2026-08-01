@@ -44,7 +44,7 @@ input{font-family:inherit;border:none;outline:none}
 .container{width:min(1280px,100% - 32px);margin-inline:auto}
 :focus-visible{outline:2px solid var(--red);outline-offset:2px}
 .header :focus-visible,.topbar :focus-visible,.footer :focus-visible{outline-color:var(--white)}
-.sec-title{font-family:var(--font-head);font-weight:800;font-size:28px;letter-spacing:-.4px;text-align:center;margin-bottom:26px}
+.sec-title{font-family:var(--font-head);font-weight:800;font-size:28px;letter-spacing:-.4px;text-align:center;margin-bottom:18px}
 
 /* ─── ТОП-БАР ─── */
 .topbar{background:var(--red-dark);color:#fff;font-size:13px}
@@ -108,28 +108,24 @@ input{font-family:inherit;border:none;outline:none}
 .popular__in::-webkit-scrollbar{display:none}
 .popular__label{font-size:13px;color:var(--gray-60);flex-shrink:0;font-weight:500}
 .chip{flex-shrink:0;padding:6px 13px;border-radius:999px;background:var(--tile);font-size:13px;font-weight:500;color:var(--ink);transition:background .15s,color .15s}
-.chip:hover{background:var(--red);color:#fff}
+.chip:hover{background:var(--ink);color:#fff}
 
 /* ─── ПРОМО-СЛАЙДЕР ─── */
-.promo{padding:20px 0 8px}
+.promo{padding:14px 0 6px}
 .slider{position:relative}
 .slider__viewport{overflow:hidden;border-radius:var(--r-md)}
 .slider__track{display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1)}
-.slide{flex:0 0 100%;min-height:360px;display:flex;align-items:stretch;position:relative;overflow:hidden;color:#fff}
-.slide--dark{background:linear-gradient(105deg,#3A3A3E 0%,#232326 45%,#131315 100%)}
-.slide--red{background:linear-gradient(105deg,var(--red) 0%,var(--red-dark) 55%,#8E0D12 100%)}
-.slide__content{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;gap:14px;padding:48px 40px 56px 56px;max-width:560px}
-.slide__kicker{display:inline-flex;align-self:flex-start;padding:5px 12px;border-radius:999px;background:var(--red);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase}
-.slide--red .slide__kicker{background:rgba(255,255,255,.18)}
-.slide__title{font-family:var(--font-head);font-weight:800;font-size:40px;line-height:1.08;letter-spacing:-.5px}
-.slide__title em{font-style:normal;color:#FF5A5F}
-.slide--red .slide__title em{color:#FFD3D4}
-.slide__sub{font-size:16.5px;opacity:.85;max-width:420px}
-.slide__cta{align-self:flex-start;margin-top:6px;padding:13px 26px;border-radius:var(--r-sm);background:#fff;color:var(--ink);font-weight:700;font-size:15px;transition:transform .15s,box-shadow .15s}
-.slide__cta:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.3)}
-.slide__art{position:absolute;inset:0 0 0 auto;width:52%;z-index:1;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.slide__glow{position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(227,30,36,.5) 0%,rgba(227,30,36,.15) 45%,transparent 70%)}
-.slide__art svg{position:relative;width:min(440px,90%);height:auto}
+.slide{flex:0 0 100%;min-height:340px;display:flex;align-items:stretch;position:relative;overflow:hidden;color:#fff}
+.slide--dark{background:#232326}
+.slide__content{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;gap:13px;padding:40px 40px 48px 48px;max-width:640px}
+.slide__kicker{display:inline-flex;align-self:flex-start;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.14);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase}
+.slide__kicker--sale{background:var(--red)}
+.slide__title{font-family:var(--font-head);font-weight:800;font-size:38px;line-height:1.08;letter-spacing:-.5px;text-wrap:balance}
+.slide__pct{color:#FF4348}
+.slide__sub{font-size:16px;opacity:.8;max-width:460px}
+.slide__cta{align-self:flex-start;margin-top:6px;padding:13px 26px;border-radius:var(--r-sm);background:#fff;color:var(--ink);font-weight:700;font-size:15px;transition:transform .15s}
+.slide__cta:hover{transform:translateY(-2px)}
+.slide__big{position:absolute;inset:0 0 0 auto;width:42%;z-index:1;display:flex;align-items:center;justify-content:center;pointer-events:none;font-family:var(--font-head);font-weight:800;font-size:132px;letter-spacing:-5px;color:#FF4348;font-variant-numeric:tabular-nums}
 .slide__legal{position:absolute;right:18px;bottom:12px;z-index:3;font-size:10.5px;opacity:.5}
 .slider__arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 4px 14px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center;transition:background .15s,transform .15s}
 .slider__arrow:hover{background:#fff;transform:translateY(-50%) scale(1.06)}
@@ -141,22 +137,22 @@ input{font-family:inherit;border:none;outline:none}
 .slider__dot.is-active{background:#fff;width:22px;border-radius:4px}
 
 /* ─── КАТАЛОГ ─── */
-.catalog{padding:44px 0 12px}
-.catalog__title{font-family:var(--font-head);font-weight:800;font-size:32px;letter-spacing:-.4px;text-align:center;margin-bottom:28px}
-.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.tile{background:var(--tile);border-radius:var(--r-sm);padding:18px 16px 22px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;transition:transform .18s,box-shadow .18s,background .18s}
-.tile:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);background:#fff}
-.tile__img{width:100%;max-width:190px}
-.tile__img svg{width:100%;height:auto}
+.catalog{padding:30px 0 10px}
+.catalog__title{font-family:var(--font-head);font-weight:800;font-size:32px;letter-spacing:-.4px;text-align:center;margin-bottom:20px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tile{background:var(--tile);border-radius:var(--r-sm);padding:26px 16px 20px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;transition:transform .18s,box-shadow .18s,background .18s}
+.tile:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(26,26,26,.08);background:#fff}
+.tile__icon{width:72px;height:72px}
+.tile__icon svg{width:100%;height:100%}
 .tile__name{font-weight:600;font-size:15px;line-height:1.3}
 .tile__count{font-size:12.5px;color:var(--gray-60);margin-top:-8px}
 
 /* ─── БЛОК ПОДБОРА ─── */
-.picker{padding:40px 0 8px}
-.picker__grid{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
-.picker__col{border-radius:var(--r-md);padding:44px 40px;position:relative;overflow:hidden;color:#fff}
-.picker__col--dark{background:linear-gradient(120deg,#26262A 0%,#1A1A1D 100%)}
-.picker__col--red{background:linear-gradient(120deg,var(--red) 0%,var(--red-dark) 100%);display:flex;align-items:center;gap:20px}
+.picker{padding:28px 0 6px}
+.picker__grid{display:grid;grid-template-columns:1.25fr 1fr;gap:14px}
+.picker__col{border-radius:var(--r-md);padding:38px 36px;position:relative;overflow:hidden;color:#fff}
+.picker__col--dark{background:#212124}
+.picker__col--alt{background:#2E2E33;display:flex;align-items:center;gap:20px}
 .picker__title{font-family:var(--font-head);font-weight:800;font-size:26px;letter-spacing:-.3px;line-height:1.15}
 .picker__sub{margin-top:8px;font-size:14.5px;opacity:.75}
 .picker__form{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
@@ -166,22 +162,22 @@ input{font-family:inherit;border:none;outline:none}
 .btn-red:hover{background:var(--red-dark);transform:translateY(-1px)}
 .picker__hint{margin-top:14px;font-size:12.5px;opacity:.55}
 .picker__body{position:relative;z-index:2;flex:1}
-.btn-white{display:inline-block;margin-top:22px;height:50px;line-height:50px;padding:0 26px;border-radius:var(--r-sm);background:#fff;color:var(--red);font-weight:700;font-size:15px;transition:transform .15s,box-shadow .15s}
-.btn-white:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,0,0,.25)}
+.btn-white{display:inline-block;margin-top:22px;height:50px;line-height:50px;padding:0 26px;border-radius:var(--r-sm);background:#fff;color:var(--ink);font-weight:700;font-size:15px;transition:transform .15s}
+.btn-white:hover{transform:translateY(-2px)}
 .picker__expert{flex-shrink:0;width:150px;position:relative;z-index:2}
 .picker__expert svg{width:100%;height:auto}
 
 /* ─── КАК ЭТО РАБОТАЕТ ─── */
-.hiw{padding:44px 0 8px}
-.hiw__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:56px 32px}
+.hiw{padding:30px 0 6px}
+.hiw__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px 32px}
 .hiw__step{position:relative;display:flex;gap:14px;align-items:flex-start}
 .hiw__step:not(:last-child)::after{content:"";position:absolute;top:21px;right:-30px;width:28px;border-top:2px dashed #DCDCDC}
-.hiw__num{flex-shrink:0;width:44px;height:44px;border-radius:50%;background:var(--red);color:#fff;font-family:var(--font-head);font-weight:800;font-size:19px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(227,30,36,.28)}
+.hiw__num{flex-shrink:0;width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;font-family:var(--font-head);font-weight:800;font-size:19px;display:flex;align-items:center;justify-content:center}
 .hiw__t{font-weight:700;font-size:15.5px;line-height:1.25}
 .hiw__d{margin-top:5px;font-size:13.5px;color:var(--gray-60)}
 
 /* ─── БРЕНДЫ ─── */
-.brands{padding:44px 0 8px}
+.brands{padding:30px 0 6px}
 .brands__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .brand{height:76px;background:#fff;border:1px solid var(--line);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;filter:grayscale(1);opacity:.6;transition:filter .18s,opacity .18s,box-shadow .18s,transform .18s}
 .brand:hover{filter:none;opacity:1;box-shadow:var(--shadow-hover);transform:translateY(-3px)}
@@ -198,15 +194,15 @@ input{font-family:inherit;border:none;outline:none}
 .brand--candy span{color:#0093D0;font-weight:800;font-size:20px;letter-spacing:2px;text-transform:uppercase}
 
 /* ─── ПОЧЕМУ ДОВЕРЯЮТ ─── */
-.trust{padding:44px 0 8px}
-.trust__band{background:var(--tile);border-radius:var(--r-md);padding:38px 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.trust{padding:30px 0 6px}
+.trust__band{background:var(--tile);border-radius:var(--r-md);padding:34px 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 .trust__num{font-family:var(--font-head);font-weight:800;font-size:48px;letter-spacing:-1px;line-height:1;font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:6px}
-.trust__num svg{width:26px;height:26px;fill:var(--red);align-self:center}
+.trust__num svg{width:26px;height:26px;fill:#E8A33D;align-self:center}
 .trust__cap{margin-top:8px;font-size:13.5px;color:var(--gray-60)}
 
 /* ─── ОТЗЫВЫ ─── */
-.reviews{padding:44px 0 8px}
-.reviews__head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}
+.reviews{padding:30px 0 6px}
+.reviews__head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
 .reviews__head .sec-title{margin-bottom:0;text-align:left}
 .reviews__nav{display:flex;gap:8px}
 .reviews__btn{width:40px;height:40px;border-radius:50%;background:var(--tile);display:flex;align-items:center;justify-content:center;transition:background .15s}
@@ -220,14 +216,14 @@ input{font-family:inherit;border:none;outline:none}
 .review__name{font-weight:700;font-size:14.5px}
 .review__meta{font-size:12.5px;color:var(--gray-60)}
 .review__stars{display:flex;gap:2px;margin:12px 0 10px}
-.review__stars svg{width:15px;height:15px;fill:var(--red)}
+.review__stars svg{width:15px;height:15px;fill:#E8A33D}
 .review__text{font-size:14px;line-height:1.5;color:#333}
 .review__badge{display:inline-flex;align-items:center;gap:5px;margin-top:12px;font-size:12px;font-weight:600;color:var(--green)}
 .review__badge svg{width:14px;height:14px;stroke:var(--green)}
 
 /* ─── МАСТЕР НА ВЫЕЗД ─── */
-.master{padding:44px 0 8px}
-.master__band{background:linear-gradient(120deg,#26262A 0%,#1A1A1D 100%);border-radius:var(--r-md);color:#fff;display:grid;grid-template-columns:1.2fr 1fr;overflow:hidden}
+.master{padding:30px 0 6px}
+.master__band{background:#212124;border-radius:var(--r-md);color:#fff;display:grid;grid-template-columns:1.2fr 1fr;overflow:hidden}
 .master__body{padding:46px 40px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
 .master__title{font-family:var(--font-head);font-weight:800;font-size:30px;letter-spacing:-.4px;line-height:1.12}
 .master__sub{margin-top:10px;font-size:15px;opacity:.75;max-width:420px}
@@ -237,7 +233,7 @@ input{font-family:inherit;border:none;outline:none}
 .master__art svg{width:min(320px,100%);height:auto}
 
 /* ─── ФУТЕР ─── */
-.footer{margin-top:48px;background:#1A1A1D;color:#fff}
+.footer{margin-top:34px;background:#1A1A1D;color:#fff}
 .footer__grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.4fr;gap:32px;padding:44px 0 36px}
 .footer__logo{font-family:var(--font-head);font-weight:800;font-size:24px;letter-spacing:-.4px}
 .footer__about{margin-top:10px;font-size:13.5px;color:#9A9AA0;max-width:280px}
@@ -289,9 +285,9 @@ input{font-family:inherit;border:none;outline:none}
 
 /* ─── АДАПТИВ ─── */
 @media (max-width:1024px){
-  .slide__title{font-size:33px}
-  .slide__content{padding:40px 32px 52px 40px}
-  .slide__art{width:46%}
+  .slide__title{font-size:31px}
+  .slide__content{padding:36px 32px 46px 36px}
+  .slide__big{font-size:96px;width:36%}
   .tiles{grid-template-columns:repeat(3,1fr)}
   .picker__grid{grid-template-columns:1fr}
   .haction span{display:none}
@@ -313,17 +309,18 @@ input{font-family:inherit;border:none;outline:none}
   .msearch .search{display:block}
   .logo__word{font-size:23px}
   .logo__tag{display:none}
-  .slide{min-height:300px}
-  .slide__content{max-width:none;padding:28px 22px 80px}
-  .slide__legal{left:18px;right:18px;bottom:38px}
-  .slide__title{font-size:26px}
+  .slide{min-height:280px}
+  .slide__content{max-width:none;padding:26px 22px 76px}
+  .slide__legal{left:18px;right:18px;bottom:36px}
+  .slide__title{font-size:25px}
   .slide__sub{font-size:14.5px}
-  .slide__art{opacity:.22;width:100%}
+  .slide__big{display:none}
   .slider__arrow{display:none}
   .catalog__title{font-size:24px}
   .sec-title{font-size:22px}
   .tiles{grid-template-columns:repeat(2,1fr);gap:10px}
-  .tile{padding:12px 10px 16px;gap:10px}
+  .tile{padding:18px 10px 16px;gap:10px}
+  .tile__icon{width:56px;height:56px}
   .tile__name{font-size:13.5px}
   .picker__col{padding:30px 22px}
   .picker__title{font-size:21px}
@@ -482,51 +479,12 @@ input{font-family:inherit;border:none;outline:none}
             <!-- Слайд 1 -->
             <article class="slide slide--dark">
               <div class="slide__content">
-                <span class="slide__kicker">Акция до 31 августа</span>
-                <h2 class="slide__title">Скидка <em>20%</em> на комплект ТО стиралки</h2>
-                <p class="slide__sub">Ремень + подшипники + сальник — всё, что нужно для планового ремонта, одним набором</p>
+                <span class="slide__kicker slide__kicker--sale">Акция до 31 августа</span>
+                <h2 class="slide__title">Скидка <span class="slide__pct">20%</span> на комплект ТО стиралки</h2>
+                <p class="slide__sub">Ремень, подшипники и сальник — всё для планового ремонта одним набором</p>
                 <a class="slide__cta" href="#">Собрать комплект</a>
               </div>
-              <div class="slide__art" aria-hidden="true">
-                <div class="slide__glow"></div>
-                <svg viewBox="0 0 440 320">
-                  <defs>
-                    <linearGradient id="rub" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0" stop-color="#4A4A4E"/><stop offset="1" stop-color="#1C1C1F"/>
-                    </linearGradient>
-                  </defs>
-                  <ellipse cx="150" cy="272" rx="120" ry="14" fill="#000" opacity=".35" filter="url(#fBlur)"/>
-                  <ellipse cx="315" cy="292" rx="95" ry="12" fill="#000" opacity=".35" filter="url(#fBlur)"/>
-                  <!-- ремень -->
-                  <g transform="rotate(-16 150 190)">
-                    <ellipse cx="150" cy="195" rx="118" ry="52" fill="none" stroke="url(#rub)" stroke-width="21"/>
-                    <ellipse cx="150" cy="178" rx="116" ry="50" fill="none" stroke="#6B6B70" stroke-width="2" opacity=".5"/>
-                    <ellipse cx="150" cy="195" rx="118" ry="52" fill="none" stroke="#E31E24" stroke-width="2.5" stroke-dasharray="3 8" opacity=".9"/>
-                  </g>
-                  <!-- подшипник -->
-                  <g transform="translate(300 120)">
-                    <circle r="78" fill="url(#gSilver)"/>
-                    <circle r="62" fill="#26262A"/>
-                    <circle r="62" fill="none" stroke="url(#gSteel)" stroke-width="7"/>
-                    <g fill="url(#gSteel)">
-                      <circle cx="0" cy="-49" r="10"/><circle cx="34.6" cy="-34.6" r="10"/><circle cx="49" cy="0" r="10"/>
-                      <circle cx="34.6" cy="34.6" r="10"/><circle cx="0" cy="49" r="10"/><circle cx="-34.6" cy="34.6" r="10"/>
-                      <circle cx="-49" cy="0" r="10"/><circle cx="-34.6" cy="-34.6" r="10"/>
-                    </g>
-                    <circle r="30" fill="url(#gSilver)"/>
-                    <circle r="17" fill="#131315"/>
-                    <path d="M-55-55a78 78 0 0 1 52-21" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".4"/>
-                  </g>
-                  <!-- сальник -->
-                  <g transform="translate(330 255)">
-                    <circle r="46" fill="url(#rub)"/>
-                    <circle r="46" fill="none" stroke="#E31E24" stroke-width="5"/>
-                    <circle r="27" fill="#131315"/>
-                    <circle r="27" fill="none" stroke="#5C6066" stroke-width="4"/>
-                    <path d="M-32-33a46 46 0 0 1 30-12" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".35"/>
-                  </g>
-                </svg>
-              </div>
+              <div class="slide__big" aria-hidden="true">−20%</div>
               <span class="slide__legal">Реклама. ООО «Деталькин», ИНН 7712345678. Подробности акции — у оператора</span>
             </article>
 
@@ -534,36 +492,19 @@ input{font-family:inherit;border:none;outline:none}
             <article class="slide slide--dark">
               <div class="slide__content">
                 <span class="slide__kicker">Доставка</span>
-                <h2 class="slide__title">По всей России <em>от 1 дня</em></h2>
+                <h2 class="slide__title">По всей России от 1 дня</h2>
                 <p class="slide__sub">467 пунктов выдачи, курьером до двери или в постамат — как удобно вам</p>
                 <a class="slide__cta" href="#">Выбрать пункт выдачи</a>
-              </div>
-              <div class="slide__art" aria-hidden="true">
-                <div class="slide__glow"></div>
-                <svg viewBox="0 0 440 320" fill="none">
-                  <path d="M60 240c40-90 110-150 180-160 60-9 120 15 140 60" stroke="#4A4A4E" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round"/>
-                  <g transform="translate(60 240)"><circle r="10" fill="#E31E24"/><circle r="18" stroke="#E31E24" stroke-width="2" opacity=".4"/></g>
-                  <g transform="translate(380 140)">
-                    <path d="M0-58c-26 0-44 20-44 44C-44 10 0 30 0 30S44 10 44-14c0-24-18-44-44-44Z" fill="#E31E24"/>
-                    <circle cy="-14" r="17" fill="#fff"/>
-                  </g>
-                </svg>
               </div>
             </article>
 
             <!-- Слайд 3 -->
-            <article class="slide slide--red">
+            <article class="slide slide--dark">
               <div class="slide__content">
                 <span class="slide__kicker">Каталог</span>
-                <h2 class="slide__title">100 000+ артикулов <em>в наличии</em></h2>
+                <h2 class="slide__title">100 000+ артикулов в наличии</h2>
                 <p class="slide__sub">Один запрос — одна точная деталь. Никакого мусора в выдаче, максимум 2–3 проверенных аналога</p>
                 <a class="slide__cta" href="#catalog">Открыть каталог</a>
-              </div>
-              <div class="slide__art" aria-hidden="true">
-                <svg viewBox="0 0 440 320" fill="none" stroke="#fff" stroke-width="2" opacity=".5">
-                  <rect x="90" y="60" width="90" height="90" rx="12"/><rect x="200" y="60" width="90" height="90" rx="12"/><rect x="310" y="60" width="90" height="90" rx="12"/>
-                  <rect x="90" y="170" width="90" height="90" rx="12"/><rect x="200" y="170" width="90" height="90" rx="12" fill="#fff" fill-opacity=".18"/><rect x="310" y="170" width="90" height="90" rx="12"/>
-                </svg>
               </div>
             </article>
 
@@ -571,19 +512,9 @@ input{font-family:inherit;border:none;outline:none}
             <article class="slide slide--dark">
               <div class="slide__content">
                 <span class="slide__kicker">Подбор экспертом</span>
-                <h2 class="slide__title">Пришлите модель — <em>найдём деталь</em></h2>
+                <h2 class="slide__title">Пришлите модель — найдём деталь</h2>
                 <p class="slide__sub">Ответим за 5 минут в чате или ВКонтакте. Бесплатно, даже если купите не у нас</p>
                 <a class="slide__cta" href="#picker">Написать эксперту</a>
-              </div>
-              <div class="slide__art" aria-hidden="true">
-                <div class="slide__glow"></div>
-                <svg viewBox="0 0 440 320" fill="none">
-                  <rect x="150" y="70" width="200" height="64" rx="18" fill="#fff"/>
-                  <circle cx="185" cy="102" r="6" fill="#E31E24"/><circle cx="215" cy="102" r="6" fill="#E31E24"/><circle cx="245" cy="102" r="6" fill="#E31E24"/>
-                  <rect x="200" y="160" width="200" height="64" rx="18" fill="#E31E24"/>
-                  <rect x="228" y="182" width="110" height="9" rx="4.5" fill="#fff" opacity=".85"/>
-                  <rect x="228" y="199" width="70" height="9" rx="4.5" fill="#fff" opacity=".55"/>
-                </svg>
               </div>
             </article>
 
@@ -591,18 +522,9 @@ input{font-family:inherit;border:none;outline:none}
             <article class="slide slide--dark">
               <div class="slide__content">
                 <span class="slide__kicker">Хит сезона</span>
-                <h2 class="slide__title">ТЭНы для водонагревателей <em>от 590 ₽</em></h2>
+                <h2 class="slide__title">ТЭНы для водонагревателей от 590 ₽</h2>
                 <p class="slide__sub">Оригинал и проверенные аналоги для Thermex, Ariston, Electrolux — с гарантией 12 месяцев</p>
                 <a class="slide__cta" href="#">Смотреть ТЭНы</a>
-              </div>
-              <div class="slide__art" aria-hidden="true">
-                <div class="slide__glow"></div>
-                <svg viewBox="0 0 440 320" fill="none" stroke-linecap="round">
-                  <path d="M150 90h150a40 40 0 0 1 0 80H170a40 40 0 0 0 0 80h150" stroke="url(#gSilver)" stroke-width="17"/>
-                  <path d="M150 90h150a40 40 0 0 1 0 80H170a40 40 0 0 0 0 80h150" stroke="#E31E24" stroke-width="4" opacity=".55"/>
-                  <rect x="96" y="72" width="54" height="36" rx="8" fill="url(#gBrass)"/>
-                  <rect x="96" y="232" width="54" height="36" rx="8" fill="url(#gBrass)"/>
-                </svg>
               </div>
             </article>
 
@@ -627,311 +549,152 @@ input{font-family:inherit;border:none;outline:none}
 
         <!-- Стиральные машины: ремень + подшипник + сальник -->
         <a class="tile" href="#">
-          <span class="tile__img"><svg viewBox="0 0 220 150">
-            <ellipse cx="82" cy="128" rx="62" ry="8" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <ellipse cx="163" cy="124" rx="42" ry="7" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <g transform="rotate(-14 80 92)">
-              <ellipse cx="80" cy="92" rx="58" ry="26" fill="none" stroke="url(#gDark)" stroke-width="12"/>
-              <ellipse cx="80" cy="92" rx="58" ry="26" fill="none" stroke="#E31E24" stroke-width="1.6" stroke-dasharray="2.5 6" opacity=".9"/>
-            </g>
-            <g transform="translate(152 62)">
-              <circle r="40" fill="url(#gSilver)"/>
-              <circle r="31" fill="#26262A"/>
-              <circle r="31" fill="none" stroke="url(#gSteel)" stroke-width="4"/>
-              <g fill="url(#gSteel)">
-                <circle cx="0" cy="-24" r="5.5"/><circle cx="17" cy="-17" r="5.5"/><circle cx="24" cy="0" r="5.5"/>
-                <circle cx="17" cy="17" r="5.5"/><circle cx="0" cy="24" r="5.5"/><circle cx="-17" cy="17" r="5.5"/>
-                <circle cx="-24" cy="0" r="5.5"/><circle cx="-17" cy="-17" r="5.5"/>
-              </g>
-              <circle r="15" fill="url(#gSilver)"/>
-              <circle r="8" fill="#131315"/>
-              <path d="M-28-28a40 40 0 0 1 26-11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".45"/>
-            </g>
-            <g transform="translate(178 118)">
-              <circle r="22" fill="url(#gDark)"/>
-              <circle r="22" fill="none" stroke="#E31E24" stroke-width="3"/>
-              <circle r="12" fill="#131315"/>
-              <path d="M-15-16a22 22 0 0 1 14-6" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".35"/>
-            </g>
-          </svg></span>
+          <span class="tile__icon"><svg viewBox="0 0 96 96">
+<rect x="18" y="10" width="60" height="76" rx="7" fill="#C6CBD2"/>
+<path d="M18 17a7 7 0 0 1 7-7h46a7 7 0 0 1 7 7v11H18Z" fill="#878E98"/>
+<circle cx="27" cy="19" r="2.5" fill="#F5F5F5"/><circle cx="36" cy="19" r="2.5" fill="#F5F5F5"/>
+<rect x="58" y="16" width="14" height="6" rx="3" fill="#F5F5F5"/>
+<circle cx="48" cy="57" r="18" fill="#878E98"/><circle cx="48" cy="57" r="11" fill="#F5F5F5"/>
+</svg></span>
           <span class="tile__name">Стиральные машины</span>
           <span class="tile__count">28 400 деталей</span>
         </a>
 
         <!-- Посудомоечные: разбрызгиватель + циркуляционный насос -->
         <a class="tile" href="#">
-          <span class="tile__img"><svg viewBox="0 0 220 150">
-            <ellipse cx="92" cy="122" rx="70" ry="8" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <ellipse cx="170" cy="126" rx="34" ry="6" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <g transform="rotate(-8 92 92)">
-              <path d="M20 92c0-8 10-13 24-13h34c8-6 22-6 30 0h34c14 0 24 5 24 13s-10 13-24 13h-34c-8 6-22 6-30 0H44c-14 0-24-5-24-13Z" fill="url(#gPlast)"/>
-              <circle cx="92" cy="92" r="13" fill="url(#gSteel)"/>
-              <circle cx="92" cy="92" r="6" fill="#3A3A3E"/>
-              <g fill="#E31E24">
-                <circle cx="40" cy="85" r="2.6"/><circle cx="58" cy="83" r="2.6"/><circle cx="126" cy="83" r="2.6"/><circle cx="144" cy="85" r="2.6"/>
-                <circle cx="49" cy="99" r="2.6"/><circle cx="135" cy="99" r="2.6"/>
-              </g>
-            </g>
-            <g transform="translate(170 108)">
-              <circle r="24" fill="url(#gSteel)"/>
-              <circle r="10" fill="#26262A"/>
-              <rect x="8" y="-32" width="12" height="22" rx="4" fill="url(#gPlast)" transform="rotate(28)"/>
-              <path d="M-17-17a24 24 0 0 1 15-7" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".4"/>
-            </g>
-          </svg></span>
+          <span class="tile__icon"><svg viewBox="0 0 96 96">
+<rect x="18" y="10" width="60" height="76" rx="7" fill="#C6CBD2"/>
+<path d="M18 17a7 7 0 0 1 7-7h46a7 7 0 0 1 7 7v11H18Z" fill="#878E98"/>
+<rect x="26" y="15" width="24" height="5" rx="2.5" fill="#F5F5F5"/>
+<circle cx="33" cy="58" r="9" fill="#878E98"/><circle cx="33" cy="58" r="5" fill="#C6CBD2"/>
+<circle cx="48" cy="58" r="9" fill="#878E98"/><circle cx="48" cy="58" r="5" fill="#C6CBD2"/>
+<circle cx="63" cy="58" r="9" fill="#878E98"/><circle cx="63" cy="58" r="5" fill="#C6CBD2"/>
+<rect x="26" y="74" width="44" height="4" rx="2" fill="#878E98"/>
+</svg></span>
           <span class="tile__name">Посудомоечные машины</span>
           <span class="tile__count">11 200 деталей</span>
         </a>
 
         <!-- Холодильники: компрессор -->
         <a class="tile" href="#">
-          <span class="tile__img"><svg viewBox="0 0 220 150">
-            <ellipse cx="110" cy="130" rx="72" ry="9" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <ellipse cx="110" cy="96" rx="58" ry="36" fill="url(#gDark)"/>
-            <ellipse cx="110" cy="72" rx="47" ry="22" fill="#3E3E43"/>
-            <ellipse cx="110" cy="70" rx="47" ry="22" fill="url(#gDark)"/>
-            <path d="M70 58a47 22 0 0 1 34-10" fill="none" stroke="#8A8A90" stroke-width="3" stroke-linecap="round" opacity=".5"/>
-            <rect x="84" y="42" width="9" height="16" rx="3" fill="url(#gCopper)"/>
-            <rect x="104" y="38" width="9" height="18" rx="3" fill="url(#gCopper)"/>
-            <rect x="126" y="44" width="9" height="14" rx="3" fill="url(#gCopper)"/>
-            <path d="M135 50c18 0 26 8 26 22s-8 18-18 18" fill="none" stroke="url(#gCopper)" stroke-width="6" stroke-linecap="round"/>
-            <rect x="58" y="98" width="22" height="15" rx="3" fill="url(#gRedM)"/>
-            <rect x="70" y="122" width="14" height="8" rx="2.5" fill="url(#gSteel)"/>
-            <rect x="136" y="122" width="14" height="8" rx="2.5" fill="url(#gSteel)"/>
-          </svg></span>
+          <span class="tile__icon"><svg viewBox="0 0 96 96">
+<rect x="28" y="8" width="40" height="80" rx="7" fill="#C6CBD2"/>
+<rect x="28" y="36" width="40" height="4" fill="#F5F5F5"/>
+<rect x="34" y="18" width="4" height="12" rx="2" fill="#878E98"/>
+<rect x="34" y="46" width="4" height="16" rx="2" fill="#878E98"/>
+</svg></span>
           <span class="tile__name">Холодильники</span>
           <span class="tile__count">16 800 деталей</span>
         </a>
 
         <!-- Плиты и духовки: ТЭН духовки + конфорка -->
         <a class="tile" href="#">
-          <span class="tile__img"><svg viewBox="0 0 220 150">
-            <ellipse cx="96" cy="120" rx="68" ry="8" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <ellipse cx="172" cy="122" rx="34" ry="6" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <g fill="none" stroke-linecap="round">
-              <path d="M40 48h100a16 16 0 0 1 0 32H56a16 16 0 0 0 0 32h100" stroke="url(#gSteel)" stroke-width="10"/>
-              <path d="M40 48h100a16 16 0 0 1 0 32H56a16 16 0 0 0 0 32h100" stroke="#fff" stroke-width="2" opacity=".35"/>
-            </g>
-            <rect x="24" y="38" width="18" height="20" rx="4" fill="url(#gSilver)"/>
-            <rect x="24" y="102" width="18" height="20" rx="4" fill="url(#gSilver)"/>
-            <g transform="translate(172 96)">
-              <circle r="27" fill="url(#gDark)"/>
-              <circle r="21" fill="none" stroke="url(#gRedM)" stroke-width="4"/>
-              <circle r="13" fill="none" stroke="url(#gRedM)" stroke-width="4"/>
-              <circle r="5" fill="url(#gRedM)"/>
-            </g>
-          </svg></span>
+          <span class="tile__icon"><svg viewBox="0 0 96 96">
+<rect x="14" y="16" width="68" height="64" rx="7" fill="#C6CBD2"/>
+<path d="M14 23a7 7 0 0 1 7-7h54a7 7 0 0 1 7 7v9H14Z" fill="#878E98"/>
+<circle cx="26" cy="24" r="2.5" fill="#F5F5F5"/><circle cx="40" cy="24" r="2.5" fill="#F5F5F5"/><circle cx="56" cy="24" r="2.5" fill="#F5F5F5"/><circle cx="70" cy="24" r="2.5" fill="#F5F5F5"/>
+<rect x="26" y="42" width="44" height="26" rx="4" fill="#878E98"/>
+<rect x="31" y="47" width="34" height="16" rx="2" fill="#F5F5F5"/>
+</svg></span>
           <span class="tile__name">Плиты и духовки</span>
           <span class="tile__count">9 600 деталей</span>
         </a>
 
         <!-- Микроволновки: магнетрон + тарелка -->
         <a class="tile" href="#">
-          <span class="tile__img"><svg viewBox="0 0 220 150">
-            <ellipse cx="100" cy="126" rx="72" ry="8" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <ellipse cx="100" cy="118" rx="62" ry="14" fill="url(#gPlast)"/>
-            <ellipse cx="100" cy="114" rx="62" ry="14" fill="#EDF0F3"/>
-            <ellipse cx="100" cy="114" rx="40" ry="8.5" fill="none" stroke="#C4C9D0" stroke-width="2"/>
-            <ellipse cx="100" cy="114" rx="14" ry="3.5" fill="#C4C9D0"/>
-            <g transform="translate(120 20)">
-              <rect x="-38" y="52" width="76" height="26" rx="5" fill="url(#gSteel)"/>
-              <g fill="url(#gSilver)">
-                <rect x="-34" y="6" width="68" height="7" rx="2"/>
-                <rect x="-34" y="17" width="68" height="7" rx="2"/>
-                <rect x="-34" y="28" width="68" height="7" rx="2"/>
-                <rect x="-34" y="39" width="68" height="7" rx="2"/>
-              </g>
-              <rect x="-9" y="-16" width="18" height="22" rx="5" fill="url(#gPlast)"/>
-              <circle cx="0" cy="-18" r="7" fill="url(#gRedM)"/>
-              <circle cx="-28" cy="65" r="4" fill="#26262A"/><circle cx="28" cy="65" r="4" fill="#26262A"/>
-            </g>
-          </svg></span>
+          <span class="tile__icon"><svg viewBox="0 0 96 96">
+<rect x="10" y="28" width="76" height="42" rx="7" fill="#C6CBD2"/>
+<rect x="17" y="35" width="44" height="28" rx="4" fill="#878E98"/>
+<rect x="68" y="35" width="11" height="5" rx="2.5" fill="#878E98"/>
+<circle cx="73.5" cy="50" r="3" fill="#878E98"/><circle cx="73.5" cy="59" r="3" fill="#878E98"/>
+</svg></span>
           <span class="tile__name">Микроволновки</span>
           <span class="tile__count">5 300 деталей</span>
         </a>
 
         <!-- Пылесосы: HEPA-фильтр -->
         <a class="tile" href="#">
-          <span class="tile__img"><svg viewBox="0 0 220 150">
-            <ellipse cx="110" cy="128" rx="64" ry="9" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <g transform="translate(110 78)">
-              <ellipse cx="0" cy="42" rx="52" ry="12" fill="url(#gRedM)"/>
-              <rect x="-52" y="-34" width="104" height="76" fill="#E9EBEE"/>
-              <g stroke="#B9BEC6" stroke-width="3">
-                <line x1="-44" y1="-32" x2="-44" y2="42"/><line x1="-33" y1="-32" x2="-33" y2="42"/>
-                <line x1="-22" y1="-32" x2="-22" y2="42"/><line x1="-11" y1="-32" x2="-11" y2="42"/>
-                <line x1="0" y1="-32" x2="0" y2="42"/><line x1="11" y1="-32" x2="11" y2="42"/>
-                <line x1="22" y1="-32" x2="22" y2="42"/><line x1="33" y1="-32" x2="33" y2="42"/>
-                <line x1="44" y1="-32" x2="44" y2="42"/>
-              </g>
-              <rect x="-52" y="-34" width="104" height="76" fill="url(#gPlast)" opacity=".25"/>
-              <ellipse cx="0" cy="-34" rx="52" ry="12" fill="url(#gRedM)"/>
-              <ellipse cx="0" cy="-36" rx="52" ry="12" fill="#F5474C"/>
-              <ellipse cx="0" cy="-36" rx="30" ry="6.5" fill="#C4161B"/>
-              <ellipse cx="0" cy="-36" rx="30" ry="6.5" fill="none" stroke="#9E1014" stroke-width="1.5"/>
-            </g>
-          </svg></span>
+          <span class="tile__icon"><svg viewBox="0 0 96 96">
+<circle cx="36" cy="60" r="20" fill="#C6CBD2"/>
+<circle cx="36" cy="60" r="7" fill="#878E98"/>
+<path d="M52 48c8-14 14-24 24-26" stroke="#878E98" stroke-width="6" fill="none" stroke-linecap="round"/>
+<rect x="68" y="14" width="18" height="7" rx="3.5" fill="#878E98"/>
+</svg></span>
           <span class="tile__name">Пылесосы</span>
           <span class="tile__count">7 900 деталей</span>
         </a>
 
         <!-- Водонагреватели: ТЭН с фланцем + анод -->
         <a class="tile" href="#">
-          <span class="tile__img"><svg viewBox="0 0 220 150">
-            <ellipse cx="104" cy="128" rx="72" ry="8" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <g transform="translate(56 76)">
-              <circle r="30" fill="url(#gBrass)"/>
-              <circle r="30" fill="none" stroke="#8A6B24" stroke-width="2" opacity=".5"/>
-              <circle r="12" fill="#8A6B24"/>
-              <g fill="#7A5E1E">
-                <circle cx="0" cy="-21" r="3.5"/><circle cx="18" cy="-10.5" r="3.5"/><circle cx="18" cy="10.5" r="3.5"/>
-                <circle cx="0" cy="21" r="3.5"/><circle cx="-18" cy="10.5" r="3.5"/><circle cx="-18" cy="-10.5" r="3.5"/>
-              </g>
-              <path d="M-20-20a30 30 0 0 1 17-9" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>
-            </g>
-            <g fill="none" stroke-linecap="round">
-              <path d="M84 62h74a17 17 0 0 1 0 34h-40" stroke="url(#gCopper)" stroke-width="9"/>
-              <path d="M84 76h60a10 10 0 0 1 0 20h-26" stroke="url(#gCopper)" stroke-width="9"/>
-            </g>
-            <g transform="translate(120 118)">
-              <rect x="-56" y="-7" width="112" height="14" rx="7" fill="url(#gPlast)"/>
-              <rect x="-56" y="-7" width="20" height="14" rx="7" fill="url(#gSteel)"/>
-              <g stroke="#C4C9D0" stroke-width="2"><line x1="-24" y1="-5" x2="-24" y2="5"/><line x1="-12" y1="-5" x2="-12" y2="5"/><line x1="0" y1="-5" x2="0" y2="5"/><line x1="12" y1="-5" x2="12" y2="5"/><line x1="24" y1="-5" x2="24" y2="5"/><line x1="36" y1="-5" x2="36" y2="5"/></g>
-            </g>
-          </svg></span>
+          <span class="tile__icon"><svg viewBox="0 0 96 96">
+<rect x="32" y="8" width="32" height="62" rx="16" fill="#C6CBD2"/>
+<circle cx="48" cy="52" r="7" fill="#878E98"/><circle cx="48" cy="52" r="3" fill="#F5F5F5"/>
+<rect x="38" y="70" width="6" height="14" rx="3" fill="#878E98"/>
+<rect x="52" y="70" width="6" height="14" rx="3" fill="#878E98"/>
+</svg></span>
           <span class="tile__name">Водонагреватели</span>
           <span class="tile__count">6 100 деталей</span>
         </a>
 
         <!-- Кофемашины: холдер + кольцо-уплотнитель -->
         <a class="tile" href="#">
-          <span class="tile__img"><svg viewBox="0 0 220 150">
-            <ellipse cx="94" cy="126" rx="60" ry="8" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <ellipse cx="180" cy="120" rx="28" ry="6" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <g transform="translate(88 78) rotate(-10)">
-              <circle r="40" fill="url(#gSilver)"/>
-              <circle r="32" fill="url(#gSteel)"/>
-              <circle r="26" fill="#4A4A4F"/>
-              <g fill="#26262A">
-                <circle cx="-8" cy="-8" r="2.2"/><circle cx="0" cy="-8" r="2.2"/><circle cx="8" cy="-8" r="2.2"/>
-                <circle cx="-8" cy="0" r="2.2"/><circle cx="0" cy="0" r="2.2"/><circle cx="8" cy="0" r="2.2"/>
-                <circle cx="-8" cy="8" r="2.2"/><circle cx="0" cy="8" r="2.2"/><circle cx="8" cy="8" r="2.2"/>
-              </g>
-              <rect x="38" y="-9" width="64" height="18" rx="9" fill="url(#gDark)"/>
-              <rect x="92" y="-9" width="10" height="18" rx="5" fill="url(#gRedM)"/>
-              <path d="M-28-28a40 40 0 0 1 24-11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".5"/>
-            </g>
-            <g transform="translate(180 108)">
-              <circle r="17" fill="none" stroke="url(#gDark)" stroke-width="8"/>
-              <circle r="17" fill="none" stroke="#E31E24" stroke-width="1.6" opacity=".8"/>
-            </g>
-          </svg></span>
+          <span class="tile__icon"><svg viewBox="0 0 96 96">
+<rect x="20" y="12" width="56" height="58" rx="7" fill="#C6CBD2"/>
+<rect x="30" y="36" width="36" height="28" rx="4" fill="#F5F5F5"/>
+<rect x="44" y="36" width="8" height="7" fill="#878E98"/>
+<rect x="41" y="49" width="14" height="11" rx="2" fill="#878E98"/>
+<path d="M55 51h4a4 4 0 0 1 0 8h-4" fill="none" stroke="#878E98" stroke-width="3"/>
+<rect x="20" y="74" width="56" height="8" rx="4" fill="#878E98"/>
+</svg></span>
           <span class="tile__name">Кофемашины</span>
           <span class="tile__count">4 700 деталей</span>
         </a>
 
         <!-- Мелкая техника: диск-нагреватель чайника + нож блендера -->
         <a class="tile" href="#">
-          <span class="tile__img"><svg viewBox="0 0 220 150">
-            <ellipse cx="92" cy="120" rx="66" ry="9" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <ellipse cx="176" cy="126" rx="26" ry="6" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <g transform="translate(92 88)">
-              <ellipse cx="0" cy="6" rx="58" ry="24" fill="url(#gSteel)"/>
-              <ellipse cx="0" cy="0" rx="58" ry="24" fill="url(#gSilver)"/>
-              <ellipse cx="0" cy="0" rx="40" ry="16" fill="none" stroke="#AEB3BB" stroke-width="2"/>
-              <ellipse cx="0" cy="0" rx="22" ry="9" fill="url(#gSteel)"/>
-              <circle cx="0" cy="0" r="6" fill="url(#gBrass)"/>
-              <path d="M-40-14a58 24 0 0 1 30-9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".55"/>
-            </g>
-            <g transform="translate(176 84)">
-              <rect x="-4" y="-40" width="8" height="52" rx="3" fill="url(#gSteel)"/>
-              <path d="M0 6c-16-6-26-2-30 8 12 4 24 0 30-8Z" fill="url(#gSilver)"/>
-              <path d="M0 6c16-14 18-24 12-32-10 6-16 20-12 32Z" fill="url(#gSilver)"/>
-              <circle cy="8" r="7" fill="url(#gDark)"/>
-            </g>
-          </svg></span>
+          <span class="tile__icon"><svg viewBox="0 0 96 96">
+<path d="M28 34h34l-5 38a8 8 0 0 1-8 8H41a8 8 0 0 1-8-8Z" fill="#C6CBD2"/>
+<rect x="34" y="26" width="22" height="8" rx="4" fill="#878E98"/>
+<circle cx="45" cy="23" r="3" fill="#878E98"/>
+<path d="M62 38l14-7-3 16" fill="#C6CBD2"/>
+<path d="M30 42c-12 2-14 20-3 26" stroke="#878E98" stroke-width="5" fill="none" stroke-linecap="round"/>
+</svg></span>
           <span class="tile__name">Мелкая бытовая техника</span>
           <span class="tile__count">8 200 деталей</span>
         </a>
 
         <!-- Аксессуары и фильтры: стопка фильтров + картридж -->
         <a class="tile" href="#">
-          <span class="tile__img"><svg viewBox="0 0 220 150">
-            <ellipse cx="88" cy="128" rx="62" ry="8" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <ellipse cx="176" cy="128" rx="30" ry="6" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <g transform="translate(88 96)">
-              <ellipse cx="0" cy="24" rx="54" ry="16" fill="url(#gSteel)"/>
-              <ellipse cx="0" cy="18" rx="54" ry="16" fill="url(#gPlast)"/>
-              <ellipse cx="0" cy="4" rx="46" ry="13" fill="url(#gRedM)"/>
-              <ellipse cx="0" cy="-2" rx="46" ry="13" fill="#F5474C"/>
-              <ellipse cx="0" cy="-16" rx="38" ry="11" fill="url(#gSteel)"/>
-              <ellipse cx="0" cy="-22" rx="38" ry="11" fill="url(#gSilver)"/>
-              <g stroke="#8A8F98" stroke-width="1.6" opacity=".8">
-                <ellipse cx="0" cy="-22" rx="26" ry="7" fill="none"/>
-                <ellipse cx="0" cy="-22" rx="14" ry="3.8" fill="none"/>
-              </g>
-            </g>
-            <g transform="translate(176 92)">
-              <rect x="-16" y="-34" width="32" height="66" rx="9" fill="url(#gDark)"/>
-              <rect x="-16" y="-34" width="32" height="14" rx="7" fill="url(#gRedM)"/>
-              <rect x="-9" y="-6" width="18" height="28" rx="4" fill="#54545A"/>
-            </g>
-          </svg></span>
+          <span class="tile__icon"><svg viewBox="0 0 96 96">
+<ellipse cx="48" cy="66" rx="23" ry="8" fill="#878E98"/>
+<rect x="25" y="34" width="46" height="32" fill="#C6CBD2"/>
+<g fill="#878E98" opacity=".5"><rect x="32" y="34" width="2.5" height="32"/><rect x="40" y="34" width="2.5" height="32"/><rect x="48" y="34" width="2.5" height="32"/><rect x="56" y="34" width="2.5" height="32"/><rect x="63" y="34" width="2.5" height="32"/></g>
+<ellipse cx="48" cy="34" rx="23" ry="8" fill="#C6CBD2"/>
+<ellipse cx="48" cy="34" rx="12" ry="4" fill="#878E98"/>
+</svg></span>
           <span class="tile__name">Аксессуары и фильтры</span>
           <span class="tile__count">12 500 деталей</span>
         </a>
 
         <!-- Бытовая химия: флакон + таблетки -->
         <a class="tile" href="#">
-          <span class="tile__img"><svg viewBox="0 0 220 150">
-            <ellipse cx="96" cy="130" rx="44" ry="8" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <ellipse cx="166" cy="130" rx="34" ry="6" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <g transform="translate(96 20)">
-              <rect x="-12" y="-2" width="24" height="16" rx="4" fill="url(#gRedM)"/>
-              <path d="M-26 30c0-10 8-16 14-18h24c6 2 14 8 14 18v66a8 8 0 0 1-8 8h-36a8 8 0 0 1-8-8Z" fill="url(#gPlast)"/>
-              <rect x="-20" y="42" width="40" height="42" rx="5" fill="#fff"/>
-              <rect x="-20" y="42" width="40" height="12" rx="5" fill="url(#gRedM)"/>
-              <text x="0" y="51.5" font-family="Arial,sans-serif" font-size="7.5" font-weight="bold" fill="#fff" text-anchor="middle">ДЕТАЛЬКИН</text>
-              <text x="0" y="66" font-family="Arial,sans-serif" font-size="7" font-weight="bold" fill="#1A1A1A" text-anchor="middle">АНТИНАКИПИН</text>
-              <path d="M0 71c-4 5-6.5 8.5-6.5 11.8a6.5 6.5 0 0 0 13 0C6.5 79.5 4 76 0 71Z" fill="#E31E24"/>
-              <path d="M-22 34a30 14 0 0 1 10-6" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".7"/>
-            </g>
-            <g transform="translate(166 106)">
-              <rect x="-30" y="-20" width="60" height="42" rx="7" fill="url(#gRedM)"/>
-              <rect x="-30" y="-20" width="60" height="42" rx="7" fill="none" stroke="#9E1014" stroke-width="1.5" opacity=".6"/>
-              <circle cx="-12" cy="0" r="8" fill="#fff" opacity=".92"/>
-              <circle cx="12" cy="0" r="8" fill="#fff" opacity=".92"/>
-              <rect x="-16" y="-2" width="8" height="4" rx="2" fill="#199CD8"/>
-              <rect x="8" y="-2" width="8" height="4" rx="2" fill="#74BF44"/>
-            </g>
-          </svg></span>
+          <span class="tile__icon"><svg viewBox="0 0 96 96">
+<rect x="40" y="12" width="16" height="10" rx="3" fill="#878E98"/>
+<rect x="43" y="22" width="10" height="8" fill="#C6CBD2"/>
+<path d="M34 30h28a8 8 0 0 1 8 8v38a8 8 0 0 1-8 8H34a8 8 0 0 1-8-8V38a8 8 0 0 1 8-8Z" fill="#C6CBD2"/>
+<rect x="34" y="46" width="28" height="22" rx="3" fill="#F5F5F5"/>
+<path d="M48 50c-3 3.5-4.5 6-4.5 8a4.5 4.5 0 0 0 9 0c0-2-1.5-4.5-4.5-8Z" fill="#878E98"/>
+</svg></span>
           <span class="tile__name">Бытовая химия для техники</span>
           <span class="tile__count">1 900 товаров</span>
         </a>
 
         <!-- Инструменты: мультиметр + отвёртка -->
         <a class="tile" href="#">
-          <span class="tile__img"><svg viewBox="0 0 220 150">
-            <ellipse cx="96" cy="130" rx="52" ry="8" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <ellipse cx="168" cy="126" rx="40" ry="6" fill="#000" opacity=".10" filter="url(#fBlur)"/>
-            <g transform="translate(96 78)">
-              <rect x="-34" y="-54" width="68" height="108" rx="10" fill="url(#gDark)"/>
-              <rect x="-34" y="-54" width="68" height="108" rx="10" fill="none" stroke="#54545A" stroke-width="1.5"/>
-              <rect x="-26" y="-44" width="52" height="26" rx="4" fill="#D7DEDA"/>
-              <text x="18" y="-25" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#1A1A1A" text-anchor="end">220</text>
-              <circle cy="8" r="20" fill="url(#gSteel)"/>
-              <circle cy="8" r="20" fill="none" stroke="#3A3A3E" stroke-width="2"/>
-              <rect x="-2.5" y="-10" width="5" height="17" rx="2.5" fill="#E31E24"/>
-              <circle cx="-18" cy="42" r="5" fill="#E31E24"/>
-              <circle cx="18" cy="42" r="5" fill="#26262A"/>
-              <path d="M-18 46c-8 14-20 20-30 18M18 46c8 16 22 20 32 16" fill="none" stroke="#E31E24" stroke-width="3" stroke-linecap="round"/>
-            </g>
-            <g transform="translate(150 96) rotate(-38)">
-              <rect x="-6" y="-52" width="12" height="46" rx="6" fill="url(#gRedM)"/>
-              <rect x="-2.5" y="-6" width="5" height="42" rx="2" fill="url(#gSilver)"/>
-              <path d="M-2.5 36h5l-2.5 8Z" fill="url(#gSteel)"/>
-            </g>
-          </svg></span>
+          <span class="tile__icon"><svg viewBox="0 0 96 96">
+<g transform="rotate(40 48 48)"><rect x="44" y="30" width="8" height="44" rx="4" fill="#C6CBD2"/><path d="M39 14a9 9 0 0 1 18 0v8l-4 8h-10l-4-8Z" fill="#C6CBD2"/><rect x="44" y="12" width="8" height="10" fill="#F5F5F5"/></g>
+<g transform="rotate(-40 48 48)"><rect x="43" y="12" width="10" height="26" rx="5" fill="#878E98"/><rect x="45.5" y="38" width="5" height="34" rx="2.5" fill="#C6CBD2"/><path d="M45.5 72h5l-2.5 8Z" fill="#C6CBD2"/></g>
+</svg></span>
           <span class="tile__name">Инструменты для ремонта</span>
           <span class="tile__count">3 400 товаров</span>
         </a>
@@ -953,7 +716,7 @@ input{font-family:inherit;border:none;outline:none}
           </form>
           <p class="picker__hint">Модель указана на шильдике: на раме дверцы стиралки, на стенке внутри холодильника или на задней панели прибора</p>
         </div>
-        <div class="picker__col picker__col--red">
+        <div class="picker__col picker__col--alt">
           <div class="picker__body">
             <h2 class="picker__title">Подберём за вас</h2>
             <p class="picker__sub">Наш эксперт поможет с подбором — просто пришлите модель или фото детали</p>
@@ -1319,7 +1082,7 @@ input{font-family:inherit;border:none;outline:none}
       </div>
     </div>
     <div class="chat__msgs" id="chatMsgs">
-      <div class="chat__msg">Здравствуйте! 👋</div>
+      <div class="chat__msg">Здравствуйте!</div>
       <div class="chat__msg">Какую деталь нужно подобрать? Пришлите модель техники или артикул — найду за пару минут.</div>
     </div>
     <div class="chat__chips">
