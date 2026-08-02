@@ -232,6 +232,36 @@ input{font-family:inherit;border:none;outline:none}
 .master__art{position:relative;display:flex;align-items:flex-end;justify-content:center;padding:24px 24px 0}
 .master__art svg{width:min(320px,100%);height:auto}
 
+
+/* ─── ЗАЯВКА НА ПОДБОР ─── */
+.lead{padding:30px 0 6px}
+.lead__card{display:grid;grid-template-columns:1fr 1.7fr;border-radius:var(--r-md);overflow:hidden;border:1px solid var(--line);background:#fff}
+.lead__side{background:#212124;color:#fff;padding:36px 32px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.lead__ava{width:64px;height:64px;border-radius:50%;overflow:hidden;background:#F1D8C4;border:3px solid rgba(255,255,255,.22);flex-shrink:0}
+.lead__ava svg{width:100%;height:100%}
+.lead__t{font-family:var(--font-head);font-weight:800;font-size:23px;letter-spacing:-.3px;line-height:1.2}
+.lead__d{font-size:14.5px;opacity:.75}
+.lead__note{margin-top:auto;padding-top:14px;font-size:12.5px;opacity:.5}
+.lead__form{padding:34px 36px;display:flex;flex-direction:column;gap:18px}
+.lead__row{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:6px 26px;align-items:center}
+.lead__field{display:flex;flex-direction:column;gap:6px}
+.lead__label{font-size:11.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--gray-60)}
+.lead__input{height:48px;border-radius:var(--r-sm);background:var(--tile);padding:0 14px;font-size:15px;color:var(--ink);border:1px solid transparent;width:100%}
+.lead__input:focus{border-color:var(--ink);background:#fff}
+.lead__input::placeholder{color:var(--gray-40)}
+select.lead__input{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:16px;padding-right:40px;cursor:pointer}
+.lead__hint{font-size:13px;color:var(--gray-60);line-height:1.45}
+.lead__hint a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.lead__actions{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:6px 26px;align-items:center;margin-top:2px}
+.lead__consent{font-size:12px;color:var(--gray-40)}
+.lead__consent a{text-decoration:underline;text-underline-offset:3px}
+.lead__ok{display:none;flex-direction:column;justify-content:center;gap:10px;padding:34px 36px}
+.lead__ok.is-on{display:flex}
+.lead__form.is-off{display:none}
+.lead__ok-t{font-family:var(--font-head);font-weight:800;font-size:23px;display:flex;align-items:center;gap:10px}
+.lead__ok-t svg{width:30px;height:30px;stroke:var(--green);flex-shrink:0}
+.lead__ok-d{font-size:14.5px;color:var(--gray-60);max-width:420px}
+
 /* ─── ФУТЕР ─── */
 .footer{margin-top:34px;background:#1A1A1D;color:#fff}
 .footer__grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.4fr;gap:32px;padding:44px 0 36px}
@@ -297,6 +327,10 @@ input{font-family:inherit;border:none;outline:none}
   .trust__band{grid-template-columns:repeat(2,1fr);gap:30px 24px}
   .master__band{grid-template-columns:1fr}
   .master__art{display:none}
+  .lead__card{grid-template-columns:1fr}
+  .lead__side{flex-direction:row;flex-wrap:wrap;align-items:center;gap:14px 18px;padding:24px 28px}
+  .lead__side .lead__d{flex-basis:100%}
+  .lead__side .lead__note{display:none}
   .footer__grid{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:760px){
@@ -336,6 +370,12 @@ input{font-family:inherit;border:none;outline:none}
   .review{flex-basis:290px}
   .master__body{padding:30px 22px}
   .master__title{font-size:23px}
+  .lead__form{padding:24px 20px}
+  .lead__row,.lead__actions{grid-template-columns:1fr;gap:6px}
+  .lead__hint{margin-bottom:6px}
+  .lead__side{padding:22px 20px}
+  .lead__t{font-size:19px}
+  .btn-red.lead__submit{width:100%}
   .footer__grid{grid-template-columns:1fr;gap:26px;padding:34px 0 28px}
   .chat{right:14px;bottom:14px}
   .chat__panel{width:min(320px,calc(100vw - 28px))}
@@ -999,6 +1039,61 @@ input{font-family:inherit;border:none;outline:none}
       </div>
     </div>
   </section>
+
+  <!-- ══════════ ЗАЯВКА НА ПОДБОР ══════════ -->
+  <section class="lead" id="lead">
+    <div class="container">
+      <h2 class="sec-title">Сомневаетесь в самостоятельном подборе?</h2>
+      <div class="lead__card">
+        <div class="lead__side">
+          <span class="lead__ava">
+            <svg viewBox="0 0 42 42"><circle cx="21" cy="17" r="9" fill="#F1D8C4"/><path d="M12 16c0-6 4-9 9-9s9 3 9 9c-1-4-4-5-9-5s-8 1-9 5Z" fill="#3A2E28"/><circle cx="17.5" cy="17" r="1.1" fill="#2B2B2B"/><circle cx="24.5" cy="17" r="1.1" fill="#2B2B2B"/><path d="M7 42c1-9 7-13 14-13s13 4 14 13Z" fill="#fff"/></svg>
+          </span>
+          <h3 class="lead__t">Эксперт подберёт деталь бесплатно</h3>
+          <p class="lead__d">Назовём точный артикул и цену. Перезвоним в течение 15 минут в рабочее время.</p>
+          <p class="lead__note">Ежедневно с 9:00 до 21:00 · +7 909 099-93-45</p>
+        </div>
+        <form class="lead__form" id="leadForm" novalidate>
+          <div class="lead__row">
+            <div class="lead__field">
+              <label class="lead__label" for="leadPhone">Мой телефон</label>
+              <input class="lead__input" id="leadPhone" type="tel" placeholder="+7 ___ ___-__-__" autocomplete="tel">
+            </div>
+            <p class="lead__hint">Если укажете только телефон, эксперт перезвонит и уточнит подробности в разговоре.</p>
+          </div>
+          <div class="lead__row">
+            <div class="lead__field">
+              <label class="lead__label" for="leadPart">Я ищу</label>
+              <input class="lead__input" id="leadPart" type="text" placeholder="Сливной насос">
+            </div>
+            <p class="lead__hint">Укажите нужную запчасть. Не знаете точного названия — напишите своими словами.</p>
+          </div>
+          <div class="lead__row">
+            <div class="lead__field">
+              <label class="lead__label" for="leadModel">Для техники</label>
+              <select class="lead__input" id="leadModelMode" aria-label="Как укажете технику">
+                <option>Знаю модель техники</option>
+                <option>Модели нет, опишу словами</option>
+              </select>
+              <input class="lead__input" id="leadModel" type="text" placeholder="Bosch WLG20265OE">
+            </div>
+            <p class="lead__hint">Модель с шильдика гарантирует точность подбора. <a href="#picker">Где найти шильдик</a></p>
+          </div>
+          <div class="lead__actions">
+            <button class="btn-red lead__submit" type="submit">Отправить заявку</button>
+            <p class="lead__consent">Отправляя заявку, вы соглашаетесь на <a href="#">обработку персональных данных</a></p>
+          </div>
+        </form>
+        <div class="lead__ok" id="leadOk">
+          <div class="lead__ok-t">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 3 3 5.5-6.5"/></svg>
+            Заявка принята
+          </div>
+          <p class="lead__ok-d">Эксперт перезвонит в течение 15 минут в рабочее время (ежедневно с 9:00 до 21:00). Если удобнее переписка — напишите нам во ВКонтакте.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <!-- ══════════ ФУТЕР ══════════ -->
@@ -1028,6 +1123,7 @@ input{font-family:inherit;border:none;outline:none}
           <li><a href="#">Гарантия</a></li>
           <li><a href="#picker">Как подобрать деталь</a></li>
           <li><a href="#master">Мастер на выезд</a></li>
+          <li><a href="#lead">Заявка на подбор</a></li>
         </ul>
       </div>
       <div class="footer__col">
@@ -1229,6 +1325,21 @@ input{font-family:inherit;border:none;outline:none}
   document.getElementById('revNext').addEventListener('click', function(){
     row.scrollBy({ left: 372, behavior: 'smooth' });
   });
+})();
+
+
+/* ── Заявка на подбор ── */
+(function(){
+  var form = document.getElementById('leadForm');
+  var ok = document.getElementById('leadOk');
+  var phone = document.getElementById('leadPhone');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!phone.value.trim()) { phone.focus(); phone.style.borderColor = '#E31E24'; return; }
+    form.classList.add('is-off');
+    ok.classList.add('is-on');
+  });
+  phone.addEventListener('input', function(){ phone.style.borderColor = ''; });
 })();
 
 /* ── Чат-виджет ── */
