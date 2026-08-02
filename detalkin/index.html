@@ -128,7 +128,8 @@ section[id],div[id]{scroll-margin-top:calc(var(--headh, 0px) + 18px)}
 
 /* ─── КАТАЛОГ ─── */
 .catalog{padding:30px 0 10px}
-.catalog__title{font-family:var(--font-head);font-weight:800;font-size:32px;letter-spacing:-.4px;text-align:center;margin-bottom:20px}
+.catalog__title{font-family:var(--font-head);font-weight:800;font-size:31px;letter-spacing:-.5px;text-align:center;text-wrap:balance}
+.catalog__sub{margin:8px auto 22px;text-align:center;font-size:14.5px;color:var(--gray-60)}
 .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .tile{background:var(--tile);border-radius:var(--r-sm);padding:26px 16px 20px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;transition:transform .18s,box-shadow .18s,background .18s}
 .tile:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(26,26,26,.08);background:#fff}
@@ -284,7 +285,8 @@ select.lead__input{appearance:none;-webkit-appearance:none;background-image:url(
 
 /* ─── ЧАТ-ВИДЖЕТ ─── */
 .chat{position:fixed;right:22px;bottom:22px;z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
-.chat__hello{display:flex;align-items:center;gap:10px}
+.chat__hello{display:flex;align-items:center;gap:10px;transition:opacity .3s,transform .3s}
+.chat__hello.is-hidden{opacity:0;transform:translateY(6px);pointer-events:none}
 .chat__bubble{background:var(--ink);color:#fff;font-size:13.5px;font-weight:600;padding:9px 14px;border-radius:12px 12px 4px 12px;box-shadow:0 8px 20px rgba(0,0,0,.2)}
 .chat__ava{width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.2);position:relative;background:#F1D8C4}
 .chat__ava svg{width:100%;height:100%}
@@ -305,42 +307,43 @@ select.lead__input{appearance:none;-webkit-appearance:none;background-image:url(
 .chat__chip:hover{background:var(--red);color:#fff}
 
 
-/* ─── ГЕРОЙ ─── */
-.hero{padding:18px 0 4px}
-.hero__grid{display:grid;grid-template-columns:1.55fr 1fr;gap:16px}
-.hero__main{background:var(--tile);border-radius:var(--r-md);padding:38px 38px 32px}
-.hero__h1{font-family:var(--font-head);font-weight:800;font-size:37px;line-height:1.08;letter-spacing:-.7px;text-wrap:balance}
-.hero__h1 span{color:var(--gray-60)}
-.hero__lead{margin-top:12px;font-size:16px;color:#3A3A3A;max-width:530px}
-.hero__pick{margin-top:24px}
-.hero__picklabel{font-size:11.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--gray-60)}
-.hero__pickrow{display:flex;gap:10px;margin-top:8px;flex-wrap:wrap}
-.hero__input{flex:1;min-width:240px;height:54px;border-radius:var(--r-sm);background:#fff;border:1px solid var(--line);padding:0 16px;font-size:15.5px;color:var(--ink)}
-.hero__input:focus{border-color:var(--ink)}
-.hero__input::placeholder{color:var(--gray-40)}
-.hero__pickrow .btn-red{height:54px}
-.hero__hint{margin-top:10px;font-size:12.5px;color:var(--gray-60);max-width:520px}
-.hero__hintlink{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
-.hero__facts{list-style:none;display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;padding-top:20px;border-top:1px solid #E2E2E2}
-.hero__facts li{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600}
-.hero__facts svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.hero__promo{position:relative;background:#232326;color:#fff;border-radius:var(--r-md);padding:30px 28px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.hero__pct{position:absolute;right:-16px;bottom:-30px;font-family:var(--font-head);font-weight:800;font-size:148px;letter-spacing:-6px;color:#FF4348;opacity:.15;line-height:1;z-index:1}
-.hero__promo > *{position:relative;z-index:2}
-.hero__ptitle{margin-top:14px;font-family:var(--font-head);font-weight:800;font-size:26px;line-height:1.14;letter-spacing:-.4px}
-.hero__ptitle b{color:#FF4348}
-.hero__psub{margin-top:10px;font-size:14.5px;opacity:.78}
-.hero__pcta{align-self:flex-start;margin-top:20px;height:46px;line-height:46px;padding:0 24px;border-radius:var(--r-sm);background:#fff;color:var(--ink);font-weight:700;font-size:14.5px;transition:transform .15s}
-.hero__pcta:hover{transform:translateY(-2px)}
-.hero__plegal{margin-top:16px;font-size:10.5px;opacity:.45}
+/* ─── ПРОМО-БАННЕР ─── */
+.banner{padding:16px 0 0}
+.banner__card{position:relative;background:#232326;color:#fff;border-radius:var(--r-md);padding:42px 44px;min-height:216px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.banner__card > *{position:relative;z-index:2}
+.banner__pct{position:absolute;right:44px;top:50%;transform:translateY(-50%);z-index:1;font-family:var(--font-head);font-weight:800;font-size:168px;letter-spacing:-8px;color:#FF4348;opacity:.15;line-height:1}
+.banner__title{margin-top:14px;font-family:var(--font-head);font-weight:800;font-size:34px;line-height:1.1;letter-spacing:-.6px;max-width:620px}
+.banner__title b{color:#FF4348}
+.banner__sub{margin-top:10px;font-size:15.5px;opacity:.8;max-width:520px}
+.banner__cta{align-self:flex-start;margin-top:22px;height:50px;line-height:50px;padding:0 28px;border-radius:var(--r-sm);background:#fff;color:var(--ink);font-weight:700;font-size:15px;transition:transform .15s}
+.banner__cta:hover{transform:translateY(-2px)}
+.banner__legal{position:absolute;right:18px;bottom:14px;z-index:2;font-size:10.5px;opacity:.4}
 
-/* ─── ПОЛОСА ПРЕИМУЩЕСТВ ─── */
-.usp{padding:14px 0 0}
-.usp__row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.usp__item{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--line);border-radius:var(--r-sm)}
-.usp__item svg{width:22px;height:22px;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
-.usp__t{font-size:14px;font-weight:700;line-height:1.2}
-.usp__d{font-size:12.5px;color:var(--gray-60);margin-top:2px}
+/* ─── ТОНКАЯ СТРОКА УСЛОВИЙ ─── */
+.tline{padding:16px 0 0}
+.tline__row{display:flex;flex-wrap:wrap;gap:10px 34px}
+.tline__item{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:500}
+.tline__item svg{width:17px;height:17px;stroke:var(--ink);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+
+/* ─── БЛОК ПОДБОРА ─── */
+.picker{padding:30px 0 0}
+.picker__grid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}
+.picker__col{border-radius:var(--r-md);padding:36px 34px}
+.picker__col--dark{background:#212124;color:#fff}
+.picker__col--light{background:var(--tile);color:var(--ink);display:flex;align-items:center;gap:16px}
+.picker__title{font-family:var(--font-head);font-weight:800;font-size:24px;letter-spacing:-.3px;line-height:1.15}
+.picker__sub{margin-top:8px;font-size:14.5px;opacity:.72}
+.picker__col--light .picker__sub{opacity:1;color:var(--gray-60)}
+.picker__form{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.picker__input{flex:1;min-width:230px;height:52px;border-radius:var(--r-sm);padding:0 16px;font-size:15px;background:#fff;color:var(--ink);border:1px solid transparent}
+.picker__input::placeholder{color:var(--gray-40)}
+.picker__form .btn-red{height:52px}
+.picker__hint{margin-top:14px;font-size:12.5px;opacity:.5}
+.picker__body{flex:1}
+.picker__expert{width:126px;flex-shrink:0}
+.picker__expert svg{width:100%;height:auto}
+.btn-ink{display:inline-block;margin-top:20px;height:50px;line-height:50px;padding:0 26px;border-radius:var(--r-sm);background:var(--ink);color:#fff;font-weight:700;font-size:15px;transition:background .15s}
+.btn-ink:hover{background:#000}
 
 /* ─── ХИТЫ ПРОДАЖ ─── */
 .prods{padding:30px 0 6px}
@@ -371,10 +374,9 @@ select.lead__input{appearance:none;-webkit-appearance:none;background-image:url(
   .picker__grid{grid-template-columns:1fr}
   .haction span{display:none}
   .haction{padding:8px}
-  .hero__grid{grid-template-columns:1fr}
-  .hero__h1{font-size:31px}
-  .hero__pct{font-size:120px}
-  .usp__row{grid-template-columns:repeat(2,1fr)}
+  .banner__title{font-size:29px}
+  .banner__pct{font-size:130px;right:26px}
+  .picker__grid{grid-template-columns:1fr}
   .catbtn span{display:none}
   .catbtn{padding:0 15px}
   .hiw__grid{grid-template-columns:repeat(2,1fr);gap:28px}
@@ -410,16 +412,19 @@ select.lead__input{appearance:none;-webkit-appearance:none;background-image:url(
   .logo__word{font-size:22px}
   .logo__tag{display:none}
   .footer__card{padding:0 20px;border-radius:18px 18px 0 0}
-  .hero{padding:12px 0 0}
-  .hero__main{padding:24px 20px 22px}
-  .hero__h1{font-size:25px}
-  .hero__lead{font-size:14.5px}
-  .hero__input{min-width:0;width:100%}
-  .hero__pickrow .btn-red{width:100%}
-  .hero__promo{padding:24px 20px}
-  .hero__ptitle{font-size:21px}
-  .hero__pct{font-size:100px;right:-8px;bottom:-18px}
-  .usp__row{grid-template-columns:1fr}
+  .banner__card{padding:26px 22px;min-height:0}
+  .banner__title{font-size:23px}
+  .banner__sub{font-size:14.5px}
+  .banner__pct{font-size:88px;right:-4px;top:auto;bottom:4px;transform:none;opacity:.1;letter-spacing:-4px}
+  .banner__legal{position:static;display:block;margin-top:16px;opacity:.35}
+  .tline__row{gap:10px 20px}
+  .tline__item{font-size:13px}
+  .catalog__title{font-size:23px}
+  .catalog__sub{font-size:13.5px}
+  .picker__col{padding:26px 20px}
+  .picker__title{font-size:20px}
+  .picker__input{min-width:0;width:100%}
+  .picker__expert{display:none}
   .prod{flex-basis:198px}
   .prods__head .sec-title{font-size:20px}
   .catalog__title{font-size:24px}
@@ -558,7 +563,7 @@ select.lead__input{appearance:none;-webkit-appearance:none;background-image:url(
     <div class="drawer" id="drawer">
       <nav class="drawer__in" aria-label="Мобильное меню">
       <a class="drawer__link" href="#catalog">Каталог запчастей</a>
-      <a class="drawer__link" href="#hero">Подбор по модели</a>
+      <a class="drawer__link" href="#picker">Подбор по модели</a>
       <a class="drawer__link" href="#master">Мастер на выезд</a>
       <a class="drawer__link" href="https://2gis.ru/magnitogorsk/search/%D0%B4%D0%B5%D1%82%D0%B0%D0%BB%D1%8C%D0%BA%D0%B8%D0%BD/firm/70000001039979646/58.98017%2C53.411745?m=58.980042%2C53.407305%2F11" target="_blank" rel="noopener">Мы в 2ГИС</a>
       <a class="drawer__link" href="https://vk.ru/mrdetalkin" target="_blank" rel="noopener">ВКонтакте</a>
@@ -585,63 +590,35 @@ select.lead__input{appearance:none;-webkit-appearance:none;background-image:url(
 </div>
 
 <main>
-  <!-- ══════════ ГЕРОЙ ══════════ -->
-  <section class="hero" id="hero">
-    <div class="container hero__grid">
-      <div class="hero__main">
-        <h1 class="hero__h1">Запчасти для бытовой техники <span>с доставкой по России</span></h1>
-        <p class="hero__lead">100 000+ артикулов на складе. Назовите модель техники — покажем только те детали, которые к ней подходят, и максимум 2–3 проверенных аналога.</p>
-        <form class="hero__pick" onsubmit="return false">
-          <label class="hero__picklabel" for="heroModel">Марка и модель техники</label>
-          <div class="hero__pickrow">
-            <input class="hero__input" id="heroModel" type="text" placeholder="Например, Bosch WLG20265OE" autocomplete="off">
-            <button class="btn-red" type="submit">Подобрать деталь</button>
-          </div>
-          <p class="hero__hint">Модель указана на шильдике: рама дверцы стиральной машины, стенка внутри холодильника или задняя панель прибора. Не нашли — <a class="hero__hintlink" href="#lead">попросите эксперта подобрать</a>.</p>
-        </form>
-        <ul class="hero__facts">
-          <li><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg>Оригинал и проверенные аналоги</li>
-          <li><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg>Возврат 14 дней</li>
-          <li><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg>Подбор бесплатный</li>
-        </ul>
-      </div>
-      <aside class="hero__promo">
-        <span class="hero__pct" aria-hidden="true">20%</span>
+  <!-- ══════════ ПРОМО-БАННЕР ══════════ -->
+  <section class="banner" aria-label="Акция">
+    <div class="container">
+      <div class="banner__card">
+        <span class="banner__pct" aria-hidden="true">20%</span>
         <span class="slide__kicker slide__kicker--sale">Акция до 31 августа</span>
-        <h2 class="hero__ptitle">Комплект ТО стиралки <b>дешевле на 20%</b></h2>
-        <p class="hero__psub">Ремень, подшипники и сальник — всё для планового ремонта одним набором</p>
-        <a class="hero__pcta" href="#prods">Собрать комплект</a>
-        <p class="hero__plegal">Реклама. ООО «Деталькин», ИНН 7712345678</p>
-      </aside>
+        <h2 class="banner__title">Комплект ТО стиральной машины <b>дешевле на 20%</b></h2>
+        <p class="banner__sub">Ремень, подшипники и сальник — всё для планового ремонта одним набором</p>
+        <a class="banner__cta" href="#prods">Собрать комплект</a>
+        <span class="banner__legal">Реклама. ООО «Деталькин», ИНН 7712345678</span>
+      </div>
     </div>
   </section>
 
-  <!-- ══════════ ПРЕИМУЩЕСТВА ══════════ -->
-  <section class="usp" aria-label="Условия покупки">
-    <div class="container usp__row">
-      <div class="usp__item">
-        <svg viewBox="0 0 24 24"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="18.5" r="1.8"/><circle cx="17" cy="18.5" r="1.8"/></svg>
-        <div><div class="usp__t">Доставка по России</div><div class="usp__d">Курьер, постамат или пункт выдачи</div></div>
-      </div>
-      <div class="usp__item">
-        <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v4h4"/></svg>
-        <div><div class="usp__t">Возврат 14 дней</div><div class="usp__d">Если деталь не подошла</div></div>
-      </div>
-      <div class="usp__item">
-        <svg viewBox="0 0 24 24"><path d="M12 3l7.5 3v6c0 4.4-3 8.3-7.5 9.5C7.5 20.3 4.5 16.4 4.5 12V6Z"/><path d="m9 12 2 2 4-4.5"/></svg>
-        <div><div class="usp__t">Гарантия 12 месяцев</div><div class="usp__d">На оригинал и аналоги</div></div>
-      </div>
-      <div class="usp__item">
-        <svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19"/></svg>
-        <div><div class="usp__t">Оплата при получении</div><div class="usp__d">Картой, СБП или наличными</div></div>
-      </div>
+  <!-- ══════════ УСЛОВИЯ ══════════ -->
+  <section class="tline" aria-label="Условия покупки">
+    <div class="container tline__row">
+      <span class="tline__item"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg>Доставка по всей России</span>
+      <span class="tline__item"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg>Возврат 14 дней</span>
+      <span class="tline__item"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg>Гарантия 12 месяцев</span>
+      <span class="tline__item"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg>Оплата при получении</span>
     </div>
   </section>
 
   <!-- ══════════ КАТАЛОГ ══════════ -->
   <section class="catalog" id="catalog">
     <div class="container">
-      <h1 class="catalog__title">Запчасти для любой бытовой техники</h1>
+      <h1 class="catalog__title">Запчасти для бытовой техники в магазине «Деталькин»</h1>
+      <p class="catalog__sub">100 000+ артикулов на складе · подбор по модели техники · доставка по всей России</p>
       <div class="tiles">
 
         <!-- Стиральные машины: ремень + подшипник + сальник -->
@@ -800,6 +777,41 @@ select.lead__input{appearance:none;-webkit-appearance:none;background-image:url(
     </div>
   </section>
 
+
+
+  <!-- ══════════ ПОДБОР ══════════ -->
+  <section class="picker" id="picker">
+    <div class="container picker__grid">
+      <div class="picker__col picker__col--dark">
+        <h2 class="picker__title">Найти запчасть по модели техники</h2>
+        <p class="picker__sub">Самостоятельный подбор — покажем только совместимые детали</p>
+        <form class="picker__form" onsubmit="return false">
+          <input class="picker__input" type="text" placeholder="Например, Bosch WLG20265OE" aria-label="Марка и модель техники">
+          <button class="btn-red" type="submit">Найти</button>
+        </form>
+        <p class="picker__hint">Модель указана на шильдике: рама дверцы стиральной машины, стенка внутри холодильника или задняя панель прибора</p>
+      </div>
+      <div class="picker__col picker__col--light">
+        <div class="picker__body">
+          <h2 class="picker__title">Подберём за вас</h2>
+          <p class="picker__sub">Пришлите модель или фото детали — эксперт ответит за 15 минут</p>
+          <a class="btn-ink" href="#lead">Написать эксперту</a>
+        </div>
+        <div class="picker__expert" aria-hidden="true">
+          <svg viewBox="0 0 150 170">
+            <circle cx="75" cy="52" r="34" fill="#F1D8C4"/>
+            <path d="M41 50c0-22 15-34 34-34s34 12 34 34c0 3-1 5-2 5-2-14-13-19-32-19s-30 5-32 19c-1 0-2-2-2-5Z" fill="#3A2E28"/>
+            <circle cx="62" cy="54" r="3.2" fill="#2B2B2B"/><circle cx="88" cy="54" r="3.2" fill="#2B2B2B"/>
+            <path d="M66 68c3 3 15 3 18 0" stroke="#2B2B2B" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <path d="M22 170c0-32 24-48 53-48s53 16 53 48" fill="#E31E24"/>
+            <path d="M53 126c6-4 15-6 22-6s16 2 22 6l-8 14H61l-8-14Z" fill="#fff"/>
+            <circle cx="75" cy="150" r="11" fill="#fff"/>
+            <text x="75" y="156" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="#E31E24" text-anchor="middle">Д</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ══════════ ХИТЫ ПРОДАЖ ══════════ -->
   <section class="prods" id="prods">
@@ -1173,7 +1185,7 @@ select.lead__input{appearance:none;-webkit-appearance:none;background-image:url(
               </select>
               <input class="lead__input" id="leadModel" type="text" placeholder="Bosch WLG20265OE">
             </div>
-            <p class="lead__hint">Модель с шильдика гарантирует точность подбора. <a href="#hero">Где найти шильдик</a></p>
+            <p class="lead__hint">Модель с шильдика гарантирует точность подбора. <a href="#picker">Где найти шильдик</a></p>
           </div>
           <div class="lead__actions">
             <button class="btn-red lead__submit" type="submit">Отправить заявку</button>
@@ -1218,7 +1230,7 @@ select.lead__input{appearance:none;-webkit-appearance:none;background-image:url(
           <li><a href="#">Доставка и оплата</a></li>
           <li><a href="#">Возврат 14 дней</a></li>
           <li><a href="#">Гарантия</a></li>
-          <li><a href="#hero">Как подобрать деталь</a></li>
+          <li><a href="#picker">Как подобрать деталь</a></li>
           <li><a href="#master">Мастер на выезд</a></li>
           <li><a href="#lead">Заявка на подбор</a></li>
         </ul>
@@ -1419,6 +1431,9 @@ select.lead__input{appearance:none;-webkit-appearance:none;background-image:url(
 
 /* ── Чат-виджет ── */
 (function(){
+  // приветствие само уходит, чтобы не закрывать контент
+  var hi = document.getElementById('chatHello');
+  setTimeout(function(){ hi.classList.add('is-hidden'); }, 6000);
   var btn = document.getElementById('chatBtn');
   var panel = document.getElementById('chatPanel');
   var hello = document.getElementById('chatHello');
