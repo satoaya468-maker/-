@@ -49,8 +49,8 @@ section[id],div[id]{scroll-margin-top:calc(var(--headh, 0px) + 18px)}
 .sec-title{font-family:var(--font-head);font-weight:800;font-size:28px;letter-spacing:-.4px;text-align:center;margin-bottom:18px}
 
 /* ─── ШАПКА: плавающая карточка ─── */
-.headwrap{position:sticky;top:0;z-index:50;background:#fff;padding:10px 0 8px}
-.headcard{--cardpad:22px;position:relative;z-index:0;background:var(--red);color:#fff;border-radius:22px;padding:0 var(--cardpad);box-shadow:0 8px 24px rgba(163,16,21,.18)}
+.headwrap{position:sticky;top:0;z-index:50;background:#fff;padding:0 0 8px}
+.headcard{--cardpad:22px;position:relative;z-index:0;background:var(--red);color:#fff;border-radius:0 0 22px 22px;padding:0 var(--cardpad);box-shadow:0 8px 24px rgba(163,16,21,.18)}
 
 /* верхняя строка внутри карточки */
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;font-size:14px;min-height:52px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.22)}
@@ -253,8 +253,8 @@ select.lead__input{appearance:none;-webkit-appearance:none;background-image:url(
 .lead__ok-d{font-size:14.5px;color:var(--gray-60);max-width:420px}
 
 /* ─── ФУТЕР ─── */
-.footer{margin:34px 0 14px}
-.footer__card{background:#1A1A1D;color:#fff;border-radius:22px;padding:0 34px}
+.footer{margin:34px 0 0}
+.footer__card{background:#1A1A1D;color:#fff;border-radius:22px 22px 0 0;padding:0 34px}
 .footer__grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.4fr;gap:32px;padding:44px 0 36px}
 .footer__logo{font-family:var(--font-head);font-weight:800;font-size:24px;letter-spacing:-.4px}
 .footer__about{margin-top:10px;font-size:13.5px;color:#9A9AA0;max-width:280px}
@@ -278,7 +278,7 @@ select.lead__input{appearance:none;-webkit-appearance:none;background-image:url(
 .pbadge__mc i:first-child{background:#EB001B}
 .pbadge__mc i:last-child{background:#F79E1B;margin-left:-6px;opacity:.9}
 .pbadge__sbp{width:14px;height:14px;border-radius:3px;background:conic-gradient(from 45deg,#F5B01B 0 25%,#74BF44 0 50%,#199CD8 0 75%,#8434D1 0)}
-.footer__bottom{border-top:1px solid rgba(255,255,255,.09);padding:16px 0 20px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12.5px;color:#77777D}
+.footer__bottom{border-top:1px solid rgba(255,255,255,.09);padding:16px 0 28px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12.5px;color:#77777D}
 .footer__bottom a{color:#9A9AA0;text-decoration:underline;text-underline-offset:3px}
 .footer__bottom a:hover{color:#fff}
 
@@ -397,8 +397,8 @@ select.lead__input{appearance:none;-webkit-appearance:none;background-image:url(
   .topbar__phone{font-size:15px}
   .topbar__soc{width:28px;height:28px}
   .burger{display:flex}
-  .headwrap{position:static;padding:8px 0 6px}
-  .headcard{--cardpad:14px;border-radius:18px}
+  .headwrap{position:static;padding:0 0 6px}
+  .headcard{--cardpad:14px;border-radius:0 0 18px 18px}
   .drawer{border-radius:0 0 18px 18px}
   .header__in{gap:10px;padding:10px 0}
   .catbtn{display:none}
@@ -409,7 +409,7 @@ select.lead__input{appearance:none;-webkit-appearance:none;background-image:url(
   .msearch .search__btn{padding:0 16px}
   .logo__word{font-size:22px}
   .logo__tag{display:none}
-  .footer__card{padding:0 20px;border-radius:18px}
+  .footer__card{padding:0 20px;border-radius:18px 18px 0 0}
   .hero{padding:12px 0 0}
   .hero__main{padding:24px 20px 22px}
   .hero__h1{font-size:25px}
