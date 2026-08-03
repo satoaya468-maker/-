@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .mark { fill: #4E5A47; }
+    @media (prefers-color-scheme: dark) {
+      .mark { fill: #AEBCA0; }
+    }
+  </style>
+  <ellipse class="mark" cx="15.5" cy="26" rx="6.4" ry="7.6" transform="rotate(-18 15.5 26)" />
+  <ellipse class="mark" cx="32" cy="20.5" rx="6.6" ry="7.8" />
+  <ellipse class="mark" cx="48.5" cy="26" rx="6.4" ry="7.6" transform="rotate(18 48.5 26)" />
+  <path
+    class="mark"
+    d="M32 32.5c7.8 0 14.6 5.4 14.6 12.2 0 4.6-3.5 7.3-7.6 7.3-2.7 0-4.9-1.1-7-1.1s-4.3 1.1-7 1.1c-4.1 0-7.6-2.7-7.6-7.3 0-6.8 6.8-12.2 14.6-12.2z"
+  />
+</svg>
