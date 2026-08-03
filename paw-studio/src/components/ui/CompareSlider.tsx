@@ -30,6 +30,7 @@ export function CompareSlider({ photo, caption, className }: CompareSliderProps)
   const [loaded, setLoaded] = useState(false);
 
   const { src, srcSet } = resolvePhoto(photo);
+  const showFallback = failed || src === null;
 
   const apply = useCallback((value: number) => {
     const clamped = Math.min(100, Math.max(0, value));
@@ -56,12 +57,12 @@ export function CompareSlider({ photo, caption, className }: CompareSliderProps)
 
   const onPointerDown = useCallback(
     (event: React.PointerEvent<HTMLDivElement>) => {
-      if (failed) return;
+      if (showFallback) return;
       draggingRef.current = true;
       containerRef.current?.setPointerCapture(event.pointerId);
       apply(positionFromEvent(event.clientX));
     },
-    [apply, failed, positionFromEvent],
+    [apply, showFallback, positionFromEvent],
   );
 
   const onPointerMove = useCallback(
@@ -102,7 +103,7 @@ export function CompareSlider({ photo, caption, className }: CompareSliderProps)
         onPointerCancel={endDrag}
         className="relative aspect-[4/5] cursor-ew-resize touch-pan-y overflow-hidden rounded-media bg-[linear-gradient(165deg,#F3F1EA_0%,#E9EBE0_100%)] select-none"
       >
-        {failed ? (
+        {showFallback ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
             <PawMark className="w-9 text-sage-300" />
             <span className="text-caption max-w-[26ch] text-muted">{photo.alt}</span>

@@ -20,6 +20,7 @@ interface SmartImageProps {
 export function SmartImage({ photo, className, imgClassName, sizes, priority }: SmartImageProps) {
   const [state, setState] = useState<'loading' | 'ok' | 'error'>('loading');
   const { src, srcSet } = resolvePhoto(photo);
+  const showFallback = state === 'error' || src === null;
 
   return (
     <div
@@ -28,7 +29,7 @@ export function SmartImage({ photo, className, imgClassName, sizes, priority }: 
         className,
       )}
     >
-      {state !== 'error' && (
+      {!showFallback && (
         <img
           src={src}
           srcSet={srcSet}
@@ -48,7 +49,7 @@ export function SmartImage({ photo, className, imgClassName, sizes, priority }: 
           )}
         />
       )}
-      {state === 'error' && (
+      {showFallback && (
         <div
           role="img"
           aria-label={photo.alt}

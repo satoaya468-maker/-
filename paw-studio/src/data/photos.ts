@@ -53,14 +53,19 @@ function remoteUrl(photo: PhotoSlot, width: number): string {
 }
 
 export interface ResolvedPhoto {
-  src: string;
+  /** null — источника нет, компонент сразу показывает фолбэк. */
+  src: string | null;
   srcSet?: string;
   isLocal: boolean;
 }
 
+/** В однофайловом превью внешние запросы запрещены политикой безопасности. */
+const remoteBlocked = import.meta.env.VITE_NO_REMOTE_IMAGES === '1';
+
 export function resolvePhoto(photo: PhotoSlot): ResolvedPhoto {
   const local = localUrlFor(photo.key);
   if (local) return { src: local, isLocal: true };
+  if (remoteBlocked) return { src: null, isLocal: false };
   const src = remoteUrl(photo, photo.width);
   const src2x = remoteUrl(photo, Math.min(photo.width * 2, 2400));
   return { src, srcSet: `${src} 1x, ${src2x} 2x`, isLocal: false };
