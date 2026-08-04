@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" fill="none"
+     stroke-linecap="round" stroke-linejoin="round" role="img"
+     aria-label="Телевизор">
+  <rect x="38" y="34" width="244" height="150" rx="9" fill="#fff" stroke="#0A1628" stroke-width="2.6"/>
+  <rect x="51" y="47" width="218" height="112" rx="4" fill="#F2F6FD" stroke="#C3C9D4" stroke-width="1.4"/>
+  <path d="M63 151h194" stroke="#0066FF" stroke-width="3.4"/>
+  <g stroke="#0066FF" stroke-width="1.6" opacity=".55">
+    <path d="M88 151v-13M124 151v-19M160 151v-13M196 151v-19M232 151v-13"/>
+  </g>
+  <path d="M143 171h34" stroke="#C3C9D4" stroke-width="2.2"/>
+  <path d="M160 184v20" stroke="#0A1628" stroke-width="2.6"/>
+  <path d="M112 206h96" stroke="#0A1628" stroke-width="2.6"/>
+  <g stroke="#0A1628" stroke-width="1.6" opacity=".3">
+    <path d="M51 71h218M51 95h218M51 119h218"/>
+  </g>
+</svg>

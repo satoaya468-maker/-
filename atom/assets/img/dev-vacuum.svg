@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" fill="none"
+     stroke-linecap="round" stroke-linejoin="round" role="img"
+     aria-label="Пылесос">
+  <path d="M46 200h132a34 34 0 0 0 34-34v-24a34 34 0 0 0-34-34H80a34 34 0 0 0-34 34v58Z"
+        fill="#fff" stroke="#0A1628" stroke-width="2.6"/>
+  <rect x="70" y="132" width="60" height="40" rx="6" fill="#F2F6FD" stroke="#C3C9D4" stroke-width="1.6"/>
+  <circle cx="176" cy="152" r="18" fill="#F2F6FD" stroke="#C3C9D4" stroke-width="1.6"/>
+  <circle cx="176" cy="152" r="6" fill="#C3C9D4"/>
+  <circle cx="80" cy="200" r="15" fill="#fff" stroke="#0A1628" stroke-width="2.6"/>
+  <circle cx="170" cy="200" r="15" fill="#fff" stroke="#0A1628" stroke-width="2.6"/>
+  <path d="M212 136c34-8 44-34 32-52-9-13-30-14-40-2" stroke="#0066FF" stroke-width="3"/>
+  <path d="M204 82 236 60" stroke="#0A1628" stroke-width="2.6"/>
+  <path d="m236 60 22 8" stroke="#0A1628" stroke-width="2.6"/>
+</svg>

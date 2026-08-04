@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" fill="none"
+     stroke-linecap="round" stroke-linejoin="round" role="img"
+     aria-label="Плата">
+  <rect x="34" y="40" width="252" height="160" rx="8" fill="#F2F6FD" stroke="#0A1628" stroke-width="2.6"/>
+  <rect x="120" y="94" width="80" height="60" rx="5" fill="#fff" stroke="#0A1628" stroke-width="2.4"/>
+  <g stroke="#0A1628" stroke-width="2" opacity=".75">
+    <path d="M134 94V80M154 94V80M174 94V80M194 94V80M134 154v14M154 154v14M174 154v14M194 154v14"/>
+    <path d="M120 108h-14M120 126h-14M120 144h-14M200 108h14M200 126h14M200 144h14"/>
+  </g>
+  <g stroke="#0066FF" stroke-width="2.2">
+    <path d="M62 64h44v26h-24"/>
+    <path d="M258 176h-46v-28h26"/>
+    <path d="M62 176h34v-22"/>
+  </g>
+  <circle cx="62" cy="64" r="4.5" fill="#fff" stroke="#0066FF" stroke-width="2.2"/>
+  <circle cx="258" cy="176" r="4.5" fill="#fff" stroke="#0066FF" stroke-width="2.2"/>
+  <rect x="228" y="60" width="34" height="20" rx="3" stroke="#0A1628" stroke-width="2.2"/>
+  <rect x="58" y="112" width="20" height="34" rx="3" stroke="#0A1628" stroke-width="2.2"/>
+</svg>
