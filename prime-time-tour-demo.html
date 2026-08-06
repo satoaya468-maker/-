@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Прайм-Тайм Тур · Подбор путешествий из Магнитогорска</title>
+<meta name="description" content="Личный подбор путешествий из Магнитогорска. Туры, билеты, визы, страхование.">
+<meta name="robots" content="noindex, nofollow">
+
+<!--
+  ============================================================================
+  ДЕМО-СТЕНД ПРОДУКТА "AI-КОНВЕЙЕР ЛИДОГЕНЕРАЦИИ" · Ascend Systems
+  ============================================================================
+  Это демонстрация AI-виджета захвата лидов. Сайт вокруг виджета показывает,
+  как будущий сайт Прайм-Тайм Тур выглядит С УСТАНОВЛЕННЫМ виджетом.
+
+  ---------------------------------------------------------------------------
+  ФОТОГРАФИИ: заменяются в одном месте (блок ниже, атрибуты src у <img>)
+  ---------------------------------------------------------------------------
+  Сервис source.unsplash.com закрыт (больше не отвечает), поэтому фотографии
+  подключены через сервис, который подбирает снимок по ключевому слову.
+
+  Чтобы поставить свои фотографии, замените src у восьми <img data-photo>.
+  Порядок: герой, Турция, ОАЭ, Египет, Таиланд, Мальдивы, Грузия, О Евгении.
+
+  Варианты источника:
+    1. Свои файлы:   src="img/maldives.jpg"
+    2. Unsplash:     src="https://images.unsplash.com/photo-XXXXXXXX?w=1600&q=80"
+
+  Если фотография не загрузится, под ней лежит подготовленная цветовая
+  подложка в палитре сайта: страница никогда не покажет "битую" картинку.
+
+  ---------------------------------------------------------------------------
+  ЗАМЕНИТЬ ПЕРЕД ПОКАЗОМ КЛИЕНТУ:
+    · Цены в карточках направлений отмечены data-placeholder (сейчас условные)
+    · Ссылки ВК и Telegram отмечены data-placeholder (нужны реальные адреса)
+    · Фото в секции "О Евгении" сейчас предметное, ставится личное фото
+  ============================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Inter:wght@300..700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+/* ===========================================================================
+   ТОКЕНЫ
+   Один акцент на весь сайт: хвойно-зелёный. На тёмных поверхностях
+   используется осветлённый тон того же цвета (иначе не проходит по контрасту).
+   =========================================================================== */
+:root{
+  --paper:#FAFAF7;
+  --ink:#0F0F0F;
+  /* Приглушённые тона заданы сплошным цветом, а не прозрачностью:
+     полупрозрачный чёрный на светлом фоне даёт контраст ниже нормы WCAG AA. */
+  --ink-70:#4A4A47;
+  --ink-55:#5E5E5B;
+  --ink-40:#6F6F6C;
+  --hair:rgba(15,15,15,.13);
+  --accent:#1F4A3D;
+  --accent-on-dark:#4E9A7C;
+  --panel:#0F0F0F;
+  --radius-site:0px;      /* витрина: строгая, без скруглений */
+  --radius-ui:12px;       /* слой продукта: виджет */
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none !important}   /* иначе display:flex у .chat-form перекрывает атрибут hidden */
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  font-variant-numeric:tabular-nums lining-nums;   /* обычные табличные цифры */
+}
+img{display:block;max-width:100%}
+a{color:inherit}
+
+.wrap{width:100%;max-width:1280px;margin:0 auto;padding:0 24px}
+@media(max-width:640px){.wrap{padding:0 18px}}
+
+.display{
+  font-family:'Prata',Georgia,'Times New Roman',serif;
+  font-weight:400;
+  line-height:1.1;
+  letter-spacing:-.005em;
+}
+.tnum{font-variant-numeric:tabular-nums lining-nums}
+
+/* ===========================================================================
+   ШАПКА
+   =========================================================================== */
+.site-head{
+  position:sticky;top:0;z-index:40;
+  height:68px;display:flex;align-items:center;
+  background:var(--paper);          /* сплошной фон, без стеклянного размытия */
+  border-bottom:1px solid var(--hair);
+}
+.head-row{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.wordmark{font-family:'Prata',serif;font-size:19px;letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
+.head-nav{display:flex;gap:30px}
+.head-nav a{font-size:14px;color:var(--ink-70);text-decoration:none;transition:color .25s var(--ease)}
+.head-nav a:hover{color:var(--ink)}
+.head-tel{font-size:14px;text-decoration:none;white-space:nowrap;border-bottom:1px solid var(--hair);padding-bottom:2px;transition:border-color .25s var(--ease)}
+.head-tel:hover{border-color:var(--accent)}
+@media(max-width:900px){.head-nav{display:none}}
+@media(max-width:520px){.head-tel{display:none}}
+
+/* ===========================================================================
+   ГЕРОЙ
+   =========================================================================== */
+.hero{position:relative;min-height:92dvh;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink)}
+/* Специфичность выше, чем у .photo, иначе контейнер получает position:relative
+   и схлопывается в нулевую высоту вместе с фотографией героя. */
+.hero .hero-media{position:absolute;inset:0}
+.hero .hero-media img{width:100%;height:100%;object-fit:cover}
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top,rgba(10,10,10,.80) 0%,rgba(10,10,10,.34) 34%,rgba(10,10,10,0) 62%);
+}
+.hero-copy{position:relative;z-index:2;width:100%;padding:0 0 clamp(48px,7vw,96px)}
+.hero-copy h1{
+  margin:0;color:#fff;max-width:32ch;
+  font-size:clamp(1.62rem,3.9vw,3.5rem);
+  text-shadow:0 2px 22px rgba(0,0,0,.34);
+}
+.hero-copy h1 span{display:block}
+/* Подложка героя на случай, если фотография не загрузилась:
+   рассветный градиент от тёплого песка к хвойной тени, а не чёрный прямоугольник. */
+.hero .photo-fallback{
+  background:linear-gradient(180deg,#A8845C 0%,#7C7A5F 26%,#4A6553 52%,#26443A 76%,#16211D 100%);
+}
+
+/* ===========================================================================
+   ОБЩЕЕ ДЛЯ СЕКЦИЙ
+   =========================================================================== */
+.section{padding:clamp(72px,10vw,140px) 0}
+.section-head{max-width:52ch;margin-bottom:clamp(32px,4vw,52px)}
+.section-head h2{margin:0;font-size:clamp(1.7rem,3.3vw,2.85rem)}
+.section-head p{margin:14px 0 0;color:var(--ink-55);font-size:1rem;max-width:46ch}
+
+/* ===========================================================================
+   ФОТО-БЛОК: подложка + снимок сверху.
+   Если снимок не загрузился, он удаляется и остаётся цветовая подложка.
+   =========================================================================== */
+.photo{position:relative;overflow:hidden;background:var(--ink);margin:0}
+.photo-fallback{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(140deg,var(--ph-a) 0%,var(--ph-b) 100%),
+    var(--ph-a);
+}
+.photo-fallback::after{
+  content:"";position:absolute;inset:0;opacity:.35;
+  background:repeating-linear-gradient(115deg,rgba(255,255,255,.05) 0 1px,transparent 1px 7px);
+}
+.photo>img{position:relative;width:100%;height:100%;object-fit:cover}
+
+/* --- сетка направлений: редакционный ритм, разная ширина и высота --- */
+.dest-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.dest{position:relative;text-decoration:none;overflow:hidden;background:var(--ink)}
+.dest>img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.dest:hover>img,.dest:focus-visible>img{transform:scale(1.045)}
+.dest::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top,rgba(10,10,10,.74) 0%,rgba(10,10,10,.20) 42%,rgba(10,10,10,0) 70%);
+  transition:opacity .5s var(--ease);
+}
+.dest:hover::after{opacity:.88}
+.dest-label{position:absolute;left:0;bottom:0;z-index:2;padding:22px 24px;color:#fff}
+.dest-label .n{font-family:'Prata',serif;font-size:clamp(1.2rem,1.9vw,1.7rem);line-height:1.15;display:block}
+.dest-label .p{display:block;margin-top:7px;font-size:13px;color:rgba(255,255,255,.82)}
+.dest:focus-visible{outline:2px solid var(--accent-on-dark);outline-offset:3px}
+
+.r1{height:clamp(250px,32vw,420px)}
+.r2{height:clamp(230px,29vw,370px)}
+.r3{height:clamp(270px,36vw,470px)}
+.c7{grid-column:span 7}.c5{grid-column:span 5}
+.c8{grid-column:span 8}.c4{grid-column:span 4}
+@media(max-width:860px){
+  .dest-grid{gap:14px}
+  .c7,.c5,.c8,.c4{grid-column:span 12}
+  .r1,.r2,.r3{height:clamp(230px,58vw,330px)}
+}
+
+/* ===========================================================================
+   УСЛУГИ: заголовок слева, список справа. Без иконок.
+   =========================================================================== */
+.svc-layout{display:grid;grid-template-columns:1fr 1.55fr;gap:clamp(32px,6vw,90px);align-items:start}
+.svc-list{margin:0;padding:0;list-style:none}
+.svc-list li{padding:26px 0;border-top:1px solid var(--hair)}
+.svc-list li:last-child{border-bottom:1px solid var(--hair)}
+.svc-list h3{margin:0;font-size:1.16rem;font-weight:500;letter-spacing:-.005em}
+.svc-list p{margin:7px 0 0;color:var(--ink-55);font-size:.945rem;max-width:52ch}
+@media(max-width:860px){.svc-layout{grid-template-columns:1fr;gap:28px}}
+
+/* ===========================================================================
+   О ЕВГЕНИИ
+   =========================================================================== */
+.about-layout{display:grid;grid-template-columns:.85fr 1fr;gap:clamp(30px,6vw,80px);align-items:center}
+.about-photo{height:clamp(320px,42vw,520px)}
+.about-text h2{margin:0 0 20px;font-size:clamp(1.7rem,3.3vw,2.6rem)}
+.about-text p{margin:0 0 16px;color:var(--ink-70);max-width:48ch}
+.about-text p:last-child{margin-bottom:0}
+@media(max-width:860px){
+  .about-layout{grid-template-columns:1fr}
+  .about-photo{height:clamp(260px,62vw,360px)}
+}
+
+/* ===========================================================================
+   КОНТАКТЫ
+   =========================================================================== */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,70px);align-items:end}
+.tel-big{
+  font-family:'Prata',serif;font-size:clamp(1.9rem,4.2vw,3.2rem);
+  text-decoration:none;display:inline-block;line-height:1.12;
+  border-bottom:1px solid var(--hair);padding-bottom:6px;
+  transition:border-color .3s var(--ease);
+}
+.tel-big:hover{border-color:var(--accent)}
+.contact-links{display:flex;flex-direction:column;gap:14px}
+.contact-links a{
+  font-size:1rem;text-decoration:none;color:var(--ink-70);width:fit-content;
+  border-bottom:1px solid transparent;padding-bottom:2px;
+  transition:color .25s var(--ease),border-color .25s var(--ease);
+}
+.contact-links a:hover{color:var(--ink);border-color:var(--accent)}
+@media(max-width:760px){.contact-grid{grid-template-columns:1fr;gap:34px;align-items:start}}
+
+/* ===========================================================================
+   ФУТЕР
+   =========================================================================== */
+.site-foot{border-top:1px solid var(--hair);padding:34px 0 40px}
+.foot-row{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.foot-row p{margin:0;font-size:13px;color:var(--ink-40)}
+.foot-row .sig{color:var(--ink-55)}
+
+/* ===========================================================================
+   ВИДЖЕТ · ПЛАШКА-ЗАПУСК
+   Размер визитки, тёмная, с индикатором "онлайн".
+   =========================================================================== */
+.launcher{
+  position:fixed;right:24px;bottom:24px;z-index:60;
+  display:flex;align-items:center;gap:13px;
+  padding:14px 20px 15px;
+  background:var(--panel);color:#fff;border:0;
+  border-radius:var(--radius-ui);
+  text-align:left;cursor:pointer;
+  font-family:inherit;
+  box-shadow:0 4px 14px rgba(15,15,15,.16),0 18px 44px rgba(15,15,15,.20);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),opacity .22s var(--ease);
+}
+.launcher:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(15,15,15,.20),0 26px 60px rgba(15,15,15,.28)}
+.launcher:active{transform:translateY(-1px)}
+.launcher:focus-visible{outline:2px solid var(--accent-on-dark);outline-offset:3px}
+.launcher-dot{width:8px;height:8px;border-radius:50%;background:var(--accent-on-dark);flex:none;position:relative}
+.launcher-dot::after{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  background:var(--accent-on-dark);
+}
+.launcher-txt{display:block}
+.launcher-txt .l1{display:block;font-size:11.5px;line-height:1.3;color:rgba(255,255,255,.62);letter-spacing:.005em}
+.launcher-txt .l2{display:block;font-size:15px;line-height:1.35;font-weight:500;margin-top:2px}
+.launcher.is-hidden{opacity:0;transform:translateY(8px) scale(.94);pointer-events:none}
+@media(max-width:560px){
+  .launcher{right:14px;bottom:14px;left:14px;justify-content:flex-start}
+}
+
+/* ===========================================================================
+   ВИДЖЕТ · ОКНО ЧАТА
+   =========================================================================== */
+.chat{
+  position:fixed;right:24px;bottom:24px;z-index:61;
+  width:400px;height:600px;max-height:calc(100dvh - 48px);
+  display:flex;flex-direction:column;overflow:hidden;
+  background:#0F0F0F;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(15,15,15,.22),0 34px 80px rgba(15,15,15,.34);
+  opacity:0;transform:translateY(10px) scale(.94);transform-origin:100% 100%;
+  pointer-events:none;
+  transition:opacity .3s var(--ease),transform .42s var(--ease);
+}
+.chat.is-open{opacity:1;transform:none;pointer-events:auto}
+/* матовая поверхность: мягкий верхний блик + едва заметное зерно */
+.chat::before{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;z-index:0;
+  background:
+    radial-gradient(120% 62% at 50% 0%,rgba(255,255,255,.055) 0%,transparent 62%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='.055'/></svg>");
+}
+.chat>*{position:relative;z-index:1}
+
+.chat-head{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 16px 14px 20px;
+  border-bottom:1px solid rgba(255,255,255,.09);
+}
+.chat-head .who{flex:1;min-width:0}
+.chat-head .title{font-size:13.5px;font-weight:500;color:#fff;letter-spacing:.002em}
+.chat-head .status{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(255,255,255,.55);margin-top:3px}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--accent-on-dark);flex:none}
+.chat-close{
+  width:30px;height:30px;flex:none;display:grid;place-items:center;
+  background:none;border:0;border-radius:8px;cursor:pointer;
+  color:rgba(255,255,255,.5);font-size:19px;line-height:1;
+  transition:color .22s var(--ease),background .22s var(--ease);
+}
+.chat-close:hover{color:#fff;background:rgba(255,255,255,.08)}
+.chat-close:focus-visible{outline:2px solid var(--accent-on-dark);outline-offset:2px}
+
+.chat-log{
+  flex:1;overflow-y:auto;overscroll-behavior:contain;
+  padding:20px;display:flex;flex-direction:column;gap:12px;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.18) transparent;
+}
+.chat-log::-webkit-scrollbar{width:6px}
+.chat-log::-webkit-scrollbar-thumb{background:rgba(255,255,255,.16);border-radius:3px}
+
+.msg{max-width:84%;padding:11px 14px;font-size:14.2px;line-height:1.5;border-radius:12px}
+.msg.bot{align-self:flex-start;background:rgba(255,255,255,.075);color:rgba(255,255,255,.93);border-top-left-radius:4px}
+.msg.user{align-self:flex-end;background:#E9E9E6;color:#0F0F0F;border-top-right-radius:4px}
+.msg-in{animation:msgIn .42s var(--ease) both}
+@keyframes msgIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+.typing{align-self:flex-start;display:flex;gap:4px;padding:14px;background:rgba(255,255,255,.075);border-radius:12px;border-top-left-radius:4px}
+.typing i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);animation:blink 1.35s infinite}
+.typing i:nth-child(2){animation-delay:.18s}
+.typing i:nth-child(3){animation-delay:.36s}
+@keyframes blink{0%,60%,100%{opacity:.28;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-self:flex-start;max-width:96%}
+.chip{
+  padding:8px 14px;font-family:inherit;font-size:13px;cursor:pointer;
+  background:transparent;color:rgba(255,255,255,.86);
+  border:1px solid rgba(255,255,255,.24);border-radius:999px;
+  transition:background .22s var(--ease),border-color .22s var(--ease),color .22s var(--ease);
+}
+.chip:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.42);color:#fff}
+.chip:focus-visible{outline:2px solid var(--accent-on-dark);outline-offset:2px}
+
+.chat-foot{border-top:1px solid rgba(255,255,255,.09);padding:12px 12px 12px 18px}
+.chat-form{display:flex;align-items:center;gap:10px}
+.chat-input{
+  flex:1;min-width:0;background:none;border:0;outline:none;
+  font-family:inherit;font-size:14.2px;color:#fff;padding:9px 0;
+}
+.chat-input::placeholder{color:rgba(255,255,255,.5)}
+.chat-send{
+  background:none;border:0;cursor:pointer;font-family:inherit;
+  font-size:13.5px;font-weight:500;color:var(--accent-on-dark);
+  padding:9px 10px;border-radius:8px;
+  transition:color .22s var(--ease),background .22s var(--ease);
+}
+.chat-send:hover:not(:disabled){background:rgba(255,255,255,.07);color:#6FBE9E}
+.chat-send:disabled{color:rgba(255,255,255,.26);cursor:default}
+.chat-send:focus-visible{outline:2px solid var(--accent-on-dark);outline-offset:2px}
+.chat-done{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 6px 4px 0}
+.chat-done span{font-size:13px;color:rgba(255,255,255,.58)}
+.chat-restart{
+  background:none;border:0;cursor:pointer;font-family:inherit;font-size:13px;
+  color:rgba(255,255,255,.7);padding:7px 9px;border-radius:8px;
+  transition:color .22s var(--ease),background .22s var(--ease);
+}
+.chat-restart:hover{color:#fff;background:rgba(255,255,255,.08)}
+
+/* мобильная версия: чат на весь экран */
+@media(max-width:560px){
+  .chat{
+    right:0;bottom:0;left:0;top:0;
+    width:auto;height:auto;max-height:none;
+    border-radius:0;border:0;
+    transform:translateY(14px);transform-origin:50% 100%;
+  }
+  .chat.is-open{transform:none}
+  .chat-head{padding-top:max(16px,env(safe-area-inset-top))}
+  .chat-foot{padding-bottom:max(12px,env(safe-area-inset-bottom))}
+}
+
+/* ===========================================================================
+   УВЕДОМЛЕНИЕ О ЗАХВАТЕ ЛИДА
+   =========================================================================== */
+.toast-zone{position:fixed;top:24px;right:24px;z-index:70;pointer-events:none}
+.toast{
+  position:relative;width:380px;overflow:hidden;
+  display:flex;background:#fff;border-radius:8px;
+  border:1px solid rgba(15,15,15,.07);
+  box-shadow:0 6px 18px rgba(15,15,15,.10),0 20px 52px rgba(15,15,15,.17);
+  opacity:0;transform:translateX(26px);
+  transition:opacity .3s var(--ease),transform .44s var(--ease);
+}
+.toast.is-in{opacity:1;transform:none}
+.toast-bar{width:3px;flex:none;background:var(--accent)}
+.toast-body{padding:15px 18px 14px}
+.toast-top{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--ink-55);letter-spacing:.004em}
+.toast-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
+.toast-brand{font-size:15px;font-weight:600;margin-top:11px;letter-spacing:-.005em}
+.toast-grid{display:grid;grid-template-columns:auto 1fr;gap:5px 16px;margin:10px 0 0}
+.toast-grid dt{font-size:12.5px;color:var(--ink-40)}
+.toast-grid dd{margin:0;font-size:13.5px;color:var(--ink);font-weight:500;overflow-wrap:anywhere}
+.toast-foot{margin-top:13px;padding-top:11px;border-top:1px solid rgba(15,15,15,.08);font-size:11.5px;color:var(--ink-40)}
+.toast-progress{position:absolute;left:3px;right:0;bottom:0;height:1.5px;background:var(--accent);transform-origin:0 50%}
+.toast.is-in .toast-progress{animation:toastRun 8s linear forwards}
+@keyframes toastRun{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+@media(max-width:560px){
+  .toast-zone{top:12px;right:12px;left:12px}
+  .toast{width:auto}
+}
+
+/* ===========================================================================
+   ПОЯВЛЕНИЕ СЕКЦИЙ ПРИ ПРОКРУТКЕ
+   =========================================================================== */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.seen{opacity:1;transform:none}
+
+/* ===========================================================================
+   ДОСТУПНОСТЬ: уважение к prefers-reduced-motion
+   =========================================================================== */
+@media(prefers-reduced-motion:no-preference){
+  .launcher-dot::after{animation:ping 2.4s var(--ease) infinite}
+  @keyframes ping{0%{opacity:.7;transform:scale(1)}70%,100%{opacity:0;transform:scale(3.2)}}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .reveal{opacity:1;transform:none}
+  .toast.is-in .toast-progress{transform:scaleX(0)}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ШАПКА -->
+<header class="site-head">
+  <div class="wrap head-row">
+    <a href="#top" class="wordmark">Прайм-Тайм Тур</a>
+    <nav class="head-nav">
+      <a href="#napravleniya">Направления</a>
+      <a href="#uslugi">Услуги</a>
+      <a href="#o-evgenii">О Евгении</a>
+      <a href="#kontakty">Контакты</a>
+    </nav>
+    <a class="head-tel tnum" href="tel:+79124088171">+7 (912) 408-81-71</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ГЕРОЙ -->
+  <section class="hero">
+    <div class="hero-media photo" style="--ph-a:#2B2622;--ph-b:#5C4635">
+      <div class="photo-fallback"></div>
+      <img data-photo src="https://loremflickr.com/1900/1100/cappadocia,balloons?lock=11"
+           alt="Воздушные шары над долинами Каппадокии на рассвете"
+           fetchpriority="high" onerror="this.remove()">
+    </div>
+    <div class="hero-copy">
+      <div class="wrap">
+        <h1 class="display">
+          <span>Личный подбор путешествий.</span>
+          <span>С 2019 года из Магнитогорска</span>
+          <span>в 87 стран.</span>
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- НАПРАВЛЕНИЯ -->
+  <section class="section" id="napravleniya">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 class="display">Направления</h2>
+        <p>Куда я подбираю поездки чаще всего.</p>
+      </div>
+
+      <div class="dest-grid reveal">
+        <!-- цены условные, заменяются на реальные -->
+        <a class="dest r1 c7 photo" href="#kontakty" style="--ph-a:#1F4A3D;--ph-b:#3A7361">
+          <div class="photo-fallback"></div>
+          <img data-photo src="https://loremflickr.com/1200/760/antalya,turkey,coast?lock=21"
+               alt="Побережье Анталии, Турция" loading="lazy" onerror="this.remove()">
+          <span class="dest-label"><span class="n">Турция, Анталия</span><span class="p tnum" data-placeholder>от 65 000 ₽</span></span>
+        </a>
+
+        <a class="dest r1 c5 photo" href="#kontakty" style="--ph-a:#2A2521;--ph-b:#6B5637">
+          <div class="photo-fallback"></div>
+          <img data-photo src="https://loremflickr.com/900/760/dubai,skyline?lock=22"
+               alt="Небоскрёбы Дубая в вечернем свете" loading="lazy" onerror="this.remove()">
+          <span class="dest-label"><span class="n">ОАЭ, Дубай</span><span class="p tnum" data-placeholder>от 98 000 ₽</span></span>
+        </a>
+
+        <a class="dest r2 c5 photo" href="#kontakty" style="--ph-a:#1E4550;--ph-b:#2F7080">
+          <div class="photo-fallback"></div>
+          <img data-photo src="https://loremflickr.com/900/700/hurghada,red-sea?lock=23"
+               alt="Красное море у побережья Хургады, Египет" loading="lazy" onerror="this.remove()">
+          <span class="dest-label"><span class="n">Египет, Хургада</span><span class="p tnum" data-placeholder>от 72 000 ₽</span></span>
+        </a>
+
+        <a class="dest r2 c7 photo" href="#kontakty" style="--ph-a:#1D3A34;--ph-b:#37695B">
+          <div class="photo-fallback"></div>
+          <img data-photo src="https://loremflickr.com/1200/700/phuket,thailand,island?lock=24"
+               alt="Скалистые острова Андаманского моря у Пхукета" loading="lazy" onerror="this.remove()">
+          <span class="dest-label"><span class="n">Таиланд, Пхукет</span><span class="p tnum" data-placeholder>от 115 000 ₽</span></span>
+        </a>
+
+        <a class="dest r3 c8 photo" href="#kontakty" style="--ph-a:#15505C;--ph-b:#2E8A96">
+          <div class="photo-fallback"></div>
+          <img data-photo src="https://loremflickr.com/1300/860/maldives,atoll?lock=25"
+               alt="Атолл и бунгало на воде, Мальдивы" loading="lazy" onerror="this.remove()">
+          <span class="dest-label"><span class="n">Мальдивы</span><span class="p tnum" data-placeholder>от 210 000 ₽</span></span>
+        </a>
+
+        <a class="dest r3 c4 photo" href="#kontakty" style="--ph-a:#263237;--ph-b:#4A626C">
+          <div class="photo-fallback"></div>
+          <img data-photo src="https://loremflickr.com/700/900/batumi,georgia?lock=26"
+               alt="Набережная Батуми, Грузия" loading="lazy" onerror="this.remove()">
+          <span class="dest-label"><span class="n">Грузия, Батуми</span><span class="p tnum" data-placeholder>от 48 000 ₽</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- УСЛУГИ -->
+  <section class="section" id="uslugi" style="padding-top:0">
+    <div class="wrap svc-layout reveal">
+      <div class="section-head" style="margin-bottom:0">
+        <h2 class="display">Что мы делаем</h2>
+      </div>
+      <ul class="svc-list">
+        <li>
+          <h3>Индивидуальный подбор туров</h3>
+          <p>Отель и даты под ваш бюджет и состав семьи, а не первая строчка в выдаче агрегатора.</p>
+        </li>
+        <li>
+          <h3>Авиа и ж/д билеты</h3>
+          <p>Перелёты и поезда, включая стыковки, багаж и возврат при переносе поездки.</p>
+        </li>
+        <li>
+          <h3>Оформление виз</h3>
+          <p>Сбор пакета документов, запись в визовый центр и сопровождение до получения.</p>
+        </li>
+        <li>
+          <h3>Страхование путешественников</h3>
+          <p>Полисы для визы и для отдыха, в том числе с покрытием активного спорта.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- О ЕВГЕНИИ -->
+  <section class="section" id="o-evgenii" style="padding-top:0">
+    <div class="wrap about-layout reveal">
+      <!-- ставится личное фото Евгении -->
+      <div class="about-photo photo" style="--ph-a:#3F3A31;--ph-b:#98876E">
+        <div class="photo-fallback"></div>
+        <img data-photo src="https://loremflickr.com/800/1000/desk,notebook,map?lock=31"
+             alt="Рабочий стол с блокнотом, картой и загранпаспортом" loading="lazy" onerror="this.remove()">
+      </div>
+      <div class="about-text">
+        <h2 class="display">О Евгении</h2>
+        <p>Евгения Ефремова, тревел-эксперт с 7 годами опыта. Работаю из Магнитогорска, на связи круглосуточно.</p>
+        <p>Подбираю поездки лично, без колл-центра и скриптов. Знаю отели, с которыми работаю, и говорю прямо, если направление не подходит под ваш бюджет или даты.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ -->
+  <section class="section" id="kontakty" style="padding-top:0">
+    <div class="wrap reveal">
+      <div class="section-head"><h2 class="display">Контакты</h2></div>
+      <div class="contact-grid">
+        <div>
+          <a class="tel-big tnum" href="tel:+79124088171">+7 (912) 408-81-71</a>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:primetime.tour@mail.ru">primetime.tour@mail.ru</a>
+          <a href="https://vk.com/primetime_tour" data-placeholder target="_blank" rel="noopener">ВКонтакте</a>
+          <a href="https://t.me/primetime_tour" data-placeholder target="_blank" rel="noopener">Telegram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ФУТЕР -->
+<footer class="site-foot">
+  <div class="wrap foot-row">
+    <p>© 2026 Прайм-Тайм Тур. ИП Ефремова Евгения Васильевна</p>
+    <p class="sig">AI-консьерж на этом сайте: Ascend Systems</p>
+  </div>
+</footer>
+
+<!-- =======================================================================
+     ВИДЖЕТ
+     ======================================================================= -->
+<button class="launcher" id="launcher" type="button" aria-haspopup="dialog" aria-controls="chat">
+  <span class="launcher-dot" aria-hidden="true"></span>
+  <span class="launcher-txt">
+    <span class="l1">Консьерж на связи</span>
+    <span class="l2">Подобрать тур за 60 секунд</span>
+  </span>
+</button>
+
+<section class="chat" id="chat" role="dialog" aria-modal="false" aria-label="Консьерж Прайм-Тайм Тур" aria-hidden="true">
+  <header class="chat-head">
+    <div class="who">
+      <div class="title">Консьерж · Прайм-Тайм Тур</div>
+      <div class="status"><span class="status-dot" aria-hidden="true"></span>онлайн</div>
+    </div>
+    <button class="chat-close" id="chat-close" type="button" aria-label="Свернуть чат">&times;</button>
+  </header>
+
+  <div class="chat-log" id="chat-log" role="log" aria-live="polite"></div>
+
+  <footer class="chat-foot">
+    <form class="chat-form" id="chat-form" autocomplete="off">
+      <input class="chat-input" id="chat-input" type="text" placeholder="Напишите сообщение" aria-label="Сообщение" disabled>
+      <button class="chat-send" id="chat-send" type="submit" disabled>Отправить</button>
+    </form>
+    <div class="chat-done" id="chat-done" hidden>
+      <span>Заявка передана</span>
+      <button class="chat-restart" id="chat-restart" type="button">Начать заново</button>
+    </div>
+  </footer>
+</section>
+
+<div class="toast-zone" id="toast-zone" aria-live="polite" aria-atomic="true"></div>
+
+<script>
+/* ===========================================================================
+   ПОЯВЛЕНИЕ СЕКЦИЙ (IntersectionObserver, без слушателей прокрутки)
+   =========================================================================== */
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(el){ el.classList.add('seen'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('seen'); io.unobserve(e.target); }
+    });
+  },{ threshold:.14, rootMargin:'0px 0px -8% 0px' });
+  els.forEach(function(el){ io.observe(el); });
+})();
+
+/* ===========================================================================
+   ВИДЖЕТ ЗАХВАТА ЛИДА
+   Сценарий: направление -> формат отдыха -> телефон -> захват лида.
+   =========================================================================== */
+(function(){
+  var launcher = document.getElementById('launcher');
+  var chat     = document.getElementById('chat');
+  var closeBtn = document.getElementById('chat-close');
+  var log      = document.getElementById('chat-log');
+  var form     = document.getElementById('chat-form');
+  var input    = document.getElementById('chat-input');
+  var send     = document.getElementById('chat-send');
+  var doneRow  = document.getElementById('chat-done');
+  var restart  = document.getElementById('chat-restart');
+  var zone     = document.getElementById('toast-zone');
+
+  var FORMATS = ['Пляжный','Экскурсионный','Семейный с детьми'];
+
+  var lead    = { destination:'', format:'', phone:'' };
+  var step    = 'idle';          /* idle | destination | format | phone | done */
+  var started = false;
+  var timers  = [];
+
+  function later(fn, ms){ var t = setTimeout(fn, ms); timers.push(t); return t; }
+  function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+  function scrollDown(){ log.scrollTop = log.scrollHeight; }
+
+  function addMessage(text, who){
+    var el = document.createElement('div');
+    el.className = 'msg ' + who + ' msg-in';
+    el.textContent = text;
+    log.appendChild(el);
+    scrollDown();
+    return el;
+  }
+
+  /* Индикатор набора, затем сообщение бота */
+  function botSays(text, delay, after){
+    var dots = document.createElement('div');
+    dots.className = 'typing';
+    dots.setAttribute('aria-label','Консьерж печатает');
+    dots.innerHTML = '<i></i><i></i><i></i>';
+    log.appendChild(dots);
+    scrollDown();
+    later(function(){
+      dots.remove();
+      addMessage(text, 'bot');
+      if(after) after();
+    }, delay);
+  }
+
+  function showChips(options){
+    var row = document.createElement('div');
+    row.className = 'chips';
+    options.forEach(function(label){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip';
+      b.textContent = label;
+      b.addEventListener('click', function(){ row.remove(); submitValue(label); });
+      row.appendChild(b);
+    });
+    log.appendChild(row);
+    scrollDown();
+  }
+
+  function clearChips(){
+    var row = log.querySelector('.chips');
+    if(row) row.remove();
+  }
+
+  function setInput(enabled, placeholder, mode){
+    input.disabled = !enabled;
+    send.disabled  = !enabled || !input.value.trim();
+    input.placeholder = placeholder || '';
+    input.setAttribute('inputmode', mode || 'text');
+    input.type = (mode === 'tel') ? 'tel' : 'text';
+    if(enabled && window.matchMedia('(min-width:561px)').matches) input.focus();
+  }
+
+  /* --- сценарий --- */
+  function askDestination(){
+    step = 'destination';
+    botSays('Здравствуйте. Помогу подобрать направление и зафиксирую индивидуальные условия на первое бронирование. Куда планируете поездку?', 1200, function(){
+      setInput(true, 'Например: Турция');
+    });
+  }
+
+  function askFormat(){
+    step = 'format';
+    botSays('Отлично. Какой формат отдыха ближе: пляжный, экскурсионный или семейный с детьми?', 1400, function(){
+      showChips(FORMATS);
+      setInput(true, 'Выберите или напишите свой вариант');
+    });
+  }
+
+  function askPhone(){
+    step = 'phone';
+    botSays('Готовлю три подборки под ваш запрос. Чтобы отправить точные цены и закрепить условия, оставьте номер телефона, отвечу в WhatsApp в течение 15 минут.', 1600, function(){
+      setInput(true, '+7 (___) ___-__-__', 'tel');
+    });
+  }
+
+  function finish(){
+    step = 'done';
+    setInput(false, '');
+    form.hidden = true;
+    doneRow.hidden = false;
+    /* Ответ бота и уведомление о захвате лида появляются одновременно */
+    botSays('Принято. Отправлю подборку на указанный номер. Хорошего дня.', 1100, showLeadToast);
+  }
+
+  /* --- обработка ответа пользователя --- */
+  function submitValue(raw){
+    var value = String(raw).trim();
+    if(!value) return;
+
+    if(step === 'phone'){
+      var digits = value.replace(/\D/g,'');
+      addMessage(value, 'user');
+      input.value = '';
+      setInput(false, '');
+      if(digits.length < 10){
+        /* состояние ошибки: остаёмся на шаге телефона */
+        later(function(){
+          botSays('Кажется, в номере не хватает цифр. Проверьте, пожалуйста: нужен формат +7 912 408-81-71.', 1000, function(){
+            setInput(true, '+7 (___) ___-__-__', 'tel');
+          });
+        }, 350);
+        return;
+      }
+      lead.phone = value;
+      later(finish, 400);
+      return;
+    }
+
+    clearChips();
+    addMessage(value, 'user');
+    input.value = '';
+    setInput(false, '');
+
+    if(step === 'destination'){
+      lead.destination = value;
+      later(askFormat, 500);
+    } else if(step === 'format'){
+      lead.format = value;
+      later(askPhone, 500);
+    }
+  }
+
+  /* --- уведомление о захвате лида: держится 8 секунд --- */
+  function showLeadToast(){
+    var t = document.createElement('div');
+    t.className = 'toast';
+    t.setAttribute('role','status');
+    t.innerHTML =
+      '<div class="toast-bar"></div>' +
+      '<div class="toast-body">' +
+        '<div class="toast-top"><span class="toast-dot"></span>Ascend Systems · Новый лид</div>' +
+        '<div class="toast-brand">Прайм-Тайм Тур</div>' +
+        '<dl class="toast-grid">' +
+          '<dt>Направление</dt><dd></dd>' +
+          '<dt>Формат</dt><dd></dd>' +
+          '<dt>Телефон</dt><dd class="tnum"></dd>' +
+        '</dl>' +
+        '<div class="toast-foot">Захвачено в CRM · только что</div>' +
+      '</div>' +
+      '<div class="toast-progress"></div>';
+
+    var dd = t.querySelectorAll('.toast-grid dd');
+    dd[0].textContent = lead.destination;
+    dd[1].textContent = lead.format;
+    dd[2].textContent = lead.phone;
+
+    zone.appendChild(t);
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){ t.classList.add('is-in'); });
+    });
+
+    later(function(){
+      t.classList.remove('is-in');
+      later(function(){ t.remove(); }, 400);
+    }, 8000);
+  }
+
+  /* --- открытие и закрытие --- */
+  function openChat(){
+    chat.classList.add('is-open');
+    chat.setAttribute('aria-hidden','false');
+    launcher.classList.add('is-hidden');
+    if(!started){
+      started = true;
+      later(askDestination, 800);   /* первое сообщение через 800 мс */
+    }
+  }
+
+  function closeChat(){
+    chat.classList.remove('is-open');
+    chat.setAttribute('aria-hidden','true');
+    launcher.classList.remove('is-hidden');
+    launcher.focus();
+  }
+
+  function resetChat(){
+    clearTimers();
+    log.innerHTML = '';
+    lead = { destination:'', format:'', phone:'' };
+    input.value = '';
+    form.hidden = false;
+    doneRow.hidden = true;
+    setInput(false, '');
+    started = true;
+    later(askDestination, 500);
+  }
+
+  launcher.addEventListener('click', openChat);
+  closeBtn.addEventListener('click', closeChat);
+  restart.addEventListener('click', resetChat);
+
+  input.addEventListener('input', function(){
+    send.disabled = input.disabled || !input.value.trim();
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    submitValue(input.value);
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && chat.classList.contains('is-open')) closeChat();
+  });
+})();
+</script>
+</body>
+</html>
