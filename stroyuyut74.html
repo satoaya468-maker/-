@@ -33,7 +33,16 @@ tailwind.config = {
 
 <style>
   *, *::before, *::after { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  /* якорные переходы не должны заезжать под фиксированную шапку */
+  section[id], footer[id] { scroll-margin-top: 80px; }
+  /* базовые сбросы дублируют preflight Tailwind — страница не должна
+     разъезжаться и синеть ссылками, если CDN не ответил */
+  body { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, p, figure, blockquote { margin: 0; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+
   body {
     background: #F4F1EA;
     color: #1C1C1B;
@@ -85,6 +94,141 @@ tailwind.config = {
 
   .nav-link { transition: opacity .2s ease; }
   .nav-link:hover { opacity: .55; }
+
+  /* ── Шапка ──────────────────────────────────────────── */
+  #site-head {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+    background: rgba(244,241,234,.95);
+    border-bottom: 1px solid #C9C2B3;
+    transition: background .3s ease, border-color .3s ease, color .3s ease;
+  }
+  /* поверх видео — прозрачная и белая; иначе тёмный текст пропал бы на off-white */
+  #site-head.over-hero {
+    background: transparent;
+    border-bottom-color: transparent;
+    color: #FFFFFF;
+  }
+  #site-head.over-hero a { color: #FFFFFF; }
+  #site-head nav {
+    height: 64px;
+    max-width: 1400px; margin: 0 auto;
+    padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  @media (max-width: 767px) { #site-head nav { padding: 0 24px; } }
+  @media (max-width: 639px) { .nav-sec { display: none; } }
+  #site-head nav > div { display: flex; align-items: center; gap: 32px; }
+  @media (max-width: 767px) { #site-head nav > div { gap: 20px; } }
+
+  /* ── Hero ───────────────────────────────────────────── */
+  #hero {
+    position: relative;
+    /* min-height, а не height: на низких экранах герой дорастает вместо того,
+       чтобы обрезать метку под шапкой */
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    overflow: hidden;
+    background: #1C1C1B;
+  }
+  .hero-media { position: absolute; inset: 0; z-index: 0; }
+  .hero-media video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-scrim {
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      linear-gradient(90deg, rgba(28,28,27,.62) 0%, rgba(28,28,27,.28) 55%, rgba(28,28,27,0) 100%),
+      linear-gradient(180deg, rgba(28,28,27,.50) 0%, rgba(28,28,27,.85) 100%);
+  }
+
+  /* контент и статистика — соседи по флексу, а не наложение:
+     на низких экранах они поджимаются, но никогда не наезжают друг на друга */
+  .hero-inner {
+    position: relative; z-index: 2;
+    flex: 1 1 auto;
+    display: flex; flex-direction: column; justify-content: center;
+    align-items: flex-start;
+    min-height: 0;
+    max-width: 800px;
+    padding-left: 8vw; padding-right: 6vw;
+    padding-top: 84px; padding-bottom: 32px;
+  }
+  .hero-eyebrow {
+    /* .82 вместо .7 — кадр в верхней части светлый, на .7 метка не добирала 4.5:1 */
+    color: #FFFFFF; opacity: .82;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .hero-eyebrow::before {
+    content: ""; width: 40px; height: 1px;
+    background: #4A7A66; flex: none;
+  }
+  .hero-title {
+    color: #FFFFFF;
+    /* размер зависит и от высоты экрана — на ноутбучных 768–900px
+       заголовок в 96px выталкивал бы контент за пределы 100vh */
+    font-size: clamp(44px, min(6.6vw, 9.2vh), 96px);
+    line-height: 1.05;
+    margin-top: 26px;
+  }
+  /* акцент держим одним куском — иначе «под» и «ваш» уезжают на разные строки */
+  .hero-em { font-style: italic; font-weight: 400; color: #7FB89A; white-space: nowrap; }
+  .hero-sub {
+    color: #FFFFFF; opacity: .85;
+    font-size: clamp(17px, 1.5vw, 22px);
+    line-height: 1.5;
+    max-width: 44ch;
+    margin-top: 28px;
+    text-wrap: pretty;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+  .btn-primary, .btn-ghost {
+    display: inline-block;
+    padding: 18px 32px;
+    border-radius: 4px;
+    font-size: 15.5px;
+    line-height: 1;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .btn-primary { background: #F4F1EA; color: #1C1C1B; border: 1px solid #F4F1EA; }
+  .btn-primary:hover { background: #FFFFFF; border-color: #FFFFFF; }
+  .btn-ghost { background: transparent; color: #FFFFFF; border: 1px solid rgba(255,255,255,.55); }
+  .btn-ghost:hover { border-color: #FFFFFF; background: rgba(255,255,255,.08); }
+
+  .hero-facts {
+    position: relative; z-index: 2;
+    flex: none;
+    margin-left: 8vw; margin-bottom: 40px;
+    /* последнее слагаемое резервирует полосу под плашку виджета,
+       иначе на планшетных ширинах третья колонка уезжает под неё */
+    width: min(62vw, 860px, calc(100vw - 8vw - 330px));
+    display: grid; grid-template-columns: repeat(3, 1fr);
+  }
+  .hero-fact { padding: 0 24px; border-left: 1px solid rgba(255,255,255,.2); }
+  .hero-fact:first-child { padding-left: 0; border-left: 0; }
+  .hero-fact-k {
+    color: #FFFFFF; opacity: .6;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    font-size: 11px; font-weight: 500;
+  }
+  .hero-fact-v { color: #FFFFFF; font-size: 14.5px; margin-top: 7px; }
+
+  @media (max-width: 767px) {
+    #hero { min-height: 100svh; }
+    .hero-inner { padding-left: 24px; padding-right: 24px; padding-top: 92px; }
+    .hero-facts {
+      /* справа внизу — круглая кнопка виджета 56px, оставляем ей полосу */
+      margin-left: 24px; margin-right: 92px; margin-bottom: 28px;
+      width: auto;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .hero-fact { padding: 0; border-left: 0; }
+    .hero-fact-v { font-size: 13px; }
+    .hero-fact-k { font-size: 10px; }
+    .btn-primary, .btn-ghost { padding: 15px 24px; font-size: 14.5px; }
+  }
 
   .dashed-run {
     border-top: 1px dashed #C9C2B3;
@@ -276,6 +420,12 @@ tailwind.config = {
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    html { scroll-behavior: auto; }
+    /* без движения фон героя — статичный кадр того же видео */
+    .hero-media video { display: none; }
+    .hero-media {
+      background: url('assets/stroyuyut74/hero-poster.jpg') center/cover no-repeat;
+    }
   }
 
   .sr-only {
@@ -287,48 +437,60 @@ tailwind.config = {
 
 <body class="bg-paper text-ink">
 
-<!-- 1 ─ Навигация -->
-<header class="sticky top-0 z-40 bg-paper/95 backdrop-blur-[2px] border-b border-rule">
+<!-- 1 ─ Навигация: прозрачная поверх героя, светлеет обратно после прокрутки -->
+<header id="site-head" class="over-hero">
   <nav class="mx-auto max-w-[1400px] h-16 px-6 md:px-10 flex items-center justify-between">
     <a href="#" class="wordmark text-[13px] md:text-[14px] font-medium">СТРОЙУЮТ74</a>
     <div class="flex items-center gap-5 md:gap-8 text-[13.5px]">
-      <a href="#produkciya" class="nav-link hidden sm:inline">Продукция</a>
-      <a href="#process" class="nav-link hidden sm:inline">Процесс</a>
-      <a href="#kontakty" class="nav-link hidden sm:inline">Контакты</a>
+      <a href="#produkciya" class="nav-link nav-sec hidden sm:inline">Продукция</a>
+      <a href="#process" class="nav-link nav-sec hidden sm:inline">Процесс</a>
+      <a href="#kontakty" class="nav-link nav-sec hidden sm:inline">Контакты</a>
       <a href="tel:+79127923275" class="nav-link whitespace-nowrap">+7 (912) 792-32-75</a>
     </div>
   </nav>
 </header>
 
 <!-- 2 ─ Hero -->
-<section class="mx-auto max-w-[1400px] px-6 md:px-10">
-  <div class="flex flex-col md:flex-row md:items-stretch md:min-h-[85vh] gap-10 md:gap-14 py-12 md:py-0">
+<section id="hero">
+  <div class="hero-media">
+    <video id="hero-video" autoplay muted loop playsinline preload="auto"
+           poster="assets/stroyuyut74/hero-poster.jpg"
+           aria-hidden="true" tabindex="-1">
+      <source src="assets/stroyuyut74/hero.mp4" type="video/mp4">
+      <source src="assets/stroyuyut74/hero.webm" type="video/webm">
+    </video>
+  </div>
+  <div class="hero-scrim"></div>
 
-    <!-- Фото: на мобильном сверху -->
-    <div class="order-1 md:order-2 md:w-[45%] md:py-16">
-      <img
-        src="https://source.unsplash.com/1200x1600/?minimalist-kitchen,wood"
-        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=1200&q=70';"
-        alt="Кухня по индивидуальному проекту в интерьере"
-        loading="lazy" decoding="async"
-        class="w-full h-[46vh] md:h-full object-cover">
+  <div class="hero-inner">
+    <p class="eyebrow hero-eyebrow">Магнитогорск · С 2018 года</p>
+
+    <h1 class="display hero-title">
+      Индивидуальная мебель, окна и жалюзи <em class="hero-em">под ваш</em> размер
+    </h1>
+
+    <p class="hero-sub">
+      Проектируем, производим и монтируем за 7 дней. Работаем по Магнитогорску и области с 2018 года.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#" class="btn-primary" data-open-chat>Рассчитать стоимость →</a>
+      <a href="#produkciya" class="btn-ghost">Наши работы ↓</a>
     </div>
+  </div>
 
-    <div class="order-2 md:order-1 md:w-[55%] flex flex-col justify-center md:py-16 md:pr-10">
-      <p class="eyebrow text-mute">Магнитогорск · С 2018</p>
-
-      <h1 class="display mt-6 text-[clamp(2.5rem,6.2vw,5.1rem)]">
-        Индивидуальная мебель, окна и жалюзи <em class="italic font-normal">под ваш</em> размер
-      </h1>
-
-      <p class="mt-7 max-w-[46ch] text-[16px] text-ink/75">
-        Проектируем, производим и монтируем за 7 дней.<br class="hidden sm:block">
-        Работаем по Магнитогорску и области с 2018 года.
-      </p>
-
-      <p class="mt-9">
-        <a href="#" class="link-cta text-[15.5px]" data-open-chat>Рассчитать стоимость →</a>
-      </p>
+  <div class="hero-facts">
+    <div class="hero-fact">
+      <p class="hero-fact-k">С 2018 года</p>
+      <p class="hero-fact-v">Работаем в Магнитогорске</p>
+    </div>
+    <div class="hero-fact">
+      <p class="hero-fact-k">2 филиала</p>
+      <p class="hero-fact-v">Ленинский район</p>
+    </div>
+    <div class="hero-fact">
+      <p class="hero-fact-k">Бесплатно</p>
+      <p class="hero-fact-v">Выезд · Замер · Проект</p>
     </div>
   </div>
 </section>
@@ -360,8 +522,8 @@ tailwind.config = {
 <!-- Фото-полоса -->
 <div class="mx-auto max-w-[1400px] px-6 md:px-10 pb-20 md:pb-32">
   <img
-    src="https://source.unsplash.com/1800x1200/?custom-cabinetry,interior"
-    onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=70';"
+    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80&auto=format&fit=crop"
+    data-fallback="https://picsum.photos/1600/1000?random=1"
     alt="Встроенная корпусная мебель в жилом интерьере"
     loading="lazy" decoding="async"
     class="w-full h-[52vh] md:h-[78vh] object-cover">
@@ -400,8 +562,8 @@ tailwind.config = {
 
   <div class="mt-16 md:mt-24 md:w-[55%]">
     <img
-      src="https://source.unsplash.com/1200x900/?workshop-carpentry"
-      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1200&q=70';"
+      src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=1600&q=80&auto=format&fit=crop"
+      data-fallback="https://picsum.photos/1600/1000?random=2"
       alt="Столярный цех, изготовление корпусной мебели"
       loading="lazy" decoding="async"
       class="w-full h-[38vh] md:h-[52vh] object-cover">
@@ -421,8 +583,8 @@ tailwind.config = {
 
     <div class="md:w-[45%]">
       <img
-        src="https://source.unsplash.com/1200x1600/?wooden-wardrobe,craft"
-        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=1200&q=70';"
+        src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=900&q=80&auto=format&fit=crop"
+        data-fallback="https://picsum.photos/1600/1000?random=3"
         alt="Встроенный шкаф-купе из дерева"
         loading="lazy" decoding="async"
         class="w-full h-[50vh] md:h-[68vh] object-cover">
@@ -500,6 +662,34 @@ tailwind.config = {
 </div>
 
 <script>
+/* Шапка: белая поверх видео, обычная — ниже героя. */
+(function () {
+  var head = document.getElementById('site-head');
+  var hero = document.getElementById('hero');
+  if (!head || !hero) { return; }
+
+  function sync() {
+    var overlap = hero.getBoundingClientRect().bottom > 64;
+    head.classList.toggle('over-hero', overlap);
+  }
+  sync();
+  addEventListener('scroll', sync, { passive: true });
+  addEventListener('resize', sync, { passive: true });
+})();
+
+/* Единый запасной путь для фото: если CDN не отдал — грузим picsum. */
+(function () {
+  Array.prototype.forEach.call(document.querySelectorAll('img[data-fallback]'), function (img) {
+    img.addEventListener('error', function handle() {
+      img.removeEventListener('error', handle);
+      img.src = img.getAttribute('data-fallback');
+    });
+    if (img.complete && img.naturalWidth === 0) {
+      img.src = img.getAttribute('data-fallback');
+    }
+  });
+})();
+
 (function () {
   var tab    = document.getElementById('ax-tab');
   var panel  = document.getElementById('ax-panel');
