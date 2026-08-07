@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>СТРОЙУЮТ74 — индивидуальная мебель, окна и жалюзи в Магнитогорске</title>
+<meta name="description" content="Изготовление индивидуальной мебели в течение 7 дней. Корпусная мебель на заказ, окна ПВХ и алюминий, жалюзи и рулонные шторы. Магнитогорск, Вокзальная 55/1.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter+Tight:ital,wght@0,300..600;1,400&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        paper:  '#F4F1EA',
+        ink:    '#1C1C1B',
+        forest: '#2D4A3E',
+        rule:   '#C9C2B3',
+        mute:   '#A8A196'
+      },
+      fontFamily: {
+        display: ['Fraunces', 'Georgia', 'serif'],
+        sans:    ['"Inter Tight"', 'system-ui', 'sans-serif']
+      }
+    }
+  }
+};
+</script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: #F4F1EA;
+    color: #1C1C1B;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .display {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 400;
+    font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
+    letter-spacing: -0.02em;
+    line-height: 1.03;
+  }
+  .display-sm {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 400;
+    font-variation-settings: 'opsz' 36, 'SOFT' 0, 'WONK' 0;
+    letter-spacing: -0.015em;
+  }
+  .num {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 300;
+    font-variation-settings: 'opsz' 72;
+    letter-spacing: 0.01em;
+  }
+  .eyebrow {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .wordmark { letter-spacing: 0.08em; }
+
+  /* Фото: тёплая подложка, чтобы блок держал вес даже до загрузки */
+  img { background-color: #E7E2D8; }
+
+  .link-cta {
+    color: #2D4A3E;
+    border-bottom: 1px solid #2D4A3E;
+    padding-bottom: 3px;
+    transition: opacity .2s ease;
+  }
+  .link-cta:hover { opacity: .62; }
+
+  .nav-link { transition: opacity .2s ease; }
+  .nav-link:hover { opacity: .55; }
+
+  .dashed-run {
+    border-top: 1px dashed #C9C2B3;
+  }
+
+  /* ── Виджет ─────────────────────────────────────────── */
+  #ax-root { position: fixed; right: 24px; bottom: 24px; z-index: 60; }
+
+  #ax-tab {
+    width: 280px; height: 68px;
+    background: #F4F1EA;
+    border: 1px solid #C9C2B3;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(28,28,27,0.06);
+    display: flex; align-items: center; gap: 12px;
+    padding: 0 14px;
+    text-align: left;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  #ax-tab:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(28,28,27,0.09);
+  }
+
+  /* Геометрия виджета задана в CSS, а не утилитами — плашка и чат
+     собираются одинаково даже если CDN не успел ответить. */
+  #ax-panel > header {
+    height: 72px; flex: none;
+    display: flex; align-items: center; gap: 12px;
+    padding: 0 16px;
+    border-bottom: 1px solid #C9C2B3;
+  }
+  .ax-id { flex: 1 1 auto; min-width: 0; }
+  .ax-name { display: block; font-size: 14px; font-weight: 500; line-height: 1.2; }
+  .ax-role { display: block; font-size: 11.5px; color: #A8A196; line-height: 1.2; margin-top: 2px; }
+  #ax-close {
+    flex: none; padding: 4px; margin-right: -4px;
+    background: none; border: 0; line-height: 0;
+    color: rgba(28,28,27,.5); cursor: pointer;
+    transition: color .18s ease;
+  }
+  #ax-close:hover { color: #1C1C1B; }
+
+  #ax-chips {
+    flex: none; display: flex; flex-wrap: wrap; gap: 8px;
+    padding: 0 16px 4px;
+  }
+  #ax-form {
+    flex: none; display: flex; align-items: flex-end; gap: 12px;
+    padding: 12px 16px 16px;
+  }
+  #ax-input { flex: 1 1 auto; min-width: 0; padding: 8px 0; }
+  #ax-send { flex: none; padding-bottom: 8px; background: none; border: 0; line-height: 0; cursor: pointer; }
+
+  .tab-copy { min-width: 0; }
+  .tab-title { display: block; font-size: 14px; line-height: 1.2; }
+  .tab-sub   { display: block; font-size: 11.5px; color: #A8A196; line-height: 1.2; margin-top: 3px; }
+
+  .mono-badge {
+    width: 36px; height: 36px;
+    border-radius: 6px;
+    font-size: 13px;
+    background: #2D4A3E;
+    color: #fff;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    display: flex; align-items: center; justify-content: center;
+    flex: none;
+  }
+
+  #ax-panel {
+    width: 400px; height: 580px;
+    background: #F4F1EA;
+    border: 1px solid #C9C2B3;
+    border-radius: 12px;
+    box-shadow: 0 16px 44px rgba(28,28,27,0.10);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    transform-origin: bottom right;
+  }
+  .ax-hidden { display: none !important; }
+
+  @keyframes ax-pop {
+    from { opacity: 0; transform: translateY(10px) scale(.985); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  #ax-panel.ax-open { animation: ax-pop .22s cubic-bezier(.2,.7,.3,1) both; }
+
+  #ax-log {
+    flex: 1 1 auto;
+    display: flex; flex-direction: column;
+    overflow-y: auto;
+    padding: 18px 18px 8px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    scrollbar-width: thin;
+    scrollbar-color: #C9C2B3 transparent;
+  }
+  #ax-log::-webkit-scrollbar { width: 6px; }
+  #ax-log::-webkit-scrollbar-thumb { background: #C9C2B3; border-radius: 3px; }
+
+  @keyframes ax-fade {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .ax-msg { animation: ax-fade .28s ease both; max-width: 80%; border-radius: 12px; padding: 10px 13px; }
+  .ax-bot  { background: #FFFFFF; border: 1px solid #C9C2B3; margin-right: auto; }
+  .ax-user { background: #2D4A3E; color: #FFFFFF; margin-left: auto; }
+
+  .ax-stamp { text-align: center; font-size: 11px; color: #A8A196; margin: 14px 0 12px; }
+
+  @keyframes ax-blink {
+    0%, 60%, 100% { opacity: .25; transform: translateY(0); }
+    30%           { opacity: .9;  transform: translateY(-2px); }
+  }
+  .ax-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: #1C1C1B;
+    display: inline-block;
+    animation: ax-blink 1.15s infinite;
+  }
+  .ax-dot:nth-child(2) { animation-delay: .18s; }
+  .ax-dot:nth-child(3) { animation-delay: .36s; }
+
+  .ax-chip {
+    border: 1px solid #C9C2B3;
+    background: transparent;
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 13px;
+    transition: background .18s ease, border-color .18s ease;
+  }
+  .ax-chip:hover { background: #FFFFFF; border-color: #2D4A3E; }
+
+  #ax-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #C9C2B3;
+    border-radius: 0;
+    outline: none;
+    font-size: 14.5px;
+  }
+  #ax-input::placeholder { color: #A8A196; }
+  #ax-input:focus { border-bottom-color: #2D4A3E; }
+  #ax-send { color: #2D4A3E; transition: opacity .18s ease; }
+  #ax-send:hover { opacity: .65; }
+  #ax-send:disabled { opacity: .3; }
+
+  /* ── Тост CRM ───────────────────────────────────────── */
+  #ax-toast {
+    position: fixed; top: 24px; right: 24px; z-index: 80;
+    width: 400px; height: 88px;
+    background: #2D4A3E; color: #FFFFFF;
+    border-radius: 8px;
+    padding: 14px 18px;
+    box-shadow: 0 14px 34px rgba(28,28,27,0.18);
+  }
+  #ax-toast p { margin: 0; line-height: 1.25; }
+  @keyframes ax-slide-in {
+    from { opacity: 0; transform: translateX(28px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes ax-slide-out {
+    from { opacity: 1; transform: translateX(0); }
+    to   { opacity: 0; transform: translateX(28px); }
+  }
+  #ax-toast.in  { animation: ax-slide-in .34s cubic-bezier(.2,.7,.3,1) both; }
+  #ax-toast.out { animation: ax-slide-out .45s ease both; }
+
+  @media (max-width: 767px) {
+    #ax-root { right: 16px; bottom: 16px; }
+    #ax-tab {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      padding: 0; justify-content: center; gap: 0;
+    }
+    #ax-tab .tab-copy { display: none; }
+    #ax-tab .mono-badge {
+      width: 100%; height: 100%; border-radius: 50%; font-size: 15px;
+    }
+    #ax-panel {
+      position: fixed; inset: 0;
+      width: 100%; height: 100%;
+      border-radius: 0; border: none;
+    }
+    #ax-toast { width: auto; left: 16px; right: 16px; top: 16px; }
+    body.ax-locked { overflow: hidden; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+</style>
+</head>
+
+<body class="bg-paper text-ink">
+
+<!-- 1 ─ Навигация -->
+<header class="sticky top-0 z-40 bg-paper/95 backdrop-blur-[2px] border-b border-rule">
+  <nav class="mx-auto max-w-[1400px] h-16 px-6 md:px-10 flex items-center justify-between">
+    <a href="#" class="wordmark text-[13px] md:text-[14px] font-medium">СТРОЙУЮТ74</a>
+    <div class="flex items-center gap-5 md:gap-8 text-[13.5px]">
+      <a href="#produkciya" class="nav-link hidden sm:inline">Продукция</a>
+      <a href="#process" class="nav-link hidden sm:inline">Процесс</a>
+      <a href="#kontakty" class="nav-link hidden sm:inline">Контакты</a>
+      <a href="tel:+79127923275" class="nav-link whitespace-nowrap">+7 (912) 792-32-75</a>
+    </div>
+  </nav>
+</header>
+
+<!-- 2 ─ Hero -->
+<section class="mx-auto max-w-[1400px] px-6 md:px-10">
+  <div class="flex flex-col md:flex-row md:items-stretch md:min-h-[85vh] gap-10 md:gap-14 py-12 md:py-0">
+
+    <!-- Фото: на мобильном сверху -->
+    <div class="order-1 md:order-2 md:w-[45%] md:py-16">
+      <img
+        src="https://source.unsplash.com/1200x1600/?minimalist-kitchen,wood"
+        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=1200&q=70';"
+        alt="Кухня по индивидуальному проекту в интерьере"
+        loading="lazy" decoding="async"
+        class="w-full h-[46vh] md:h-full object-cover">
+    </div>
+
+    <div class="order-2 md:order-1 md:w-[55%] flex flex-col justify-center md:py-16 md:pr-10">
+      <p class="eyebrow text-mute">Магнитогорск · С 2018</p>
+
+      <h1 class="display mt-6 text-[clamp(2.5rem,6.2vw,5.1rem)]">
+        Индивидуальная мебель, окна и жалюзи <em class="italic font-normal">под ваш</em> размер
+      </h1>
+
+      <p class="mt-7 max-w-[46ch] text-[16px] text-ink/75">
+        Проектируем, производим и монтируем за 7 дней.<br class="hidden sm:block">
+        Работаем по Магнитогорску и области с 2018 года.
+      </p>
+
+      <p class="mt-9">
+        <a href="#" class="link-cta text-[15.5px]" data-open-chat>Рассчитать стоимость →</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 ─ Продукция -->
+<section id="produkciya" class="mx-auto max-w-[1400px] px-6 md:px-10 pt-20 md:pt-32 pb-16 md:pb-24">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-0">
+
+    <article class="md:pr-10">
+      <p class="num text-[34px] text-forest">01</p>
+      <h2 class="display-sm mt-4 text-[24px] md:text-[26px]">Корпусная мебель на заказ</h2>
+      <p class="mt-3 text-[15px] text-ink/70 max-w-[34ch]">Кухни, гардеробные, встроенные шкафы, детская мебель по индивидуальному проекту</p>
+    </article>
+
+    <article class="md:px-10 md:border-l md:border-rule">
+      <p class="num text-[34px] text-forest">02</p>
+      <h2 class="display-sm mt-4 text-[24px] md:text-[26px]">Окна и светопрозрачные конструкции</h2>
+      <p class="mt-3 text-[15px] text-ink/70 max-w-[34ch]">ПВХ и алюминиевые системы, замер и монтаж</p>
+    </article>
+
+    <article class="md:pl-10 md:border-l md:border-rule">
+      <p class="num text-[34px] text-forest">03</p>
+      <h2 class="display-sm mt-4 text-[24px] md:text-[26px]">Жалюзи и рулонные шторы</h2>
+      <p class="mt-3 text-[15px] text-ink/70 max-w-[34ch]">Горизонтальные, вертикальные, рулонные, день-ночь, по вашим размерам</p>
+    </article>
+  </div>
+</section>
+
+<!-- Фото-полоса -->
+<div class="mx-auto max-w-[1400px] px-6 md:px-10 pb-20 md:pb-32">
+  <img
+    src="https://source.unsplash.com/1800x1200/?custom-cabinetry,interior"
+    onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=70';"
+    alt="Встроенная корпусная мебель в жилом интерьере"
+    loading="lazy" decoding="async"
+    class="w-full h-[52vh] md:h-[78vh] object-cover">
+</div>
+
+<!-- 4 ─ Процесс -->
+<section id="process" class="mx-auto max-w-[1400px] px-6 md:px-10 pb-20 md:pb-28">
+  <h2 class="display-sm text-[26px] md:text-[32px] max-w-[18ch]">Как идёт работа</h2>
+
+  <div class="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8">
+    <div>
+      <p class="num text-[30px] text-forest">01</p>
+      <div class="dashed-run mt-4 mb-5"></div>
+      <h3 class="text-[16.5px] font-medium">Замер бесплатно</h3>
+      <p class="mt-2 text-[14.5px] text-ink/65 max-w-[26ch]">Выезжаем в удобное время, снимаем точные габариты на объекте</p>
+    </div>
+    <div>
+      <p class="num text-[30px] text-forest">02</p>
+      <div class="dashed-run mt-4 mb-5"></div>
+      <h3 class="text-[16.5px] font-medium">Проект и смета</h3>
+      <p class="mt-2 text-[14.5px] text-ink/65 max-w-[26ch]">Согласуем чертёж, материалы и фурнитуру, фиксируем стоимость</p>
+    </div>
+    <div>
+      <p class="num text-[30px] text-forest">03</p>
+      <div class="dashed-run mt-4 mb-5"></div>
+      <h3 class="text-[16.5px] font-medium">Производство 7 дней</h3>
+      <p class="mt-2 text-[14.5px] text-ink/65 max-w-[26ch]">Изготавливаем в собственном цеху с гарантией качества</p>
+    </div>
+    <div>
+      <p class="num text-[30px] text-forest">04</p>
+      <div class="dashed-run mt-4 mb-5"></div>
+      <h3 class="text-[16.5px] font-medium">Монтаж под ключ</h3>
+      <p class="mt-2 text-[14.5px] text-ink/65 max-w-[26ch]">Привозим, собираем и устанавливаем, убираем за собой</p>
+    </div>
+  </div>
+
+  <div class="mt-16 md:mt-24 md:w-[55%]">
+    <img
+      src="https://source.unsplash.com/1200x900/?workshop-carpentry"
+      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1200&q=70';"
+      alt="Столярный цех, изготовление корпусной мебели"
+      loading="lazy" decoding="async"
+      class="w-full h-[38vh] md:h-[52vh] object-cover">
+  </div>
+</section>
+
+<!-- 5 ─ Доверие -->
+<section class="mx-auto max-w-[1400px] px-6 md:px-10 py-16 md:py-24">
+  <p class="text-center text-[14.5px] font-light text-ink/70 leading-[1.9]">
+    Подтверждённая компания на 2ГИС · 2 филиала в Магнитогорске · Ежедневно с 9:00 до 20:00 · Гарантия качества
+  </p>
+</section>
+
+<!-- 6 ─ Отзыв -->
+<section class="mx-auto max-w-[1400px] px-6 md:px-10 pb-20 md:pb-32">
+  <div class="flex flex-col md:flex-row md:items-center gap-10 md:gap-16">
+
+    <div class="md:w-[45%]">
+      <img
+        src="https://source.unsplash.com/1200x1600/?wooden-wardrobe,craft"
+        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=1200&q=70';"
+        alt="Встроенный шкаф-купе из дерева"
+        loading="lazy" decoding="async"
+        class="w-full h-[50vh] md:h-[68vh] object-cover">
+    </div>
+
+    <figure class="md:w-[55%]">
+      <blockquote class="display italic text-[clamp(1.5rem,3vw,2.35rem)] max-w-[22ch]">
+        Заказывали кухню-гарнитур и шкаф-купе в прихожую. Замерщик приехал на следующий день, смету прислали сразу с чертежом. Собрали за неделю, ниша под холодильник встала миллиметр в миллиметр.
+      </blockquote>
+      <figcaption class="mt-8 text-[13px] text-mute">
+        Елена, Ленинский район · кухня и шкаф-купе
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 7 ─ Футер -->
+<footer id="kontakty" class="border-t border-rule">
+  <div class="mx-auto max-w-[1400px] px-6 md:px-10 py-14 md:py-16 space-y-3">
+    <p class="text-[15px]">
+      Вокзальная улица, 55/1, Магнитогорск ·
+      <a href="tel:+79127923275" class="nav-link">+7 (912) 792-32-75</a> ·
+      Ежедневно 9:00–20:00
+    </p>
+    <p class="text-[15px] text-ink/70">
+      Второй филиал — уточните адрес второго филиала
+    </p>
+    <p class="text-[12.5px] text-mute pt-4">
+      Разработка и AI-модуль захвата заявок — Ascend Systems
+    </p>
+  </div>
+</footer>
+
+
+<!-- ══ Виджет ══ -->
+<div id="ax-root">
+
+  <button id="ax-tab" type="button" aria-expanded="false" aria-controls="ax-panel">
+    <span class="mono-badge">С7</span>
+    <span class="tab-copy">
+      <span class="tab-title">Расчёт стоимости — за 1 минуту</span>
+      <span class="tab-sub">Ответ ведущего технолога</span>
+    </span>
+  </button>
+
+  <section id="ax-panel" class="ax-hidden" role="dialog" aria-modal="false" aria-label="Чат с технологом Стройуют74">
+
+    <header>
+      <span class="mono-badge">С7</span>
+      <span class="ax-id">
+        <span class="ax-name">Артём Ковалёв</span>
+        <span class="ax-role">Ведущий технолог · Стройуют74</span>
+      </span>
+      <button id="ax-close" type="button" aria-label="Закрыть чат">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 3L13 13M13 3L3 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </header>
+
+    <div id="ax-log" role="log" aria-live="polite"></div>
+
+    <div id="ax-chips"></div>
+
+    <form id="ax-form">
+      <label for="ax-input" class="sr-only">Сообщение технологу</label>
+      <input id="ax-input" type="text" autocomplete="off" placeholder="Напишите сообщение">
+      <button id="ax-send" type="submit" aria-label="Отправить сообщение">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M3 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </form>
+  </section>
+</div>
+
+<script>
+(function () {
+  var tab    = document.getElementById('ax-tab');
+  var panel  = document.getElementById('ax-panel');
+  var log    = document.getElementById('ax-log');
+  var chips  = document.getElementById('ax-chips');
+  var form   = document.getElementById('ax-form');
+  var input  = document.getElementById('ax-input');
+  var send   = document.getElementById('ax-send');
+  var close  = document.getElementById('ax-close');
+
+  var STEP_ASK_KIND = 0, STEP_ASK_OBJECT = 1, STEP_ASK_PHONE = 2, STEP_DONE = 3;
+  var step = STEP_ASK_KIND;
+  var kind = 'мебель';
+  var timers = [];
+  var started = false;
+  var toastEl = null;
+  var toastTimers = [];
+
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+  function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+
+  function scrollDown() { log.scrollTop = log.scrollHeight; }
+
+  function stamp(text) {
+    var el = document.createElement('p');
+    el.className = 'ax-stamp';
+    el.textContent = text;
+    log.appendChild(el);
+    scrollDown();
+  }
+
+  function bubble(text, who) {
+    var el = document.createElement('div');
+    el.className = 'ax-msg ' + (who === 'user' ? 'ax-user' : 'ax-bot');
+    el.textContent = text;
+    el.style.marginBottom = '10px';
+    log.appendChild(el);
+    scrollDown();
+  }
+
+  function typing() {
+    var el = document.createElement('div');
+    el.className = 'ax-msg ax-bot';
+    el.id = 'ax-typing';
+    el.style.marginBottom = '10px';
+    el.setAttribute('aria-label', 'Артём печатает');
+    el.innerHTML = '<span class="inline-flex items-center gap-1 py-[3px]">' +
+                   '<i class="ax-dot"></i><i class="ax-dot"></i><i class="ax-dot"></i></span>';
+    log.appendChild(el);
+    scrollDown();
+    return el;
+  }
+
+  function botSays(text, delay, after) {
+    var t = typing();
+    later(function () {
+      if (t.parentNode) { t.parentNode.removeChild(t); }
+      bubble(text, 'bot');
+      if (after) { after(); }
+    }, delay);
+  }
+
+  function setChips(items) {
+    chips.innerHTML = '';
+    if (!items || !items.length) { return; }
+    items.forEach(function (label) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'ax-chip';
+      b.textContent = label;
+      b.addEventListener('click', function () { submit(label); });
+      chips.appendChild(b);
+    });
+  }
+
+  function lockComposer() {
+    input.value = '';
+    input.disabled = true;
+    send.disabled = true;
+    input.placeholder = 'Заявка отправлена';
+  }
+
+  function maskPhone(raw) {
+    var d = raw.replace(/\D/g, '');
+    if (d.length < 7) { return '+7 XXX XXX XX XX'; }
+    var tail = d.slice(-10);
+    return '+7 ' + tail.slice(0, 3) + ' ••• •• ' + tail.slice(-2);
+  }
+
+  function toast(phone) {
+    hideToast();
+    var el = document.createElement('aside');
+    el.id = 'ax-toast';
+    el.className = 'in';
+    el.setAttribute('role', 'status');
+    el.innerHTML =
+      '<p class="eyebrow" style="opacity:.7">Ascend Systems · CRM</p>' +
+      '<p style="margin-top:6px;font-size:14px">Новый лид зафиксирован</p>' +
+      '<p style="margin-top:3px;font-size:12.5px;opacity:.85">Заявка на расчёт сметы · ' + phone + ' · передана директору</p>';
+    document.body.appendChild(el);
+    toastEl = el;
+
+    toastTimers.push(setTimeout(function () {
+      el.className = 'out';
+      toastTimers.push(setTimeout(function () {
+        if (el.parentNode) { el.parentNode.removeChild(el); }
+        if (toastEl === el) { toastEl = null; }
+      }, 460));
+    }, 7000));
+  }
+
+  function hideToast() {
+    toastTimers.forEach(clearTimeout);
+    toastTimers = [];
+    if (toastEl && toastEl.parentNode) { toastEl.parentNode.removeChild(toastEl); }
+    toastEl = null;
+  }
+
+  function detectKind(text) {
+    var t = text.toLowerCase();
+    if (/окн|пвх|алюмин|стеклопакет|балкон|лодж/.test(t)) { return 'окна'; }
+    if (/жалюз|штор|рулон|день-ночь|день ночь/.test(t))   { return 'жалюзи'; }
+    return 'мебель';
+  }
+
+  function objectQuestion(k) {
+    if (k === 'окна')   { return 'Понял. Сколько окон и какого типа — ПВХ, алюминий? Габариты примерно.'; }
+    if (k === 'жалюзи') { return 'Ясно. Тип штор — горизонтальные, рулонные, день-ночь? Сколько окон, размеры примерные.'; }
+    return 'Хорошо. Опишите объект — кухня, шкаф, гардеробная, детская. Примерные габариты если знаете, если нет — не страшно.';
+  }
+
+  function objectChips(k) {
+    if (k === 'окна')   { return ['Три окна ПВХ', 'Балкон, алюминий', 'Одно окно 1,4 × 1,5']; }
+    if (k === 'жалюзи') { return ['Рулонные, 4 окна', 'День-ночь, 2 окна', 'Горизонтальные на кухню']; }
+    return ['Кухня 3,2 м', 'Шкаф-купе в прихожую', 'Гардеробная 2 × 1,5'];
+  }
+
+  function submit(text) {
+    var value = (text || '').trim();
+    if (!value || step === STEP_DONE) { return; }
+
+    bubble(value, 'user');
+    input.value = '';
+    setChips([]);
+
+    if (step === STEP_ASK_KIND) {
+      kind = detectKind(value);
+      step = STEP_ASK_OBJECT;
+      botSays(objectQuestion(kind), 1200, function () {
+        setChips(objectChips(kind));
+      });
+      return;
+    }
+
+    if (step === STEP_ASK_OBJECT) {
+      step = STEP_ASK_PHONE;
+      botSays('Записал. Соберу точную смету по вашим параметрам и пришлю в WhatsApp сегодня до конца дня. Оставьте номер — закреплю за вами бесплатный выезд замерщика в удобное время.', 1400);
+      return;
+    }
+
+    if (step === STEP_ASK_PHONE) {
+      if (value.replace(/\D/g, '').length < 7) {
+        botSays('Номер лучше целиком, с кодом — так замерщик до вас дозвонится.', 900);
+        return;
+      }
+      step = STEP_DONE;
+      lockComposer();
+      toast(maskPhone(value));
+      stamp('03:14');
+      botSays('Записал. Смета уйдёт вам в WhatsApp сегодня до 18:00. Замерщик свяжется отдельно чтобы согласовать удобное время. Хорошего дня.', 1000);
+    }
+  }
+
+  function reset() {
+    clearTimers();
+    hideToast();
+    log.innerHTML = '';
+    setChips([]);
+    step = STEP_ASK_KIND;
+    kind = 'мебель';
+    started = false;
+    input.disabled = false;
+    send.disabled = false;
+    input.value = '';
+    input.placeholder = 'Напишите сообщение';
+  }
+
+  function start() {
+    if (started) { return; }
+    started = true;
+    stamp('Сегодня, 03:12');
+    botSays('Здравствуйте. Артём, ведущий технолог Стройуют74. Рассчитаю смету по вашему проекту и запишу на бесплатный замер. Что интересует — мебель, окна или жалюзи?', 600, function () {
+      setChips(['Мебель', 'Окна', 'Жалюзи']);
+    });
+  }
+
+  function open() {
+    tab.classList.add('ax-hidden');
+    panel.classList.remove('ax-hidden');
+    panel.classList.add('ax-open');
+    tab.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('ax-locked');
+    start();
+    if (window.matchMedia('(min-width: 768px)').matches) {
+      later(function () { input.focus(); }, 260);
+    }
+  }
+
+  function shut() {
+    panel.classList.add('ax-hidden');
+    panel.classList.remove('ax-open');
+    tab.classList.remove('ax-hidden');
+    tab.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('ax-locked');
+    reset();
+  }
+
+  tab.addEventListener('click', open);
+  close.addEventListener('click', shut);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !panel.classList.contains('ax-hidden')) { shut(); }
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    submit(input.value);
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-open-chat]'), function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (panel.classList.contains('ax-hidden')) { open(); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
