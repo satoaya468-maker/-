@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Стоимость обучения — Sun Day, языковая школа в Магнитогорске</title>
+<meta name="description" content="Стоимость занятий в школе Sun Day, Магнитогорск: групповые занятия от 3 500 ₽/мес, мини-группа до 4 человек от 5 800 ₽/мес, индивидуально от 1 200 ₽ за занятие. Оплата наличными, картой и по СБП.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ ШАПКА ============ -->
+<header class="site-header">
+  <div class="header-pill">
+    <a class="brand" href="index.html">
+      <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle cx="16" cy="16" r="7" fill="#FCE38A"/>
+        <g stroke="#E97C1F" stroke-width="2" stroke-linecap="round">
+          <path d="M16 2v3.6M16 26.4V30M2 16h3.6M26.4 16H30M6.1 6.1l2.5 2.5M23.4 23.4l2.5 2.5M25.9 6.1l-2.5 2.5M8.6 23.4l-2.5 2.5"/>
+        </g>
+      </svg>
+      <span>Sun Day</span>
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+      <a class="nav-link" href="index.html">Главная</a>
+      <a class="nav-link" href="programmy.html">Программы</a>
+      <a class="nav-link is-active" href="stoimost.html">Стоимость</a>
+      <a class="nav-link" href="otzyvy.html">Отзывы</a>
+      <a class="nav-link" href="contakty.html">Контакты</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-phone" href="tel:+79088104430">+7 (908) 810-44-30</a>
+      <button class="btn btn-primary btn-sm" type="button" data-open-assistant>Записаться</button>
+      <button class="burger" type="button" data-burger aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero hero--compact">
+    <h1 class="hero-title">Стоимость обучения</h1>
+    <p class="hero-sub">Прозрачные тарифы без скрытых доплат. Первое пробное занятие — бесплатно, чтобы вы посмотрели формат и познакомились с преподавателем.</p>
+  </section>
+
+  <!-- ============ ТАРИФЫ ============ -->
+  <section class="section">
+    <div class="shell">
+      <div class="price-grid">
+
+        <div class="price-card">
+          <h2 class="price-name">Групповые занятия</h2>
+          <p class="price-value">от 3 500 ₽<small>в месяц</small></p>
+          <p class="price-text">Постоянная группа по возрасту и уровню, регулярное расписание, живая разговорная практика на каждом занятии.</p>
+          <button class="btn btn-ghost" type="button" data-open-assistant>Записаться</button>
+        </div>
+
+        <div class="price-card is-featured">
+          <span class="tag" style="background:#FFFFFF">Чаще всего выбирают</span>
+          <h2 class="price-name">Мини-группа (до 4 чел.)</h2>
+          <p class="price-value">от 5 800 ₽<small>в месяц</small></p>
+          <p class="price-text">Максимум внимания преподавателя и времени на речь у каждого ученика — золотая середина между группой и индивидуальными занятиями.</p>
+          <button class="btn btn-primary" type="button" data-open-assistant>Записаться</button>
+        </div>
+
+        <div class="price-card">
+          <h2 class="price-name">Индивидуально</h2>
+          <p class="price-value">от 1 200 ₽<small>за занятие</small></p>
+          <p class="price-text">Программа и график полностью под вашу цель: подготовка к экзамену, работа, поездка или возвращение к языку с нуля.</p>
+          <button class="btn btn-ghost" type="button" data-open-assistant>Записаться</button>
+        </div>
+
+      </div>
+
+      <div class="pay-strip">
+        <p>Способы оплаты:</p>
+        <span class="pay-chip">Наличные</span>
+        <span class="pay-chip">Банковская карта</span>
+        <span class="pay-chip">СБП</span>
+        <p style="color:var(--muted);font-weight:500;font-size:15px">Точная стоимость зависит от программы и количества занятий в неделю — уточним при записи.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section section--tight">
+    <div class="shell">
+      <div class="cta-banner">
+        <div>
+          <h2>Записывайтесь на бесплатное пробное занятие</h2>
+          <p>Посмотрите формат, познакомьтесь с преподавателем — и только потом решайте. Занятия ежедневно с 09:00 до 20:00.</p>
+        </div>
+        <button class="btn btn-primary" type="button" data-open-assistant>Записаться на пробное →</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ ФУТЕР ============ -->
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html">
+          <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="7" fill="#FCE38A"/>
+            <g stroke="#E97C1F" stroke-width="2" stroke-linecap="round">
+              <path d="M16 2v3.6M16 26.4V30M2 16h3.6M26.4 16H30M6.1 6.1l2.5 2.5M23.4 23.4l2.5 2.5M25.9 6.1l-2.5 2.5M8.6 23.4l-2.5 2.5"/>
+            </g>
+          </svg>
+          <span>Sun Day</span>
+        </a>
+        <p class="footer-text">Школа иностранных языков в Магнитогорске.<br>Старт новых групп. Дети, взрослые!</p>
+        <a class="vk-link" href="https://vk.ru/sun_day_englishclub" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#1F2937" aria-hidden="true"><path d="M12.8 16.4c-5.2 0-8.4-3.6-8.5-9.6h2.7c.1 4.4 2.1 6.3 3.6 6.7V6.8h2.5v3.9c1.5-.2 3.1-1.9 3.6-3.9h2.5c-.4 2.4-2.1 4.1-3.3 4.8 1.2.6 3.1 2.1 3.8 4.8h-2.8c-.6-1.8-2-3.2-3.8-3.4v3.4h-.3z"/></svg>
+          <span>Мы в ВК</span>
+        </a>
+      </div>
+
+      <div>
+        <p class="footer-title">Контакты</p>
+        <div class="footer-contacts">
+          <span>ул. Зелёный Лог, 30, вход со двора<br>145-й м-н, Орджоникидзевский район, 455008</span>
+          <span>ул. Блюхера, 3</span>
+          <a href="tel:+79088104430">+7 (908) 810-44-30</a>
+          <a href="tel:+73519295022">+7 (3519) 29-50-22</a>
+          <a href="mailto:sunday_school_mgn@mail.ru">sunday_school_mgn@mail.ru</a>
+          <span>Ежедневно 09:00–20:00, по предварительной записи</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="footer-title">Навигация</p>
+        <nav class="footer-links" aria-label="Навигация в подвале">
+          <a href="index.html">Главная</a>
+          <a href="programmy.html">Программы</a>
+          <a href="stoimost.html">Стоимость</a>
+          <a href="otzyvy.html">Отзывы</a>
+          <a href="contakty.html">Контакты</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-bottom">© 2026 Sun Day · Разработка и AI-модуль — Ascend Systems</div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
