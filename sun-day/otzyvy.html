@@ -177,58 +177,6 @@
 
 </main>
 
-<!-- ============ МОДАЛКА 2ГИС ============ -->
-<div class="modal-backdrop" data-modal="gis" role="dialog" aria-modal="true" aria-labelledby="gis-title">
-  <div class="modal">
-    <button class="modal-close" type="button" data-modal-close aria-label="Закрыть">✕</button>
-    <h3 id="gis-title">Спасибо, что доверяете Sun Day</h3>
-    <p class="modal-sub">Все наши отзывы также доступны на 2ГИС →</p>
-    <div class="modal-actions">
-      <a class="btn btn-primary" href="https://2gis.ru/magnitogorsk/search/sun%20day/firm/70000001055383199/tab/reviews" data-gis-link>Перейти в 2ГИС</a>
-      <button class="btn btn-secondary" type="button" data-modal-close>Остаться</button>
-    </div>
-  </div>
-</div>
-
-<!-- ============ МОДАЛКА ОБРАТНОЙ СВЯЗИ ============ -->
-<div class="modal-backdrop" data-modal="feedback" role="dialog" aria-modal="true" aria-labelledby="feedback-title">
-  <div class="modal">
-    <button class="modal-close" type="button" data-modal-close aria-label="Закрыть">✕</button>
-    <h3 id="feedback-title">Расскажите, что можно улучшить</h3>
-    <p class="modal-sub">Ваше мнение важно для нас. Директор школы лично рассмотрит обращение.</p>
-
-    <form class="modal-form" data-feedback-form novalidate>
-      <div class="field">
-        <label class="field-label" for="fb-name">Имя</label>
-        <input class="input" id="fb-name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться">
-      </div>
-
-      <div class="field">
-        <label class="field-label" for="fb-phone">Телефон</label>
-        <input class="input" id="fb-phone" name="phone" type="tel" autocomplete="tel" placeholder="+7 900 000 00 00">
-      </div>
-
-      <div class="field">
-        <label class="field-label" for="fb-message">Что не понравилось</label>
-        <textarea class="textarea" id="fb-message" name="message" placeholder="Опишите ситуацию — так директору будет проще разобраться"></textarea>
-      </div>
-
-      <div class="field">
-        <label class="field-label" for="fb-contact">Как связаться</label>
-        <select class="select" id="fb-contact" name="contact">
-          <option value="WhatsApp">WhatsApp</option>
-          <option value="Звонок">Звонок</option>
-        </select>
-      </div>
-
-      <p class="field-error" data-form-error role="alert"></p>
-
-      <button class="btn btn-primary btn-block" type="submit">Отправить</button>
-      <p class="form-hint">Обращение не публикуется на сайте и не попадает в отзывы — оно уходит напрямую руководителю школы.</p>
-    </form>
-  </div>
-</div>
-
 <!-- ============ ФУТЕР ============ -->
 <footer class="site-footer">
   <div class="shell">
@@ -279,6 +227,6 @@
 </footer>
 
 <script src="app.js"></script>
-<script src="reviews.js"></script>
+<script src="feedback.js"></script>
 </body>
 </html>

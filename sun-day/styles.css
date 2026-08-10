@@ -304,7 +304,7 @@ p { margin: 0; }
 .hero--compact .hero-title { font-size: clamp(36px, 5vw, 58px); }
 .hero--compact .hero-sub { margin: 20px auto 0; text-align: center; }
 
-/* Фото + языковые бейджи */
+/* Видео/фото + языковые бейджи */
 .hero-media {
   position: relative;
   padding: 28px;
@@ -316,6 +316,16 @@ p { margin: 0; }
   object-fit: cover;
   border-radius: var(--r-card);
   box-shadow: var(--shadow-lg);
+}
+
+.hero-video {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-lg);
+  background: var(--sun-soft);
 }
 
 .lang-badge {
@@ -1125,6 +1135,214 @@ p { margin: 0; }
 }
 .sd-send:hover { background: var(--amber-dark); }
 
+/* ---------------- Hero: бейдж, доводка, форма заявки ---------------- */
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding: 9px 16px 9px 12px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.75);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.hero-badge::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 0 4px rgba(233, 124, 31, 0.18);
+}
+
+/* Рисованное подчёркивание ключевого слова */
+.u-underline { position: relative; white-space: nowrap; }
+.u-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.08em;
+  height: 0.16em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none' fill='none'%3E%3Cpath d='M4 8.6c38-5.2 92-6.4 132-4.2 24 1.3 44 3 63 5' stroke='%23E97C1F' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+}
+
+.hero-form {
+  margin-top: 32px;
+  max-width: 520px;
+  background: var(--white);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.hero-form-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.hero-form .btn { margin-top: 14px; }
+
+.hero-form-note {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-align: center;
+}
+
+.hero-alt {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero-phone {
+  font-size: 15px;
+  font-weight: 700;
+  padding: 10px 0;
+}
+.hero-phone:hover { color: var(--amber-dark); }
+
+/* Мягкое свечение в углах жёлтого блока — «оживляет» плоскость */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero::before {
+  width: 380px;
+  height: 380px;
+  top: -160px;
+  right: -80px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 70%);
+}
+.hero::after {
+  width: 300px;
+  height: 300px;
+  bottom: -140px;
+  left: -60px;
+  background: radial-gradient(circle, rgba(233, 124, 31, 0.12), rgba(233, 124, 31, 0) 70%);
+}
+.hero > * { position: relative; z-index: 1; }
+
+/* ---------------- Шаги записи ---------------- */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  counter-reset: step;
+}
+
+.step {
+  background: var(--white);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow);
+  padding: 30px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.step::before {
+  counter-increment: step;
+  content: counter(step);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--sun);
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  font-weight: 800;
+}
+.step h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+.step p { font-size: 15px; color: var(--muted); }
+
+/* ---------------- Оценка школы (5 звёзд) ---------------- */
+
+.rating-card {
+  background: var(--white);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow);
+  padding: 34px 36px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 32px;
+}
+.rating-card h3 { font-size: 22px; font-weight: 800; }
+.rating-card p { margin-top: 8px; font-size: 15px; color: var(--muted); }
+
+.star-rate {
+  display: inline-flex;
+  gap: 4px;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+.star-rate button {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  padding: 4px;
+  background: transparent;
+  cursor: pointer;
+  color: rgba(31, 41, 55, 0.18);
+  transition: transform .16s ease, color .16s ease;
+}
+.star-rate button svg { width: 100%; height: 100%; display: block; fill: currentColor; }
+.star-rate button:hover { transform: scale(1.12) rotate(-4deg); }
+.star-rate button.is-lit { color: var(--sun); }
+.star-rate button.is-lit svg { filter: drop-shadow(0 2px 6px rgba(233, 124, 31, 0.28)); }
+
+/* ---------------- Микро-анимации ---------------- */
+
+.btn .btn-arrow { transition: transform .18s ease; }
+.btn:hover .btn-arrow { transform: translateX(4px); }
+
+.perk, .program-card, .price-card, .review-card, .step {
+  border: 1px solid transparent;
+}
+.perk:hover, .program-card:hover, .price-card:hover, .step:hover {
+  border-color: rgba(252, 227, 138, 0.9);
+}
+
+.program-card img { transition: transform .5s cubic-bezier(.2, .8, .3, 1); }
+.program-card:hover img { transform: scale(1.04); }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s ease, transform .6s cubic-bezier(.2, .8, .3, 1);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+.hero-copy { animation: heroIn .7s cubic-bezier(.2, .8, .3, 1) both; }
+.hero-media { animation: heroIn .7s cubic-bezier(.2, .8, .3, 1) .12s both; }
+
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero-copy, .hero-media { animation: none; }
+  .program-card:hover img { transform: none; }
+  .star-rate button:hover { transform: none; }
+}
+
 /* =========================================================
    Адаптив
    ========================================================= */
@@ -1139,6 +1357,8 @@ p { margin: 0; }
   .program-row { grid-template-columns: 1fr; }
   .program-row img { min-height: 240px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .hero-form { max-width: 100%; }
 }
 
 @media (max-width: 900px) {
@@ -1209,6 +1429,15 @@ p { margin: 0; }
   /* Языковые бейджи мельче */
   .lang-badge { width: 44px; height: 44px; }
   .lang-badge svg { width: 44px; height: 44px; }
+
+  /* Новые блоки */
+  .hero-form { padding: 20px; }
+  .hero-form-fields { grid-template-columns: 1fr; }
+  .hero-alt .btn { width: 100%; }
+  .rating-card { padding: 26px 22px; flex-direction: column; align-items: flex-start; }
+  .star-rate button { width: 44px; height: 44px; }
+  .step { padding: 24px; }
+  .hero::before, .hero::after { display: none; }
 
   /* Тосты по ширине экрана */
   .toast-stack { top: 12px; right: 12px; left: 12px; }

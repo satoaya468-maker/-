@@ -13,6 +13,11 @@
 </head>
 <body>
 
+<!-- Спрайт звезды -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="icon-star" viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></symbol>
+</svg>
+
 <!-- ============ ШАПКА ============ -->
 <header class="site-header">
   <div class="header-pill">
@@ -50,17 +55,36 @@
   <section class="hero">
     <div class="hero-grid">
       <div class="hero-copy">
-        <h1 class="hero-title">Языковая школа, где стираются барьеры</h1>
+        <span class="hero-badge">Старт новых групп. Дети, взрослые!</span>
+        <h1 class="hero-title">Языковая школа, где стираются <span class="u-underline">барьеры</span></h1>
         <p class="hero-sub">Английский для детей и взрослых в Магнитогорске. Инновационные программы, старт новых групп прямо сейчас.</p>
-        <div class="hero-actions">
-          <button class="btn btn-primary" type="button" data-open-assistant>Записаться на пробное →</button>
+
+        <form class="hero-form" data-signup-form data-source="Главная — форма в hero" novalidate>
+          <div class="hero-form-fields">
+            <div class="field">
+              <label class="field-label" for="hero-name">Имя</label>
+              <input class="input" id="hero-name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться">
+            </div>
+            <div class="field">
+              <label class="field-label" for="hero-phone">Телефон</label>
+              <input class="input" id="hero-phone" name="phone" type="tel" autocomplete="tel" placeholder="+7 900 000 00 00">
+            </div>
+          </div>
+          <p class="field-error" data-form-error role="alert"></p>
+          <button class="btn btn-primary btn-block" type="submit">Записаться на пробное <span class="btn-arrow">→</span></button>
+          <p class="hero-form-note">Первое занятие бесплатно · перезвоним в течение 3 минут</p>
+        </form>
+
+        <div class="hero-alt">
           <a class="btn btn-secondary" href="programmy.html">Наши программы</a>
+          <a class="hero-phone" href="tel:+79088104430">или позвоните: +7 (908) 810-44-30</a>
         </div>
-        <p class="hero-note">Старт новых групп. Дети, взрослые!</p>
       </div>
 
       <div class="hero-media">
-        <img class="hero-photo" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80" alt="Занятие английским языком в школе Sun Day" width="800" height="1000" loading="lazy">
+        <video class="hero-video" src="assets/hero-class.mp4" poster="assets/hero-class-poster.jpg"
+               autoplay muted loop playsinline preload="metadata"
+               aria-label="Занятие английским языком в школе Sun Day"></video>
 
         <span class="lang-badge lang-badge--en">
           <svg width="56" height="56" viewBox="0 0 56 56" role="img" aria-label="Английский">
@@ -219,11 +243,11 @@
             </div>
           </div>
           <span class="stars" role="img" aria-label="5 из 5">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FCE38A" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FCE38A" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FCE38A" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FCE38A" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FCE38A" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg width="18" height="18" fill="#FCE38A" aria-hidden="true"><use href="#icon-star"/></svg>
+            <svg width="18" height="18" fill="#FCE38A" aria-hidden="true"><use href="#icon-star"/></svg>
+            <svg width="18" height="18" fill="#FCE38A" aria-hidden="true"><use href="#icon-star"/></svg>
+            <svg width="18" height="18" fill="#FCE38A" aria-hidden="true"><use href="#icon-star"/></svg>
+            <svg width="18" height="18" fill="#FCE38A" aria-hidden="true"><use href="#icon-star"/></svg>
           </span>
           <p class="review-text">Прекрасная школа, дочка ходит на занятия для дошкольников и ей очень нравится. Занимаются в паре, что очень удобно и практика разговорная и индивидуальный подход. На уроках поют песни, играют, учатся. Уроки проходят дольше, но ребенок даже не замечает этого времени. Спасибо за дополнительное время и за знания!</p>
           <p class="review-meta">Отзыв подтверждён · 2ГИС</p>
@@ -238,11 +262,11 @@
             </div>
           </div>
           <span class="stars" role="img" aria-label="5 из 5">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FCE38A" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FCE38A" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FCE38A" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FCE38A" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FCE38A" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg width="18" height="18" fill="#FCE38A" aria-hidden="true"><use href="#icon-star"/></svg>
+            <svg width="18" height="18" fill="#FCE38A" aria-hidden="true"><use href="#icon-star"/></svg>
+            <svg width="18" height="18" fill="#FCE38A" aria-hidden="true"><use href="#icon-star"/></svg>
+            <svg width="18" height="18" fill="#FCE38A" aria-hidden="true"><use href="#icon-star"/></svg>
+            <svg width="18" height="18" fill="#FCE38A" aria-hidden="true"><use href="#icon-star"/></svg>
           </span>
           <p class="review-text">Хорошая школа. Сын доволен, ходит с удовольствием, успеваемость в школе по английскому языку стала лучше. Спасибо преподавателям.</p>
           <p class="review-meta">Отзыв подтверждён · 2ГИС</p>
@@ -257,11 +281,11 @@
             </div>
           </div>
           <span class="stars" role="img" aria-label="5 из 5">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FCE38A" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FCE38A" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FCE38A" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FCE38A" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#FCE38A" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg width="18" height="18" fill="#FCE38A" aria-hidden="true"><use href="#icon-star"/></svg>
+            <svg width="18" height="18" fill="#FCE38A" aria-hidden="true"><use href="#icon-star"/></svg>
+            <svg width="18" height="18" fill="#FCE38A" aria-hidden="true"><use href="#icon-star"/></svg>
+            <svg width="18" height="18" fill="#FCE38A" aria-hidden="true"><use href="#icon-star"/></svg>
+            <svg width="18" height="18" fill="#FCE38A" aria-hidden="true"><use href="#icon-star"/></svg>
           </span>
           <p class="review-text">Я учился тут и мне помогло улучшить школьную оценку с 3 до 5 всем советую</p>
           <p class="review-meta">Отзыв подтверждён · 2ГИС</p>
@@ -269,6 +293,44 @@
       </div>
 
       <a class="text-link" href="otzyvy.html" style="margin-top:24px">Смотреть все 23 отзыва →</a>
+
+      <div class="rating-card" style="margin-top:32px">
+        <div>
+          <h3>Как вам Sun Day?</h3>
+          <p>Поставьте оценку — это займёт секунду и поможет нам стать лучше.</p>
+        </div>
+        <div class="star-rate" data-star-rate role="group" aria-label="Оценить школу от 1 до 5">
+          <button type="button" aria-label="Оценка 1 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star"/></svg></button>
+          <button type="button" aria-label="Оценка 2 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star"/></svg></button>
+          <button type="button" aria-label="Оценка 3 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star"/></svg></button>
+          <button type="button" aria-label="Оценка 4 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star"/></svg></button>
+          <button type="button" aria-label="Оценка 5 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-star"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ КАК ЗАПИСАТЬСЯ ============ -->
+  <section class="section section--tight">
+    <div class="shell">
+      <p class="eyebrow">Как записаться</p>
+      <h2 class="section-title" style="margin-top:12px">Три шага до первого занятия</h2>
+      <p class="section-sub" style="margin-bottom:40px">Заявку можно оставить в любое время — ассистент на сайте работает круглосуточно.</p>
+
+      <div class="steps">
+        <div class="step">
+          <h3>Оставляете заявку</h3>
+          <p>В форме выше или в чате с ассистентом: для кого занятия, какой уровень и куда прислать расписание.</p>
+        </div>
+        <div class="step">
+          <h3>Подбираем группу</h3>
+          <p>Смотрим возраст, уровень и удобное время, предлагаем подходящую группу в одном из двух филиалов.</p>
+        </div>
+        <div class="step">
+          <h3>Приходите на пробное</h3>
+          <p>Бесплатное занятие: знакомитесь с преподавателем и форматом — и только потом решаете.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -337,5 +399,6 @@
 </footer>
 
 <script src="app.js"></script>
+<script src="feedback.js"></script>
 </body>
 </html>

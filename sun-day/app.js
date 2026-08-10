@@ -302,12 +302,13 @@
     });
   }
 
-  /* ---------- Форма записи на странице контактов ---------- */
+  /* ---------- Формы записи (hero на главной и страница контактов) ---------- */
 
-  function initContactForm() {
-    var form = document.querySelector('[data-signup-form]');
-    if (!form) return;
+  function initSignupForms() {
+    document.querySelectorAll('[data-signup-form]').forEach(initSignupForm);
+  }
 
+  function initSignupForm(form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -329,21 +330,21 @@
       }
       error.textContent = '';
 
-      var label = button.textContent;
+      var label = button.innerHTML;
       button.disabled = true;
       button.textContent = 'Отправляем…';
 
       sendLead({
-        type: 'Запись с сайта',
+        type: 'Запись на пробное занятие',
         name: name.value.trim(),
         phone: phone.value.trim(),
-        audience: branch.value,
-        source: 'Контакты — форма записи'
+        audience: branch ? branch.value : 'Филиал уточняется',
+        source: form.getAttribute('data-source') || document.title
       });
 
       setTimeout(function () {
         button.disabled = false;
-        button.textContent = label;
+        button.innerHTML = label;
         form.reset();
         toast({
           kicker: 'ASCEND SYSTEMS · CRM',
@@ -355,6 +356,38 @@
     });
   }
 
+  /* ---------- Появление блоков при скролле ---------- */
+
+  var REVEAL_SELECTOR = '.perk, .program-card, .program-row, .price-card, .review-card,' +
+    ' .step, .stat-card, .info-card, .map-card, .form-card, .rating-card, .cta-banner, .pay-strip';
+
+  function initReveal() {
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var items = Array.prototype.slice.call(document.querySelectorAll(REVEAL_SELECTOR));
+    if (!items.length) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+
+    items.forEach(function (item) {
+      item.classList.add('reveal');
+
+      // лёгкая лесенка внутри одного ряда, но не длиннее 240мс
+      var siblings = Array.prototype.slice.call(item.parentNode.children);
+      var index = siblings.indexOf(item);
+      if (index > 0) item.style.transitionDelay = Math.min(index, 3) * 80 + 'ms';
+
+      observer.observe(item);
+    });
+  }
+
   /* ---------- Инициализация ---------- */
 
   window.SunDay = { toast: toast, sendLead: sendLead, isPhone: isPhone };
@@ -362,7 +395,8 @@
   function boot() {
     initNav();
     initWidget();
-    initContactForm();
+    initSignupForms();
+    initReveal();
   }
 
   if (document.readyState === 'loading') {
