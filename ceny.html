@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Цены — Ульяна · Груминг, Магнитогорск</title>
+<meta name="description" content="Стоимость груминга собак и кошек в Магнитогорске. Цены по размеру питомца, гигиенические процедуры и экспресс-линька. Точную сумму Ульяна называет при записи.">
+<meta name="theme-color" content="#EFEAE1">
+<link rel="canonical" href="ceny.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Цены — Ульяна · Груминг">
+<meta property="og:description" content="Стоимость груминга собак и кошек в Магнитогорске.">
+<meta property="og:image" content="media/og-cover.jpg">
+<meta property="og:locale" content="ru_RU">
+
+<link rel="icon" href="media/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter+Tight:ital,wght@0,300..700;1,400&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+/* Конфиг применяем только если CDN действительно загрузился —
+   иначе страница просто остаётся на своём styles.css без ошибок в консоли. */
+if (window.tailwind) tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sand: '#EFEAE1', sanddeep: '#E4DED2', ink: '#1D1B18',
+        smoke: '#7A7266', sage: '#6B7A5F', line: '#C9C0B0', paper: '#FCFAF6'
+      },
+      fontFamily: {
+        display: ['Fraunces', 'Georgia', 'serif'],
+        sans: ['"Inter Tight"', 'system-ui', 'sans-serif']
+      }
+    }
+  }
+};
+</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="page">
+<a class="skip-link" href="#main">К содержанию</a>
+
+<!-- ===================== ШАПКА ===================== -->
+<header class="site-header">
+  <div class="shell">
+    <a class="wordmark" href="index.html">Ульяна&nbsp;·&nbsp;Груминг</a>
+
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="index.html">Главная</a>
+      <a href="uslugi.html">Услуги</a>
+      <a href="ceny.html" aria-current="page">Цены</a>
+      <a href="otzyvy.html">Отзывы</a>
+      <a href="contakty.html">Контакты</a>
+    </nav>
+
+    <div class="header-side">
+      <a class="header-tel" href="tel:+79097477360">+7 (909) 747-73-60</a>
+      <button class="header-cta" type="button" data-open-widget>Записаться</button>
+      <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mobileNav"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <nav class="mobile-nav__links" aria-label="Мобильная навигация">
+    <a href="index.html">Главная</a>
+    <a href="uslugi.html">Услуги</a>
+    <a href="ceny.html" aria-current="page">Цены</a>
+    <a href="otzyvy.html">Отзывы</a>
+    <a href="contakty.html">Контакты</a>
+  </nav>
+  <div class="mobile-nav__foot">
+    <a class="tlink" href="tel:+79097477360">+7 (909) 747-73-60 <span class="arw" aria-hidden="true">→</span></a>
+    <button class="btn btn--sage" type="button" data-open-widget>Записаться на приём</button>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="page-hero">
+    <div class="shell">
+      <p class="eyebrow reveal">Прайс</p>
+      <h1 class="display d-1 reveal" style="--d:60ms">Стоимость</h1>
+      <p class="lede page-hero__lede reveal" style="--d:120ms">
+        В таблице — нижняя граница. Итоговая стоимость зависит от размера животного
+        и состояния шерсти. Точную цену уточняйте при записи.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== ТАБЛИЦА ===================== -->
+  <section class="section">
+    <div class="shell">
+      <div style="max-width: 820px">
+
+        <!-- Собаки -->
+        <div class="price-group reveal">
+          <h2 class="price-group__title">Собаки</h2>
+          <p class="price-group__note">Комплексный груминг. Категория определяется по весу питомца.</p>
+          <table class="price-table">
+            <thead>
+              <tr><th scope="col">Категория</th><th scope="col">Цена</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="price-name">Мини</span><span class="price-hint">до 5 кг</span></td>
+                <td>от 1&nbsp;500&nbsp;₽</td>
+              </tr>
+              <tr>
+                <td><span class="price-name">Малые</span><span class="price-hint">5–10 кг</span></td>
+                <td>от 2&nbsp;000&nbsp;₽</td>
+              </tr>
+              <tr>
+                <td><span class="price-name">Средние</span><span class="price-hint">10–20 кг</span></td>
+                <td>от 2&nbsp;800&nbsp;₽</td>
+              </tr>
+              <tr>
+                <td><span class="price-name">Крупные</span><span class="price-hint">от 20 кг</span></td>
+                <td>от 3&nbsp;800&nbsp;₽</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Кошки -->
+        <div class="price-group reveal">
+          <h2 class="price-group__title">Кошки</h2>
+          <p class="price-group__note">Работаю в спокойном темпе, при необходимости — в два коротких визита.</p>
+          <table class="price-table">
+            <thead>
+              <tr><th scope="col">Процедура</th><th scope="col">Цена</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="price-name">Гигиеническая стрижка</span></td>
+                <td>от 2&nbsp;000&nbsp;₽</td>
+              </tr>
+              <tr>
+                <td><span class="price-name">Комплексный груминг</span></td>
+                <td>от 3&nbsp;000&nbsp;₽</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Дополнительно -->
+        <div class="price-group reveal">
+          <h2 class="price-group__title">Дополнительно</h2>
+          <p class="price-group__note">Отдельные процедуры — можно записаться без полной стрижки.</p>
+          <table class="price-table">
+            <thead>
+              <tr><th scope="col">Процедура</th><th scope="col">Цена</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="price-name">Стрижка когтей</span></td>
+                <td>300&nbsp;₽</td>
+              </tr>
+              <tr>
+                <td><span class="price-name">Чистка ушей</span></td>
+                <td>300&nbsp;₽</td>
+              </tr>
+              <tr>
+                <td><span class="price-name">Экспресс-линька</span></td>
+                <td>от 1&nbsp;500&nbsp;₽</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Пояснение -->
+        <div class="reveal" style="margin-top: clamp(44px, 5vw, 64px); padding-top: 32px; border-top: 1px solid var(--line)">
+          <p class="body-text" style="max-width: 620px">
+            <strong>Почему «от».</strong> Одна и та же порода приходит в разном состоянии:
+            ухоженную шерсть я привожу в порядок за полтора часа, запущенную с колтунами —
+            за три, и это разная работа. Я не поднимаю цену на месте: сумму называю
+            при записи, когда понимаю задачу, и дальше она не меняется.
+          </p>
+          <p class="body-text" style="max-width: 620px">
+            Если сомневаетесь, к какой категории относится ваш питомец — напишите,
+            подскажу и посчитаю сразу.
+          </p>
+
+          <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:32px">
+            <button class="btn btn--sage" type="button" data-open-widget>
+              Записаться и уточнить <span class="arw" aria-hidden="true">→</span>
+            </button>
+            <a class="btn btn--ghost" href="https://wa.me/79097477360" target="_blank" rel="noopener">
+              Спросить в WhatsApp
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== ФУТЕР ===================== -->
+<footer class="site-footer">
+  <div class="shell">
+    <div class="site-footer__grid">
+      <div>
+        <p class="site-footer__brand">Ульяна&nbsp;·&nbsp;Груминг</p>
+        <p class="small" style="max-width:280px">Груминг собак и кошек в Магнитогорске</p>
+      </div>
+
+      <div>
+        <p class="footer-title">Контакты</p>
+        <ul class="footer-list">
+          <li><span class="muted">Карла Маркса, 190 — внутри зоомагазина «ГавМяу»</span></li>
+          <li><a href="tel:+79097477360">+7 (909) 747-73-60</a></li>
+          <li><span class="muted">По предварительной записи</span></li>
+          <li><a href="https://wa.me/79097477360" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="viber://chat?number=%2B79097477360">Viber</a></li>
+          <li><a href="https://vk.ru/ulianagroomer" target="_blank" rel="noopener">ВКонтакте</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-title">Разделы</p>
+        <ul class="footer-list">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="uslugi.html">Услуги</a></li>
+          <li><a href="ceny.html">Цены</a></li>
+          <li><a href="otzyvy.html">Отзывы</a></li>
+          <li><a href="contakty.html">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <span>© <span data-year>2026</span> Ульяна Филипцевич</span>
+      <span>Разработка — Ascend Systems</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

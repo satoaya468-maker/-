@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Отзывы — Ульяна · Груминг, Магнитогорск</title>
+<meta name="description" content="Отзывы хозяев о груминге у Ульяны Филипцевич в Магнитогорске. Оценка 5.0 на 2ГИС. Если что-то пошло не так — напишите Ульяне лично.">
+<meta name="theme-color" content="#EFEAE1">
+<link rel="canonical" href="otzyvy.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Отзывы — Ульяна · Груминг">
+<meta property="og:description" content="Что говорят хозяева. Оценка 5.0 на 2ГИС.">
+<meta property="og:image" content="media/og-cover.jpg">
+<meta property="og:locale" content="ru_RU">
+
+<link rel="icon" href="media/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter+Tight:ital,wght@0,300..700;1,400&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+/* Конфиг применяем только если CDN действительно загрузился —
+   иначе страница просто остаётся на своём styles.css без ошибок в консоли. */
+if (window.tailwind) tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sand: '#EFEAE1', sanddeep: '#E4DED2', ink: '#1D1B18',
+        smoke: '#7A7266', sage: '#6B7A5F', line: '#C9C0B0', paper: '#FCFAF6'
+      },
+      fontFamily: {
+        display: ['Fraunces', 'Georgia', 'serif'],
+        sans: ['"Inter Tight"', 'system-ui', 'sans-serif']
+      }
+    }
+  }
+};
+</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="page">
+<a class="skip-link" href="#main">К содержанию</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="ic-star" viewBox="0 0 14 13"><path d="M7 0l1.8 4.3 4.7.4-3.5 3 1 4.6L7 9.9 2.9 12.3l1-4.6-3.4-3 4.6-.4z"/></symbol>
+</svg>
+
+<!-- ===================== ШАПКА ===================== -->
+<header class="site-header">
+  <div class="shell">
+    <a class="wordmark" href="index.html">Ульяна&nbsp;·&nbsp;Груминг</a>
+
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="index.html">Главная</a>
+      <a href="uslugi.html">Услуги</a>
+      <a href="ceny.html">Цены</a>
+      <a href="otzyvy.html" aria-current="page">Отзывы</a>
+      <a href="contakty.html">Контакты</a>
+    </nav>
+
+    <div class="header-side">
+      <a class="header-tel" href="tel:+79097477360">+7 (909) 747-73-60</a>
+      <button class="header-cta" type="button" data-open-widget>Записаться</button>
+      <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mobileNav"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <nav class="mobile-nav__links" aria-label="Мобильная навигация">
+    <a href="index.html">Главная</a>
+    <a href="uslugi.html">Услуги</a>
+    <a href="ceny.html">Цены</a>
+    <a href="otzyvy.html" aria-current="page">Отзывы</a>
+    <a href="contakty.html">Контакты</a>
+  </nav>
+  <div class="mobile-nav__foot">
+    <a class="tlink" href="tel:+79097477360">+7 (909) 747-73-60 <span class="arw" aria-hidden="true">→</span></a>
+    <button class="btn btn--sage" type="button" data-open-widget>Записаться на приём</button>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="page-hero">
+    <div class="shell">
+      <p class="eyebrow reveal">5.0★ · 2ГИС</p>
+      <h1 class="display d-1 reveal" style="--d:60ms">Отзывы</h1>
+      <p class="lede page-hero__lede reveal" style="--d:120ms">
+        Здесь то, что хозяева написали сами. Если ваш опыт оказался другим —
+        выберите свою оценку ниже: обращение придёт лично Ульяне, а не в публичную ленту.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== ФИЛЬТР + СПИСОК ===================== -->
+  <section class="section">
+    <div class="shell">
+
+      <div class="section-head reveal" style="margin-bottom: 34px">
+        <div>
+          <p class="eyebrow" style="margin-bottom:18px">Ваша оценка</p>
+          <div class="filter-bar" id="reviewFilter" role="group" aria-label="Фильтр отзывов по оценке">
+            <button class="filter-pill" type="button" data-stars="all" aria-pressed="false">Все</button>
+            <button class="filter-pill" type="button" data-stars="5" aria-pressed="true">5★</button>
+            <button class="filter-pill" type="button" data-stars="4" aria-pressed="false">4★</button>
+            <button class="filter-pill" type="button" data-stars="3" aria-pressed="false">3★</button>
+            <button class="filter-pill" type="button" data-stars="2" aria-pressed="false">2★</button>
+            <button class="filter-pill" type="button" data-stars="1" aria-pressed="false">1★</button>
+          </div>
+        </div>
+        <p class="small" id="reviewCount" aria-live="polite"></p>
+      </div>
+
+      <!-- ---------- Список отзывов ---------- -->
+      <div id="reviewList">
+        <div class="cols-2">
+
+          <article class="review-card review-card--full reveal">
+            <div class="review-head">
+              <span class="avatar" aria-hidden="true">АК</span>
+              <span>
+                <span class="review-name">Анна К.</span><br>
+                <span class="review-date">ноябрь 2025</span>
+              </span>
+            </div>
+            <span class="stars" role="img" aria-label="Оценка 5 из 5">
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+            </span>
+            <blockquote class="review-quote">
+              «Ходим к Ульяне уже больше года со своим той-терьером. Каждый раз стрижка
+              идеальная, собака выходит спокойной, никакого стресса. Ульяна реально любит
+              своё дело, это видно.»
+            </blockquote>
+            <div class="review-foot"><span class="review-verified">Отзыв подтверждён · 2ГИС</span></div>
+          </article>
+
+          <article class="review-card review-card--full reveal" style="--d:80ms">
+            <div class="review-head">
+              <span class="avatar" aria-hidden="true">МП</span>
+              <span>
+                <span class="review-name">Марина П.</span><br>
+                <span class="review-date">декабрь 2025</span>
+              </span>
+            </div>
+            <span class="stars" role="img" aria-label="Оценка 5 из 5">
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+            </span>
+            <blockquote class="review-quote">
+              «Первый раз доверила стрижку кошки, боялась. Ульяна нашла подход, всё прошло
+              спокойно, кот вышел довольным. Рекомендую всем, кто ищет мастера с душой.»
+            </blockquote>
+            <div class="review-foot"><span class="review-verified">Отзыв подтверждён · 2ГИС</span></div>
+          </article>
+
+          <article class="review-card review-card--full reveal" style="--d:40ms">
+            <div class="review-head">
+              <span class="avatar" aria-hidden="true">ЕС</span>
+              <span>
+                <span class="review-name">Елена С.</span><br>
+                <span class="review-date">январь 2026</span>
+              </span>
+            </div>
+            <span class="stars" role="img" aria-label="Оценка 5 из 5">
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+            </span>
+            <blockquote class="review-quote">
+              «Стригла у Ульяны шпица к выставке. Работа ювелирная, форма идеально
+              по стандарту породы. Цена честная, отношение — как к своему.»
+            </blockquote>
+            <div class="review-foot"><span class="review-verified">Отзыв подтверждён · 2ГИС</span></div>
+          </article>
+
+          <article class="review-card review-card--full reveal" style="--d:120ms">
+            <div class="review-head">
+              <span class="avatar" aria-hidden="true">ДР</span>
+              <span>
+                <span class="review-name">Дмитрий Р.</span><br>
+                <span class="review-date">март 2026</span>
+              </span>
+            </div>
+            <span class="stars" role="img" aria-label="Оценка 5 из 5">
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+              <svg aria-hidden="true"><use href="#ic-star"/></svg>
+            </span>
+            <blockquote class="review-quote">
+              «Наш йорк раньше боялся любых грумеров. У Ульяны спокойно стоит, не рычит.
+              Она реально работает с характером животного, а не просто стрижёт.»
+            </blockquote>
+            <div class="review-foot"><span class="review-verified">Отзыв подтверждён · 2ГИС</span></div>
+          </article>
+
+        </div>
+
+        <div class="reveal" style="display:flex; justify-content:flex-end; margin-top:34px">
+          <a class="tlink" href="https://2gis.ru/magnitogorsk/firm/70000001083397497/tab/reviews"
+             target="_blank" rel="noopener">
+            Читать все отзывы на 2ГИС <span class="arw" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ---------- Приватная обратная связь ---------- -->
+      <div id="feedbackPane" hidden>
+        <div class="feedback-pane">
+          <p class="eyebrow" style="margin-bottom:16px">Оценка <span id="feedbackStars">4★</span></p>
+          <h2 class="display d-2">Расскажите, что можно улучшить</h2>
+          <p class="body-text" style="margin-top:16px">
+            Ваш отзыв придёт лично Ульяне. Она свяжется с вами и решит вопрос.
+          </p>
+
+          <form id="feedbackForm" style="display:grid; gap:24px; margin-top:32px" novalidate>
+            <div class="field">
+              <label for="fbName">Имя</label>
+              <input id="fbName" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required>
+            </div>
+
+            <div class="field">
+              <label for="fbPhone">Телефон</label>
+              <input id="fbPhone" name="phone" type="tel" autocomplete="tel" placeholder="+7 900 000 00 00" required>
+            </div>
+
+            <div class="field">
+              <label for="fbMessage">Что произошло</label>
+              <textarea id="fbMessage" name="message" placeholder="Опишите ситуацию — что не понравилось и когда это было" required></textarea>
+            </div>
+
+            <fieldset style="border:0; padding:0; margin:0; display:grid; gap:10px">
+              <legend class="fieldset-legend" style="padding:0">Как связаться</legend>
+              <div class="radio-row">
+                <label class="radio-chip">
+                  <input type="radio" name="channel" value="WhatsApp" checked>
+                  <span>WhatsApp</span>
+                </label>
+                <label class="radio-chip">
+                  <input type="radio" name="channel" value="Звонок">
+                  <span>Звонок</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div>
+              <button class="btn btn--sage" type="submit">
+                Отправить <span class="arw" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </form>
+
+          <p class="feedback-note">
+            <span>
+              Это обращение не публикуется на сайте и не попадает в общий список отзывов.
+              Оно уходит напрямую Ульяне — чтобы вопрос решался лично, а не в переписке на виду у всех.
+            </span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="section section--deep">
+    <div class="shell">
+      <div class="reveal" style="max-width:680px">
+        <h2 class="display d-1">Приходите — и напишите свой отзыв</h2>
+        <p class="small" style="margin-top:20px; font-size:15px">
+          Запись по телефону, в WhatsApp или через сообщения ВКонтакте.
+        </p>
+      </div>
+
+      <div class="reveal" style="--d:80ms; display:grid; gap:12px; margin-top:44px; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); max-width: 760px">
+        <button class="btn btn--sage" type="button" data-open-widget>
+          Записаться <span class="arw" aria-hidden="true">→</span>
+        </button>
+        <a class="btn btn--ghost" href="https://wa.me/79097477360" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn--ghost" href="https://vk.ru/ulianagroomer" target="_blank" rel="noopener">ВКонтакте</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== ФУТЕР ===================== -->
+<footer class="site-footer">
+  <div class="shell">
+    <div class="site-footer__grid">
+      <div>
+        <p class="site-footer__brand">Ульяна&nbsp;·&nbsp;Груминг</p>
+        <p class="small" style="max-width:280px">Груминг собак и кошек в Магнитогорске</p>
+      </div>
+
+      <div>
+        <p class="footer-title">Контакты</p>
+        <ul class="footer-list">
+          <li><span class="muted">Карла Маркса, 190 — внутри зоомагазина «ГавМяу»</span></li>
+          <li><a href="tel:+79097477360">+7 (909) 747-73-60</a></li>
+          <li><span class="muted">По предварительной записи</span></li>
+          <li><a href="https://wa.me/79097477360" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="viber://chat?number=%2B79097477360">Viber</a></li>
+          <li><a href="https://vk.ru/ulianagroomer" target="_blank" rel="noopener">ВКонтакте</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-title">Разделы</p>
+        <ul class="footer-list">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="uslugi.html">Услуги</a></li>
+          <li><a href="ceny.html">Цены</a></li>
+          <li><a href="otzyvy.html">Отзывы</a></li>
+          <li><a href="contakty.html">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <span>© <span data-year>2026</span> Ульяна Филипцевич</span>
+      <span>Разработка — Ascend Systems</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
