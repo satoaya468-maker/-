@@ -177,7 +177,9 @@ a { color: inherit; text-decoration: none; }
   display: block;
   z-index: 1;
 }
-/* когда фото загрузилось — текст-плейсхолдер перекрыт */
+/* фото загрузилось — подпись-плейсхолдер прячем */
+.ph-img ~ span { display: none; }
+
 .ph span {
   color: #fff;
   font-size: 14px;
