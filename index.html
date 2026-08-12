@@ -342,6 +342,98 @@ if (window.tailwind) tailwind.config = {
       <div class="reveal" style="display:flex; justify-content:flex-end; margin-top:34px">
         <a class="tlink" href="otzyvy.html">Все отзывы <span class="arw" aria-hidden="true">→</span></a>
       </div>
+
+      <!-- ---------- Оценка: 5★ уходит на 2ГИС, ниже — лично Ульяне ---------- -->
+      <div class="rate-panel reveal" data-rating="ratingFeedback" style="margin-top:52px">
+        <div>
+          <p class="eyebrow" style="margin-bottom:14px">Оценка</p>
+          <h3 class="display d-2 rate-panel__title">Были у Ульяны? Поставьте оценку</h3>
+          <p class="rate-panel__note">
+            Пять звёзд — откроется 2ГИС, где отзыв увидят все. Оценка ниже никуда
+            не публикуется: вы напишете лично Ульяне, и она разберётся с вопросом.
+          </p>
+        </div>
+
+        <div class="rate">
+          <div class="rate__stars" role="group" aria-label="Поставьте оценку от 1 до 5">
+            <button class="rate__star" type="button" data-value="1" aria-pressed="false" aria-label="1 звезда из 5">
+              <svg viewBox="-1 -1 16 15" aria-hidden="true"><path d="M7 0l1.8 4.3 4.7.4-3.5 3 1 4.6L7 9.9 2.9 12.3l1-4.6-3.4-3 4.6-.4z"/></svg>
+            </button>
+            <button class="rate__star" type="button" data-value="2" aria-pressed="false" aria-label="2 звезды из 5">
+              <svg viewBox="-1 -1 16 15" aria-hidden="true"><path d="M7 0l1.8 4.3 4.7.4-3.5 3 1 4.6L7 9.9 2.9 12.3l1-4.6-3.4-3 4.6-.4z"/></svg>
+            </button>
+            <button class="rate__star" type="button" data-value="3" aria-pressed="false" aria-label="3 звезды из 5">
+              <svg viewBox="-1 -1 16 15" aria-hidden="true"><path d="M7 0l1.8 4.3 4.7.4-3.5 3 1 4.6L7 9.9 2.9 12.3l1-4.6-3.4-3 4.6-.4z"/></svg>
+            </button>
+            <button class="rate__star" type="button" data-value="4" aria-pressed="false" aria-label="4 звезды из 5">
+              <svg viewBox="-1 -1 16 15" aria-hidden="true"><path d="M7 0l1.8 4.3 4.7.4-3.5 3 1 4.6L7 9.9 2.9 12.3l1-4.6-3.4-3 4.6-.4z"/></svg>
+            </button>
+            <button class="rate__star" type="button" data-value="5" aria-pressed="false" aria-label="5 звёзд из 5">
+              <svg viewBox="-1 -1 16 15" aria-hidden="true"><path d="M7 0l1.8 4.3 4.7.4-3.5 3 1 4.6L7 9.9 2.9 12.3l1-4.6-3.4-3 4.6-.4z"/></svg>
+            </button>
+          </div>
+          <p class="rate__hint" data-rate-hint aria-live="polite">Нажмите на звезду</p>
+        </div>
+      </div>
+
+      <!-- ---------- Приватное обращение при оценке ниже пяти ---------- -->
+      <!-- без .reveal: блок скрыт, IntersectionObserver его не увидит
+           и он открылся бы полностью прозрачным -->
+      <div id="ratingFeedback" hidden style="margin-top:20px">
+        <div class="feedback-pane">
+          <p class="eyebrow" style="margin-bottom:16px">Оценка <span data-rate-label>4★</span></p>
+          <h3 class="display d-2">Расскажите, что можно улучшить</h3>
+          <p class="body-text" style="margin-top:16px">
+            Ваш отзыв придёт лично Ульяне. Она свяжется с вами и решит вопрос.
+          </p>
+
+          <form data-feedback-form style="display:grid; gap:24px; margin-top:32px" novalidate>
+            <input type="hidden" name="rating" value="">
+
+            <div class="field">
+              <label for="hbName">Имя</label>
+              <input id="hbName" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required>
+            </div>
+
+            <div class="field">
+              <label for="hbPhone">Телефон</label>
+              <input id="hbPhone" name="phone" type="tel" autocomplete="tel" placeholder="+7 900 000 00 00" required>
+            </div>
+
+            <div class="field">
+              <label for="hbMessage">Что произошло</label>
+              <textarea id="hbMessage" name="message" placeholder="Опишите ситуацию — что не понравилось и когда это было" required></textarea>
+            </div>
+
+            <fieldset style="display:grid; gap:10px">
+              <legend class="fieldset-legend">Как связаться</legend>
+              <div class="radio-row">
+                <label class="radio-chip">
+                  <input type="radio" name="channel" value="WhatsApp" checked>
+                  <span>WhatsApp</span>
+                </label>
+                <label class="radio-chip">
+                  <input type="radio" name="channel" value="Звонок">
+                  <span>Звонок</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div>
+              <button class="btn btn--sage" type="submit">
+                Отправить <span class="arw" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </form>
+
+          <p class="feedback-note">
+            <span>
+              Это обращение не публикуется на сайте и не попадает в общий список отзывов.
+              Оно уходит напрямую Ульяне — чтобы вопрос решался лично, а не в переписке на виду у всех.
+            </span>
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 

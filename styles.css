@@ -654,6 +654,58 @@ img, video { display: block; max-width: 100%; }
   background: var(--sage);
 }
 
+/* ---------- Оценка звёздами ---------- */
+.rate-panel {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: clamp(24px, 4vw, 56px);
+  padding: clamp(26px, 3.4vw, 40px) clamp(26px, 3.4vw, 44px);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--sand);
+}
+.section--deep .rate-panel { background: var(--sand); }
+.rate-panel__title { margin: 0 0 12px; }
+.rate-panel__note { max-width: 460px; font-size: 14px; line-height: 1.55; color: var(--smoke); margin: 0; }
+
+.rate { display: grid; gap: 12px; justify-items: flex-start; }
+.rate__stars { display: flex; gap: 2px; margin-left: -8px; }
+
+.rate__star {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.rate__star svg {
+  width: 30px;
+  height: 28px;
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1.1;
+  stroke-linejoin: round;
+  transition: fill .22s var(--ease), stroke .22s var(--ease), transform .28s var(--ease);
+}
+.rate__star.is-on svg { fill: var(--sage); stroke: var(--sage); }
+.rate__stars:hover .rate__star svg { transform: none; }
+.rate__star:hover svg { transform: scale(1.1); }
+
+.rate__hint {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--smoke);
+  margin: 0;
+  min-height: 20px;
+  max-width: 340px;
+}
+.rate__hint a { color: var(--sage); }
+
 /* Star filter */
 .filter-bar {
   display: flex;
@@ -1133,6 +1185,7 @@ body.is-locked .uw-launcher { opacity: 0; visibility: hidden; }
   .split .figure--tall { aspect-ratio: 4 / 5; }
   .service-row { grid-template-columns: 1fr; gap: 26px; }
   .service-row > .figure { height: auto; min-height: 0; aspect-ratio: 4 / 3; }
+  .rate-panel { grid-template-columns: 1fr; align-items: flex-start; }
   .site-footer__grid { grid-template-columns: 1fr 1fr; gap: 40px; padding-block: 60px; }
   .site-footer__grid > :first-child { grid-column: 1 / -1; }
   .section-head { flex-direction: column; align-items: flex-start; gap: 18px; }

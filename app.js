@@ -8,6 +8,7 @@
   /* ---------- Константы проекта ---------- */
   var PHONE_HREF = 'tel:+79097477360';
   var WA_HREF    = 'https://wa.me/79097477360';
+  var GIS_HREF   = 'https://2gis.ru/magnitogorsk/firm/70000001083397497/tab/reviews';
 
   /* Telegram-заглушка. Подставить реальные значения перед запуском. */
   var TOKEN   = 'YOUR_BOT_TOKEN';
@@ -403,84 +404,98 @@
   }
 
   /* ============================================================
-     7. Фильтр отзывов (otzyvy.html)
+     7. Оценка звёздами: 5 → 2ГИС, ниже → личное обращение
      ============================================================ */
-  function initReviewFilter() {
-    var bar = document.getElementById('reviewFilter');
-    if (!bar) return;
+  function initRating() {
+    document.querySelectorAll('[data-rating]').forEach(function (root) {
+      var stars = Array.prototype.slice.call(root.querySelectorAll('.rate__star'));
+      var hint  = root.querySelector('[data-rate-hint]');
+      var pane  = document.getElementById(root.dataset.rating);
+      if (!stars.length) return;
 
-    var pills    = Array.prototype.slice.call(bar.querySelectorAll('.filter-pill'));
-    var listWrap = document.getElementById('reviewList');
-    var formWrap = document.getElementById('feedbackPane');
-    var counter  = document.getElementById('reviewCount');
+      var chosen = 0;
 
-    function setActive(value) {
-      pills.forEach(function (p) {
-        p.setAttribute('aria-pressed', p.dataset.stars === value ? 'true' : 'false');
+      function paint(n) {
+        stars.forEach(function (s, i) { s.classList.toggle('is-on', i < n); });
+      }
+
+      function say(html) { if (hint) hint.innerHTML = html; }
+
+      stars.forEach(function (star) {
+        var value = parseInt(star.dataset.value, 10);
+
+        star.addEventListener('mouseenter', function () { paint(value); });
+        star.addEventListener('focus', function () { paint(value); });
+
+        star.addEventListener('click', function () {
+          chosen = value;
+          paint(value);
+          stars.forEach(function (s, i) {
+            s.setAttribute('aria-pressed', i < value ? 'true' : 'false');
+          });
+
+          if (value === 5) {
+            if (pane) pane.hidden = true;
+            say('Спасибо! Открываем 2ГИС — там можно оставить отзыв. ' +
+                'Не открылось? <a href="' + GIS_HREF + '" target="_blank" rel="noopener">Перейти вручную</a>.');
+            window.open(GIS_HREF, '_blank', 'noopener');
+            return;
+          }
+
+          /* Меньше пяти — обращение уходит лично Ульяне, в ленту не попадает */
+          say('Обращение придёт лично Ульяне и не будет опубликовано.');
+          if (!pane) return;
+          pane.hidden = false;
+          var label = pane.querySelector('[data-rate-label]');
+          if (label) label.textContent = value + '★';
+          var rating = pane.querySelector('[name="rating"]');
+          if (rating) rating.value = value;
+          var first = pane.querySelector('input, textarea');
+          if (first) first.focus({ preventScroll: true });
+          pane.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
+        });
       });
 
-      var positive = (value === 'all' || value === '5');
-
-      listWrap.hidden = !positive;
-      formWrap.hidden = positive;
-
-      if (positive && counter) {
-        var n = listWrap.querySelectorAll('.review-card').length;
-        counter.textContent = n + ' ' + plural(n, ['отзыв', 'отзыва', 'отзывов']);
-      }
-
-      if (!positive) {
-        var legend = document.getElementById('feedbackStars');
-        if (legend) legend.textContent = value + '★';
-        formWrap.querySelector('input, textarea').focus({ preventScroll: true });
-      }
-    }
-
-    function plural(n, forms) {
-      var n10 = n % 10, n100 = n % 100;
-      if (n10 === 1 && n100 !== 11) return forms[0];
-      if (n10 >= 2 && n10 <= 4 && (n100 < 10 || n100 >= 20)) return forms[1];
-      return forms[2];
-    }
-
-    pills.forEach(function (p) {
-      p.addEventListener('click', function () { setActive(p.dataset.stars); });
+      root.addEventListener('mouseleave', function () { paint(chosen); });
+      root.addEventListener('focusout', function (e) {
+        if (!root.contains(e.relatedTarget)) paint(chosen);
+      });
     });
+  }
 
-    setActive('5');
-
-    /* Приватная форма обратной связи — отзыв не публикуется */
-    var fbForm = document.getElementById('feedbackForm');
-    if (fbForm) {
-      fbForm.addEventListener('submit', function (e) {
+  /* ============================================================
+     8. Приватная форма обратной связи (главная и otzyvy.html)
+     ============================================================ */
+  function initFeedbackForms() {
+    document.querySelectorAll('[data-feedback-form]').forEach(function (form) {
+      form.addEventListener('submit', function (e) {
         e.preventDefault();
-        var data = new FormData(fbForm);
-        var active = bar.querySelector('[aria-pressed="true"]');
+        var data = new FormData(form);
 
         notifyTelegram({
           title: 'Обращение с сайта (не публикуется)',
           fields: {
-            'Оценка': (active ? active.dataset.stars : '—') + '★',
+            'Оценка': (data.get('rating') || '—') + '★',
             'Имя': data.get('name'),
             'Телефон': data.get('phone'),
             'Что произошло': data.get('message'),
             'Связаться': data.get('channel')
           },
-          source: 'otzyvy.html · приватная обратная связь'
+          source: location.pathname.replace(/^\//, '') + ' · приватная обратная связь'
         });
 
-        fbForm.reset();
+        form.reset();
         toast({
           title: 'Спасибо, Ульяна свяжется с вами в течение суток',
           sub: 'Обращение отправлено лично мастеру и не публикуется на сайте.',
           duration: 6000
         });
       });
-    }
+    });
   }
 
   /* ============================================================
-     8. Форма записи (contakty.html)
+    10. Форма записи (contakty.html)
      ============================================================ */
   function initBookingForm() {
     var form = document.getElementById('bookingForm');
@@ -513,7 +528,7 @@
   }
 
   /* ============================================================
-     9. Год в подвале
+    11. Год в подвале
      ============================================================ */
   function initYear() {
     document.querySelectorAll('[data-year]').forEach(function (el) {
@@ -527,7 +542,8 @@
     initReveal();
     initHeroVideo();
     initWidget();
-    initReviewFilter();
+    initRating();
+    initFeedbackForms();
     initBookingForm();
     initYear();
   }
