@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>О нас — Мастер Макс · шиномонтажная мастерская в Магнитогорске</title>
+<meta name="description" content="Мастер Макс — шиномонтажная мастерская в Правобережном районе Магнитогорска. Работаем с легковыми колёсами до R22, средняя оценка на 2ГИС — 4.5★ по 60 оценкам. Выезд круглосуточно.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  if (window.tailwind) tailwind.config = {
+    theme: {
+      extend: {
+        colors: { ink: '#0A0A0A', soft: '#F7F5F2', line: '#E5E3DE', muted: '#6B6B6B' },
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          sans: ['Inter Tight', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace']
+        }
+      }
+    }
+  };
+</script>
+</head>
+<body>
+
+<!-- ШАПКА -->
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-name">МАСТЕР МАКС</span>
+    <span class="brand-sub">ШИНОМОНТАЖ · МАГНИТОГОРСК</span>
+  </a>
+
+  <nav class="site-nav" aria-label="Основная навигация">
+    <a class="nav-link" href="index.html">Главная</a>
+    <a class="nav-link" href="uslugi.html">Услуги</a>
+    <a class="nav-link" href="ceny.html">Цены</a>
+    <a class="nav-link" href="otzyvy.html">Отзывы</a>
+    <a class="nav-link is-active" href="o-nas.html" aria-current="page">О нас</a>
+    <a class="nav-link" href="contakty.html">Контакты</a>
+  </nav>
+
+  <div class="header-actions">
+    <a class="header-24" href="tel:+79128050478">
+      <span class="dot-24" aria-hidden="true"></span>24/7 выезд · +7 912 805 04 78
+    </a>
+    <a class="btn" href="contakty.html#zayavka">Оставить заявку</a>
+    <button class="burger" type="button" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">О нас</p>
+      <h1 class="display h-lg">О мастерской</h1>
+      <p class="lede">Правобережный район, ул. Сталеваров, 13а. Ежедневно 9:00–19:00 и круглосуточный выезд по звонку.</p>
+    </div>
+  </section>
+
+  <!-- ИСТОРИЯ -->
+  <section class="section">
+    <div class="wrap about-grid">
+      <div>
+        <p class="eyebrow">Мастерская</p>
+        <p class="about-lead">Мастер Макс — семейная шиномонтажная мастерская в Правобережном районе. Начинали с одного бокса, сегодня работаем с любыми легковыми авто и колёсами до R22.</p>
+        <p class="about-body">За годы работы обслужили несколько тысяч клиентов, средняя оценка на 2ГИС — 4.5★ по 60 оценкам. Часть клиентов приезжает к нам сезон за сезоном: сначала перекинуть комплект, потом поправить диск после ямы, потом оставить колёса на хранение.</p>
+        <p class="about-body">Отдельная часть работы — выездной шиномонтаж. Он работает круглосуточно, потому что колесо пробивает не по расписанию мастерской.</p>
+        <p class="mt-8"><a class="link-arrow" href="uslugi.html">Услуги мастерской →</a></p>
+      </div>
+
+      <div class="about-media">
+        <div class="ph ph-34"><span>ФОТО: master-1.jpg — портрет мастера в боксе</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПРИНЦИПЫ -->
+  <section class="section section-soft">
+    <div class="wrap editorial">
+      <div class="editorial-head">
+        <p class="eyebrow">Принципы</p>
+        <h2 class="display h-md">Как мы работаем</h2>
+      </div>
+
+      <div class="ed-list">
+        <div class="ed-item">
+          <span class="ed-num">01</span>
+          <span>
+            <span class="ed-title">Честная цена</span>
+            <span class="ed-desc">Озвучиваем стоимость до начала работ</span>
+          </span>
+          <span></span>
+        </div>
+        <div class="ed-item">
+          <span class="ed-num">02</span>
+          <span>
+            <span class="ed-title">Быстро</span>
+            <span class="ed-desc">Среднее время обслуживания — 10 минут на колесо</span>
+          </span>
+          <span></span>
+        </div>
+        <div class="ed-item">
+          <span class="ed-num">03</span>
+          <span>
+            <span class="ed-title">Гарантия</span>
+            <span class="ed-desc">На все виды работ</span>
+          </span>
+          <span></span>
+        </div>
+        <div class="ed-item">
+          <span class="ed-num">04</span>
+          <span>
+            <span class="ed-title">Круглосуточно</span>
+            <span class="ed-desc">Выезд по звонку в любое время</span>
+          </span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- МАСТЕРСКАЯ -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Мастерская</p>
+      <h2 class="display h-md">Бокс и оборудование</h2>
+
+      <div class="gallery">
+        <div class="ph"><span>ФОТО: workshop-1.jpg — интерьер мастерской, чистое пространство</span></div>
+        <div class="ph"><span>ФОТО: tools-1.jpg — инструменты крупным планом</span></div>
+        <div class="ph"><span>ФОТО: work-2.jpg — балансировочный стенд</span></div>
+        <div class="ph"><span>ФОТО: work-3.jpg — правка литого диска</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-dark">
+    <div class="wrap-narrow text-center">
+      <p class="eyebrow">Контакты</p>
+      <h2 class="display h-md">Приезжайте на Сталеваров, 13а</h2>
+      <p class="lede mx-auto">Пн–Вс, 9:00–19:00. Выездной шиномонтаж — круглосуточно, включая выходные.</p>
+
+      <div class="phone-list text-left">
+        <a class="phone-row" href="tel:+79080864641"><b>+7 908 086 46 41</b><i>основной</i></a>
+        <a class="phone-row" href="tel:+79128059595"><b>+7 912 805 95 95</b><i>второй</i></a>
+        <a class="phone-row" href="tel:+79128050478"><b>+7 912 805 04 78</b><i><span class="dot-24" aria-hidden="true"></span>круглосуточный выезд</i></a>
+      </div>
+
+      <p class="mt-12"><a class="btn btn-light btn-lg" href="contakty.html#zayavka">Оставить заявку</a></p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ФУТЕР -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-title">МАСТЕР МАКС</p>
+        <p class="small on-dark-muted max-32">Шиномонтажная мастерская в Магнитогорске с 20XX года</p>
+      </div>
+
+      <div>
+        <p class="footer-label">Контакты</p>
+        <ul class="footer-list">
+          <li><a class="mono" href="tel:+79080864641">+7 908 086 46 41</a></li>
+          <li><a class="mono" href="tel:+79128059595">+7 912 805 95 95</a></li>
+          <li>
+            <a class="mono" href="tel:+79128050478">+7 912 805 04 78</a><br>
+            <span class="footer-tag"><span class="dot-24" aria-hidden="true"></span>круглосуточно</span>
+          </li>
+          <li><a href="https://wa.me/79080864641" target="_blank" rel="noopener">WhatsApp →</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-label">Адрес</p>
+        <ul class="footer-list">
+          <li>ул. Сталеваров, 13а<br>1 этаж · 128-й м-н<br>Правобережный район, 455038</li>
+          <li>Пн–Вс · 09:00–19:00</li>
+          <li><span class="footer-tag"><span class="dot-24" aria-hidden="true"></span>круглосуточный выезд по звонку</span></li>
+          <li><a href="https://2gis.ru/magnitogorsk/firm/3659702978291024" target="_blank" rel="noopener">Карточка 2ГИС →</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-label">Навигация</p>
+        <ul class="footer-list">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="uslugi.html">Услуги</a></li>
+          <li><a href="ceny.html">Цены</a></li>
+          <li><a href="otzyvy.html">Отзывы</a></li>
+          <li><a href="o-nas.html">О нас</a></li>
+          <li><a href="contakty.html">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Мастер Макс</span>
+      <span>Разработка — Ascend Systems</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

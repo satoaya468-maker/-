@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Цены — Мастер Макс · шиномонтаж в Магнитогорске</title>
+<meta name="description" content="Прайс-лист шиномонтажной мастерской «Мастер Макс» в Магнитогорске: шиномонтаж R13–R22 от 300 ₽, балансировка от 150 ₽, ремонт прокола от 300 ₽, правка дисков от 800 ₽, хранение от 3 500 ₽, круглосуточный выезд от 2 500 ₽.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  if (window.tailwind) tailwind.config = {
+    theme: {
+      extend: {
+        colors: { ink: '#0A0A0A', soft: '#F7F5F2', line: '#E5E3DE', muted: '#6B6B6B' },
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          sans: ['Inter Tight', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace']
+        }
+      }
+    }
+  };
+</script>
+</head>
+<body>
+
+<!-- ШАПКА -->
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-name">МАСТЕР МАКС</span>
+    <span class="brand-sub">ШИНОМОНТАЖ · МАГНИТОГОРСК</span>
+  </a>
+
+  <nav class="site-nav" aria-label="Основная навигация">
+    <a class="nav-link" href="index.html">Главная</a>
+    <a class="nav-link" href="uslugi.html">Услуги</a>
+    <a class="nav-link is-active" href="ceny.html" aria-current="page">Цены</a>
+    <a class="nav-link" href="otzyvy.html">Отзывы</a>
+    <a class="nav-link" href="o-nas.html">О нас</a>
+    <a class="nav-link" href="contakty.html">Контакты</a>
+  </nav>
+
+  <div class="header-actions">
+    <a class="header-24" href="tel:+79128050478">
+      <span class="dot-24" aria-hidden="true"></span>24/7 выезд · +7 912 805 04 78
+    </a>
+    <a class="btn" href="contakty.html#zayavka">Оставить заявку</a>
+    <button class="burger" type="button" aria-label="Меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">Цены</p>
+      <h1 class="display h-lg">Прайс-лист</h1>
+      <p class="lede">Стоимость озвучиваем до начала работ. Ниже — базовые тарифы мастерской на ул. Сталеваров, 13а.</p>
+    </div>
+  </section>
+
+  <!-- ТАБЛИЦЫ -->
+  <section class="section">
+    <div class="wrap-narrow">
+
+      <div class="price-block">
+        <div class="price-cap">
+          <h2>Шиномонтаж</h2>
+          <span>за 1 колесо</span>
+        </div>
+        <table class="price-table">
+          <caption class="sr-only">Стоимость шиномонтажа по диаметрам</caption>
+          <thead><tr><th scope="col">Диаметр</th><th scope="col">Цена</th></tr></thead>
+          <tbody>
+            <tr><td>R13</td><td>300 ₽</td></tr>
+            <tr><td>R14</td><td>350 ₽</td></tr>
+            <tr><td>R15</td><td>400 ₽</td></tr>
+            <tr><td>R16</td><td>450 ₽</td></tr>
+            <tr><td>R17</td><td>500 ₽</td></tr>
+            <tr><td>R18</td><td>600 ₽</td></tr>
+            <tr><td>R19</td><td>700 ₽</td></tr>
+            <tr><td>R20+</td><td>800 ₽</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="price-block">
+        <div class="price-cap">
+          <h2>Балансировка</h2>
+          <span>за 1 колесо</span>
+        </div>
+        <table class="price-table">
+          <caption class="sr-only">Стоимость балансировки по диаметрам</caption>
+          <thead><tr><th scope="col">Диаметр</th><th scope="col">Цена</th></tr></thead>
+          <tbody>
+            <tr><td>R13–R16</td><td>150 ₽</td></tr>
+            <tr><td>R17–R19</td><td>200 ₽</td></tr>
+            <tr><td>R20+</td><td>250 ₽</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="price-block">
+        <div class="price-cap">
+          <h2>Ремонт</h2>
+          <span>за 1 колесо</span>
+        </div>
+        <table class="price-table">
+          <caption class="sr-only">Стоимость ремонта колеса</caption>
+          <thead><tr><th scope="col">Работа</th><th scope="col">Цена</th></tr></thead>
+          <tbody>
+            <tr><td>Прокол, жгут</td><td>300 ₽</td></tr>
+            <tr><td>Прокол, грибок</td><td>500 ₽</td></tr>
+            <tr><td>Порез камерный</td><td>от 800 ₽</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="price-block">
+        <div class="price-cap">
+          <h2>Диски</h2>
+          <span>за 1 диск</span>
+        </div>
+        <table class="price-table">
+          <caption class="sr-only">Стоимость работ с дисками</caption>
+          <thead><tr><th scope="col">Работа</th><th scope="col">Цена</th></tr></thead>
+          <tbody>
+            <tr><td>Правка литого</td><td>от 1 500 ₽</td></tr>
+            <tr><td>Правка стального</td><td>от 800 ₽</td></tr>
+            <tr><td>Подкраска</td><td>от 500 ₽</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="price-block">
+        <div class="price-cap">
+          <h2>Хранение</h2>
+          <span>отапливаемое помещение</span>
+        </div>
+        <table class="price-table">
+          <caption class="sr-only">Стоимость сезонного хранения колёс</caption>
+          <thead><tr><th scope="col">Услуга</th><th scope="col">Цена</th></tr></thead>
+          <tbody>
+            <tr><td>Комплект за сезон</td><td>от 3 500 ₽</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="price-block">
+        <div class="price-cap">
+          <h2>Выезд 24/7</h2>
+          <span>круглосуточно</span>
+        </div>
+        <table class="price-table">
+          <caption class="sr-only">Стоимость выездного шиномонтажа</caption>
+          <thead><tr><th scope="col">Зона</th><th scope="col">Цена</th></tr></thead>
+          <tbody>
+            <tr><td>По городу</td><td>от 2 500 ₽ + работы</td></tr>
+            <tr><td>За городом</td><td>по договорённости</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="price-note">Итоговая стоимость зависит от типа резины и состояния колёс. Точную цену уточняйте по телефону.</p>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-dark">
+    <div class="wrap-narrow text-center">
+      <p class="eyebrow">Уточнить стоимость</p>
+      <h2 class="display h-md">Позвонить и уточнить</h2>
+
+      <div class="phone-list text-left">
+        <a class="phone-row" href="tel:+79080864641"><b>+7 908 086 46 41</b><i>основной</i></a>
+        <a class="phone-row" href="tel:+79128059595"><b>+7 912 805 95 95</b><i>второй</i></a>
+        <a class="phone-row" href="tel:+79128050478"><b>+7 912 805 04 78</b><i><span class="dot-24" aria-hidden="true"></span>круглосуточный выезд</i></a>
+      </div>
+
+      <p class="mt-12"><a class="btn btn-light btn-lg" href="https://wa.me/79080864641" target="_blank" rel="noopener">Написать в WhatsApp</a></p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ФУТЕР -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-title">МАСТЕР МАКС</p>
+        <p class="small on-dark-muted max-32">Шиномонтажная мастерская в Магнитогорске с 20XX года</p>
+      </div>
+
+      <div>
+        <p class="footer-label">Контакты</p>
+        <ul class="footer-list">
+          <li><a class="mono" href="tel:+79080864641">+7 908 086 46 41</a></li>
+          <li><a class="mono" href="tel:+79128059595">+7 912 805 95 95</a></li>
+          <li>
+            <a class="mono" href="tel:+79128050478">+7 912 805 04 78</a><br>
+            <span class="footer-tag"><span class="dot-24" aria-hidden="true"></span>круглосуточно</span>
+          </li>
+          <li><a href="https://wa.me/79080864641" target="_blank" rel="noopener">WhatsApp →</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-label">Адрес</p>
+        <ul class="footer-list">
+          <li>ул. Сталеваров, 13а<br>1 этаж · 128-й м-н<br>Правобережный район, 455038</li>
+          <li>Пн–Вс · 09:00–19:00</li>
+          <li><span class="footer-tag"><span class="dot-24" aria-hidden="true"></span>круглосуточный выезд по звонку</span></li>
+          <li><a href="https://2gis.ru/magnitogorsk/firm/3659702978291024" target="_blank" rel="noopener">Карточка 2ГИС →</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-label">Навигация</p>
+        <ul class="footer-list">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="uslugi.html">Услуги</a></li>
+          <li><a href="ceny.html">Цены</a></li>
+          <li><a href="otzyvy.html">Отзывы</a></li>
+          <li><a href="o-nas.html">О нас</a></li>
+          <li><a href="contakty.html">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Мастер Макс</span>
+      <span>Разработка — Ascend Systems</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
