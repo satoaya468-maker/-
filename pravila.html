@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Правила и бронирование — детская игровая «Юла», Магнитогорск</title>
+<meta name="description" content="Как забронировать день рождения в игровой «Юла»: предоплата, замена персонажей, количество детей, правила игровой комнаты и оплата.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23F58220'/><stop offset='1' stop-color='%23FDB515'/></linearGradient></defs><circle cx='32' cy='32' r='32' fill='url(%23g)'/><text x='32' y='46' font-family='Georgia,serif' font-size='38' font-weight='700' fill='white' text-anchor='middle'>Ю</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600;1,9..144,700&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  if (window.tailwind) tailwind.config = {
+    theme: { extend: { colors: {
+      orange: '#F58220', orangeDark: '#E07211', yellow: '#FDB515', blue: '#2E9CDB',
+      cream: '#FFF8ED', peach: '#FFEDD4', ink: '#2A2A2A'
+    } } }
+  };
+</script>
+</head>
+<body>
+
+<!-- ================= ШАПКА ================= -->
+<header class="header">
+  <div class="header__inner">
+    <a class="logo" href="./index.html" aria-label="Юла — на главную">
+      <span class="logo-mark" aria-hidden="true"><span>Ю</span></span>
+      <span class="logo-text">
+        <span class="logo-name">ЮЛА</span>
+        <span class="logo-sub">детская игровая</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="./index.html">Главная</a>
+      <a href="./prazdniki.html">Праздники</a>
+      <a href="./ceny.html">Цены</a>
+      <a href="./otzyvy.html">Отзывы</a>
+      <a href="./contakty.html">Контакты</a>
+    </nav>
+
+    <div class="header__side">
+      <a class="header__phone" href="tel:+79995833426">+7 (999) 583-34-26</a>
+      <button class="btn btn--primary btn--sm" type="button" data-book>Забронировать</button>
+      <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu">
+        <i></i><i></i><i></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a class="m-link" href="./index.html">Главная</a>
+  <a class="m-link" href="./prazdniki.html">Праздники</a>
+  <a class="m-link" href="./ceny.html">Цены</a>
+  <a class="m-link" href="./otzyvy.html">Отзывы</a>
+  <a class="m-link" href="./contakty.html">Контакты</a>
+  <a class="m-link is-active" href="./pravila.html">Правила и бронирование</a>
+  <div class="m-foot">
+    <a class="btn btn--primary" href="tel:+79995833426">+7 (999) 583-34-26</a>
+    <a class="btn btn--ghost" href="https://wa.me/79995833426" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</div>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section class="pagehero">
+  <div class="wrap">
+    <p class="eyebrow">Всё честно и заранее</p>
+    <h1 class="display">Правила и бронирование</h1>
+    <p class="lead">Чтобы день рождения прошёл спокойно, мы рекомендуем готовиться к бронированию заранее — интересующая вас дата может быть уже занята.</p>
+    <div class="hero__cta" style="margin-top:26px">
+      <button class="btn btn--primary" type="button" data-book>Забронировать дату</button>
+      <a class="btn btn--ghost" href="./ceny.html">Смотреть цены</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= КАК ПРОХОДИТ БРОНИРОВАНИЕ ================= -->
+<section class="section">
+  <div class="wrap contact-grid">
+    <div>
+      <p class="eyebrow">Порядок</p>
+      <h2 class="h2 display" style="margin:14px 0 18px">Как проходит бронирование <em>в игровой «Юла»</em></h2>
+      <p class="lead">Восемь шагов от первого звонка до дня праздника. Ничего сложного — администратор ведёт вас по каждому пункту.</p>
+
+      <figure class="ph" style="--ph:#2E9CDB;aspect-ratio:4/3;margin-top:32px">
+        <img src="./images/room-1.jpg" alt="Интерьер игровой комнаты Юла" loading="lazy" onerror="this.style.display='none'">
+        <figcaption>Место для фото: интерьер игровой комнаты</figcaption>
+      </figure>
+    </div>
+
+    <div class="form-card">
+      <ol class="num-list">
+        <li><p><b>Знакомство</b>Мы знакомимся с заказчиком и учитываем все пожелания.</p></li>
+        <li><p><b>Выбор формата</b>Можно взять готовое пакетное предложение или собрать свой индивидуальный праздник.</p></li>
+        <li><p><b>Свои подрядчики</b>Если вы хотите пригласить своего аниматора, фотографа и так далее — обязательно проинформируйте администратора.</p></li>
+        <li><p><b>Предоплата</b>Чтобы забронировать дату и время, вносится предоплата от 2 000 ₽. Приезжать в игровую не обязательно — можно перевести на карту.</p></li>
+        <li><p><b>Замены</b>Замены в персонажах и шоу-программах возможны, но не позднее чем за 5 дней.</p></li>
+        <li><p><b>Количество детей</b>Наши аниматоры работают до 13 детей, свыше берётся дополнительная оплата 1 000 ₽. Если детей больше 15, рекомендуем второго аниматора — 2 500 ₽.</p></li>
+        <li><p><b>Напоминание</b>За пару дней до праздника мы свяжемся с вами и уточним количество гостей. За день до праздника отправим смс-уведомление на ваш номер.</p></li>
+        <li><p><b>Полная оплата</b>Оплата в день мероприятия — картой, по QR-коду или наличными.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ПРАВИЛА ИГРОВОЙ ================= -->
+<section class="section section--peach">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Правила нашей игровой</p>
+      <h2 class="h2 display">Восемь правил, которые делают праздник <em>комфортным для всех</em></h2>
+    </div>
+
+    <div class="info-cards">
+      <div class="info-card">
+        <h3 class="display">Приход именинника</h3>
+        <p>Именинник может прийти за 10–15 минут до начала праздника, чтобы переодеться и встретить гостей.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="display">Сбор еды</h3>
+        <p>Сбор еды осуществляется за 15–20 минут до окончания мероприятия. Если вы задержались более чем на 15 минут после окончания праздника, взимается доплата в размере 50% от стоимости часовой аренды комнаты.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="display">Посадочные места</h3>
+        <p>В игровой «Юла» предусмотрено до 25 посадочных мест, включая взрослых и детей. При превышении количества гостей взимается доплата 300 ₽ с человека.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="display">Еда и напитки</h3>
+        <p>Передвигаться по игровой зоне с едой и напитками запрещено.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="display">Обувь</h3>
+        <p>Рекомендуется брать сменную обувь для детей. Для взрослых предоставляются тапочки. На ковровом покрытии мы ходим в носках.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="display">Болезнь именинника</h3>
+        <p>В случае болезни именинника возможна отмена или перенос праздника на любую свободную дату по согласованию.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="display">Ответственность</h3>
+        <p>Во время праздника ответственность за детей несут родители.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="display">Акции</h3>
+        <p>Акции не суммируются.</p>
+      </div>
+    </div>
+
+    <p class="lead" style="margin-top:36px">С уважением, детская игровая комната «Юла».</p>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta-band">
+  <div class="wrap cta-band__inner">
+    <h2 class="display">Остались вопросы? Позвоните или напишите — ответим быстро</h2>
+    <div class="hero__cta" style="margin:0">
+      <button class="btn btn--primary" type="button" data-book>Забронировать дату</button>
+      <a class="btn btn--ghost" href="tel:+79995833426">+7 (999) 583-34-26</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= ФУТЕР ================= -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <a class="logo" href="./index.html">
+          <span class="logo-mark" aria-hidden="true"><span>Ю</span></span>
+          <span class="logo-text"><span class="logo-name">ЮЛА</span><span class="logo-sub">детская игровая</span></span>
+        </a>
+        <p class="footer__about">Детская игровая и студия праздников в Магнитогорске. Аниматоры, шоу-программы и мастер-классы для детей от 1 до 12 лет.</p>
+      </div>
+
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li>Проспект Карла Маркса, 218, 1 этаж</li>
+          <li><a href="tel:+79995833426">+7 (999) 583-34-26</a></li>
+          <li>Ежедневно 12:00–21:00,<br>по предварительному звонку</li>
+          <li><a href="https://wa.me/79995833426" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://vk.ru/club233738551" target="_blank" rel="noopener">ВКонтакте</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Навигация</h4>
+        <ul>
+          <li><a href="./index.html">Главная</a></li>
+          <li><a href="./prazdniki.html">Праздники</a></li>
+          <li><a href="./ceny.html">Цены</a></li>
+          <li><a href="./otzyvy.html">Отзывы</a></li>
+          <li><a href="./contakty.html">Контакты</a></li>
+          <li><a href="./pravila.html">Правила и бронирование</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© 2026 Юла · Разработка — Ascend Systems</span>
+      <span>Магнитогорск, Орджоникидзевский район</span>
+    </div>
+  </div>
+</footer>
+
+<script src="./js/yula.js"></script>
+</body>
+</html>

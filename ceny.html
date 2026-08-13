@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Цены — детская игровая «Юла», Магнитогорск</title>
+<meta name="description" content="Стоимость детских праздников в игровой «Юла»: пакеты от 7 000 ₽, аренда игровой комнаты от 500 ₽/час, кэнди-бар, фотограф, второй аниматор. Что входит в базовый пакет.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23F58220'/><stop offset='1' stop-color='%23FDB515'/></linearGradient></defs><circle cx='32' cy='32' r='32' fill='url(%23g)'/><text x='32' y='46' font-family='Georgia,serif' font-size='38' font-weight='700' fill='white' text-anchor='middle'>Ю</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600;1,9..144,700&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  if (window.tailwind) tailwind.config = {
+    theme: { extend: { colors: {
+      orange: '#F58220', orangeDark: '#E07211', yellow: '#FDB515', blue: '#2E9CDB',
+      cream: '#FFF8ED', peach: '#FFEDD4', ink: '#2A2A2A'
+    } } }
+  };
+</script>
+</head>
+<body>
+
+<!-- ================= ШАПКА ================= -->
+<header class="header">
+  <div class="header__inner">
+    <a class="logo" href="./index.html" aria-label="Юла — на главную">
+      <span class="logo-mark" aria-hidden="true"><span>Ю</span></span>
+      <span class="logo-text">
+        <span class="logo-name">ЮЛА</span>
+        <span class="logo-sub">детская игровая</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="./index.html">Главная</a>
+      <a href="./prazdniki.html">Праздники</a>
+      <a href="./ceny.html" class="is-active">Цены</a>
+      <a href="./otzyvy.html">Отзывы</a>
+      <a href="./contakty.html">Контакты</a>
+    </nav>
+
+    <div class="header__side">
+      <a class="header__phone" href="tel:+79995833426">+7 (999) 583-34-26</a>
+      <button class="btn btn--primary btn--sm" type="button" data-book>Забронировать</button>
+      <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu">
+        <i></i><i></i><i></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a class="m-link" href="./index.html">Главная</a>
+  <a class="m-link" href="./prazdniki.html">Праздники</a>
+  <a class="m-link is-active" href="./ceny.html">Цены</a>
+  <a class="m-link" href="./otzyvy.html">Отзывы</a>
+  <a class="m-link" href="./contakty.html">Контакты</a>
+  <a class="m-link" href="./pravila.html">Правила и бронирование</a>
+  <div class="m-foot">
+    <a class="btn btn--primary" href="tel:+79995833426">+7 (999) 583-34-26</a>
+    <a class="btn btn--ghost" href="https://wa.me/79995833426" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</div>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section class="pagehero">
+  <div class="wrap">
+    <p class="eyebrow">Прайс</p>
+    <h1 class="display">Стоимость</h1>
+    <p class="lead">Цены на пакеты праздников и дополнительные услуги. Стоимость пакета указана для группы до 13 детей — при большем количестве гостей есть доплаты, они честно перечислены ниже.</p>
+  </div>
+</section>
+
+<!-- ================= ПАКЕТЫ ================= -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Пакеты праздников</p>
+      <h2 class="h2 display">Шесть программ <em>под возраст</em></h2>
+    </div>
+
+    <div class="price-table">
+      <div class="price-row" style="--pkg:#7B4FB8">
+        <span class="price-row__dot" aria-hidden="true"></span>
+        <div>
+          <div class="price-row__name">Жаркий бум</div>
+          <div class="price-row__desc">Активный праздник с шоу · 2 часа · 5–10 лет</div>
+        </div>
+        <span class="price-row__val">8 000 ₽</span>
+        <span class="price-row__act"><button class="btn btn--ghost btn--sm" type="button" data-book="Жаркий бум">Забронировать</button></span>
+      </div>
+
+      <div class="price-row" style="--pkg:#8FBF4A">
+        <span class="price-row__dot" aria-hidden="true"></span>
+        <div>
+          <div class="price-row__name">Летний</div>
+          <div class="price-row__desc">Тематический летний с играми · 2,5 часа · 4–10 лет</div>
+        </div>
+        <span class="price-row__val">11 990 ₽</span>
+        <span class="price-row__act"><button class="btn btn--ghost btn--sm" type="button" data-book="Летний">Забронировать</button></span>
+      </div>
+
+      <div class="price-row" style="--pkg:#F5A623">
+        <span class="price-row__dot" aria-hidden="true"></span>
+        <div>
+          <div class="price-row__name">Самые маленькие</div>
+          <div class="price-row__desc">Мягкий формат для деток до 3 лет · 1,5 часа</div>
+        </div>
+        <span class="price-row__val">9 000 ₽</span>
+        <span class="price-row__act"><button class="btn btn--ghost btn--sm" type="button" data-book="Самые маленькие">Забронировать</button></span>
+      </div>
+
+      <div class="price-row" style="--pkg:#7B4FB8">
+        <span class="price-row__dot" aria-hidden="true"></span>
+        <div>
+          <div class="price-row__name">Сладкий</div>
+          <div class="price-row__desc">Со сладким мастер-классом, украшение кексов · 2 часа · 4–8 лет</div>
+        </div>
+        <span class="price-row__val">7 000 ₽</span>
+        <span class="price-row__act"><button class="btn btn--ghost btn--sm" type="button" data-book="Сладкий">Забронировать</button></span>
+      </div>
+
+      <div class="price-row" style="--pkg:#D63C6E">
+        <span class="price-row__dot" aria-hidden="true"></span>
+        <div>
+          <div class="price-row__name">Радужный</div>
+          <div class="price-row__desc">Праздник в стиле «Маша и Медведь» · 2 часа · 3–7 лет</div>
+        </div>
+        <span class="price-row__val">8 990 ₽</span>
+        <span class="price-row__act"><button class="btn btn--ghost btn--sm" type="button" data-book="Радужный">Забронировать</button></span>
+      </div>
+
+      <div class="price-row" style="--pkg:#8FBF4A">
+        <span class="price-row__dot" aria-hidden="true"></span>
+        <div>
+          <div class="price-row__name">Развлекательный 7+</div>
+          <div class="price-row__desc">Квесты и шоу для старших · 3 часа · 7–12 лет</div>
+        </div>
+        <span class="price-row__val">13 990 ₽</span>
+        <span class="price-row__act"><button class="btn btn--ghost btn--sm" type="button" data-book="Развлекательный 7+">Забронировать</button></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ЧТО ВХОДИТ ================= -->
+<section class="section section--peach">
+  <div class="wrap contact-grid">
+    <div>
+      <p class="eyebrow">Базовый пакет</p>
+      <h2 class="h2 display" style="margin:14px 0 18px">Что входит <em>в любой пакет</em></h2>
+      <p class="lead">Ничего не нужно докупать отдельно: программа, ведущий и помещение уже в цене. Вы приносите только торт и угощения.</p>
+      <div class="hero__cta" style="margin-top:28px">
+        <button class="btn btn--primary" type="button" data-book>Забронировать дату</button>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <ul class="check-list">
+        <li>Аниматор в костюме персонажа</li>
+        <li>Шоу-программа</li>
+        <li>Мастер-класс</li>
+        <li>Игровая комната на всё время</li>
+        <li>Реквизит и оформление</li>
+      </ul>
+      <hr class="divider" style="margin:26px 0">
+      <p class="small">До начала программы дети играют в игровой зоне — к моменту старта они уже вовлечены и в хорошем настроении. Именинник может прийти за 10–15 минут, чтобы переодеться и встретить гостей.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ДОПОЛНИТЕЛЬНО ================= -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Дополнительно</p>
+      <h2 class="h2 display">Услуги <em>сверх пакета</em></h2>
+    </div>
+
+    <div class="price-table">
+      <div class="price-row" style="--pkg:#2E9CDB">
+        <span class="price-row__dot" aria-hidden="true"></span>
+        <div>
+          <div class="price-row__name">Аренда игровой комнаты</div>
+          <div class="price-row__desc">Без аниматора, своя программа и угощения</div>
+        </div>
+        <span class="price-row__val">от 500 ₽/час</span>
+        <span class="price-row__act"><button class="btn btn--ghost btn--sm" type="button" data-book>Забронировать</button></span>
+      </div>
+
+      <div class="price-row" style="--pkg:#F58220">
+        <span class="price-row__dot" aria-hidden="true"></span>
+        <div>
+          <div class="price-row__name">Второй аниматор</div>
+          <div class="price-row__desc">Рекомендуем, если детей больше 15 — программа идёт комфортнее</div>
+        </div>
+        <span class="price-row__val">от 2 500 ₽</span>
+        <span class="price-row__act"><button class="btn btn--ghost btn--sm" type="button" data-book>Добавить</button></span>
+      </div>
+
+      <div class="price-row" style="--pkg:#D63C6E">
+        <span class="price-row__dot" aria-hidden="true"></span>
+        <div>
+          <div class="price-row__name">Кэнди-бар</div>
+          <div class="price-row__desc">Сладкий стол в цветах праздника</div>
+        </div>
+        <span class="price-row__val">от 4 000 ₽</span>
+        <span class="price-row__act"><button class="btn btn--ghost btn--sm" type="button" data-book>Добавить</button></span>
+      </div>
+
+      <div class="price-row" style="--pkg:#7B4FB8">
+        <span class="price-row__dot" aria-hidden="true"></span>
+        <div>
+          <div class="price-row__name">Фотограф</div>
+          <div class="price-row__desc">Съёмка всего праздника, обработанные кадры</div>
+        </div>
+        <span class="price-row__val">от 5 000 ₽</span>
+        <span class="price-row__act"><button class="btn btn--ghost btn--sm" type="button" data-book>Добавить</button></span>
+      </div>
+    </div>
+
+    <div class="info-cards" style="margin-top:34px">
+      <div class="info-card">
+        <h3 class="display">Больше 13 детей</h3>
+        <p>Аниматор работает с группой до 13 детей. За каждого следующего ребёнка — доплата 1 000 ₽.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="display">Больше 25 гостей</h3>
+        <p>В игровой предусмотрено до 25 посадочных мест, включая взрослых и детей. При превышении — 300 ₽ с человека.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="display">Задержка после праздника</h3>
+        <p>Если вы задержались более чем на 15 минут после окончания, взимается 50% от стоимости часовой аренды комнаты.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="display">Оплата</h3>
+        <p>Предоплата от 2 000 ₽ закрепляет дату, полная оплата — в день мероприятия: картой, по QR-коду или наличными.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:34px"><a class="link-arrow" href="./pravila.html">Все правила игровой и порядок бронирования &rarr;</a></p>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta-band">
+  <div class="wrap cta-band__inner">
+    <h2 class="display">Забронируйте дату — популярные выходные заканчиваются быстро</h2>
+    <button class="btn btn--primary" type="button" data-book>Забронировать дату</button>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= ФУТЕР ================= -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <a class="logo" href="./index.html">
+          <span class="logo-mark" aria-hidden="true"><span>Ю</span></span>
+          <span class="logo-text"><span class="logo-name">ЮЛА</span><span class="logo-sub">детская игровая</span></span>
+        </a>
+        <p class="footer__about">Детская игровая и студия праздников в Магнитогорске. Аниматоры, шоу-программы и мастер-классы для детей от 1 до 12 лет.</p>
+      </div>
+
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li>Проспект Карла Маркса, 218, 1 этаж</li>
+          <li><a href="tel:+79995833426">+7 (999) 583-34-26</a></li>
+          <li>Ежедневно 12:00–21:00,<br>по предварительному звонку</li>
+          <li><a href="https://wa.me/79995833426" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://vk.ru/club233738551" target="_blank" rel="noopener">ВКонтакте</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Навигация</h4>
+        <ul>
+          <li><a href="./index.html">Главная</a></li>
+          <li><a href="./prazdniki.html">Праздники</a></li>
+          <li><a href="./ceny.html">Цены</a></li>
+          <li><a href="./otzyvy.html">Отзывы</a></li>
+          <li><a href="./contakty.html">Контакты</a></li>
+          <li><a href="./pravila.html">Правила и бронирование</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© 2026 Юла · Разработка — Ascend Systems</span>
+      <span>Магнитогорск, Орджоникидзевский район</span>
+    </div>
+  </div>
+</footer>
+
+<script src="./js/yula.js"></script>
+</body>
+</html>
