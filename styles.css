@@ -1,6 +1,6 @@
 /* ==========================================================================
    Мастер Макс — шиномонтажная мастерская, Магнитогорск
-   Монохромная премиум-система. Разработка — Ascend Systems
+   Дизайн-система: графит + янтарный акцент. Разработка — Ascend Systems
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -10,13 +10,20 @@
    -------------------------------------------------------------------------- */
 :root {
   --c-bg: #FFFFFF;
-  --c-bg-soft: #F7F5F2;
-  --c-ink: #0A0A0A;
-  --c-text: #111111;
-  --c-muted: #6B6B6B;
-  --c-line: #E5E3DE;
-  --c-ph: #1A1A1A;
-  --c-alert: #DC2626;
+  --c-bg-soft: #F6F2EC;
+  --c-ink: #14181F;
+  --c-text: #171B22;
+  --c-muted: #5E6673;
+  --c-line: #E2DED6;
+  --c-ph: #1B2029;
+
+  /* Фирменный акцент — янтарный: тёплый, «гаражный», хорошо читается на тёмном */
+  --c-accent: #F26B1D;
+  --c-accent-dark: #D4570F;
+  --c-accent-soft: #FDF0E5;
+  --c-gold: #F5A524;
+  --c-live: #16A34A;
+  --c-alert: #16A34A;
 
   /* Fraunces без кириллицы, поэтому дисплейный — Literata (тот же оптический принцип) */
   --f-display: 'Literata', 'Fraunces', Georgia, serif;
@@ -95,11 +102,11 @@ a { color: inherit; text-decoration: none; }
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--c-muted);
+  color: var(--c-accent);
   margin: 0 0 24px;
 }
 
-.section-dark .eyebrow { color: rgba(255, 255, 255, 0.6); }
+.section-dark .eyebrow { color: var(--c-accent); }
 
 .display {
   font-family: var(--f-display);
@@ -163,9 +170,9 @@ a { color: inherit; text-decoration: none; }
   gap: 10px;
   min-height: 48px;
   padding: 14px 24px;
-  border: 1px solid var(--c-ink);
+  border: 1px solid var(--c-accent);
   border-radius: var(--r-sharp);
-  background: var(--c-ink);
+  background: var(--c-accent);
   color: #FFFFFF;
   font-family: var(--f-body);
   font-size: 13.5px;
@@ -176,7 +183,7 @@ a { color: inherit; text-decoration: none; }
   transition: background var(--t), color var(--t), border-color var(--t);
 }
 
-.btn:hover { background: transparent; color: var(--c-ink); }
+.btn:hover { background: var(--c-accent-dark); border-color: var(--c-accent-dark); color: #FFFFFF; }
 
 .btn-lg { padding: 18px 32px; min-height: 56px; font-size: 14px; }
 
@@ -186,7 +193,7 @@ a { color: inherit; text-decoration: none; }
   border-color: #FFFFFF;
 }
 
-.btn-light:hover { background: transparent; color: #FFFFFF; }
+.btn-light:hover { background: var(--c-accent); border-color: var(--c-accent); color: #FFFFFF; }
 
 .btn-ghost {
   background: transparent;
@@ -194,7 +201,7 @@ a { color: inherit; text-decoration: none; }
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-.btn-ghost:hover { background: #FFFFFF; color: var(--c-ink); border-color: #FFFFFF; }
+.btn-ghost:hover { background: var(--c-accent); color: #FFFFFF; border-color: var(--c-accent); }
 
 .link-arrow {
   display: inline-flex;
@@ -209,9 +216,9 @@ a { color: inherit; text-decoration: none; }
   transition: gap var(--t), border-color var(--t);
 }
 
-.link-arrow:hover { gap: 18px; border-color: var(--c-ink); }
+.link-arrow:hover { gap: 18px; color: var(--c-accent); border-color: var(--c-accent); }
 .section-dark .link-arrow { border-color: rgba(255, 255, 255, 0.3); }
-.section-dark .link-arrow:hover { border-color: #FFFFFF; }
+.section-dark .link-arrow:hover { color: var(--c-accent); border-color: var(--c-accent); }
 
 /* --------------------------------------------------------------------------
    5. Индикатор 24/7
@@ -221,7 +228,7 @@ a { color: inherit; text-decoration: none; }
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--c-alert);
+  background: var(--c-live);
   flex: 0 0 auto;
   animation: pulse-24 2.2s ease-in-out infinite;
 }
@@ -306,6 +313,16 @@ a { color: inherit; text-decoration: none; }
   color: var(--c-text);
 }
 
+.nav-link.is-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: var(--c-accent);
+}
+
 .site-header--overlay .nav-link.is-active { color: #FFFFFF; }
 
 .header-actions {
@@ -332,8 +349,8 @@ a { color: inherit; text-decoration: none; }
 .site-header--overlay .header-24 { color: rgba(255, 255, 255, 0.7); }
 .site-header--overlay .header-24:hover { color: #FFFFFF; }
 
-.site-header--overlay .btn { background: #FFFFFF; color: var(--c-ink); border-color: #FFFFFF; }
-.site-header--overlay .btn:hover { background: transparent; color: #FFFFFF; }
+.site-header--overlay .btn { background: var(--c-accent); color: #FFFFFF; border-color: var(--c-accent); }
+.site-header--overlay .btn:hover { background: var(--c-accent-dark); border-color: var(--c-accent-dark); }
 
 .burger {
   display: none;
@@ -507,12 +524,12 @@ a { color: inherit; text-decoration: none; }
   object-fit: cover;
 }
 
-/* Фото и видео обесцвечены — палитра сайта остаётся строго монохромной */
+/* Небольшая доводка контраста, цвет снимков сохраняется */
 .ph img,
 .ph video,
 .hero-video,
 .about-media img {
-  filter: grayscale(1) contrast(1.04);
+  filter: saturate(1.05) contrast(1.03);
 }
 
 .ph-wide { aspect-ratio: 21 / 9; }
@@ -560,13 +577,15 @@ a { color: inherit; text-decoration: none; }
 .section-dark .ed-item { border-bottom-color: rgba(255, 255, 255, 0.18); }
 
 a.ed-item:hover { transform: translateX(8px); }
+a.ed-item:hover .ed-title { color: var(--c-accent); }
+.ed-title { transition: color var(--t); }
 
 .ed-num {
-  font-family: var(--f-display);
-  font-weight: 400;
-  font-size: 26px;
-  color: var(--c-muted);
-  letter-spacing: 0.02em;
+  font-family: var(--f-mono);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--c-accent);
+  letter-spacing: 0.04em;
 }
 
 .section-dark .ed-num { color: rgba(255, 255, 255, 0.5); }
@@ -587,6 +606,7 @@ a.ed-item:hover { transform: translateX(8px); }
 
 .ed-arrow {
   justify-self: end;
+  color: var(--c-accent);
   font-size: 20px;
   line-height: 1;
   opacity: 0;
@@ -669,6 +689,13 @@ a.ed-item:hover .ed-arrow { opacity: 1; transform: translateX(0); }
   border-radius: var(--r-soft);
   padding: 40px;
   background: var(--c-bg);
+  transition: border-color var(--t), box-shadow var(--t), transform var(--t);
+}
+
+.review-card:hover {
+  border-color: #D9D3C8;
+  box-shadow: 0 10px 30px rgba(20, 24, 31, 0.07);
+  transform: translateY(-2px);
 }
 
 .review-head { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
@@ -680,7 +707,7 @@ a.ed-item:hover .ed-arrow { opacity: 1; transform: translateX(0); }
   width: 48px;
   height: 48px;
   flex: 0 0 auto;
-  background: var(--c-ink);
+  background: var(--c-accent);
   color: #FFFFFF;
   border-radius: 50%;
   font-size: 13px;
@@ -692,7 +719,7 @@ a.ed-item:hover .ed-arrow { opacity: 1; transform: translateX(0); }
 .review-date { display: block; font-size: 13px; color: var(--c-muted); }
 
 .stars { display: flex; gap: 4px; margin-bottom: 18px; }
-.stars svg { width: 14px; height: 14px; fill: var(--c-ink); }
+.stars svg { width: 15px; height: 15px; fill: var(--c-gold); }
 
 .review-text {
   font-family: var(--f-display);
@@ -745,7 +772,7 @@ a.ed-item:hover .ed-arrow { opacity: 1; transform: translateX(0); }
 .filter-btn.is-active {
   color: var(--c-text);
   font-weight: 600;
-  border-bottom-color: var(--c-ink);
+  border-bottom-color: var(--c-accent);
 }
 
 /* --------------------------------------------------------------------------
@@ -766,10 +793,10 @@ a.ed-item:hover .ed-arrow { opacity: 1; transform: translateX(0); }
 
 .svc-num {
   font-family: var(--f-display);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 120px;
   line-height: 0.9;
-  color: var(--c-line);
+  color: var(--c-accent-soft);
   letter-spacing: -0.02em;
 }
 
@@ -808,6 +835,7 @@ a.ed-item:hover .ed-arrow { opacity: 1; transform: translateX(0); }
   font-weight: 500;
   font-size: 32px;
   letter-spacing: -0.02em;
+  color: var(--c-accent);
   margin: 0 0 6px;
 }
 
@@ -866,12 +894,13 @@ a.ed-item:hover .ed-arrow { opacity: 1; transform: translateX(0); }
   font-family: var(--f-mono);
   font-weight: 500;
   font-size: 15px;
+  color: var(--c-accent-dark);
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
 
 .price-table tr { transition: background var(--t); }
-.price-table tbody tr:hover { background: var(--c-bg-soft); }
+.price-table tbody tr:hover { background: var(--c-accent-soft); }
 
 .price-note {
   font-size: 13px;
@@ -949,7 +978,8 @@ a.ed-item:hover .ed-arrow { opacity: 1; transform: translateX(0); }
   align-items: center;
   gap: 10px;
   padding: 12px 16px;
-  border: 1px solid var(--c-line);
+  background: var(--c-accent-soft);
+  border: 1px solid #F4D9C2;
   border-radius: var(--r-sharp);
   font-size: 13px;
   letter-spacing: 0.02em;
@@ -1144,7 +1174,7 @@ a.ed-item:hover .ed-arrow { opacity: 1; transform: translateX(0); }
   width: 48px;
   height: 48px;
   flex: 0 0 auto;
-  background: var(--c-ink);
+  background: var(--c-accent);
   color: #FFFFFF;
   border-radius: var(--r-sharp);
   font-family: var(--f-display);
@@ -1241,7 +1271,7 @@ a.ed-item:hover .ed-arrow { opacity: 1; transform: translateX(0); }
 
 .mx-user {
   align-self: flex-end;
-  background: var(--c-ink);
+  background: var(--c-accent);
   color: #FFFFFF;
 }
 
@@ -1259,7 +1289,7 @@ a.ed-item:hover .ed-arrow { opacity: 1; transform: translateX(0); }
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--c-ink);
+  background: var(--c-accent);
   animation: mx-blink 1.2s infinite ease-in-out;
 }
 
@@ -1302,7 +1332,7 @@ a.ed-item:hover .ed-arrow { opacity: 1; transform: translateX(0); }
   flex: 0 0 auto;
   border: 0;
   border-radius: var(--r-sharp);
-  background: var(--c-ink);
+  background: var(--c-accent);
   color: #FFFFFF;
   font-size: 16px;
   cursor: pointer;
@@ -1479,8 +1509,8 @@ a.ed-item:hover .ed-arrow { opacity: 1; transform: translateX(0); }
     justify-content: center;
     gap: 0;
     border-radius: var(--r-sharp);
-    background: var(--c-ink);
-    border-color: var(--c-ink);
+    background: var(--c-accent);
+    border-color: var(--c-accent);
   }
 
   .mx-launcher .mx-ava { width: 100%; height: 100%; border-radius: 0; font-size: 22px; }
