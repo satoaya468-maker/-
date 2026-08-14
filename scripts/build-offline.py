@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Сборка автономной версии сайта «Мастер Макс».
 
-Каждая страница складывается в один самодостаточный HTML: стили, скрипты и
-шрифты (woff2 в base64) внутри файла. Такой файл открывается двойным кликом
-из любой папки и работает без интернета — внешние CDN не нужны.
+Каждая страница складывается в один самодостаточный HTML: стили, скрипты,
+шрифты (woff2), фотографии и видео — всё в base64 внутри файла. Такой файл
+открывается двойным кликом из любой папки, работает без интернета и не
+требует соседних папок images/ и video/.
 
 Запуск из корня репозитория:  python3 scripts/build-offline.py [папка-вывода]
 Нужен интернет: шрифты забираются с Google Fonts и встраиваются в CSS.
@@ -53,6 +54,36 @@ def build_font_css():
     return "\n".join(faces)
 
 
+MIME = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
+        ".webp": "image/webp", ".mp4": "video/mp4", ".webm": "video/webm"}
+
+
+def as_data_uri(rel_path):
+    """./images/work-1.jpg → data:image/jpeg;base64,… (None, если файла нет)"""
+    path = ROOT / rel_path.lstrip("./")
+    if not path.exists():
+        return None
+    mime = MIME.get(path.suffix.lower())
+    if not mime:
+        return None
+    return f"data:{mime};base64," + base64.b64encode(path.read_bytes()).decode()
+
+
+def inline_media(html):
+    """Фото, постер и оба формата видео вшиваются в страницу.
+
+    Вшивать webm вместе с mp4 обязательно: когда mp4 приходит как data-URI,
+    браузер без поддержки H.264 уже не откатывается на следующий <source>,
+    поэтому запасной формат тоже должен лежать внутри файла.
+    """
+    def repl(match):
+        attr, value = match.group(1), match.group(2)
+        uri = as_data_uri(value)
+        return f'{attr}="{uri}"' if uri else match.group(0)
+
+    return re.sub(r'(src|poster)="(\./(?:images|video)/[^"]+)"', repl, html)
+
+
 def inline(page_html, styles, scripts):
     html = page_html
     html = re.sub(r'\s*<link rel="preconnect"[^>]*>', "", html)
@@ -61,7 +92,7 @@ def inline(page_html, styles, scripts):
     html = html.replace('<link rel="stylesheet" href="styles.css">', f"<style>\n{styles}\n</style>")
     for name, code in scripts.items():
         html = html.replace(f'<script src="{name}"></script>', f"<script>\n{code}\n</script>")
-    return html
+    return inline_media(html)
 
 
 def main():
