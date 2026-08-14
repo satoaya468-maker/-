@@ -68,7 +68,14 @@
     </div>
 
     <div class="hero-media">
-      <div class="ph"><span>ФОТО: hero-main.jpg — тёмная мастерская, работа с диском</span></div>
+      <video class="hero-video"
+             poster="./images/hero-poster.jpg"
+             autoplay muted loop playsinline preload="metadata"
+             aria-label="Мастер снимает колесо пневмогайковёртом в боксе">
+        <source src="./video/hero-loop.mp4" type="video/mp4">
+        <source src="./video/hero-loop.webm" type="video/webm">
+      </video>
+      <button class="video-toggle" type="button" data-video-toggle aria-label="Остановить видео">Пауза</button>
     </div>
 
     <div class="hero-stats">
@@ -161,10 +168,22 @@
       <h2 class="display h-md">Как выглядит наш сервис</h2>
 
       <div class="gallery">
-        <div class="ph"><span>ФОТО: work-1.jpg — снятие колеса, станок</span></div>
-        <div class="ph"><span>ФОТО: work-2.jpg — балансировочный стенд</span></div>
-        <div class="ph"><span>ФОТО: work-3.jpg — правка литого диска</span></div>
-        <div class="ph"><span>ФОТО: work-4.jpg — ночной выезд, работа у машины</span></div>
+        <div class="ph">
+          <img src="./images/work-1.jpg" alt="Мастер откручивает колесо пневмогайковёртом" loading="lazy">
+          <span>ФОТО: work-1.jpg — снятие колеса</span>
+        </div>
+        <div class="ph">
+          <img src="./images/work-3.jpg" alt="Колесо на ступице крупным планом" loading="lazy">
+          <span>ФОТО: work-3.jpg — колесо крупным планом</span>
+        </div>
+        <div class="ph">
+          <img src="./images/tools-1.jpg" alt="Пневматический гайковёрт в руках мастера" loading="lazy">
+          <span>ФОТО: tools-1.jpg — инструмент крупным планом</span>
+        </div>
+        <div class="ph">
+          <img src="./images/work-4.jpg" alt="Работа с колесом автомобиля в боксе" loading="lazy">
+          <span>ФОТО: work-4.jpg — работа с колесом</span>
+        </div>
       </div>
     </div>
   </section>

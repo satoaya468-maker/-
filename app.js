@@ -148,6 +148,61 @@
   }
 
   /* ----------------------------------------------------------------------
+     Видео в hero: пауза по кнопке, остановка вне экрана и при
+     включённой у пользователя настройке «уменьшить движение»
+     ---------------------------------------------------------------------- */
+  function initHeroVideo() {
+    var video = document.querySelector('.hero-video');
+    var button = document.querySelector('[data-video-toggle]');
+    if (!video || !button) return;
+
+    var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function setLabel(playing) {
+      button.textContent = playing ? 'Пауза' : 'Смотреть';
+      button.setAttribute('aria-label', playing ? 'Остановить видео' : 'Запустить видео');
+    }
+
+    if (calm.matches) {
+      video.removeAttribute('autoplay');
+      video.pause();
+      setLabel(false);
+    } else {
+      setLabel(true);
+    }
+
+    button.addEventListener('click', function () {
+      if (video.paused) {
+        video.play();
+        setLabel(true);
+      } else {
+        video.pause();
+        setLabel(false);
+      }
+    });
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        video.pause();
+      } else if (button.textContent === 'Пауза' && !calm.matches) {
+        video.play();
+      }
+    });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) {
+            video.pause();
+          } else if (button.textContent === 'Пауза' && !calm.matches) {
+            video.play();
+          }
+        });
+      }, { threshold: 0.15 }).observe(video);
+    }
+  }
+
+  /* ----------------------------------------------------------------------
      Предзаполнение услуги из ссылки: contakty.html?usluga=Правка%20диска
      ---------------------------------------------------------------------- */
   function initServiceParam() {
@@ -345,6 +400,7 @@
   function init() {
     initHeader();
     initForms();
+    initHeroVideo();
     initServiceParam();
     initWidget();
   }
