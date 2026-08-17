@@ -1,0 +1,349 @@
+<!-- ================= HERO ================= -->
+<section class="hero hero--inner">
+  <div class="hero__bg" aria-hidden="true">
+    <picture>
+      <source srcset="images/proc-cutting.webp" type="image/webp">
+      <img src="images/proc-cutting.jpg" alt="" width="1400" height="1000" fetchpriority="high" decoding="async">
+    </picture>
+  </div>
+
+  <div class="wrap hero__inner">
+    <div>
+      <nav class="crumbs" aria-label="Хлебные крошки">
+        <a href="index.html">Главная</a>
+        <span aria-hidden="true">/</span>
+        <span>Лазерная резка</span>
+      </nav>
+
+      <h1>Лазерная резка металла <span class="nowrap">0,5–20 мм</span></h1>
+      <p class="hero__lead">
+        Магнитогорск, ул. Советской Армии, 2. Принимаем DXF, DWG и PDF, считаем метраж реза
+        по файлу и возвращаемся с ценой <b>от 1 часа</b>. Нет чертежа — пришлите фото или эскиз.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--spark btn--lg" href="#raschet">Загрузить чертёж</a>
+        <a class="btn btn--lg" href="#formaty">Требования к файлу</a>
+      </div>
+
+      <div class="slab mt-lg">
+        <div class="slab__cell">
+          <span class="slab__num">0,5–20</span>
+          <span class="slab__unit">мм по стали</span>
+        </div>
+        <div class="slab__cell">
+          <span class="slab__num">4</span>
+          <span class="slab__unit">материала</span>
+        </div>
+        <div class="slab__cell">
+          <span class="slab__num"><span>1</span> ч</span>
+          <span class="slab__unit">до расчёта</span>
+        </div>
+        <div class="slab__cell">
+          <span class="slab__num">DXF</span>
+          <span class="slab__unit">рабочий формат</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 01 · МАТЕРИАЛЫ ================= -->
+<section class="section section--flush" id="materialy">
+  <div class="wrap">
+    <div class="section-head section-head--split" data-reveal>
+      <div>
+        <p class="meta"><b>01</b> / материалы</p>
+        <h2>Что режем</h2>
+      </div>
+      <p class="lead">
+        Предельная толщина по каждому материалу зависит от источника и состояния листа —
+        точную цифру называем в расчёте, вместе с ценой.
+      </p>
+    </div>
+
+    <!--
+      TODO ТАБЛИЦА ТОЛЩИН ПО МАТЕРИАЛАМ: когда подтвердите предел по нержавейке,
+      оцинковке и алюминию — впишите числа в карточки ниже (строка «Толщина»).
+      Общий диапазон 0,5–20 мм по стали — уже реальный, менять не нужно.
+    -->
+    <div class="cards cards--4" data-reveal>
+      <article class="card">
+        <span class="card__num">01</span>
+        <h3>Сталь</h3>
+        <p class="text-muted">Толщина 0,5–20 мм. Конструкционная, чёрный лист. Основной материал под ворота, косоуры, кронштейны и силовые детали.</p>
+        <span class="card__media">
+          <picture>
+            <source srcset="images/mat-steel.webp" type="image/webp">
+            <img src="images/mat-steel.jpg" alt="Лист чёрной стали с кромкой после лазерной резки" width="800" height="600" loading="lazy" decoding="async">
+          </picture>
+        </span>
+      </article>
+
+      <article class="card">
+        <span class="card__num">02</span>
+        <h3>Нержавейка</h3>
+        <p class="text-muted">Кухня, пищевое оборудование, уличный декор, который не должен ржаветь. Кромка после реза остаётся чистой.</p>
+        <span class="card__media">
+          <picture>
+            <source srcset="images/mat-inox.webp" type="image/webp">
+            <img src="images/mat-inox.jpg" alt="Лист нержавеющей стали с зеркальной кромкой реза" width="800" height="600" loading="lazy" decoding="async">
+          </picture>
+        </span>
+      </article>
+
+      <article class="card">
+        <span class="card__num">03</span>
+        <h3>Оцинковка</h3>
+        <p class="text-muted">Кожухи, короба, вентиляция, наружные элементы. Дешевле нержавейки там, где нужна защита от коррозии.</p>
+        <span class="card__media">
+          <picture>
+            <source srcset="images/mat-zinc.webp" type="image/webp">
+            <img src="images/mat-zinc.jpg" alt="Оцинкованный лист с характерным кристаллическим рисунком" width="800" height="600" loading="lazy" decoding="async">
+          </picture>
+        </span>
+      </article>
+
+      <article class="card">
+        <span class="card__num">04</span>
+        <h3>Алюминий</h3>
+        <p class="text-muted">Лёгкие конструкции, вывески, корпуса. Держит форму при меньшем весе, хорошо идёт под порошок.</p>
+        <span class="card__media">
+          <picture>
+            <source srcset="images/mat-alu.webp" type="image/webp">
+            <img src="images/mat-alu.jpg" alt="Алюминиевый лист с отверстиями после лазерной резки" width="800" height="600" loading="lazy" decoding="async">
+          </picture>
+        </span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 · ТОЛЩИНЫ ================= -->
+<section class="section" id="tolshchiny" data-laser>
+  <span class="laser" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="section-head section-head--split" data-reveal>
+      <div>
+        <p class="meta"><b>02</b> / толщины</p>
+        <h2>Шкала 0,5 → 20 мм</h2>
+      </div>
+      <p class="lead">
+        Слева — реальная пропорция кромки. Нажмите на строку: толщина подставится
+        в форму расчёта внизу страницы.
+      </p>
+    </div>
+
+    <div class="gauge" data-reveal>
+      <p class="gauge__legend"><span>Толщина</span><span>Типичное применение</span></p>
+
+      <button class="gauge__row" type="button" data-thickness="0,5">
+        <span class="gauge__mm">0,5 мм</span><span class="gauge__bar"></span>
+        <span class="gauge__use">Вывески, таблички, декор</span>
+      </button>
+      <button class="gauge__row" type="button" data-thickness="1">
+        <span class="gauge__mm">1 мм</span><span class="gauge__bar"></span>
+        <span class="gauge__use">Панно, короба, кожухи</span>
+      </button>
+      <button class="gauge__row" type="button" data-thickness="1,5">
+        <span class="gauge__mm">1,5 мм</span><span class="gauge__bar"></span>
+        <span class="gauge__use">Мангалы, зонты, обшивка</span>
+      </button>
+      <button class="gauge__row" type="button" data-thickness="2">
+        <span class="gauge__mm">2 мм</span><span class="gauge__bar"></span>
+        <span class="gauge__use">Ворота, калитки, узоры</span>
+      </button>
+      <button class="gauge__row" type="button" data-thickness="3">
+        <span class="gauge__mm">3 мм</span><span class="gauge__bar"></span>
+        <span class="gauge__use">Кронштейны, косынки</span>
+      </button>
+      <button class="gauge__row" type="button" data-thickness="4">
+        <span class="gauge__mm">4 мм</span><span class="gauge__bar"></span>
+        <span class="gauge__use">Ступени, площадки</span>
+      </button>
+      <button class="gauge__row" type="button" data-thickness="5">
+        <span class="gauge__mm">5 мм</span><span class="gauge__bar"></span>
+        <span class="gauge__use">Рамы, усиления</span>
+      </button>
+      <button class="gauge__row" type="button" data-thickness="6">
+        <span class="gauge__mm">6 мм</span><span class="gauge__bar"></span>
+        <span class="gauge__use">Опорные пластины, фланцы</span>
+      </button>
+      <button class="gauge__row" type="button" data-thickness="8">
+        <span class="gauge__mm">8 мм</span><span class="gauge__bar"></span>
+        <span class="gauge__use">Проушины, силовые узлы</span>
+      </button>
+      <button class="gauge__row" type="button" data-thickness="10">
+        <span class="gauge__mm">10 мм</span><span class="gauge__bar"></span>
+        <span class="gauge__use">Подпятники, тяжёлые рамы</span>
+      </button>
+      <button class="gauge__row" type="button" data-thickness="12">
+        <span class="gauge__mm">12 мм</span><span class="gauge__bar"></span>
+        <span class="gauge__use">Основания, закладные</span>
+      </button>
+      <button class="gauge__row" type="button" data-thickness="16">
+        <span class="gauge__mm">16 мм</span><span class="gauge__bar"></span>
+        <span class="gauge__use">Ответственные детали</span>
+      </button>
+      <button class="gauge__row" type="button" data-thickness="20">
+        <span class="gauge__mm">20 мм</span><span class="gauge__bar"></span>
+        <span class="gauge__use">Предел по стали</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 · ФАЙЛЫ ================= -->
+<section class="section section--deep" id="formaty">
+  <div class="wrap">
+    <div class="section-head section-head--split" data-reveal>
+      <div>
+        <p class="meta"><b>03</b> / файлы</p>
+        <h2>Что присылать</h2>
+      </div>
+      <p class="lead">
+        Чем ближе файл к производственному, тем быстрее расчёт. Но принимаем любой:
+        фото и набросок тоже переведём в вектор.
+      </p>
+    </div>
+
+    <div class="split split--wide-left">
+      <div class="table-scroll" data-reveal>
+        <table class="specs">
+          <caption>Форматы и что с ними делаем</caption>
+          <thead>
+            <tr>
+              <th scope="col">Формат</th>
+              <th scope="col">Годится</th>
+              <th scope="col">Что делаем</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">DXF</th>
+              <td class="num">Лучший вариант</td>
+              <td>Считаем метраж реза и врезки сразу, ставим на раскрой без переделки.</td>
+            </tr>
+            <tr>
+              <th scope="row">DWG</th>
+              <td class="num">Да</td>
+              <td>Открываем, вытаскиваем нужный слой, переводим в контур под резку.</td>
+            </tr>
+            <tr>
+              <th scope="row">PDF</th>
+              <td class="num">Да, если вектор</td>
+              <td>Векторный — берём как есть. Скан-картинку внутри PDF придётся обрисовать.</td>
+            </tr>
+            <tr>
+              <th scope="row">JPG / PNG</th>
+              <td class="num">Как эскиз</td>
+              <td>Фото ворот из интернета или набросок на бумаге — рисуем вектор сами.</td>
+            </tr>
+            <tr>
+              <th scope="row">CDR / AI</th>
+              <td class="num">По согласованию</td>
+              <td>Присылайте — скажем сразу, открывается или нужен экспорт в DXF.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stack" data-reveal>
+        <article class="bordered pad bg-steel">
+          <h3>Чтобы файл не вернулся на доработку</h3>
+          <ul class="flow__list mt-sm">
+            <li>Масштаб 1:1, в миллиметрах</li>
+            <li>Контуры замкнуты</li>
+            <li>Без дублей линий друг на друге</li>
+            <li>Текст переведён в кривые</li>
+            <li>Размеры, рамка и штамп — на отдельном слое</li>
+            <li>Отверстия — окружностями, не полилиниями из дуг</li>
+          </ul>
+          <p class="mt-sm text-muted text-small">
+            Не уверены в файле — присылайте как есть. Проверим и скажем, что поправить,
+            это входит в расчёт.
+          </p>
+        </article>
+
+        <article class="bordered pad">
+          <h3>По геометрии</h3>
+          <p class="text-muted text-small">
+            Режем строго по контуру из файла, масштаб 1:1. Зазоры под гибку и сварку
+            закладываем по вашему чертежу — сами ничего не «подправляем» молча.
+            Повтор партии идёт с той же управляющей программой, деталь в деталь.
+          </p>
+          <!--
+            TODO ДОПУСКИ: впишите фактический допуск вашего станка (например,
+            «±0,1 мм на деталь до 500 мм») — покупатель-технолог ищет именно эту строку.
+          -->
+          <p class="text-muted text-small mt-sm">
+            Допуск на конкретную деталь подтверждаем по чертежу до запуска — до того,
+            как вы оплатите партию.
+          </p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 · КАК СЧИТАЕМ ================= -->
+<section class="section" id="kak-schitaem">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <p class="meta"><b>04</b> / расчёт за час</p>
+      <h2>Откуда берётся «1 час»</h2>
+    </div>
+
+    <div class="steps" data-reveal>
+      <article class="step">
+        <h3>Файл падает в цех</h3>
+        <p>Форма с сайта и WhatsApp уходят в один чат к мастеру. Не в общий ящик, который открывают раз в день.</p>
+      </article>
+      <article class="step">
+        <h3>Считаем метраж реза</h3>
+        <p>По DXF — сразу: длина контура, количество врезок, расход листа. По фото — прикидываем габарит и звоним уточнить.</p>
+      </article>
+      <article class="step">
+        <h3>Проверяем материал</h3>
+        <p>Смотрим, есть ли нужная толщина в наличии. Если нет — сразу говорим срок поставки, а не после оплаты.</p>
+      </article>
+      <article class="step">
+        <h3>Возвращаемся с ценой</h3>
+        <p>Звонок или сообщение с суммой и сроком. Обычно быстрее часа, если файл нормальный.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 · ФОРМА ================= -->
+<section class="section section--deep" id="raschet" data-laser>
+  <span class="laser" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="section-head section-head--split" data-reveal>
+      <div>
+        <p class="meta"><b>05</b> / расчёт</p>
+        <h2>Загрузите чертёж — посчитаем за час</h2>
+      </div>
+      <p class="lead">
+        DXF, DWG, PDF, фото — до 20 МБ. Заявка уходит мастеру в мессенджер вместе с файлом.
+      </p>
+    </div>
+
+{{FORM}}
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="section">
+  <div class="wrap">
+    <div class="cta" data-reveal>
+      <div>
+        <h2>Нужна ещё окраска и сварка?</h2>
+        <p>Нарезанные детали не придётся возить по городу: красим порошком и варим в этом же цехе.</p>
+      </div>
+      <div class="cta__actions">
+        <a class="btn btn--spark btn--lg" href="poroshkovaya-okraska.html">Порошковая окраска</a>
+        <a class="btn btn--lg" href="svarka.html">Сварка</a>
+      </div>
+    </div>
+  </div>
+</section>

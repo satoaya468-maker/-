@@ -1,3 +1,9 @@
+> **В этом репозитории два сайта.**
+> Актуальный — «Красивое железо» (лазерная резка, Магнитогорск):
+> см. [README-KRASIVOE-ZHELEZO.md](README-KRASIVOE-ZHELEZO.md).
+> Ниже — документация предыдущего проекта «Спектр», его страница
+> лежит в `spektr-landing.html`.
+
 # Спектр — премиальный лендинг
 
 Кинематографичный одностраничный сайт для ООО «Спектр» (Магнитогорск): окна,
@@ -7,7 +13,7 @@
 ## Структура
 
 ```
-index.html            — страница с SEO-метатегами, Open Graph и schema.org
+spektr-landing.html   — страница с SEO-метатегами, Open Graph и schema.org
 css/style.css         — дизайн-система (Stripe-вдохновлённый минимализм)
 js/main.js            — scroll-cinematic движок + анимации
 assets/frames/hero/   — кадры hero-видео для скраба по скроллу (создаёт CI)
@@ -31,7 +37,7 @@ Hero-видео и фото сгенерированы в Higgsfield AI. Workflo
 
 ## Перед публикацией
 
-1. Замените `https://spektr-mgn.ru/` в `index.html`, `robots.txt` и
-   `sitemap.xml` на реальный домен.
+1. Замените `https://spektr-mgn.ru/` в `spektr-landing.html` на реальный домен
+   (`robots.txt` и `sitemap.xml` в корне теперь принадлежат «Красивому железу»).
 2. Вставьте ссылку на группу ВКонтакте (кнопка «Написать ВКонтакте»,
-   помечена `TODO` в `index.html`).
+   помечена `TODO` в `spektr-landing.html`).

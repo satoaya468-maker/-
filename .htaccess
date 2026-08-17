@@ -1,0 +1,59 @@
+# ============================================================
+# КРАСИВОЕ ЖЕЛЕЗО — настройки для shared-хостинга (Apache, reg.ru)
+# ============================================================
+
+# --- Кодировка ---------------------------------------------
+AddDefaultCharset UTF-8
+
+# --- Стартовая страница ------------------------------------
+DirectoryIndex index.html index.php
+
+# --- Загрузка чертежей до 20 МБ -----------------------------
+# Если хостинг запрещает php_value в .htaccess (ошибка 500) —
+# удалите этот блок и используйте файл .user.ini
+<IfModule mod_php.c>
+  php_value upload_max_filesize 20M
+  php_value post_max_size 26M
+  php_value max_file_uploads 6
+  php_value max_execution_time 180
+</IfModule>
+
+# --- Закрываем служебное ------------------------------------
+<FilesMatch "^(config\.php|.*\.log|\.user\.ini|\.htaccess)$">
+  Require all denied
+</FilesMatch>
+
+RedirectMatch 404 ^/logs/
+RedirectMatch 404 ^/scripts/
+
+# --- Заголовки безопасности ---------------------------------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# --- Кэш статики --------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+# --- Сжатие --------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml application/json
+</IfModule>
+
+# --- HTTPS и один канонический адрес ------------------------
+# Включить ПОСЛЕ выпуска SSL-сертификата в панели reg.ru:
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+# RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+# RewriteRule ^(.*)$ https://%1/$1 [R=301,L]

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Красивое железо">
+  <rect width="64" height="64" fill="#0A0A0B"/>
+  <path d="M10 10h44v44H10z" fill="none" stroke="#26282D" stroke-width="2"/>
+  <path d="M18 46 46 18" stroke="#FF4D0F" stroke-width="6" stroke-linecap="square"/>
+  <path d="M18 30v16h16" fill="none" stroke="#F2F2F0" stroke-width="4"/>
+  <circle cx="46" cy="18" r="4" fill="#FF4D0F"/>
+</svg>

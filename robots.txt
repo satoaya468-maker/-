@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /send.php
+Disallow: /config.php
+Disallow: /logs/
+Disallow: /scripts/
+Disallow: /politika.html
 
-Sitemap: https://spektr-mgn.ru/sitemap.xml
+# TODO: заменить домен на реальный
+Sitemap: https://krasivoe-zhelezo.ru/sitemap.xml
