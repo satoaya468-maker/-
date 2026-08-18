@@ -19,6 +19,12 @@ return [
     // ID чата: свой ID из @userinfobot, либо -100... для группы/канала.
     'tg_chat_id' => getenv('KZ_TG_CHAT') ?: 'ВСТАВЬТЕ_CHAT_ID',
 
+    // Username для кнопок «Отправить чертёж в Telegram», без «@».
+    // ВАЖНО: это же значение продублируйте в двух местах, иначе кнопки поведут не туда:
+    //   scripts/build-pages.py → TG_USER      (после правки запустить сборщик)
+    //   assets/js/main.js      → CFG.tgUser
+    'tg_username' => 'USERNAME',
+
     // --- Дублирование на почту (необязательно) --------------------------
     // Пустая строка — не дублировать.
     'email_to'   => 'stromilovm@mail.ru',

@@ -21,19 +21,18 @@
         как краска из баллона, и держит любой цвет по каталогу <b>RAL</b>.
       </p>
       <div class="hero__actions">
-        <a class="btn btn--spark btn--lg" href="#raschet">Прислать деталь на расчёт</a>
-        <a class="btn btn--lg" href="#ral">Выбрать цвет</a>
+        <a class="tg__go" href="{{TG_LINK}}" target="_blank" rel="noopener">{{TG_ICON}}Отправить чертёж в Telegram</a>
+        <a class="quiet" href="#ral">сначала выбрать цвет по RAL</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= 01 · ПРОЦЕСС ================= -->
+<!-- ===== ПРОЦЕСС ===== -->
 <section class="section section--flush" id="process">
   <div class="wrap">
     <div class="section-head section-head--split" data-reveal>
       <div>
-        <p class="meta"><b>01</b> / процесс</p>
         <h2>Четыре этапа, ни одного лишнего</h2>
       </div>
       <p class="lead">
@@ -79,13 +78,11 @@
   </div>
 </section>
 
-<!-- ================= 02 · RAL ================= -->
-<section class="section section--deep" id="ral" data-laser>
-  <span class="laser" aria-hidden="true"></span>
+<!-- ===== RAL ===== -->
+<section class="section section--deep" id="ral">
   <div class="wrap">
     <div class="section-head section-head--split" data-reveal>
       <div>
-        <p class="meta"><b>02</b> / цвет</p>
         <h2>Палитра RAL</h2>
       </div>
       <p class="lead">
@@ -260,7 +257,7 @@
     <div class="ral__out" id="ral-out" hidden>
       <span>Выбрано:</span>
       <b id="ral-code"></b>
-      <a class="btn btn--spark" id="ral-send" href="#raschet">Подставить в заявку</a>
+      <a class="btn btn--accent" id="ral-send" href="#raschet">Подставить в заявку</a>
     </div>
 
     <p class="placeholder-note mt" data-reveal>
@@ -276,11 +273,10 @@
   </div>
 </section>
 
-<!-- ================= 03 · ЧТО ВАЖНО ЗНАТЬ ================= -->
+<!-- ===== ЧТО ВАЖНО ЗНАТЬ ===== -->
 <section class="section" id="usloviya">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <p class="meta"><b>03</b> / условия</p>
       <h2>Что спрашивают до заказа</h2>
     </div>
 
@@ -325,19 +321,13 @@
   </div>
 </section>
 
-<!-- ================= 04 · ФОРМА ================= -->
-<section class="section section--deep" id="raschet" data-laser>
-  <span class="laser" aria-hidden="true"></span>
+<!-- ===== ФОРМА ===== -->
+<section class="section section--deep" id="raschet">
   <div class="wrap">
-    <div class="section-head section-head--split" data-reveal>
-      <div>
-        <p class="meta"><b>04</b> / расчёт</p>
-        <h2>Пришлите фото детали — посчитаем окраску</h2>
-      </div>
-      <p class="lead">
-        Фото с рулеткой рядом — идеально: сразу видно габарит и состояние поверхности.
-        Код RAL укажите в комментарии.
-      </p>
+{{TG}}
+    <div class="quote__lead">
+      <h3>или загрузите фото прямо здесь</h3>
+      <p>Фото с рулеткой рядом — сразу видно габарит и состояние поверхности.</p>
     </div>
 
 {{FORM}}
@@ -353,7 +343,7 @@
         <p>Деталь не ездит между подрядчиками: с лазера — сразу на подготовку. Меньше логистики, короче срок.</p>
       </div>
       <div class="cta__actions">
-        <a class="btn btn--spark btn--lg" href="lazernaya-rezka.html">Лазерная резка</a>
+        <a class="btn btn--accent btn--lg" href="lazernaya-rezka.html">Лазерная резка</a>
         <a class="btn btn--lg" href="raboty.html">Смотреть работы</a>
       </div>
     </div>

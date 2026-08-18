@@ -21,8 +21,8 @@
         по файлу и возвращаемся с ценой <b>от 1 часа</b>. Нет чертежа — пришлите фото или эскиз.
       </p>
       <div class="hero__actions">
-        <a class="btn btn--spark btn--lg" href="#raschet">Загрузить чертёж</a>
-        <a class="btn btn--lg" href="#formaty">Требования к файлу</a>
+        <a class="tg__go" href="{{TG_LINK}}" target="_blank" rel="noopener">{{TG_ICON}}Отправить чертёж в Telegram</a>
+        <a class="quiet" href="#formaty">требования к файлу</a>
       </div>
 
       <div class="slab mt-lg">
@@ -47,12 +47,11 @@
   </div>
 </section>
 
-<!-- ================= 01 · МАТЕРИАЛЫ ================= -->
+<!-- ===== МАТЕРИАЛЫ ===== -->
 <section class="section section--flush" id="materialy">
   <div class="wrap">
     <div class="section-head section-head--split" data-reveal>
       <div>
-        <p class="meta"><b>01</b> / материалы</p>
         <h2>Что режем</h2>
       </div>
       <p class="lead">
@@ -68,7 +67,6 @@
     -->
     <div class="cards cards--4" data-reveal>
       <article class="card">
-        <span class="card__num">01</span>
         <h3>Сталь</h3>
         <p class="text-muted">Толщина 0,5–20 мм. Конструкционная, чёрный лист. Основной материал под ворота, косоуры, кронштейны и силовые детали.</p>
         <span class="card__media">
@@ -80,7 +78,6 @@
       </article>
 
       <article class="card">
-        <span class="card__num">02</span>
         <h3>Нержавейка</h3>
         <p class="text-muted">Кухня, пищевое оборудование, уличный декор, который не должен ржаветь. Кромка после реза остаётся чистой.</p>
         <span class="card__media">
@@ -92,7 +89,6 @@
       </article>
 
       <article class="card">
-        <span class="card__num">03</span>
         <h3>Оцинковка</h3>
         <p class="text-muted">Кожухи, короба, вентиляция, наружные элементы. Дешевле нержавейки там, где нужна защита от коррозии.</p>
         <span class="card__media">
@@ -104,7 +100,6 @@
       </article>
 
       <article class="card">
-        <span class="card__num">04</span>
         <h3>Алюминий</h3>
         <p class="text-muted">Лёгкие конструкции, вывески, корпуса. Держит форму при меньшем весе, хорошо идёт под порошок.</p>
         <span class="card__media">
@@ -118,13 +113,11 @@
   </div>
 </section>
 
-<!-- ================= 02 · ТОЛЩИНЫ ================= -->
-<section class="section" id="tolshchiny" data-laser>
-  <span class="laser" aria-hidden="true"></span>
+<!-- ===== ТОЛЩИНЫ ===== -->
+<section class="section" id="tolshchiny">
   <div class="wrap">
     <div class="section-head section-head--split" data-reveal>
       <div>
-        <p class="meta"><b>02</b> / толщины</p>
         <h2>Шкала 0,5 → 20 мм</h2>
       </div>
       <p class="lead">
@@ -192,12 +185,11 @@
   </div>
 </section>
 
-<!-- ================= 03 · ФАЙЛЫ ================= -->
+<!-- ===== ФАЙЛЫ ===== -->
 <section class="section section--deep" id="formaty">
   <div class="wrap">
     <div class="section-head section-head--split" data-reveal>
       <div>
-        <p class="meta"><b>03</b> / файлы</p>
         <h2>Что присылать</h2>
       </div>
       <p class="lead">
@@ -267,36 +259,30 @@
         <article class="bordered pad">
           <h3>По геометрии</h3>
           <p class="text-muted text-small">
-            Режем строго по контуру из файла, масштаб 1:1. Зазоры под гибку и сварку
-            закладываем по вашему чертежу — сами ничего не «подправляем» молча.
-            Повтор партии идёт с той же управляющей программой, деталь в деталь.
+            Режем по контуру из файла, масштаб 1:1; зазоры под гибку и сварку — по вашему чертежу.
+            Допуск на конкретную деталь подтверждаем до запуска.
           </p>
           <!--
-            TODO ДОПУСКИ: впишите фактический допуск вашего станка (например,
-            «±0,1 мм на деталь до 500 мм») — покупатель-технолог ищет именно эту строку.
+            TODO ДОПУСКИ: впишите фактический допуск станка, например
+            «±0,1 мм на детали до 500 мм» — технолог ищет именно эту строку.
           -->
-          <p class="text-muted text-small mt-sm">
-            Допуск на конкретную деталь подтверждаем по чертежу до запуска — до того,
-            как вы оплатите партию.
-          </p>
         </article>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= 04 · КАК СЧИТАЕМ ================= -->
+<!-- ===== КАК СЧИТАЕМ ===== -->
 <section class="section" id="kak-schitaem">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <p class="meta"><b>04</b> / расчёт за час</p>
       <h2>Откуда берётся «1 час»</h2>
     </div>
 
     <div class="steps" data-reveal>
       <article class="step">
         <h3>Файл падает в цех</h3>
-        <p>Форма с сайта и WhatsApp уходят в один чат к мастеру. Не в общий ящик, который открывают раз в день.</p>
+        <p>Форма с сайта и Telegram уходят в один чат к мастеру. Не в общий ящик, который открывают раз в день.</p>
       </article>
       <article class="step">
         <h3>Считаем метраж реза</h3>
@@ -314,18 +300,13 @@
   </div>
 </section>
 
-<!-- ================= 05 · ФОРМА ================= -->
-<section class="section section--deep" id="raschet" data-laser>
-  <span class="laser" aria-hidden="true"></span>
+<!-- ===== ФОРМА ===== -->
+<section class="section section--deep" id="raschet">
   <div class="wrap">
-    <div class="section-head section-head--split" data-reveal>
-      <div>
-        <p class="meta"><b>05</b> / расчёт</p>
-        <h2>Загрузите чертёж — посчитаем за час</h2>
-      </div>
-      <p class="lead">
-        DXF, DWG, PDF, фото — до 20 МБ. Заявка уходит мастеру в мессенджер вместе с файлом.
-      </p>
+{{TG}}
+    <div class="quote__lead">
+      <h3>или загрузите файл прямо здесь</h3>
+      <p>По DXF считаем метраж реза сразу, по фото — прикидываем габарит.</p>
     </div>
 
 {{FORM}}
@@ -341,7 +322,7 @@
         <p>Нарезанные детали не придётся возить по городу: красим порошком и варим в этом же цехе.</p>
       </div>
       <div class="cta__actions">
-        <a class="btn btn--spark btn--lg" href="poroshkovaya-okraska.html">Порошковая окраска</a>
+        <a class="btn btn--accent btn--lg" href="poroshkovaya-okraska.html">Порошковая окраска</a>
         <a class="btn btn--lg" href="svarka.html">Сварка</a>
       </div>
     </div>

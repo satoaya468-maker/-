@@ -116,6 +116,7 @@ $thickness = field('thickness', 20);
 $qty      = field('qty', 40);
 $comment  = field('comment', 2000);
 $page     = field('page', 120);
+$source   = field('source', 20);
 
 if (mb_strlen($name) < 2) {
     reply(false, 'Укажите имя.');
@@ -214,7 +215,9 @@ function humanSize(int $bytes): string
 $phonePretty = '+' . $digits;
 
 $lines = [];
-$lines[] = '<b>НОВАЯ ЗАЯВКА — расчёт</b>';
+$lines[] = $source === 'chat'
+    ? '<b>ВОПРОС ИЗ ВИДЖЕТА НА САЙТЕ</b>'
+    : '<b>НОВАЯ ЗАЯВКА — расчёт</b>';
 $lines[] = '';
 $lines[] = '👤 <b>' . h($name) . '</b>';
 $lines[] = '📞 <a href="tel:' . h($phonePretty) . '">' . h($phonePretty) . '</a>';
@@ -325,7 +328,7 @@ if ($emailTo !== '' && function_exists('mail')) {
     $headers = 'From: ' . ($cfg['site_name'] ?? 'Сайт') . ' <' . ($cfg['email_from'] ?? '') . ">\r\n"
         . "Content-Type: text/plain; charset=UTF-8\r\n"
         . "MIME-Version: 1.0\r\n";
-    @mail($emailTo, 'Заявка с сайта: ' . $name . ' ' . $phonePretty, $plain, $headers);
+    @mail($emailTo, ($source === 'chat' ? 'Вопрос с сайта: ' : 'Заявка с сайта: ') . $name . ' ' . $phonePretty, $plain, $headers);
 }
 
 reply(true);

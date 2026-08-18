@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import pathlib
 import re
+from urllib.parse import quote
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PARTS = ROOT / "scripts" / "parts"
@@ -23,7 +24,10 @@ PARTS = ROOT / "scripts" / "parts"
 SITE = "https://krasivoe-zhelezo.ru"  # TODO: заменить на реальный домен
 PHONE_HREF = "tel:+79097490000"       # TODO: реальный номер
 PHONE_TEXT = "+7 909 749-XX-XX"
-WA = "https://wa.me/79097490000"      # TODO: реальный номер
+# username в Telegram без «@». Он же в config.php (tg_username)
+# и в assets/js/main.js (CFG.tgUser) — держите три места синхронными.
+TG_USER = "USERNAME"
+TG = "https://t.me/" + TG_USER + "?text=" + quote("Здравствуйте! Нужен расчёт: ")
 VK = "https://vk.com/"                # TODO: ссылка на группу ВКонтакте
 MAIL = "stromilovm@mail.ru"
 
@@ -36,10 +40,8 @@ NAV = [
 ]
 
 # --- Иконки (инлайн, чтобы не тащить лишние запросы) ------------------------
-ICON_WA = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z'
-           'm5.8 14.2c-.2.7-1.2 1.3-1.9 1.4-.5.1-1.2.2-3.5-.7-2.9-1.2-4.8-4.2-5-4.4-.1-.2-1.1-1.5-1.1-2.9 0-1.3.7-2 1-2.3'
-           '.2-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5l.9 2.1c.1.2 0 .4-.1.5l-.4.5c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 '
-           '2.4 1.5.2.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l2 1c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg>')
+ICON_TG = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 4.3 18.9 19c-.2 1-.8 1.2-1.7.8l-4.6-3.4-2.2 2.1'
+           'c-.2.2-.5.5-1 .5l.3-4.7 8.6-7.8c.4-.3-.1-.5-.6-.2L6.9 13.1 2.4 11.7c-1-.3-1-1 .2-1.4l17.9-6.9c.8-.3 1.5.2 1.4 1Z"/></svg>')
 ICON_PHONE = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 '
               '1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 '
               '3.6.1.4 0 .7-.2 1l-2.3 2.2Z"/></svg>')
@@ -66,7 +68,7 @@ def head(page: dict) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{page['title']}</title>
 <meta name="description" content="{page['description']}">
-<meta name="theme-color" content="#0A0A0B">
+<meta name="theme-color" content="#FAFAF8">
 <!-- TODO: заменить домен на реальный (canonical, og:url, sitemap.xml, robots.txt, JSON-LD) -->
 <link rel="canonical" href="{canonical}">
 
@@ -101,8 +103,8 @@ def header(current: str) -> str:
         for href, label in NAV
     )
     menu_links = "\n".join(
-        '  <a href="{0}"{1}><i>0{2}</i> {3}</a>'.format(href, mark(href), i + 1, label)
-        for i, (href, label) in enumerate(NAV)
+        '  <a href="{0}"{1}>{2}</a>'.format(href, mark(href), label)
+        for href, label in NAV
     )
 
     return f"""<body>
@@ -125,7 +127,7 @@ def header(current: str) -> str:
 
     <!-- TODO ТЕЛЕФОН: заменить номер здесь, в меню, в подвале, в доке, в JSON-LD и в assets/js/main.js -->
     <a class="header__phone" href="{PHONE_HREF}">{PHONE_TEXT}</a>
-    <a class="btn btn--spark header__cta" href="{'#raschet' if current == 'index.html' else 'index.html#raschet'}">Загрузить чертёж</a>
+    <a class="btn btn--accent header__cta" href="{TG}" target="_blank" rel="noopener">Написать в Telegram</a>
 
     <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Меню">
       <span></span>
@@ -180,7 +182,7 @@ FOOTER = f"""</main>
         <ul>
           <li><a href="{PHONE_HREF}">{PHONE_TEXT}</a></li>
           <li><a href="mailto:{MAIL}">{MAIL}</a></li>
-          <li><a href="{WA}" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="{TG}" target="_blank" rel="noopener">Telegram</a></li>
           <!-- TODO ССЫЛКА: вставить адрес группы ВКонтакте -->
           <li><a href="{VK}" target="_blank" rel="noopener">ВКонтакте</a></li>
         </ul>
@@ -208,9 +210,67 @@ FOOTER = f"""</main>
 
 <nav class="dock" aria-label="Быстрая связь">
   <a href="{PHONE_HREF}">{ICON_PHONE}Позвонить</a>
-  <a href="{WA}" target="_blank" rel="noopener">{ICON_WA}WhatsApp</a>
-  <a class="is-primary" href="index.html#raschet">{ICON_UPLOAD}Чертёж</a>
+  <a class="is-primary" href="{TG}" target="_blank" rel="noopener">{ICON_TG}Telegram</a>
 </nav>
+"""
+
+
+TG_BLOCK = f"""    <div class="tg" data-reveal>
+      <div>
+        <h2>Отправьте чертёж в Telegram</h2>
+        <p>
+          Фото, скрин из интернета или DXF — прикрепите прямо в чат. Заявка сразу
+          у мастера, расчёт вернём от часа. Так быстрее всего.
+        </p>
+      </div>
+      <div>
+        <a class="tg__go" href="{TG}" target="_blank" rel="noopener">{ICON_TG}Отправить чертёж в Telegram</a>
+      </div>
+    </div>
+"""
+
+
+CHAT = f"""
+<button class="chat-fab" id="chat-fab" type="button" data-open="false" aria-controls="chat">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c5 0 9 3.4 9 7.5s-4 7.5-9 7.5c-.9 0-1.8-.1-2.6-.3L4 20l1.3-3.2C3.9 15.4 3 13.1 3 10.5 3 6.4 7 3 12 3Z"/></svg>
+  Спросить по вашей детали
+</button>
+
+<div class="chat" id="chat" data-open="false" aria-hidden="true" role="dialog" aria-label="Вопрос по вашей детали">
+  <div class="chat__head">
+    <div>
+      <div class="chat__title">Спросить по вашей детали</div>
+      <div class="chat__sub">Отвечаем, пока станок работает</div>
+    </div>
+    <button class="chat__close" id="chat-close" type="button" aria-label="Закрыть окно">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.6 1.4 1.4 2.6 6.8 8l-5.4 5.4 1.2 1.2L8 9.2l5.4 5.4 1.2-1.2L9.2 8l5.4-5.4-1.2-1.2L8 6.8z"/></svg>
+    </button>
+  </div>
+
+  <div class="chat__log" id="chat-log" role="log" aria-live="polite"></div>
+
+  <div class="chat__foot">
+    <div class="chat__asks" id="chat-asks"></div>
+
+    <div id="chat-free" hidden>
+      <label class="visually-hidden" for="chat-question">Ваш вопрос</label>
+      <textarea id="chat-question" placeholder="Напишите вопрос — ответим здесь же"></textarea>
+    </div>
+
+    <form class="chat__form" id="chat-form" hidden novalidate>
+      <label class="visually-hidden" for="chat-name">Имя</label>
+      <input type="text" id="chat-name" name="name" placeholder="Имя" autocomplete="name">
+      <label class="visually-hidden" for="chat-phone">Телефон</label>
+      <input type="tel" id="chat-phone" name="phone" placeholder="Телефон" autocomplete="tel" inputmode="tel">
+      <label class="visually-hidden" for="chat-detail">Что за деталь</label>
+      <input type="text" id="chat-detail" name="detail" placeholder="Что за деталь">
+      <button type="submit">Отправить мастеру</button>
+      <p class="chat__hint">Отправляя, соглашаетесь с <a href="politika.html">политикой конфиденциальности</a>.</p>
+    </form>
+
+    <p class="chat__status" id="chat-status" role="status"></p>
+  </div>
+</div>
 """
 
 LIGHTBOX = """
@@ -366,7 +426,7 @@ PAGES = [
         "file": "kontakty.html",
         "title": "Контакты — Магнитогорск, ул. Советской Армии, 2 | Красивое железо",
         "description": "Адрес цеха: Магнитогорск, ул. Советской Армии, 2, 1 этаж, Правобережный район, 455038. "
-                       "Телефон, WhatsApp, ВКонтакте, почта. Работаем с 9:00.",
+                       "Телефон, Telegram, ВКонтакте, почта. Работаем с 9:00.",
         "jsonld": BUSINESS_LD,
         "lightbox": False,
         "hours_todo": True,
@@ -411,8 +471,15 @@ def build() -> None:
             doc = doc.replace('<meta name="theme-color"', '<meta name="robots" content="noindex, follow">\n<meta name="theme-color"')
 
         doc += header(page["file"])
-        doc += part.read_text(encoding="utf-8").replace("{{FORM}}", form).rstrip() + "\n\n"
+        # Форма подставляется первой: внутри неё тоже есть {{TG_LINK}}/{{TG_ICON}}.
+        body = (part.read_text(encoding="utf-8")
+                .replace("{{FORM}}", form)
+                .replace("{{TG}}", TG_BLOCK)
+                .replace("{{TG_LINK}}", TG)
+                .replace("{{TG_ICON}}", ICON_TG))
+        doc += body.rstrip() + "\n\n"
         doc += FOOTER
+        doc += CHAT
         if page.get("lightbox"):
             doc += LIGHTBOX
         doc += TAIL

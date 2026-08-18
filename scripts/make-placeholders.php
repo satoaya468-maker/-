@@ -39,34 +39,34 @@ function makePlaceholder(
     $im = imagecreatetruecolor($w, $h);
     imagealphablending($im, true);
 
-    [$r, $g, $b] = hex2rgb('#0E0F11');
+    [$r, $g, $b] = hex2rgb('#F4F4F1');
     $bg = imagecolorallocate($im, $r, $g, $b);
     imagefilledrectangle($im, 0, 0, $w, $h, $bg);
 
-    // Мягкий вертикальный градиент — «цех в полумраке».
+    // Мягкий вертикальный градиент — бумага под чертёж.
     for ($y = 0; $y < $h; $y++) {
         $t = $y / max(1, $h - 1);
-        $v = (int) round(14 + 9 * (1 - $t));
-        $c = imagecolorallocate($im, $v, $v + 1, $v + 3);
+        $v = (int) round(244 + 6 * (1 - $t));
+        $c = imagecolorallocate($im, min(255, $v + 2), min(255, $v + 1), min(255, $v - 2));
         imageline($im, 0, $y, $w, $y, $c);
     }
 
     // Накал по диагонали — только для hero-подобных кадров.
     if ($spark) {
         for ($i = 0; $i < 42; $i++) {
-            $alpha = 108 + $i;
+            $alpha = 112 + (int) ($i / 3);
             if ($alpha > 127) {
                 $alpha = 127;
             }
-            $c = imagecolorallocatealpha($im, 255, 77, 15, $alpha);
+            $c = imagecolorallocatealpha($im, 180, 74, 30, $alpha);
             $x0 = (int) ($w * 0.18) + $i * 3;
             imageline($im, $x0, $h, $x0 + (int) ($w * 0.35), 0, $c);
         }
     }
 
     // Чертёжная сетка.
-    [$lr, $lg, $lb] = hex2rgb('#26282D');
-    $grid = imagecolorallocatealpha($im, $lr, $lg, $lb, 40);
+    [$lr, $lg, $lb] = hex2rgb('#D8D8D4');
+    $grid = imagecolorallocatealpha($im, $lr, $lg, $lb, 30);
     $step = 48;
     for ($x = $step; $x < $w; $x += $step) {
         imageline($im, $x, 0, $x, $h, $grid);
@@ -76,10 +76,10 @@ function makePlaceholder(
     }
 
     // Рамка и угловые метки.
-    $line = imagecolorallocate($im, $lr + 10, $lg + 10, $lb + 12);
+    $line = imagecolorallocate($im, $lr - 14, $lg - 14, $lb - 14);
     imagerectangle($im, 0, 0, $w - 1, $h - 1, $line);
     $tick = 22;
-    $accent = imagecolorallocate($im, 255, 77, 15);
+    $accent = imagecolorallocate($im, 180, 74, 30);
     foreach ([[0, 0, 1, 1], [$w - 1, 0, -1, 1], [0, $h - 1, 1, -1], [$w - 1, $h - 1, -1, -1]] as $cor) {
         [$cx, $cy, $dx, $dy] = $cor;
         imageline($im, $cx, $cy, $cx + $dx * $tick, $cy, $accent);
@@ -87,13 +87,13 @@ function makePlaceholder(
     }
 
     // Перекрестие в центре.
-    $cross = imagecolorallocatealpha($im, 138, 143, 152, 85);
+    $cross = imagecolorallocatealpha($im, 107, 112, 118, 85);
     imageline($im, (int) ($w / 2) - 16, (int) ($h / 2), (int) ($w / 2) + 16, (int) ($h / 2), $cross);
     imageline($im, (int) ($w / 2), (int) ($h / 2) - 16, (int) ($w / 2), (int) ($h / 2) + 16, $cross);
 
     // Подписи.
-    $muted = imagecolorallocate($im, 138, 143, 152);
-    $paper = imagecolorallocate($im, 242, 242, 240);
+    $muted = imagecolorallocate($im, 107, 112, 118);
+    $paper = imagecolorallocate($im, 18, 19, 22);
     $size = max(11, min(20, (int) round($w / 46)));
     $name = basename($path);
 
@@ -155,28 +155,8 @@ $images = [
     ['images/shop-front.jpg', 1200, 800, 'Вход в цех / вывеска на здании — чтобы клиент узнал место.', false],
 ];
 
-// --- Галерея работ ---
-$works = [
-    ['w-gate-01', 1200, 900, 'Ворота откатные с лазерным узором, общий план на объекте.'],
-    ['w-gate-02', 1200, 1500, 'Калитка с узором, вертикальный кадр, дневной свет.'],
-    ['w-gate-03', 1200, 900, 'Ворота распашные, порошковая окраска, фактура крупно.'],
-    ['w-stairs-01', 1200, 1500, 'Лестница на металлокаркасе, вид снизу вверх.'],
-    ['w-stairs-02', 1200, 900, 'Перила / ограждение лестницы, деталь крепления.'],
-    ['w-stairs-03', 1200, 900, 'Косоуры до монтажа, в цехе.'],
-    ['w-bbq-01', 1200, 900, 'Мангал с крышей, общий план, на улице.'],
-    ['w-bbq-02', 1200, 1500, 'Мангал с лазерной резкой стенок, свет сквозь узор в сумерках.'],
-    ['w-bbq-03', 1200, 900, 'Печь под казан, деталь дверцы.'],
-    ['w-sign-01', 1200, 900, 'Объёмная вывеска из металла на фасаде.'],
-    ['w-sign-02', 1200, 900, 'Декоративное панно / перегородка из листа.'],
-    ['w-sign-03', 1200, 1500, 'Номер дома или адресная табличка, крупно.'],
-    ['w-cnc-01', 1200, 900, 'Партия деталей по чертежу, разложена на столе.'],
-    ['w-cnc-02', 1200, 900, 'Фланцы / кронштейны серией, вид сверху.'],
-    ['w-cnc-03', 1200, 1500, 'Деталь с мелкой перфорацией — показать точность реза.'],
-    ['w-cnc-04', 1200, 900, 'Гнутая деталь после резки, рядом чертёж на бумаге.'],
-];
-foreach ($works as [$slug, $w, $h, $cap]) {
-    $images[] = ["images/works/{$slug}.jpg", $w, $h, $cap, false];
-}
+// Галерея работ размечена прямо в HTML (блоки .slot), файлы-заглушки не нужны:
+// как появятся снимки, они лягут в images/works/ по инструкции в raboty.html.
 
 foreach ($images as [$rel, $w, $h, $cap, $spark]) {
     makePlaceholder("{$root}/{$rel}", $w, $h, $cap, $font, $fontBold, $spark);

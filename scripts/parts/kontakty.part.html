@@ -14,23 +14,22 @@
         или присылайте файл — считаем и так, и так.
       </p>
       <div class="hero__actions">
-        <a class="btn btn--spark btn--lg" href="tel:+79097490000">Позвонить</a>
-        <a class="btn btn--lg" href="https://wa.me/79097490000" target="_blank" rel="noopener">Написать в WhatsApp</a>
+        <a class="tg__go" href="{{TG_LINK}}" target="_blank" rel="noopener">{{TG_ICON}}Отправить чертёж в Telegram</a>
+        <a class="quiet" href="tel:+79097490000">или позвонить: +7 909 749-XX-XX</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= 01 · КАНАЛЫ ================= -->
+<!-- ===== КАНАЛЫ ===== -->
 <section class="section section--flush" id="svyaz">
   <div class="wrap">
     <div class="section-head section-head--split" data-reveal>
       <div>
-        <p class="meta"><b>01</b> / связь</p>
         <h2>Как быстрее достучаться</h2>
       </div>
       <p class="lead">
-        Днём в цехе шумно — если не взяли трубку, пишите в WhatsApp: сообщение
+        Днём в цехе шумно — если не взяли трубку, пишите в Telegram: сообщение
         точно не потеряется.
       </p>
     </div>
@@ -44,8 +43,8 @@
           <p class="text-muted text-small">Звонок — самый быстрый способ, если заказ срочный.</p>
         </a>
 
-        <a class="bordered pad card--link" href="https://wa.me/79097490000" target="_blank" rel="noopener">
-          <span class="card__num">WhatsApp</span>
+        <a class="bordered pad card--link" href="{{TG_LINK}}" target="_blank" rel="noopener">
+          <span class="card__num">Telegram</span>
           <h3>Чертёж в два тапа</h3>
           <p class="text-muted text-small">Прикрепите фото или DXF прямо в чат — ответим с расчётом.</p>
         </a>
@@ -109,12 +108,11 @@
   </div>
 </section>
 
-<!-- ================= 02 · РЕКВИЗИТЫ ================= -->
+<!-- ===== РЕКВИЗИТЫ ===== -->
 <section class="section section--deep" id="rekvizity">
   <div class="wrap">
     <div class="section-head section-head--split" data-reveal>
       <div>
-        <p class="meta"><b>02</b> / юрлицам</p>
         <h2>Для договора и оплаты</h2>
       </div>
       <p class="lead">
@@ -140,19 +138,13 @@
   </div>
 </section>
 
-<!-- ================= 03 · ФОРМА ================= -->
-<section class="section" id="raschet" data-laser>
-  <span class="laser" aria-hidden="true"></span>
+<!-- ===== ФОРМА ===== -->
+<section class="section" id="raschet">
   <div class="wrap">
-    <div class="section-head section-head--split" data-reveal>
-      <div>
-        <p class="meta"><b>03</b> / расчёт</p>
-        <h2>Или сразу пришлите файл</h2>
-      </div>
-      <p class="lead">
-        Заявка уходит мастеру в мессенджер вместе с чертежом — без пересылок
-        через общий ящик.
-      </p>
+{{TG}}
+    <div class="quote__lead">
+      <h3>или загрузите файл прямо здесь</h3>
+      <p>Заявка уходит мастеру вместе с чертежом, без пересылок через общий ящик.</p>
     </div>
 
 {{FORM}}

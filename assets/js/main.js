@@ -13,9 +13,10 @@
 
   /* --- Настройки, которые меняются вместе с реальными контактами ---------- */
   var CFG = {
-    // ВНИМАНИЕ: телефон-плейсхолдер. Заменить на реальный в этом объекте,
-    // в HTML (tel:, ссылки WhatsApp) и в JSON-LD.
-    waNumber: '79097490000',
+    // ЗАМЕНИТЬ: username бота или аккаунта в Telegram, без «@».
+    // Он же прописан в config.php (ключ tg_username) — держите значения одинаковыми.
+    tgUser: 'USERNAME',
+    tgText: 'Здравствуйте! Нужен расчёт: ',
     endpoint: 'send.php',
     maxFiles: 5,
     maxSize: 20 * 1024 * 1024,
@@ -212,7 +213,7 @@
     var submit = $('#quote-submit');
     var progress = $('#quote-progress');
     var progressBar = progress ? progress.querySelector('i') : null;
-    var waBtn = $('#wa-send');
+    var tgBtn = $('#tg-send');
     var files = [];
 
     // Метка времени открытия формы — быстрое заполнение отсекается на сервере.
@@ -488,24 +489,24 @@
           showResult(
             'err',
             'Не отправилось',
-            (res && res.error) || 'Что-то с соединением. Продублируйте в WhatsApp — так дойдёт точно.'
+            (res && res.error) || 'Что-то с соединением. Продублируйте в Telegram — так дойдёт точно.'
           );
         }
       });
 
       xhr.addEventListener('error', function () {
         finish();
-        showResult('err', 'Не отправилось', 'Нет связи с сервером. Отправьте чертёж в WhatsApp — ответим так же быстро.');
+        showResult('err', 'Не отправилось', 'Нет связи с сервером. Напишите в Telegram — ответим так же быстро.');
       });
 
       xhr.send(data);
     });
 
-    /* ---- дублирующая кнопка в WhatsApp ---- */
-    if (waBtn) {
-      waBtn.addEventListener('click', function () {
+    /* ---- дублирующая кнопка: тот же расчёт, но перепиской ---- */
+    if (tgBtn) {
+      tgBtn.addEventListener('click', function () {
         var f = form.elements;
-        var parts = ['Здравствуйте! Нужен расчёт.'];
+        var parts = [CFG.tgText];
         if (f.name && f.name.value.trim()) parts.push('Имя: ' + f.name.value.trim());
         if (f.material && f.material.value) parts.push('Материал: ' + f.material.value);
         if (f.thickness && f.thickness.value) parts.push('Толщина: ' + f.thickness.value + ' мм');
@@ -516,7 +517,7 @@
         } else {
           parts.push('Чертёж/фото прикреплю в чате.');
         }
-        waBtn.href = 'https://wa.me/' + CFG.waNumber + '?text=' + encodeURIComponent(parts.join('\n'));
+        tgBtn.href = 'https://t.me/' + CFG.tgUser + '?text=' + encodeURIComponent(parts.join('\n'));
       });
     }
 
@@ -594,7 +595,7 @@
     var grid = $('#gallery');
     if (!grid) return;
 
-    var works = $$('.work', grid);
+    var works = $$('.work, .slot', grid);
     var filters = $$('[data-filter]');
     var empty = $('#gallery-empty');
 
@@ -632,7 +633,9 @@
     var index = 0;
 
     function refresh() {
-      visible = works.filter(function (w) { return !w.hidden; });
+      visible = works.filter(function (w) {
+        return !w.hidden && w.classList.contains('work');
+      });
     }
 
     function paint() {
@@ -672,9 +675,10 @@
       paint();
     }
 
-    works.forEach(function (w) {
-      w.addEventListener('click', function () { open(w); });
-    });
+    works.filter(function (w) { return w.classList.contains('work'); })
+      .forEach(function (w) {
+        w.addEventListener('click', function () { open(w); });
+      });
 
     $('#lightbox-close').addEventListener('click', close);
     $('#lightbox-prev').addEventListener('click', function () { step(-1); });
@@ -710,8 +714,232 @@
     }, { passive: true });
   })();
 
+
   /* ======================================================================
-     9. Год в подвале
+     10. Виджет вопросов
+     ---------------------------------------------------------------------
+     Ответы правятся здесь и больше нигде. Держите их согласованными
+     с данными на страницах: толщины 0,5-20 мм, форматы DXF/DWG/PDF/JPG,
+     расчёт от 1 часа.
+     ====================================================================== */
+  var QA = [
+    {
+      id: 'inox',
+      q: 'Режете нержавейку?',
+      a: 'Да. Кроме нержавейки — сталь, оцинковка и алюминий. ' +
+         'Диапазон по толщине <b class="num">0,5-20 мм</b>; предел по каждому материалу ' +
+         'зависит от листа, назовём точную цифру вместе с ценой.'
+    },
+    {
+      id: 'powder',
+      q: 'Сколько стоит порошковая окраска?',
+      a: 'Цена зависит от площади детали, цвета по RAL и состояния поверхности — ' +
+         'новый металл или со старой краской. Пришлите фото детали с рулеткой рядом, ' +
+         'посчитаем точно. Красим и то, что резали не мы.'
+    },
+    {
+      id: 'files',
+      q: 'Какие файлы принимаете?',
+      a: '<b>DXF</b> — лучший вариант, считаем метраж реза сразу. Ещё <b>DWG</b> и ' +
+         'векторный <b>PDF</b>. Нет чертежа — присылайте <b>JPG или PNG</b>: ' +
+         'фото из интернета или набросок от руки, вектор нарисуем сами.'
+    },
+    {
+      id: 'urgent',
+      q: 'Сроки по срочному заказу?',
+      a: 'Расчёт возвращаем <b class="num">от 1 часа</b> после того, как получили файл. ' +
+         'Срок изготовления зависит от загрузки станка и наличия нужной толщины в цехе — ' +
+         'скажем сразу при расчёте, а не после оплаты.'
+    }
+  ];
+
+  var CHAT_GREETING = 'Здравствуйте. Отвечаем по резке, окраске и сварке. ' +
+    'Выберите вопрос или напишите свой — если нужен расчёт, оставьте контакты, ' +
+    'и мастер вернётся с ценой.';
+
+  (function chat() {
+    var fab = $('#chat-fab');
+    var panel = $('#chat');
+    if (!fab || !panel) return;
+
+    var log = $('#chat-log');
+    var asks = $('#chat-asks');
+    var form = $('#chat-form');
+    var status = $('#chat-status');
+    var free = $('#chat-free');
+    var lastFocus = null;
+    var asked = [];
+
+    /* ---- сообщения ---- */
+    function say(html, mine) {
+      var el = doc.createElement('div');
+      el.className = 'bubble bubble--' + (mine ? 'me' : 'bot');
+      el.innerHTML = '<p>' + html + '</p>';
+      log.appendChild(el);
+      log.scrollTop = log.scrollHeight;
+      return el;
+    }
+
+    function sayText(text, mine) {
+      var el = doc.createElement('div');
+      el.className = 'bubble bubble--' + (mine ? 'me' : 'bot');
+      var p = doc.createElement('p');
+      p.textContent = text;
+      el.appendChild(p);
+      log.appendChild(el);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    /* ---- кнопки быстрых вопросов ---- */
+    function renderAsks() {
+      asks.innerHTML = '';
+
+      QA.forEach(function (item) {
+        if (asked.indexOf(item.id) !== -1) return;
+        var b = doc.createElement('button');
+        b.type = 'button';
+        b.className = 'ask';
+        b.textContent = item.q;
+        b.addEventListener('click', function () {
+          asked.push(item.id);
+          sayText(item.q, true);
+          say(item.a, false);
+          renderAsks();
+          showForm();
+        });
+        asks.appendChild(b);
+      });
+
+      var other = doc.createElement('button');
+      other.type = 'button';
+      other.className = 'ask';
+      other.textContent = 'Другой вопрос';
+      other.addEventListener('click', function () {
+        free.hidden = false;
+        asks.hidden = true;
+        showForm();
+        $('#chat-question').focus();
+      });
+      asks.appendChild(other);
+    }
+
+    function showForm() {
+      form.hidden = false;
+    }
+
+    /* ---- открытие и закрытие ---- */
+    function open() {
+      lastFocus = doc.activeElement;
+      panel.dataset.open = 'true';
+      panel.setAttribute('aria-hidden', 'false');
+      fab.dataset.open = 'true';
+      if (!log.children.length) {
+        say(CHAT_GREETING, false);
+        renderAsks();
+      }
+      $('#chat-close').focus();
+      if (window.matchMedia('(max-width: 767px)').matches) {
+        doc.body.style.overflow = 'hidden';
+      }
+    }
+
+    function close() {
+      panel.dataset.open = 'false';
+      panel.setAttribute('aria-hidden', 'true');
+      fab.dataset.open = 'false';
+      doc.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+
+    fab.addEventListener('click', open);
+    $('#chat-close').addEventListener('click', close);
+
+    doc.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape' || panel.dataset.open !== 'true') return;
+      close();
+    });
+
+    /* ---- отправка контактов ---- */
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var name = form.elements.name.value.trim();
+      var phone = form.elements.phone.value.trim();
+      var detail = form.elements.detail.value.trim();
+      var question = free.hidden ? '' : $('#chat-question').value.trim();
+
+      if (name.length < 2) {
+        status.dataset.state = 'err';
+        status.textContent = 'Как к вам обращаться?';
+        form.elements.name.focus();
+        return;
+      }
+      if (phone.replace(/\D/g, '').length < 10) {
+        status.dataset.state = 'err';
+        status.textContent = 'Проверьте номер телефона.';
+        form.elements.phone.focus();
+        return;
+      }
+
+      var history = asked.map(function (id) {
+        var item = QA.filter(function (x) { return x.id === id; })[0];
+        return item ? item.q : id;
+      });
+      if (question) history.push('Свой вопрос: ' + question);
+
+      var data = new FormData();
+      data.append('name', name);
+      data.append('phone', phone);
+      data.append('comment', (detail ? 'Деталь: ' + detail + '\n' : '') +
+        (history.length ? 'Спрашивал: ' + history.join(' · ') : ''));
+      data.append('consent', '1');
+      data.append('source', 'chat');
+      data.append('page', location.pathname);
+
+      var btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      status.dataset.state = '';
+      status.textContent = 'Отправляем…';
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', CFG.endpoint, true);
+      xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+      xhr.addEventListener('load', function () {
+        btn.disabled = false;
+        var res = null;
+        try { res = JSON.parse(xhr.responseText); } catch (err) { res = null; }
+
+        if (xhr.status === 200 && res && res.ok) {
+          form.hidden = true;
+          asks.hidden = true;
+          free.hidden = true;
+          status.dataset.state = 'ok';
+          status.textContent = '';
+          var d = phone.replace(/\D/g, '').replace(/^8/, '7');
+          var pretty = d.length === 11
+            ? '+7 ' + d.slice(1, 4) + ' ' + d.slice(4, 7) + '-' + d.slice(7, 9) + '-' + d.slice(9)
+            : phone.replace(/[<>&]/g, '');
+          say('Записали. Мастер перезвонит на <b class="num">' + pretty +
+              '</b> — обычно в течение часа.', false);
+        } else {
+          status.dataset.state = 'err';
+          status.textContent = (res && res.error) || 'Не отправилось. Позвоните или напишите в Telegram.';
+        }
+      });
+
+      xhr.addEventListener('error', function () {
+        btn.disabled = false;
+        status.dataset.state = 'err';
+        status.textContent = 'Нет связи с сервером. Позвоните или напишите в Telegram.';
+      });
+
+      xhr.send(data);
+    });
+  })();
+
+  /* ======================================================================
+     11. Год в подвале
      ====================================================================== */
   $$('[data-year]').forEach(function (el) {
     el.textContent = String(new Date().getFullYear());

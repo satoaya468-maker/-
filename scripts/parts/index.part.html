@@ -1,5 +1,6 @@
 <!-- ================= HERO ================= -->
-<section class="hero">
+<section class="hero" data-laser>
+  <span class="laser" aria-hidden="true"></span>
   <div class="hero__bg" aria-hidden="true">
     <picture>
       <source srcset="images/hero-sparks-mobile.webp" type="image/webp" media="(max-width: 699px)">
@@ -11,17 +12,15 @@
 
   <div class="wrap hero__inner">
     <div>
-      <p class="meta"><b>Магнитогорск</b> · ул. Советской Армии, 2</p>
       <h1>Лазерная резка металла <span class="nowrap">0,5–20 мм</span><em>Расчёт за 1 час</em></h1>
       <p class="hero__lead">
         Присылайте DXF, чертёж в PDF или фото из интернета. Считаем <b>от 1 часа</b>,
         режем, красим порошком и варим — в одном цехе, без посредников.
       </p>
       <div class="hero__actions">
-        <a class="btn btn--spark btn--lg" href="#raschet">Загрузить чертёж</a>
-        <a class="btn btn--lg" href="raboty.html">Смотреть работы</a>
+        <a class="tg__go" href="{{TG_LINK}}" target="_blank" rel="noopener">{{TG_ICON}}Отправить чертёж в Telegram</a>
+        <a class="quiet" href="#raschet">или загрузите файл прямо на сайте</a>
       </div>
-      <p class="hero__scroll">Листайте — покажем, как считаем</p>
     </div>
 
     <div class="slab">
@@ -45,12 +44,11 @@
   </div>
 </section>
 
-<!-- ================= 01 · ДВА ПОТОКА ================= -->
+<!-- ===== ДВА ПОТОКА ===== -->
 <section class="section section--flush" id="komu">
   <div class="wrap">
     <div class="section-head section-head--split" data-reveal>
       <div>
-        <p class="meta"><b>01</b> / куда вам</p>
         <h2>Два потока. Разные вопросы.</h2>
       </div>
       <p class="lead">
@@ -107,36 +105,28 @@
   </div>
 </section>
 
-<!-- ================= 02 · ФОРМА (ГЛАВНАЯ КОНВЕРСИЯ) ================= -->
-<section class="section" id="raschet" data-laser>
-  <span class="laser" aria-hidden="true"></span>
+<!-- ===== ФОРМА (ГЛАВНАЯ КОНВЕРСИЯ) ===== -->
+<section class="section" id="raschet">
   <div class="wrap">
-    <div class="section-head section-head--split" data-reveal>
-      <div>
-        <p class="meta"><b>02</b> / расчёт</p>
-        <h2>Загрузите чертёж или фото — расчёт за час</h2>
-      </div>
-      <p class="lead">
-        Файл важнее слов. По DXF считаем метраж реза сразу, по фото — прикидываем габарит
-        и материал и звоним уточнить.
-      </p>
+{{TG}}
+    <div class="quote__lead">
+      <h3>или загрузите файл прямо здесь</h3>
+      <p>DXF, DWG, PDF, фото — до 20 МБ. Форма для тех, кто зашёл с компьютера.</p>
     </div>
 
 {{FORM}}
   </div>
 </section>
 
-<!-- ================= 03 · УСЛУГИ ================= -->
+<!-- ===== УСЛУГИ ===== -->
 <section class="section section--deep" id="uslugi">
   <div class="wrap">
     <div class="section-head" data-reveal>
-      <p class="meta"><b>03</b> / что делаем</p>
       <h2>Три операции, один цех</h2>
     </div>
 
     <div class="cards cards--3" data-reveal>
       <a class="card card--link" href="lazernaya-rezka.html">
-        <span class="card__num">01</span>
         <h3>Лазерная резка</h3>
         <p>Сталь, нержавейка, оцинковка, алюминий. Толщина 0,5–20 мм. Файлы DXF, DWG, PDF — считаем по чертежу.</p>
         <span class="card__media">
@@ -148,7 +138,6 @@
       </a>
 
       <a class="card card--link" href="poroshkovaya-okraska.html">
-        <span class="card__num">02</span>
         <h3>Порошковая окраска</h3>
         <p>Подготовка, напыление, полимеризация в печи. Цвет по каталогу RAL, матовый или глянец.</p>
         <span class="card__media">
@@ -160,7 +149,6 @@
       </a>
 
       <a class="card card--link" href="svarka.html">
-        <span class="card__num">03</span>
         <h3>Сварка</h3>
         <p>Полуавтомат и аргон. Сборка каркасов, рам, ворот и лестниц из нарезанных деталей — до готового изделия.</p>
         <span class="card__media">
@@ -174,13 +162,11 @@
   </div>
 </section>
 
-<!-- ================= 04 · ТОЛЩИНЫ ================= -->
-<section class="section" id="tolshchiny" data-laser>
-  <span class="laser" aria-hidden="true"></span>
+<!-- ===== ТОЛЩИНЫ ===== -->
+<section class="section" id="tolshchiny">
   <div class="wrap">
     <div class="section-head section-head--split" data-reveal>
       <div>
-        <p class="meta"><b>04</b> / толщины</p>
         <h2>От 0,5 до 20 мм</h2>
       </div>
       <p class="lead">
@@ -252,92 +238,55 @@
   </div>
 </section>
 
-<!-- ================= 05 · РАБОТЫ ================= -->
+<!-- ===== РАБОТЫ ===== -->
 <section class="section section--deep" id="raboty">
   <div class="wrap">
     <div class="section-head section-head--split" data-reveal>
       <div>
-        <p class="meta"><b>05</b> / работы</p>
         <h2>Что уже стоит и работает</h2>
       </div>
       <p class="lead">
-        Фильтр по типу. Клик — крупный кадр.
-        Полный архив — на странице <a href="raboty.html">работы</a>.
+        Снимаем то, что уже стоит у заказчиков. Рамки ниже размечены под конкретные
+        кадры — как отснимем, встанут на свои места.
       </p>
     </div>
 
-    <div class="filters" role="group" aria-label="Фильтр работ" data-reveal>
-      <button class="filter" type="button" data-filter="all" aria-pressed="true">Все <b>8</b></button>
-      <button class="filter" type="button" data-filter="vorota" aria-pressed="false">Ворота <b>2</b></button>
-      <button class="filter" type="button" data-filter="lestnicy" aria-pressed="false">Лестницы <b>2</b></button>
-      <button class="filter" type="button" data-filter="mangaly" aria-pressed="false">Мангалы <b>2</b></button>
-      <button class="filter" type="button" data-filter="rezka" aria-pressed="false">Резка по чертежу <b>2</b></button>
-    </div>
-
     <div class="gallery gallery--tight" id="gallery" data-reveal>
-      <button class="work" type="button" data-cat="vorota" data-cat-label="Ворота и калитки" data-title="Откатные ворота с лазерным узором">
-        <picture>
-          <source srcset="images/works/w-gate-01.webp" type="image/webp">
-          <img src="images/works/w-gate-01.jpg" data-full="images/works/w-gate-01.jpg" alt="Откатные ворота из металла с узором, вырезанным лазером" width="1200" height="900" loading="lazy" decoding="async">
-        </picture>
-        <span class="work__cap"><span class="work__tag">Ворота</span><span class="work__title">Откатные ворота с лазерным узором</span></span>
-      </button>
+      <div class="slot">
+        <span class="slot__cam" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3h6l1.2 2H20a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3.8L9 3Zm3 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/></svg></span>
+        <span class="slot__title">Ворота кованые</span>
+        <span class="slot__note">Общий план на объекте, дневной свет</span>
+      </div>
 
-      <button class="work" type="button" data-cat="lestnicy" data-cat-label="Лестницы" data-title="Лестница на металлокаркасе">
-        <picture>
-          <source srcset="images/works/w-stairs-01.webp" type="image/webp">
-          <img src="images/works/w-stairs-01.jpg" data-full="images/works/w-stairs-01.jpg" alt="Лестница на металлическом каркасе, вид снизу" width="1200" height="1500" loading="lazy" decoding="async">
-        </picture>
-        <span class="work__cap"><span class="work__tag">Лестницы</span><span class="work__title">Лестница на металлокаркасе</span></span>
-      </button>
+      <div class="slot">
+        <span class="slot__cam" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3h6l1.2 2H20a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3.8L9 3Zm3 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/></svg></span>
+        <span class="slot__title">Лестница с косоуром</span>
+        <span class="slot__note">Снизу вверх, видно косоур и ступени</span>
+      </div>
 
-      <button class="work" type="button" data-cat="mangaly" data-cat-label="Мангалы" data-title="Мангал с крышей">
-        <picture>
-          <source srcset="images/works/w-bbq-01.webp" type="image/webp">
-          <img src="images/works/w-bbq-01.jpg" data-full="images/works/w-bbq-01.jpg" alt="Металлический мангал с крышей на участке" width="1200" height="900" loading="lazy" decoding="async">
-        </picture>
-        <span class="work__cap"><span class="work__tag">Мангалы</span><span class="work__title">Мангал с крышей</span></span>
-      </button>
+      <div class="slot">
+        <span class="slot__cam" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3h6l1.2 2H20a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3.8L9 3Zm3 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/></svg></span>
+        <span class="slot__title">Мангал</span>
+        <span class="slot__note">На улице, с огнём или готовый к работе</span>
+      </div>
 
-      <button class="work" type="button" data-cat="rezka" data-cat-label="Резка по чертежу" data-title="Партия деталей по DXF">
-        <picture>
-          <source srcset="images/works/w-cnc-01.webp" type="image/webp">
-          <img src="images/works/w-cnc-01.jpg" data-full="images/works/w-cnc-01.jpg" alt="Партия стальных деталей, нарезанных по чертежу" width="1200" height="900" loading="lazy" decoding="async">
-        </picture>
-        <span class="work__cap"><span class="work__tag">Резка по чертежу</span><span class="work__title">Партия деталей по DXF</span></span>
-      </button>
+      <div class="slot">
+        <span class="slot__cam" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3h6l1.2 2H20a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3.8L9 3Zm3 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/></svg></span>
+        <span class="slot__title">Вывеска</span>
+        <span class="slot__note">На фасаде, читается с расстояния</span>
+      </div>
 
-      <button class="work" type="button" data-cat="vorota" data-cat-label="Ворота и калитки" data-title="Калитка с узором">
-        <picture>
-          <source srcset="images/works/w-gate-02.webp" type="image/webp">
-          <img src="images/works/w-gate-02.jpg" data-full="images/works/w-gate-02.jpg" alt="Металлическая калитка с вырезанным узором" width="1200" height="1500" loading="lazy" decoding="async">
-        </picture>
-        <span class="work__cap"><span class="work__tag">Ворота</span><span class="work__title">Калитка с узором</span></span>
-      </button>
+      <div class="slot">
+        <span class="slot__cam" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3h6l1.2 2H20a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3.8L9 3Zm3 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/></svg></span>
+        <span class="slot__title">Навес</span>
+        <span class="slot__note">Целиком, вместе с опорами</span>
+      </div>
 
-      <button class="work" type="button" data-cat="mangaly" data-cat-label="Мангалы" data-title="Мангал с резными стенками">
-        <picture>
-          <source srcset="images/works/w-bbq-02.webp" type="image/webp">
-          <img src="images/works/w-bbq-02.jpg" data-full="images/works/w-bbq-02.jpg" alt="Мангал с узором, вырезанным лазером в стенках" width="1200" height="1500" loading="lazy" decoding="async">
-        </picture>
-        <span class="work__cap"><span class="work__tag">Мангалы</span><span class="work__title">Мангал с резными стенками</span></span>
-      </button>
-
-      <button class="work" type="button" data-cat="lestnicy" data-cat-label="Лестницы" data-title="Перила и ограждение">
-        <picture>
-          <source srcset="images/works/w-stairs-02.webp" type="image/webp">
-          <img src="images/works/w-stairs-02.jpg" data-full="images/works/w-stairs-02.jpg" alt="Металлические перила лестничного ограждения" width="1200" height="900" loading="lazy" decoding="async">
-        </picture>
-        <span class="work__cap"><span class="work__tag">Лестницы</span><span class="work__title">Перила и ограждение</span></span>
-      </button>
-
-      <button class="work" type="button" data-cat="rezka" data-cat-label="Резка по чертежу" data-title="Фланцы и кронштейны серией">
-        <picture>
-          <source srcset="images/works/w-cnc-02.webp" type="image/webp">
-          <img src="images/works/w-cnc-02.jpg" data-full="images/works/w-cnc-02.jpg" alt="Серия стальных фланцев и кронштейнов после лазерной резки" width="1200" height="900" loading="lazy" decoding="async">
-        </picture>
-        <span class="work__cap"><span class="work__tag">Резка по чертежу</span><span class="work__title">Фланцы и кронштейны серией</span></span>
-      </button>
+      <div class="slot">
+        <span class="slot__cam" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3h6l1.2 2H20a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3.8L9 3Zm3 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/></svg></span>
+        <span class="slot__title">Резка по чертежу</span>
+        <span class="slot__note">Партия деталей на столе, рядом чертёж</span>
+      </div>
     </div>
 
     <p class="gallery__empty" id="gallery-empty" hidden>В этой категории пока нет работ.</p>
@@ -348,80 +297,57 @@
   </div>
 </section>
 
-<!-- ================= 06 · ЦИФРЫ И ОТЗЫВЫ ================= -->
+<!-- ===== РЕПУТАЦИЯ ===== -->
 <section class="section" id="reputaciya">
   <div class="wrap">
     <div class="section-head section-head--split" data-reveal>
       <div>
-        <p class="meta"><b>06</b> / репутация</p>
-        <h2>4,9 из 5 в 2ГИС</h2>
+        <h2>Что говорят в 2ГИС</h2>
       </div>
       <p class="lead">
-        Оценки ставят те, кто забрал заказ. Ниже — цифры карточки 2ГИС на момент публикации сайта.
+        Оценки ставят те, кто забрал заказ. Цифры — из карточки компании
+        на момент публикации сайта.
       </p>
     </div>
 
-    <div class="numbers" data-reveal>
-      <div class="number">
-        <span class="number__val" data-count="4.9" data-decimals="1">4,9</span>
-        <span class="number__cap">Рейтинг 2ГИС</span>
-        <p>Средняя оценка по карточке компании.</p>
+    <div class="split split--rating" data-reveal>
+      <div class="rating">
+        <span class="rating__val" data-count="4.9" data-decimals="1">4,9<span> / 5</span></span>
+        <p class="rating__meta">
+          <b data-count="24">24</b> оценки в 2ГИС<br>
+          <b data-count="17">17</b> отзывов текстом
+        </p>
+        <!-- TODO ССЫЛКА: подставить адрес карточки компании в 2ГИС -->
+        <a class="quiet" href="https://2gis.ru/magnitogorsk" target="_blank" rel="noopener">смотреть в 2ГИС</a>
       </div>
-      <div class="number">
-        <span class="number__val" data-count="24">24</span>
-        <span class="number__cap">Оценки</span>
-        <p>Столько людей поставили звёзды.</p>
-      </div>
-      <div class="number">
-        <span class="number__val" data-count="17">17</span>
-        <span class="number__cap">Отзыва текстом</span>
-        <p>Развёрнутые отзывы с описанием заказа.</p>
-      </div>
-      <div class="number">
-        <span class="number__val"><span data-count="1">1</span> <small>час</small></span>
-        <span class="number__cap">До расчёта</span>
-        <p>Столько нужно, чтобы вернуться с ценой по вашему файлу.</p>
-      </div>
-    </div>
 
-    <!-- TODO ОТЗЫВЫ: вставить 3 реальных отзыва из карточки 2ГИС — текст, имя, месяц.
-         Ничего не выдумано: ниже стоят пустые заготовки. -->
-    <div class="reviews mt" data-reveal>
-      <figure class="review">
-        <div class="stars" role="img" aria-label="Оценка 5 из 5">
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
-        </div>
-        <blockquote class="placeholder-note">Место для реального отзыва №1 из 2ГИС — скопируйте текст как есть.</blockquote>
-        <figcaption><span>Имя из 2ГИС</span><span>месяц, год</span></figcaption>
-      </figure>
+      <!-- TODO ОТЗЫВЫ: три реальных отзыва из карточки 2ГИС — текст, имя, месяц.
+           Ничего не выдумано: ниже стоят пустые заготовки. -->
+      <div class="reviews">
+        <figure class="review">
+          <div class="stars" role="img" aria-label="Оценка 5 из 5">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
+          </div>
+          <blockquote class="placeholder-note">Отзыв №1 из 2ГИС — вставьте текст как есть, не приглаживая.</blockquote>
+          <figcaption><span>Имя из 2ГИС</span><span>месяц, год</span></figcaption>
+        </figure>
 
-      <figure class="review">
-        <div class="stars" role="img" aria-label="Оценка 5 из 5">
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
-        </div>
-        <blockquote class="placeholder-note">Место для реального отзыва №2 из 2ГИС.</blockquote>
-        <figcaption><span>Имя из 2ГИС</span><span>месяц, год</span></figcaption>
-      </figure>
+        <figure class="review">
+          <div class="stars" role="img" aria-label="Оценка 5 из 5">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
+          </div>
+          <blockquote class="placeholder-note">Отзыв №2 из 2ГИС — вставьте текст как есть, не приглаживая.</blockquote>
+          <figcaption><span>Имя из 2ГИС</span><span>месяц, год</span></figcaption>
+        </figure>
 
-      <figure class="review">
-        <div class="stars" role="img" aria-label="Оценка 5 из 5">
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
-        </div>
-        <blockquote class="placeholder-note">Место для реального отзыва №3 из 2ГИС.</blockquote>
-        <figcaption><span>Имя из 2ГИС</span><span>месяц, год</span></figcaption>
-      </figure>
+        <figure class="review">
+          <div class="stars" role="img" aria-label="Оценка 5 из 5">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1 2.6 5.6 6.1.8-4.5 4.2 1.2 6L10 14.7 4.6 17.6l1.2-6L1.3 7.4l6.1-.8L10 1Z"/></svg>
+          </div>
+          <blockquote class="placeholder-note">Отзыв №3 из 2ГИС — вставьте текст как есть, не приглаживая.</blockquote>
+          <figcaption><span>Имя из 2ГИС</span><span>месяц, год</span></figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
@@ -435,7 +361,7 @@
         <p>Не разбираетесь в марках стали и толщинах — просто пришлите фото. Разберёмся сами и перезвоним.</p>
       </div>
       <div class="cta__actions">
-        <a class="btn btn--spark btn--lg" href="#raschet">Загрузить чертёж</a>
+        <a class="btn btn--accent btn--lg" href="#raschet">Загрузить чертёж</a>
         <a class="btn btn--lg" href="tel:+79097490000">+7 909 749-XX-XX</a>
       </div>
     </div>
