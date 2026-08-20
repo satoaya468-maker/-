@@ -26,15 +26,15 @@ src/
   _includes/
     layouts/       base.njk — единый каркас страницы, SEO, JSON-LD
     partials/      header, footer, facts, icons (спрайт Phosphor)
-  assets/
-    css/styles.css дизайн-система целиком
-    fonts/         Onest 400/500/700/800, Unbounded 700 — сабсет, 72 КБ на всё
-    img/           предметная съёмка, иконки
-    js/            app.js и модули (калькулятор, квиз, карусель)
   pages/           страницы сайта
   index.njk        главная
   sitemap.njk      генерируется при сборке
   robots.njk       генерируется при сборке
+assets/
+  css/styles.css   дизайн-система целиком
+  fonts/           Onest 400/500/700/800, Unbounded 700 — сабсет, 72 КБ на всё
+  img/             предметная съёмка, иконки
+  js/              app.js и модули (калькулятор, квиз, карусель)
 worker/            релей заявок на Cloudflare Worker
 dist/              результат сборки, в гит не коммитится
 ```

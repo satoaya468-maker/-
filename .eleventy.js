@@ -1,13 +1,9 @@
 const site = require("./src/_data/site.json");
 
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "assets/fonts" });
-  eleventyConfig.addPassthroughCopy({ "src/assets/img": "assets/img" });
-  eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });
-  eleventyConfig.addPassthroughCopy({ "src/assets/css": "assets/css" });
-  eleventyConfig.addPassthroughCopy({ "src/root": "." });
-
-  eleventyConfig.addWatchTarget("src/assets/");
+  /* assets/ лежит рядом с src/, копируется в dist/assets как есть */
+  eleventyConfig.addPassthroughCopy({ "assets": "assets" });
+  eleventyConfig.addWatchTarget("assets/");
 
   /* +7 (908) 819-63-69 -> +79088196369 */
   eleventyConfig.addFilter("telHref", (v) => "tel:" + String(v).replace(/[^\d+]/g, ""));
