@@ -6,11 +6,10 @@
    ========================================================================= */
 
 /* --- 1. Шрифты. Самохост, сабсет под кириллицу и цифры ------------------ */
-@font-face{font-family:'Onest';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/onest-400.woff2') format('woff2')}
-@font-face{font-family:'Onest';font-style:normal;font-weight:500;font-display:swap;src:url('/assets/fonts/onest-500.woff2') format('woff2')}
-@font-face{font-family:'Onest';font-style:normal;font-weight:700;font-display:swap;src:url('/assets/fonts/onest-700.woff2') format('woff2')}
-@font-face{font-family:'Onest';font-style:normal;font-weight:800;font-display:swap;src:url('/assets/fonts/onest-800.woff2') format('woff2')}
-@font-face{font-family:'Unbounded';font-style:normal;font-weight:700;font-display:swap;src:url('/assets/fonts/unbounded-700.woff2') format('woff2')}
+@font-face{font-family:'Golos Text';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/golos-text-400.woff2') format('woff2')}
+@font-face{font-family:'Golos Text';font-style:normal;font-weight:500;font-display:swap;src:url('/assets/fonts/golos-text-500.woff2') format('woff2')}
+@font-face{font-family:'Golos Text';font-style:normal;font-weight:600;font-display:swap;src:url('/assets/fonts/golos-text-600.woff2') format('woff2')}
+@font-face{font-family:'Golos Text';font-style:normal;font-weight:700;font-display:swap;src:url('/assets/fonts/golos-text-700.woff2') format('woff2')}
 
 /* --- 2. Токены ---------------------------------------------------------- */
 :root{
@@ -20,15 +19,14 @@
   --paper:      #FFFFFF;
   --mist:       #F4F5F4;
   --line:       #E3E6E3;
-  --green:      #00A651;   /* плашки, полосы, точка «онлайн», крупный белый текст на нём */
-  --green-deep: #007D3C;   /* зелёный ТЕКСТ на белом, фон кнопок, hover */
+  --green:      #007D3C;   /* шапка, кнопки, зелёный текст — белый на нём даёт 5.25:1 */
+  --green-deep: #00612F;   /* hover кнопок, усиленный зелёный текст, 7.63:1 */
   --green-dark: #0A2F1C;   /* фон тёмных баннеров */
   --amber:      #E8862A;   /* тонкая линия и маркер у окупаемости */
   --amber-deep: #C96A15;   /* сама цифра окупаемости, 3.78:1 на белом */
 
   /* Типографика */
-  --font:     'Onest', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-num: 'Unbounded', 'Onest', system-ui, sans-serif;
+  --font: 'Golos Text', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
   --fs-h1:    clamp(36px, 4.8vw, 64px);
   --fs-h2:    clamp(26px, 3.2vw, 42px);
@@ -59,9 +57,13 @@
   --sp-96:  clamp(60px, 8vw, 96px);
   --sp-128: clamp(72px, 10vw, 128px);
 
-  /* Шапка */
-  --topbar-h: 40px;
-  --mainbar-h: 56px;
+  /* Шапка: плавающая плашка, вставленная с полями */
+  --hdr-gap:    16px;   /* отступ сверху и он же top у sticky */
+  --hdr-inset:  clamp(16px, 4vw, 48px);
+  --hdr-r:      24px;
+  --hdr-pad:    24px;
+  --topbar-h:   38px;
+  --mainbar-h:  56px;
 
   /* Движение */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -79,7 +81,7 @@ input,button,textarea,select{font:inherit;color:inherit}
 button{background:none;border:0;padding:0;cursor:pointer}
 table{border-collapse:collapse;width:100%}
 
-html{scroll-behavior:smooth;scroll-padding-top:calc(var(--mainbar-h) + 16px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--topbar-h) + var(--mainbar-h) + var(--hdr-gap) * 2)}
 
 body{
   font-family:var(--font);
@@ -90,20 +92,20 @@ body{
   background:var(--paper);
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
-  overflow-x:hidden;              /* страховка от горизонтального скролла на 360px */
+  overflow-x:clip;                /* страховка от горизонтального скролла; clip, а не hidden — hidden ломает sticky */
 }
 
 /* --- 4. Типографика ----------------------------------------------------- */
 h1,.h1{
   font-size:var(--fs-h1);
-  font-weight:800;
+  font-weight:700;
   line-height:1.03;
   letter-spacing:-0.035em;
   text-wrap:balance;
 }
 h2,.h2{
   font-size:var(--fs-h2);
-  font-weight:800;
+  font-weight:700;
   line-height:1.08;
   letter-spacing:-0.028em;
   text-wrap:balance;
@@ -114,7 +116,7 @@ h3,.h3{
   line-height:1.2;
   letter-spacing:-0.018em;
 }
-h4,.h4{font-size:var(--fs-body);font-weight:700;line-height:1.35;letter-spacing:-0.01em}
+h4,.h4{font-size:var(--fs-body);font-weight:600;line-height:1.35;letter-spacing:-0.01em}
 
 p{max-width:68ch}
 .lead{font-size:var(--fs-lead);line-height:1.5;color:var(--ink-60);max-width:56ch}
@@ -131,22 +133,23 @@ p{max-width:68ch}
   color:var(--ink-60);
 }
 
-/* Числа: только цены, экономия, окупаемость, номера шагов */
-.num{font-family:var(--font-num);font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-0.02em;line-height:1}
+/* Числа: цены, экономия, окупаемость, номера шагов.
+   Табличные цифры — чтобы значение в калькуляторе не дёргало ширину при пересчёте. */
+.num{font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-0.03em;line-height:1}
 .num--xl{font-size:var(--fs-num-xl)}
 .num--l{font-size:var(--fs-num-l)}
 .num--m{font-size:var(--fs-num-m)}
 
 a{color:inherit;text-decoration-color:var(--line);text-underline-offset:0.18em}
 a:hover{text-decoration-color:currentColor}
-.link-green{color:var(--green-deep);text-decoration:underline;text-decoration-color:rgba(0,125,60,.35)}
+.link-green{color:var(--green);text-decoration:underline;text-decoration-color:rgba(0,125,60,.35)}
 .link-green:hover{text-decoration-color:currentColor}
 .link-plain{text-decoration:none}
-.link-plain:hover{color:var(--green-deep)}
+.link-plain:hover{color:var(--green)}
 
 /* Акцентная плашка над заголовком секции */
 .bar{display:block;width:56px;height:6px;background:var(--green);margin-bottom:20px;border-radius:1px}
-.bar--light{background:var(--green)}
+.bar--light{background:var(--paper)}   /* на тёмном зелёный даёт 2.78:1 — берём белый */
 
 /* --- 5. Сетка и секции --------------------------------------------------- */
 .shell{width:100%;max-width:var(--shell);margin-inline:auto;padding-inline:var(--pad-x)}
@@ -198,14 +201,14 @@ a:hover{text-decoration-color:currentColor}
 }
 .btn__i{width:18px;height:18px;flex:none}
 
-/* Основная. Фон green-deep: белый текст даёт 5.25:1, чистый --green дал бы 3.19:1 */
-.btn--primary{background:var(--green-deep);color:var(--paper)}
-.btn--primary:hover{background:var(--green-dark)}
+/* Основная. Белый на --green — 5.25:1, на hover уходит в --green-deep, 7.63:1 */
+.btn--primary{background:var(--green);color:var(--paper)}
+.btn--primary:hover{background:var(--green-deep)}
 
 .btn--ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn--ghost:hover{background:var(--mist);border-color:var(--ink-60)}
 
-.btn--light{background:var(--paper);color:var(--green-deep)}
+.btn--light{background:var(--paper);color:var(--green)}
 .btn--light:hover{background:var(--mist)}
 
 .btn--onDark{background:transparent;color:var(--paper);border-color:rgba(255,255,255,.35)}
@@ -250,15 +253,15 @@ a:hover{text-decoration-color:currentColor}
 textarea.input{min-height:104px;resize:vertical}
 .input::placeholder{color:var(--ink-60);opacity:.7}
 .input:hover{border-color:var(--ink-60)}
-.input:focus{outline:none;border-color:var(--green-deep);box-shadow:inset 0 0 0 1px var(--green-deep)}
+.input:focus{outline:none;border-color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}
 .input[aria-invalid="true"]{border-color:var(--amber-deep)}
 
 /* Ползунок */
 .range{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;cursor:pointer}
 .range::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:var(--line)}
 .range::-moz-range-track{height:4px;border-radius:2px;background:var(--line)}
-.range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;margin-top:-9px;border-radius:50%;background:var(--green-deep);border:3px solid var(--paper)}
-.range::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--green-deep);border:3px solid var(--paper)}
+.range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;margin-top:-9px;border-radius:50%;background:var(--green);border:3px solid var(--paper)}
+.range::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--green);border:3px solid var(--paper)}
 
 /* Иконки набора Phosphor, одна толщина на весь проект */
 .i{width:20px;height:20px;flex:none;fill:currentColor}
@@ -270,7 +273,7 @@ textarea.input{min-height:104px;resize:vertical}
 /* Единственная тень на сайте живёт у плавающего виджета, см. widget.css */
 
 /* --- 8. Доступность ------------------------------------------------------ */
-:focus-visible{outline:2px solid var(--green-deep);outline-offset:3px;border-radius:2px}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:2px}
 .surface-dark :focus-visible,.surface-ink :focus-visible,.hdr__main :focus-visible{outline-color:var(--paper)}
 
 .visually-hidden{
@@ -295,32 +298,54 @@ textarea.input{min-height:104px;resize:vertical}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 
-/* --- 10. Шапка ------------------------------------------------------------
-   Двухуровневая. Липнет вся шапка, но с отрицательным top, равным высоте
-   верхней полосы: тонкая полоса уходит под край экрана, зелёная встаёт
-   в ноль. Высота зелёной полосы при этом не меняется никогда.
+/* --- 10. Шапка -----------------------------------------------------------
+   Не полоса во всю ширину, а единый плавающий блок, вставленный с полями,
+   как красная плашка у Росско. Липнет целиком на top:16px, высота при
+   скролле не меняется. Тени нет — форму держат поля и радиус.
    ------------------------------------------------------------------------ */
-.hdr{position:sticky;top:calc(-1 * var(--topbar-h));z-index:50}
+.hdr-wrap{
+  position:sticky;top:var(--hdr-gap);z-index:50;
+  padding-inline:var(--hdr-inset);
+  margin-top:var(--hdr-gap);
+}
+.hdr{
+  max-width:var(--shell);margin-inline:auto;
+  background:var(--green);color:var(--paper);
+  border-radius:var(--hdr-r);
+}
 
-.hdr__top{height:var(--topbar-h);background:var(--paper);border-bottom:1px solid var(--line)}
-.hdr__top-in{height:100%;display:flex;align-items:center;gap:24px;font-size:var(--fs-xs);color:var(--ink-60)}
-.hdr__city{color:var(--ink);font-weight:700}
-.hdr__city::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:7px;vertical-align:1px}
+/* Верхняя строка: город, адрес, часы, оба телефона.
+   Разделитель нарисован псевдоэлементом по внутренним полям — линия во всю
+   ширину упиралась бы в скругление угла. */
+.hdr__top{
+  position:relative;
+  height:var(--topbar-h);display:flex;align-items:center;gap:22px;
+  padding-inline:var(--hdr-pad);
+  font-size:var(--fs-xs);color:rgba(255,255,255,.82);
+}
+.hdr__top::after{
+  content:"";position:absolute;left:var(--hdr-pad);right:var(--hdr-pad);bottom:0;
+  height:1px;background:rgba(255,255,255,.15);
+}
+.hdr__city{color:var(--paper);font-weight:700}
+.hdr__city::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--paper);margin-right:7px;vertical-align:1px}
 .hdr__top-right{margin-left:auto;display:flex;align-items:center;gap:16px}
-.hdr__top-right a{text-decoration:none}
-.hdr__top-right a:hover{color:var(--green-deep)}
-.hdr__msg{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;color:var(--ink-60)}
-.hdr__msg:hover{color:var(--green-deep)}
+.hdr__top-right a{text-decoration:none;color:var(--paper)}
+.hdr__top-right a:hover{color:rgba(255,255,255,.75)}
+.hdr__msg{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;color:var(--paper)}
+.hdr__msg:hover{color:rgba(255,255,255,.75)}
 
-.hdr__main{height:var(--mainbar-h);background:var(--green);color:var(--paper)}
-.hdr__main-in{height:100%;display:flex;align-items:center;gap:28px}
+/* Нижняя строка: логотип, навигация, основной телефон, белая кнопка */
+.hdr__main{
+  height:var(--mainbar-h);display:flex;align-items:center;gap:28px;
+  padding-inline:var(--hdr-pad);
+}
 
 .logo{
   display:inline-flex;align-items:baseline;gap:2px;
-  font-size:21px;font-weight:800;letter-spacing:-0.03em;
+  font-size:21px;font-weight:700;letter-spacing:-0.03em;
   color:var(--paper);text-decoration:none;flex:none;
 }
-.logo b{font-weight:800}
 .logo span{font-weight:400;opacity:.78}
 
 .hdr__nav{display:flex;align-items:center;gap:2px;min-width:0}
@@ -332,22 +357,20 @@ textarea.input{min-height:104px;resize:vertical}
   transition:background-color 160ms var(--ease);
 }
 .hdr__nav a:hover{background:rgba(255,255,255,.14)}
-.hdr__nav a[aria-current="page"]{background:rgba(0,0,0,.16);font-weight:700}
+.hdr__nav a[aria-current="page"]{background:rgba(0,0,0,.18);font-weight:700}
 
 .hdr__actions{margin-left:auto;display:flex;align-items:center;gap:14px;flex:none}
-/* 19px/700 — крупный текст, 3.19:1 на --green проходит порог для large text */
-.hdr__phone{font-size:19px;font-weight:700;letter-spacing:-0.02em;color:var(--paper);text-decoration:none;white-space:nowrap}
+.hdr__phone{font-size:19px;font-weight:700;letter-spacing:-0.025em;color:var(--paper);text-decoration:none;white-space:nowrap}
 .hdr__phone:hover{color:rgba(255,255,255,.82)}
 
 .burger,.hdr__call{display:none}
 
-/* Мобильная шапка: логотип, кнопка звонка, бургер */
-@media (max-width:1080px){
-  .hdr__nav{display:none}
-}
+@media (max-width:1180px){ .hdr__top-hide{display:none} }
+@media (max-width:1080px){ .hdr__nav{display:none} }
+
+/* Мобильная: поля 16, радиус 16, одна строка — логотип, звонок, бургер */
 @media (max-width:900px){
-  :root{--topbar-h:0px}
-  .hdr{top:0}
+  :root{--topbar-h:0px;--hdr-inset:16px;--hdr-r:16px;--hdr-pad:16px;--mainbar-h:60px}
   .hdr__top{display:none}
   .hdr__phone{display:none}
   .hdr__actions .btn{display:none}
@@ -357,7 +380,7 @@ textarea.input{min-height:104px;resize:vertical}
     transition:background-color 160ms var(--ease);
   }
   .hdr__call:hover,.burger:hover{background:rgba(255,255,255,.14)}
-  .hdr__main-in{gap:12px}
+  .hdr__main{gap:12px}
 }
 
 /* Выдвижное меню */
@@ -369,18 +392,18 @@ textarea.input{min-height:104px;resize:vertical}
 }
 .menu[open],.menu.is-open{display:flex}
 .menu__top{height:var(--mainbar-h);background:var(--green);color:var(--paper);flex:none}
-.menu__top-in{height:100%;display:flex;align-items:center}
+.menu__top-in{height:100%;display:flex;align-items:center;padding-inline:var(--hdr-pad)}
 .menu__close{margin-left:auto;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;color:var(--paper);border-radius:var(--r-ctrl)}
 .menu__body{padding-block:8px 32px}
 .menu__nav a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:8px 0;border-bottom:1px solid var(--line);text-decoration:none;font-weight:500}
-.menu__nav a[aria-current="page"]{color:var(--green-deep);font-weight:700}
+.menu__nav a[aria-current="page"]{color:var(--green);font-weight:700}
 body.is-locked{overflow:hidden}
 
 /* --- 11. Подвал ----------------------------------------------------------- */
 .ftr{background:var(--ink);color:var(--paper);padding-block:var(--sp-72) 32px}
 .ftr a{color:inherit;text-decoration:none}
-.ftr a:hover{color:var(--green)}
-.ftr__logo{font-size:24px;font-weight:800;letter-spacing:-0.03em;color:var(--paper);display:inline-block}
+.ftr a:hover{color:var(--paper)}   /* --green на --ink даёт 3.41:1 — для ссылки мало */
+.ftr__logo{font-size:24px;font-weight:700;letter-spacing:-0.03em;color:var(--paper);display:inline-block}
 .ftr__cap{font-size:var(--fs-label);font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:16px}
 .ftr__nav li+li{margin-top:10px}
 .ftr__nav a{font-size:var(--fs-sm);color:rgba(255,255,255,.78)}
@@ -423,11 +446,11 @@ body.is-locked{overflow:hidden}
 .facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
 .facts__i{display:flex;flex-direction:column;gap:12px;padding:4px 28px;border-left:1px solid var(--line)}
 .facts__i:first-child{border-left:0;padding-left:0}
-.facts__n{display:flex;align-items:baseline;gap:8px;color:var(--green-deep);min-height:1em}
-.facts__u{font-family:var(--font);font-size:var(--fs-body);font-weight:700;letter-spacing:-0.01em;color:var(--ink)}
+.facts__n{display:flex;align-items:baseline;gap:8px;color:var(--green);min-height:1em}
+.facts__u{font-size:var(--fs-body);font-weight:600;letter-spacing:-0.01em;color:var(--ink)}
 .facts__u--tight{margin-left:-5px}
-.facts__u--word{font-size:var(--fs-num-m);font-weight:800;letter-spacing:-0.03em;color:var(--ink)}
-.facts__ico{width:clamp(28px,3.2vw,40px);height:clamp(28px,3.2vw,40px);flex:none;fill:var(--green-deep);align-self:center}
+.facts__u--word{font-size:var(--fs-num-m);font-weight:700;letter-spacing:-0.03em;color:var(--ink)}
+.facts__ico{width:clamp(28px,3.2vw,40px);height:clamp(28px,3.2vw,40px);flex:none;fill:var(--green);align-self:center}
 .facts__l{font-size:var(--fs-sm);line-height:1.4;color:var(--ink-60);max-width:22ch}
 @media (max-width:900px){
   .facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 0}
@@ -440,10 +463,10 @@ body.is-locked{overflow:hidden}
 /* Строка строчного списка услуг */
 .hairlist a{grid-template-columns:1fr auto auto}
 .hairlist__t{display:flex;flex-direction:column;gap:3px;min-width:0}
-.hairlist__t b{font-weight:700;letter-spacing:-0.012em}
+.hairlist__t b{font-weight:600;letter-spacing:-0.012em}
 .hairlist__p{color:var(--ink-60);white-space:nowrap;font-weight:500}
 .hairlist__a{color:var(--ink-60)}
-.hairlist a:hover .hairlist__a{color:var(--green-deep)}
+.hairlist a:hover .hairlist__a{color:var(--green)}
 @media (max-width:560px){
   .hairlist a{grid-template-columns:1fr auto}
   .hairlist__p{grid-column:1;order:3}
@@ -452,6 +475,6 @@ body.is-locked{overflow:hidden}
 
 /* Крупный телефон вне подвала (выдвижное меню, блок контактов) */
 .phone-xl{display:block;font-size:clamp(22px,2.6vw,28px);font-weight:700;letter-spacing:-0.025em;text-decoration:none;color:var(--ink)}
-.phone-xl:hover{color:var(--green-deep)}
+.phone-xl:hover{color:var(--green)}
 .phone-sm{display:block;font-size:var(--fs-body);font-weight:500;color:var(--ink-60);text-decoration:none;margin-top:6px}
-.phone-sm:hover{color:var(--green-deep)}
+.phone-sm:hover{color:var(--green)}

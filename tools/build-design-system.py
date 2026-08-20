@@ -10,9 +10,8 @@ import base64, os, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FONTS = os.path.join(ROOT, "assets", "fonts")
-FACES = [("Onest", 400, "onest-400.woff2"), ("Onest", 500, "onest-500.woff2"),
-         ("Onest", 700, "onest-700.woff2"), ("Onest", 800, "onest-800.woff2"),
-         ("Unbounded", 700, "unbounded-700.woff2")]
+FACES = [("Golos Text", 400, "golos-text-400.woff2"), ("Golos Text", 500, "golos-text-500.woff2"),
+         ("Golos Text", 600, "golos-text-600.woff2"), ("Golos Text", 700, "golos-text-700.woff2")]
 
 css = []
 for family, weight, filename in FACES:

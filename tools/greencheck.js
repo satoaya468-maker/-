@@ -69,9 +69,15 @@ function greenShare(png) {
     await p.waitForTimeout(400);
     const shot = await p.screenshot();           // только первый экран
     const r = greenShare(shot);
-    const below = await p.screenshot({ clip: { x: 0, y: 96, width: w, height: h - 96 } });
+    // отрезаем ровно по нижней границе шапки, а не по константе
+    const cut = Math.ceil(await p.evaluate(() => {
+      const el = document.querySelector('.hdr');
+      return el ? el.getBoundingClientRect().bottom : 0;
+    }));
+    const below = await p.screenshot({ clip: { x: 0, y: cut, width: w, height: h - cut } });
     const rb = greenShare(below);
-    console.log(name.padEnd(26), r.pct.toFixed(2) + '% всего   |', rb.pct.toFixed(2) + '% без шапки');
+    console.log(name.padEnd(26), r.pct.toFixed(2) + '% всего   |',
+                rb.pct.toFixed(2) + '% без шапки (срез на ' + cut + 'px)');
     await p.close();
   }
   await b.close();

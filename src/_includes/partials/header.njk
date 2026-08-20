@@ -1,12 +1,14 @@
 {%- set p1 = site.phones[0].display -%}
 {%- set p2 = site.phones[1].display -%}
-<header class="hdr">
-  <div class="hdr__top">
-    <div class="shell hdr__top-in">
+{#- Шапка — не полоса во всю ширину, а плавающая плашка, вставленная с полями -#}
+<div class="hdr-wrap">
+  <header class="hdr">
+
+    <div class="hdr__top">
       <span class="hdr__city">{{ site.city }}</span>
       <span class="hdr__top-hide">{{ site.address.street }}</span>
-      <span class="hdr__top-hide">{{ site.hours.weekdays }}</span>
-      <div class="hdr__top-right">
+      <span class="hdr__top-hide">{{ site.hours.short }}</span>
+      <span class="hdr__top-right">
         <a href="{{ p1 | telHref }}" data-goal="phone_click">{{ p1 }}</a>
         <a href="{{ p2 | telHref }}" data-goal="phone_click">{{ p2 }}</a>
         <a class="hdr__msg" href="{{ site.whatsapp }}" target="_blank" rel="noopener" data-goal="whatsapp_click" aria-label="Написать в WhatsApp">
@@ -15,12 +17,10 @@
         <a class="hdr__msg" href="{{ site.telegram }}" target="_blank" rel="noopener" aria-label="Написать в Telegram">
           <svg class="i i--lg" aria-hidden="true"><use href="#i-telegram-logo"></use></svg>
         </a>
-      </div>
+      </span>
     </div>
-  </div>
 
-  <div class="hdr__main">
-    <div class="shell hdr__main-in">
+    <div class="hdr__main">
       <a class="logo" href="/" aria-label="{{ site.name }}, на главную"><b>ГБО</b><span>-АВТО</span></a>
 
       <nav class="hdr__nav" aria-label="Основное меню">
@@ -40,12 +40,13 @@
         </button>
       </div>
     </div>
-  </div>
-</header>
+
+  </header>
+</div>
 
 <div class="menu" id="menu" hidden>
   <div class="menu__top">
-    <div class="shell menu__top-in">
+    <div class="menu__top-in">
       <a class="logo" href="/"><b>ГБО</b><span>-АВТО</span></a>
       <button class="menu__close" type="button" aria-label="Закрыть меню" data-menu-close>
         <svg class="i i--lg" aria-hidden="true"><use href="#i-x"></use></svg>
