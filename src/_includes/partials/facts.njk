@@ -1,0 +1,17 @@
+{#- Полоса фактов. Крупные числа в ряд, вертикальные волосяные линии. -#}
+<ul class="facts">
+  {%- for f in promises %}
+  <li class="facts__i">
+    <span class="facts__n">
+      {%- if f.icon -%}
+      <svg class="facts__ico" aria-hidden="true"><use href="#i-{{ f.icon }}"></use></svg>
+      <span class="facts__u facts__u--word">{{ f.unit }}</span>
+      {%- else -%}
+      <span class="num num--l">{{ f.num }}</span>
+      <span class="facts__u{% if f.unit == '%' %} facts__u--tight{% endif %}">{{ f.unit }}</span>
+      {%- endif -%}
+    </span>
+    <span class="facts__l">{{ f.label }}</span>
+  </li>
+  {%- endfor %}
+</ul>

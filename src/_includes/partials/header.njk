@@ -1,0 +1,71 @@
+{%- set p1 = site.phones[0].display -%}
+{%- set p2 = site.phones[1].display -%}
+<header class="hdr">
+  <div class="hdr__top">
+    <div class="shell hdr__top-in">
+      <span class="hdr__city">{{ site.city }}</span>
+      <span class="hdr__top-hide">{{ site.address.street }}</span>
+      <span class="hdr__top-hide">{{ site.hours.weekdays }}</span>
+      <div class="hdr__top-right">
+        <a href="{{ p1 | telHref }}" data-goal="phone_click">{{ p1 }}</a>
+        <a href="{{ p2 | telHref }}" data-goal="phone_click">{{ p2 }}</a>
+        <a class="hdr__msg" href="{{ site.whatsapp }}" target="_blank" rel="noopener" data-goal="whatsapp_click" aria-label="Написать в WhatsApp">
+          <svg class="i i--lg" aria-hidden="true"><use href="#i-whatsapp-logo"></use></svg>
+        </a>
+        <a class="hdr__msg" href="{{ site.telegram }}" target="_blank" rel="noopener" aria-label="Написать в Telegram">
+          <svg class="i i--lg" aria-hidden="true"><use href="#i-telegram-logo"></use></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hdr__main">
+    <div class="shell hdr__main-in">
+      <a class="logo" href="/" aria-label="{{ site.name }}, на главную"><b>ГБО</b><span>-АВТО</span></a>
+
+      <nav class="hdr__nav" aria-label="Основное меню">
+        {%- for item in nav -%}{%- if item.inHeader -%}
+        <a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.short }}</a>
+        {%- endif -%}{%- endfor -%}
+      </nav>
+
+      <div class="hdr__actions">
+        <a class="hdr__phone" href="{{ p1 | telHref }}" data-goal="phone_click">{{ p1 }}</a>
+        <a class="btn btn--light btn--sm" href="/kontakty/#zayavka">Записаться</a>
+        <a class="hdr__call" href="{{ p1 | telHref }}" data-goal="phone_click" aria-label="Позвонить {{ p1 }}">
+          <svg class="i i--lg" aria-hidden="true"><use href="#i-phone"></use></svg>
+        </a>
+        <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu" data-menu-open>
+          <svg class="i i--lg" aria-hidden="true"><use href="#i-list"></use></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" hidden>
+  <div class="menu__top">
+    <div class="shell menu__top-in">
+      <a class="logo" href="/"><b>ГБО</b><span>-АВТО</span></a>
+      <button class="menu__close" type="button" aria-label="Закрыть меню" data-menu-close>
+        <svg class="i i--lg" aria-hidden="true"><use href="#i-x"></use></svg>
+      </button>
+    </div>
+  </div>
+  <div class="shell menu__body">
+    <nav class="menu__nav" aria-label="Меню сайта">
+      {%- for item in nav -%}
+      <a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>
+        {{ item.title }}
+        <svg class="i i--sm muted" aria-hidden="true"><use href="#i-caret-right"></use></svg>
+      </a>
+      {%- endfor -%}
+    </nav>
+    <div class="stack-12" style="margin-top:28px">
+      <a class="phone-xl" href="{{ p1 | telHref }}" data-goal="phone_click">{{ p1 }}</a>
+      <a class="phone-sm" href="{{ p2 | telHref }}" data-goal="phone_click">{{ p2 }}</a>
+      <p class="xs">{{ site.address.street }}, {{ site.city }}<br>{{ site.hours.short }}</p>
+      <a class="btn btn--primary btn--wide" href="/kontakty/#zayavka">Оставить заявку</a>
+    </div>
+  </div>
+</div>

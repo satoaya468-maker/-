@@ -1,0 +1,39 @@
+{
+  "name": "ГБО-АВТО сервис",
+  "legalName": "ГБО-АВТО сервис",
+  "shortName": "ГБО-АВТО",
+  "url": "https://gbozlat.host-ai.site",
+  "lang": "ru",
+  "city": "Златоуст",
+  "region": "Челябинская область",
+  "address": {
+    "street": "ул. Средняя-Ветлужская, д. 38",
+    "locality": "Златоуст",
+    "region": "Челябинская область",
+    "postalCode": "456203",
+    "country": "RU",
+    "lat": 55.177351,
+    "lon": 59.696001
+  },
+  "phones": [
+    { "display": "+7 (908) 819-63-69", "primary": true },
+    { "display": "+7 (938) 517-82-27", "primary": false }
+  ],
+  "hours": {
+    "short": "Пн–Сб 9:00–20:00, Вс — по записи",
+    "weekdays": "Пн–Сб 9:00–20:00",
+    "sunday": "Вс — по записи",
+    "schemaOrg": ["Mo-Sa 09:00-20:00"]
+  },
+  "whatsapp": "https://wa.me/79088196369",
+  "telegram": "https://t.me/gboavto",
+  "gis": "https://2gis.ru/zlatoust/search/%D0%B3%D0%B1%D0%BE/firm/70000001115046085/59.696001%2C55.177351?m=59.695595%2C55.143818%2F12.06",
+  "gisReviews": "https://2gis.ru/zlatoust/search/%D0%B3%D0%B1%D0%BE/firm/70000001115046085/59.696001%2C55.177351/tab/reviews?m=59.695595%2C55.143818%2F12.06",
+
+  "reviewGating": false,
+
+  "relayUrl": "",
+  "metrikaId": "",
+
+  "callbackPromise": "Перезвоним в течение 15 минут"
+}

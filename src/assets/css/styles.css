@@ -1,0 +1,457 @@
+/* =========================================================================
+   ГБО-АВТО сервис, Златоуст
+   Дизайн-система. Рукописный CSS, кастомные свойства, без фреймворков.
+   Порядок: шрифты, токены, сброс, типографика, сетка, элементы,
+            шапка, подвал, движение.
+   ========================================================================= */
+
+/* --- 1. Шрифты. Самохост, сабсет под кириллицу и цифры ------------------ */
+@font-face{font-family:'Onest';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/onest-400.woff2') format('woff2')}
+@font-face{font-family:'Onest';font-style:normal;font-weight:500;font-display:swap;src:url('/assets/fonts/onest-500.woff2') format('woff2')}
+@font-face{font-family:'Onest';font-style:normal;font-weight:700;font-display:swap;src:url('/assets/fonts/onest-700.woff2') format('woff2')}
+@font-face{font-family:'Onest';font-style:normal;font-weight:800;font-display:swap;src:url('/assets/fonts/onest-800.woff2') format('woff2')}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:700;font-display:swap;src:url('/assets/fonts/unbounded-700.woff2') format('woff2')}
+
+/* --- 2. Токены ---------------------------------------------------------- */
+:root{
+  /* Цвет */
+  --ink:        #0B0F0D;
+  --ink-60:     #5A625D;
+  --paper:      #FFFFFF;
+  --mist:       #F4F5F4;
+  --line:       #E3E6E3;
+  --green:      #00A651;   /* плашки, полосы, точка «онлайн», крупный белый текст на нём */
+  --green-deep: #007D3C;   /* зелёный ТЕКСТ на белом, фон кнопок, hover */
+  --green-dark: #0A2F1C;   /* фон тёмных баннеров */
+  --amber:      #E8862A;   /* тонкая линия и маркер у окупаемости */
+  --amber-deep: #C96A15;   /* сама цифра окупаемости, 3.78:1 на белом */
+
+  /* Типографика */
+  --font:     'Onest', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-num: 'Unbounded', 'Onest', system-ui, sans-serif;
+
+  --fs-h1:    clamp(36px, 4.8vw, 64px);
+  --fs-h2:    clamp(26px, 3.2vw, 42px);
+  --fs-h3:    clamp(19px, 1.9vw, 24px);
+  --fs-lead:  clamp(17px, 1.5vw, 20px);
+  --fs-body:  17px;
+  --fs-sm:    15px;
+  --fs-xs:    13px;
+  --fs-label: 12px;
+
+  /* Крупные числа */
+  --fs-num-xl: clamp(44px, 6vw, 76px);
+  --fs-num-l:  clamp(30px, 3.6vw, 46px);
+  --fs-num-m:  clamp(22px, 2.4vw, 30px);
+
+  /* Поверхности */
+  --shell:  1320px;
+  --gutter: 24px;
+  --pad-x:  clamp(20px, 4vw, 48px);
+
+  --r-tile:  12px;
+  --r-ctrl:  8px;
+  --r-pill:  999px;
+  --r-hero:  24px;
+
+  /* Вертикальный ритм: три разных значения, чтобы секции не шли конвейером */
+  --sp-72:  clamp(48px, 6vw, 72px);
+  --sp-96:  clamp(60px, 8vw, 96px);
+  --sp-128: clamp(72px, 10vw, 128px);
+
+  /* Шапка */
+  --topbar-h: 40px;
+  --mainbar-h: 56px;
+
+  /* Движение */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur:  380ms;
+}
+
+/* --- 3. Сброс ----------------------------------------------------------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body,h1,h2,h3,h4,p,figure,blockquote,dl,dd,ul,ol{margin:0}
+ul[class],ol[class]{list-style:none;padding:0}
+img,picture,svg,video{display:block;max-width:100%}
+img{height:auto}
+input,button,textarea,select{font:inherit;color:inherit}
+button{background:none;border:0;padding:0;cursor:pointer}
+table{border-collapse:collapse;width:100%}
+
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--mainbar-h) + 16px)}
+
+body{
+  font-family:var(--font);
+  font-size:var(--fs-body);
+  font-weight:400;
+  line-height:1.6;
+  color:var(--ink);
+  background:var(--paper);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;              /* страховка от горизонтального скролла на 360px */
+}
+
+/* --- 4. Типографика ----------------------------------------------------- */
+h1,.h1{
+  font-size:var(--fs-h1);
+  font-weight:800;
+  line-height:1.03;
+  letter-spacing:-0.035em;
+  text-wrap:balance;
+}
+h2,.h2{
+  font-size:var(--fs-h2);
+  font-weight:800;
+  line-height:1.08;
+  letter-spacing:-0.028em;
+  text-wrap:balance;
+}
+h3,.h3{
+  font-size:var(--fs-h3);
+  font-weight:700;
+  line-height:1.2;
+  letter-spacing:-0.018em;
+}
+h4,.h4{font-size:var(--fs-body);font-weight:700;line-height:1.35;letter-spacing:-0.01em}
+
+p{max-width:68ch}
+.lead{font-size:var(--fs-lead);line-height:1.5;color:var(--ink-60);max-width:56ch}
+.muted{color:var(--ink-60)}
+.small{font-size:var(--fs-sm);line-height:1.55}
+.xs{font-size:var(--fs-xs);line-height:1.5;color:var(--ink-60)}
+.note{font-size:var(--fs-xs);line-height:1.55;color:var(--ink-60);max-width:74ch}
+
+.label{
+  font-size:var(--fs-label);
+  font-weight:700;
+  letter-spacing:0.09em;
+  text-transform:uppercase;
+  color:var(--ink-60);
+}
+
+/* Числа: только цены, экономия, окупаемость, номера шагов */
+.num{font-family:var(--font-num);font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-0.02em;line-height:1}
+.num--xl{font-size:var(--fs-num-xl)}
+.num--l{font-size:var(--fs-num-l)}
+.num--m{font-size:var(--fs-num-m)}
+
+a{color:inherit;text-decoration-color:var(--line);text-underline-offset:0.18em}
+a:hover{text-decoration-color:currentColor}
+.link-green{color:var(--green-deep);text-decoration:underline;text-decoration-color:rgba(0,125,60,.35)}
+.link-green:hover{text-decoration-color:currentColor}
+.link-plain{text-decoration:none}
+.link-plain:hover{color:var(--green-deep)}
+
+/* Акцентная плашка над заголовком секции */
+.bar{display:block;width:56px;height:6px;background:var(--green);margin-bottom:20px;border-radius:1px}
+.bar--light{background:var(--green)}
+
+/* --- 5. Сетка и секции --------------------------------------------------- */
+.shell{width:100%;max-width:var(--shell);margin-inline:auto;padding-inline:var(--pad-x)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gutter)}
+
+.c-4{grid-column:span 4}
+.c-5{grid-column:span 5}
+.c-6{grid-column:span 6}
+.c-7{grid-column:span 7}
+.c-8{grid-column:span 8}
+.c-12{grid-column:span 12}
+
+.section{padding-block:var(--sp-96)}
+.section--72{padding-block:var(--sp-72)}
+.section--128{padding-block:var(--sp-128)}
+.section--tight{padding-block:var(--sp-72) var(--sp-96)}
+
+.bleed{width:100%}
+.surface-mist{background:var(--mist)}
+.surface-dark{background:var(--green-dark);color:var(--paper)}
+.surface-ink{background:var(--ink);color:var(--paper)}
+
+.surface-dark .lead,.surface-dark .muted,.surface-ink .lead,.surface-ink .muted{color:rgba(255,255,255,.72)}
+.surface-dark .xs,.surface-ink .xs{color:rgba(255,255,255,.62)}
+.surface-dark a{text-decoration-color:rgba(255,255,255,.3)}
+
+.rule{height:1px;background:var(--line);border:0;margin:0}
+.surface-dark .rule,.surface-ink .rule{background:rgba(255,255,255,.14)}
+
+.stack-8>*+*{margin-top:8px}
+.stack-12>*+*{margin-top:12px}
+.stack-16>*+*{margin-top:16px}
+.stack-24>*+*{margin-top:24px}
+.stack-32>*+*{margin-top:32px}
+
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.row--16{gap:16px}
+.row--24{gap:24px}
+
+/* --- 6. Кнопки ----------------------------------------------------------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:48px;padding:0 22px;
+  border-radius:var(--r-ctrl);
+  font-size:var(--fs-sm);font-weight:700;letter-spacing:-0.005em;
+  text-decoration:none;white-space:nowrap;
+  border:1px solid transparent;
+  transition:background-color 160ms var(--ease),color 160ms var(--ease),border-color 160ms var(--ease);
+}
+.btn__i{width:18px;height:18px;flex:none}
+
+/* Основная. Фон green-deep: белый текст даёт 5.25:1, чистый --green дал бы 3.19:1 */
+.btn--primary{background:var(--green-deep);color:var(--paper)}
+.btn--primary:hover{background:var(--green-dark)}
+
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn--ghost:hover{background:var(--mist);border-color:var(--ink-60)}
+
+.btn--light{background:var(--paper);color:var(--green-deep)}
+.btn--light:hover{background:var(--mist)}
+
+.btn--onDark{background:transparent;color:var(--paper);border-color:rgba(255,255,255,.35)}
+.btn--onDark:hover{background:rgba(255,255,255,.1);border-color:var(--paper)}
+
+.btn--sm{min-height:44px;padding:0 16px;font-size:var(--fs-xs)}
+.btn--wide{width:100%}
+
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  min-height:44px;padding:0 18px;border-radius:var(--r-pill);
+  border:1px solid var(--line);background:var(--paper);
+  font-size:var(--fs-sm);font-weight:500;
+  transition:background-color 160ms var(--ease),border-color 160ms var(--ease),color 160ms var(--ease);
+}
+.pill:hover{background:var(--mist)}
+.pill[aria-pressed="true"],.pill.is-active{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+
+/* --- 7. Плитки, списки, формы -------------------------------------------- */
+.tile{background:var(--mist);border-radius:var(--r-tile);padding:24px}
+.tile__media{aspect-ratio:4/3;background:var(--paper);border-radius:var(--r-ctrl);display:grid;place-items:center;overflow:hidden}
+
+.hairlist{border-top:1px solid var(--line)}
+.hairlist>li{border-bottom:1px solid var(--line)}
+.hairlist a,.hairlist>li>.hairlist__row{
+  display:grid;gap:4px 24px;align-items:center;
+  padding:20px 16px;margin-inline:-16px;
+  text-decoration:none;border-radius:var(--r-ctrl);
+  transition:background-color 160ms var(--ease);
+}
+.hairlist a:hover{background:var(--mist)}
+
+.field{display:block}
+.field__label{display:block;font-size:var(--fs-xs);font-weight:700;color:var(--ink-60);margin-bottom:6px}
+.input,select.input,textarea.input{
+  width:100%;min-height:48px;padding:12px 14px;
+  background:var(--paper);color:var(--ink);
+  border:1px solid var(--line);border-radius:var(--r-ctrl);
+  font-size:var(--fs-body);line-height:1.4;
+  transition:border-color 160ms var(--ease),background-color 160ms var(--ease);
+}
+textarea.input{min-height:104px;resize:vertical}
+.input::placeholder{color:var(--ink-60);opacity:.7}
+.input:hover{border-color:var(--ink-60)}
+.input:focus{outline:none;border-color:var(--green-deep);box-shadow:inset 0 0 0 1px var(--green-deep)}
+.input[aria-invalid="true"]{border-color:var(--amber-deep)}
+
+/* Ползунок */
+.range{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;cursor:pointer}
+.range::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:var(--line)}
+.range::-moz-range-track{height:4px;border-radius:2px;background:var(--line)}
+.range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;margin-top:-9px;border-radius:50%;background:var(--green-deep);border:3px solid var(--paper)}
+.range::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--green-deep);border:3px solid var(--paper)}
+
+/* Иконки набора Phosphor, одна толщина на весь проект */
+.i{width:20px;height:20px;flex:none;fill:currentColor}
+.i--sm{width:16px;height:16px}
+.i--lg{width:24px;height:24px}
+
+.dot-online{width:10px;height:10px;border-radius:50%;background:var(--green);border:2px solid var(--paper);flex:none}
+
+/* Единственная тень на сайте живёт у плавающего виджета, см. widget.css */
+
+/* --- 8. Доступность ------------------------------------------------------ */
+:focus-visible{outline:2px solid var(--green-deep);outline-offset:3px;border-radius:2px}
+.surface-dark :focus-visible,.surface-ink :focus-visible,.hdr__main :focus-visible{outline-color:var(--paper)}
+
+.visually-hidden{
+  position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+.skip{
+  position:absolute;left:8px;top:-64px;z-index:100;
+  background:var(--paper);color:var(--ink);padding:12px 18px;border-radius:var(--r-ctrl);
+  border:1px solid var(--ink);font-weight:700;text-decoration:none;
+}
+.skip:focus{top:8px}
+
+/* --- 9. Движение --------------------------------------------------------- */
+.reveal{opacity:0;transform:translateY(10px)}
+.reveal.is-in{opacity:1;transform:none;transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.no-js .reveal{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal,.reveal.is-in{opacity:1;transform:none;transition:none}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+/* --- 10. Шапка ------------------------------------------------------------
+   Двухуровневая. Липнет вся шапка, но с отрицательным top, равным высоте
+   верхней полосы: тонкая полоса уходит под край экрана, зелёная встаёт
+   в ноль. Высота зелёной полосы при этом не меняется никогда.
+   ------------------------------------------------------------------------ */
+.hdr{position:sticky;top:calc(-1 * var(--topbar-h));z-index:50}
+
+.hdr__top{height:var(--topbar-h);background:var(--paper);border-bottom:1px solid var(--line)}
+.hdr__top-in{height:100%;display:flex;align-items:center;gap:24px;font-size:var(--fs-xs);color:var(--ink-60)}
+.hdr__city{color:var(--ink);font-weight:700}
+.hdr__city::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:7px;vertical-align:1px}
+.hdr__top-right{margin-left:auto;display:flex;align-items:center;gap:16px}
+.hdr__top-right a{text-decoration:none}
+.hdr__top-right a:hover{color:var(--green-deep)}
+.hdr__msg{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;color:var(--ink-60)}
+.hdr__msg:hover{color:var(--green-deep)}
+
+.hdr__main{height:var(--mainbar-h);background:var(--green);color:var(--paper)}
+.hdr__main-in{height:100%;display:flex;align-items:center;gap:28px}
+
+.logo{
+  display:inline-flex;align-items:baseline;gap:2px;
+  font-size:21px;font-weight:800;letter-spacing:-0.03em;
+  color:var(--paper);text-decoration:none;flex:none;
+}
+.logo b{font-weight:800}
+.logo span{font-weight:400;opacity:.78}
+
+.hdr__nav{display:flex;align-items:center;gap:2px;min-width:0}
+.hdr__nav a{
+  display:inline-flex;align-items:center;height:36px;padding:0 12px;
+  border-radius:var(--r-ctrl);
+  font-size:var(--fs-sm);font-weight:500;color:var(--paper);text-decoration:none;
+  white-space:nowrap;
+  transition:background-color 160ms var(--ease);
+}
+.hdr__nav a:hover{background:rgba(255,255,255,.14)}
+.hdr__nav a[aria-current="page"]{background:rgba(0,0,0,.16);font-weight:700}
+
+.hdr__actions{margin-left:auto;display:flex;align-items:center;gap:14px;flex:none}
+/* 19px/700 — крупный текст, 3.19:1 на --green проходит порог для large text */
+.hdr__phone{font-size:19px;font-weight:700;letter-spacing:-0.02em;color:var(--paper);text-decoration:none;white-space:nowrap}
+.hdr__phone:hover{color:rgba(255,255,255,.82)}
+
+.burger,.hdr__call{display:none}
+
+/* Мобильная шапка: логотип, кнопка звонка, бургер */
+@media (max-width:1080px){
+  .hdr__nav{display:none}
+}
+@media (max-width:900px){
+  :root{--topbar-h:0px}
+  .hdr{top:0}
+  .hdr__top{display:none}
+  .hdr__phone{display:none}
+  .hdr__actions .btn{display:none}
+  .hdr__call,.burger{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:44px;height:44px;border-radius:var(--r-ctrl);color:var(--paper);
+    transition:background-color 160ms var(--ease);
+  }
+  .hdr__call:hover,.burger:hover{background:rgba(255,255,255,.14)}
+  .hdr__main-in{gap:12px}
+}
+
+/* Выдвижное меню */
+.menu{
+  position:fixed;inset:0;z-index:60;
+  background:var(--paper);
+  display:none;flex-direction:column;
+  overflow-y:auto;
+}
+.menu[open],.menu.is-open{display:flex}
+.menu__top{height:var(--mainbar-h);background:var(--green);color:var(--paper);flex:none}
+.menu__top-in{height:100%;display:flex;align-items:center}
+.menu__close{margin-left:auto;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;color:var(--paper);border-radius:var(--r-ctrl)}
+.menu__body{padding-block:8px 32px}
+.menu__nav a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:8px 0;border-bottom:1px solid var(--line);text-decoration:none;font-weight:500}
+.menu__nav a[aria-current="page"]{color:var(--green-deep);font-weight:700}
+body.is-locked{overflow:hidden}
+
+/* --- 11. Подвал ----------------------------------------------------------- */
+.ftr{background:var(--ink);color:var(--paper);padding-block:var(--sp-72) 32px}
+.ftr a{color:inherit;text-decoration:none}
+.ftr a:hover{color:var(--green)}
+.ftr__logo{font-size:24px;font-weight:800;letter-spacing:-0.03em;color:var(--paper);display:inline-block}
+.ftr__cap{font-size:var(--fs-label);font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:16px}
+.ftr__nav li+li{margin-top:10px}
+.ftr__nav a{font-size:var(--fs-sm);color:rgba(255,255,255,.78)}
+.ftr__nav a:hover{color:var(--paper)}
+.ftr__phone{display:block;font-size:20px;font-weight:700;letter-spacing:-0.02em;color:var(--paper)}
+.ftr__phone--alt{font-size:var(--fs-body);font-weight:500;color:rgba(255,255,255,.78);margin-top:6px}
+.ftr__msgs{display:flex;gap:10px;margin-top:18px}
+.ftr__msgs a{
+  display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;
+  border:1px solid rgba(255,255,255,.22);border-radius:var(--r-ctrl);
+  font-size:var(--fs-xs);font-weight:700;
+  transition:background-color 160ms var(--ease),border-color 160ms var(--ease)
+}
+.ftr__msgs a:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.5);color:var(--paper)}
+.ftr__bottom{
+  margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14);
+  display:flex;flex-wrap:wrap;gap:12px 32px;align-items:baseline;
+  font-size:var(--fs-xs);color:rgba(255,255,255,.55);
+}
+.ftr__bottom p{max-width:70ch}
+
+/* --- 12. Адаптив сетки ---------------------------------------------------- */
+@media (max-width:1024px){
+  .c-4{grid-column:span 6}
+  .c-5,.c-7{grid-column:span 12}
+}
+@media (max-width:760px){
+  :root{--gutter:16px}
+  .c-4,.c-6,.c-8{grid-column:span 12}
+}
+@media (max-width:400px){
+  :root{--fs-body:16px}
+}
+
+/* Верхняя полоса: на узком десктопе оставляем только город и контакты */
+@media (max-width:1180px){ .hdr__top-hide{display:none} }
+
+/* --- 13. Полоса фактов. Прямая цитата из Росско: крупные числа в ряд,
+       разделённые вертикальными волосяными линиями ------------------------ */
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.facts__i{display:flex;flex-direction:column;gap:12px;padding:4px 28px;border-left:1px solid var(--line)}
+.facts__i:first-child{border-left:0;padding-left:0}
+.facts__n{display:flex;align-items:baseline;gap:8px;color:var(--green-deep);min-height:1em}
+.facts__u{font-family:var(--font);font-size:var(--fs-body);font-weight:700;letter-spacing:-0.01em;color:var(--ink)}
+.facts__u--tight{margin-left:-5px}
+.facts__u--word{font-size:var(--fs-num-m);font-weight:800;letter-spacing:-0.03em;color:var(--ink)}
+.facts__ico{width:clamp(28px,3.2vw,40px);height:clamp(28px,3.2vw,40px);flex:none;fill:var(--green-deep);align-self:center}
+.facts__l{font-size:var(--fs-sm);line-height:1.4;color:var(--ink-60);max-width:22ch}
+@media (max-width:900px){
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 0}
+  .facts__i:nth-child(odd){border-left:0;padding-left:0}
+}
+@media (max-width:420px){
+  .facts__i{padding-inline:18px}
+}
+
+/* Строка строчного списка услуг */
+.hairlist a{grid-template-columns:1fr auto auto}
+.hairlist__t{display:flex;flex-direction:column;gap:3px;min-width:0}
+.hairlist__t b{font-weight:700;letter-spacing:-0.012em}
+.hairlist__p{color:var(--ink-60);white-space:nowrap;font-weight:500}
+.hairlist__a{color:var(--ink-60)}
+.hairlist a:hover .hairlist__a{color:var(--green-deep)}
+@media (max-width:560px){
+  .hairlist a{grid-template-columns:1fr auto}
+  .hairlist__p{grid-column:1;order:3}
+  .hairlist__a{grid-row:1;grid-column:2}
+}
+
+/* Крупный телефон вне подвала (выдвижное меню, блок контактов) */
+.phone-xl{display:block;font-size:clamp(22px,2.6vw,28px);font-weight:700;letter-spacing:-0.025em;text-decoration:none;color:var(--ink)}
+.phone-xl:hover{color:var(--green-deep)}
+.phone-sm{display:block;font-size:var(--fs-body);font-weight:500;color:var(--ink-60);text-decoration:none;margin-top:6px}
+.phone-sm:hover{color:var(--green-deep)}

@@ -1,0 +1,12 @@
+[
+  { "url": "/", "title": "Главная", "short": "Главная", "inHeader": false },
+  { "url": "/ustanovka-gbo/", "title": "Установка ГБО", "short": "Установка ГБО", "inHeader": true },
+  { "url": "/dokumenty-gibdd/", "title": "Документы в ГИБДД", "short": "Документы ГИБДД", "inHeader": true },
+  { "url": "/ceny/", "title": "Цены", "short": "Цены", "inHeader": true },
+  { "url": "/diagnostika/", "title": "Диагностика и настройка", "short": "Диагностика", "inHeader": false },
+  { "url": "/to-i-remont/", "title": "ТО и ремонт ГБО", "short": "ТО и ремонт", "inHeader": false },
+  { "url": "/pereoborudovanie/", "title": "Переоборудование на газ", "short": "Переоборудование", "inHeader": false },
+  { "url": "/kalkulyator/", "title": "Калькулятор окупаемости", "short": "Калькулятор", "inHeader": true },
+  { "url": "/otzyvy/", "title": "Отзывы", "short": "Отзывы", "inHeader": false },
+  { "url": "/kontakty/", "title": "Контакты", "short": "Контакты", "inHeader": true }
+]

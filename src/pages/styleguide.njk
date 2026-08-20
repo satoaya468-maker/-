@@ -1,0 +1,142 @@
+---
+layout: layouts/base.njk
+title: Дизайн-система — ГБО-АВТО сервис
+description: Служебная страница. Токены, типографическая шкала, сетка, базовые элементы.
+permalink: /_styleguide/
+eleventyExcludeFromCollections: true
+noindex: true
+---
+<section class="section--72 shell" style="padding-block:var(--sp-72) 0">
+  <span class="bar"></span>
+  <h1>Дизайн-система</h1>
+  <p class="lead" style="margin-top:20px">Служебная страница. В прод не идёт: закрыта от индексации и удаляется одной строкой.</p>
+</section>
+
+<section class="section shell">
+  <h2 style="margin-bottom:32px">Цвет</h2>
+  <div class="grid">
+    {%- set swatches = [
+      {n:"--ink", v:"#0B0F0D", t:"Текст, подвал"},
+      {n:"--ink-60", v:"#5A625D", t:"Вторичный текст, 6.3:1"},
+      {n:"--paper", v:"#FFFFFF", t:"База"},
+      {n:"--mist", v:"#F4F5F4", t:"Плитки, полоса фактов"},
+      {n:"--line", v:"#E3E6E3", t:"Разделители 1px"},
+      {n:"--green", v:"#00A651", t:"Шапка, плашки, точка"},
+      {n:"--green-deep", v:"#007D3C", t:"Кнопки и зелёный текст"},
+      {n:"--green-dark", v:"#0A2F1C", t:"Тёмные баннеры"},
+      {n:"--amber", v:"#E8862A", t:"Линия у окупаемости"},
+      {n:"--amber-deep", v:"#C96A15", t:"Цифра окупаемости"}
+    ] -%}
+    {%- for s in swatches %}
+    <div class="c-4" style="grid-column:span 3;min-width:0">
+      <div style="height:76px;border-radius:var(--r-tile);background:{{ s.v }};border:1px solid var(--line)"></div>
+      <p class="xs" style="margin-top:10px;color:var(--ink)"><b>{{ s.n }}</b> {{ s.v }}</p>
+      <p class="xs">{{ s.t }}</p>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="bleed surface-mist">
+  <div class="section--72 shell" style="padding-block:var(--sp-72)">
+    <h2 style="margin-bottom:32px">Полоса фактов</h2>
+    {% include "partials/facts.njk" %}
+  </div>
+</section>
+
+<section class="section shell">
+  <h2 style="margin-bottom:32px">Типографика</h2>
+  <div class="stack-24">
+    <div><p class="label">H1 · Onest 800 · clamp(36–64) · −0.035em</p><p class="h1">Установка ГБО в Златоусте под ключ</p></div>
+    <hr class="rule">
+    <div><p class="label">H2 · Onest 800 · clamp(26–42) · −0.028em</p><p class="h2">Как проходит установка</p></div>
+    <hr class="rule">
+    <div><p class="label">H3 · Onest 700</p><p class="h3">Оформление документов в ГИБДД</p></div>
+    <hr class="rule">
+    <div><p class="label">Lead · 17–20px</p><p class="lead">Ставим комплект за один рабочий день, даём год гарантии на работы и оборудование и ведём переоборудование в ГИБДД до отметки в СТС.</p></div>
+    <hr class="rule">
+    <div><p class="label">Body · 17/1.6 · строка до 68 знаков</p><p>Исправно настроенная система четвёртого поколения работает на штатных режимах мотора. Газ сгорает чище бензина, меньше нагара и меньше смывает масляную плёнку со стенок цилиндров.</p></div>
+    <hr class="rule">
+    <div><p class="label">Числа · Unbounded 700 · только цифры</p>
+      <p class="row row--24" style="align-items:baseline">
+        <span class="num num--xl" style="color:var(--amber-deep)">10</span>
+        <span class="num num--l" style="color:var(--green-deep)">5 040 ₽</span>
+        <span class="num num--m">50 000 ₽</span>
+        <span class="num num--m" style="color:var(--line)">01</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section--72 shell" style="padding-block:0 var(--sp-96)">
+  <h2 style="margin-bottom:32px">Элементы</h2>
+  <div class="grid">
+    <div class="c-6 stack-24">
+      <div>
+        <p class="label" style="margin-bottom:14px">Кнопки и пилюли</p>
+        <div class="row">
+          <a class="btn btn--primary" href="#">Рассчитать окупаемость</a>
+          <a class="btn btn--ghost" href="#"><svg class="i btn__i" aria-hidden="true"><use href="#i-phone"></use></svg>Позвонить</a>
+        </div>
+        <div class="row" style="margin-top:12px">
+          <button class="pill" type="button" aria-pressed="true">Личный авто</button>
+          <button class="pill" type="button" aria-pressed="false">Такси</button>
+          <button class="pill" type="button" aria-pressed="false">Коммерческий</button>
+        </div>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:14px">Форма</p>
+        <div class="stack-16">
+          <label class="field"><span class="field__label">Имя</span><input class="input" type="text" placeholder="Как к вам обращаться"></label>
+          <label class="field"><span class="field__label">Телефон</span><input class="input" type="tel" placeholder="+7 (___) ___-__-__"></label>
+          <label class="field"><span class="field__label">Услуга</span>
+            <select class="input"><option>Установка ГБО 4 поколения</option><option>Оформление документов в ГИБДД</option></select>
+          </label>
+        </div>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:14px">Ползунок</p>
+        <input class="range" type="range" min="500" max="10000" value="2000" aria-label="Пробег в месяц">
+      </div>
+    </div>
+
+    <div class="c-6 stack-24">
+      <div>
+        <p class="label" style="margin-bottom:14px">Строчный список услуг · разделители 1px</p>
+        <ul class="hairlist">
+          {%- for s in services.list.slice(0,3) %}
+          <li><a href="{{ s.url }}">
+            <span class="hairlist__t"><b>{{ s.title }}</b><span class="xs">{{ s.desc }}</span></span>
+            <span class="hairlist__p small">{{ s.priceLabel }}</span>
+            <svg class="i i--sm hairlist__a" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          </a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:14px">Плитка · --mist · радиус 12 · без тени</p>
+        <div class="grid" style="grid-template-columns:repeat(2,1fr)">
+          {%- for e in equipment.slice(0,2) %}
+          <div class="tile">
+            <div class="tile__media"><svg class="i" style="width:44px;height:44px;color:var(--line)" aria-hidden="true"><use href="#i-gauge"></use></svg></div>
+            <p class="h4" style="margin-top:16px">{{ e.title }}</p>
+            <p class="xs" style="margin-top:4px">{{ e.note }}</p>
+          </div>
+          {%- endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bleed surface-dark">
+  <div class="shell" style="padding-block:var(--sp-72)">
+    <span class="bar bar--light"></span>
+    <h2>Тёмная полоса</h2>
+    <p class="lead" style="margin-top:16px">Редкий контрастный акцент. На главной он ровно один — блок про документы в ГИБДД.</p>
+    <div class="row" style="margin-top:28px">
+      <a class="btn btn--light" href="#">Как оформить документы</a>
+      <a class="btn btn--onDark" href="#">Позвонить</a>
+    </div>
+  </div>
+</section>
