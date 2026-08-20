@@ -1,0 +1,515 @@
+<title>Дизайн-система ГБО-АВТО</title>
+<style>
+__FONTS__
+
+:root{
+  --ink:#0B0F0D; --ink-60:#5A625D; --paper:#FFFFFF; --mist:#F4F5F4; --line:#E3E6E3;
+  --green:#00A651; --green-deep:#007D3C; --green-dark:#0A2F1C;
+  --amber:#E8862A; --amber-deep:#C96A15;
+  --font:'Onest',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --font-num:'Unbounded','Onest',system-ui,sans-serif;
+  --fs-h1:clamp(34px,4.8vw,64px); --fs-h2:clamp(25px,3.2vw,42px); --fs-h3:clamp(19px,1.9vw,24px);
+  --fs-lead:clamp(17px,1.5vw,20px); --fs-body:17px; --fs-sm:15px; --fs-xs:13px; --fs-label:12px;
+  --fs-num-xl:clamp(44px,6vw,76px); --fs-num-l:clamp(30px,3.6vw,46px); --fs-num-m:clamp(22px,2.4vw,30px);
+  --shell:1320px; --gutter:24px; --pad-x:clamp(20px,4vw,48px);
+  --r-tile:12px; --r-ctrl:8px; --r-pill:999px;
+  --sp-72:clamp(48px,6vw,72px); --sp-96:clamp(60px,8vw,96px); --sp-128:clamp(72px,10vw,128px);
+  --topbar-h:40px; --mainbar-h:56px;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:var(--fs-body);
+     line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4,p,ul,ol,figure,table{margin:0}
+ul{list-style:none;padding:0}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+h1{font-size:var(--fs-h1);font-weight:800;line-height:1.03;letter-spacing:-.035em;text-wrap:balance}
+h2{font-size:var(--fs-h2);font-weight:800;line-height:1.08;letter-spacing:-.028em;text-wrap:balance}
+h3{font-size:var(--fs-h3);font-weight:700;line-height:1.2;letter-spacing:-.018em}
+h4{font-size:var(--fs-body);font-weight:700;line-height:1.35;letter-spacing:-.01em}
+p{max-width:68ch}
+.lead{font-size:var(--fs-lead);line-height:1.5;color:var(--ink-60);max-width:58ch}
+.sm{font-size:var(--fs-sm);line-height:1.55}
+.xs{font-size:var(--fs-xs);line-height:1.5;color:var(--ink-60)}
+.muted{color:var(--ink-60)}
+.label{font-size:var(--fs-label);font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-60)}
+.num{font-family:var(--font-num);font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1}
+.num--xl{font-size:var(--fs-num-xl)} .num--l{font-size:var(--fs-num-l)} .num--m{font-size:var(--fs-num-m)}
+.bar{display:block;width:56px;height:6px;background:var(--green);margin-bottom:20px;border-radius:1px}
+
+.shell{width:100%;max-width:var(--shell);margin-inline:auto;padding-inline:var(--pad-x)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gutter)}
+.c-4{grid-column:span 4}.c-5{grid-column:span 5}.c-6{grid-column:span 6}
+.c-7{grid-column:span 7}.c-8{grid-column:span 8}.c-12{grid-column:span 12}
+.sec{padding-block:var(--sp-96)}
+.sec--72{padding-block:var(--sp-72)}
+.sec--128{padding-block:var(--sp-128)}
+.mist{background:var(--mist)}
+.dark{background:var(--green-dark);color:var(--paper)}
+.dark .muted,.dark .lead{color:rgba(255,255,255,.72)}
+.dark .xs{color:rgba(255,255,255,.62)}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+.flow>*+*{margin-top:var(--flow,16px)}
+.flow-24{--flow:24px}.flow-32{--flow:32px}.flow-12{--flow:12px}.flow-8{--flow:8px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.row-24{gap:24px}
+
+/* Шапка — живая, та же что на сайте */
+.hdr{position:sticky;top:calc(-1*var(--topbar-h));z-index:50}
+.hdr__top{height:var(--topbar-h);background:var(--paper);border-bottom:1px solid var(--line)}
+.hdr__top-in{height:100%;display:flex;align-items:center;gap:24px;font-size:var(--fs-xs);color:var(--ink-60)}
+.hdr__city{color:var(--ink);font-weight:700}
+.hdr__city::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:7px;vertical-align:1px}
+.hdr__top-right{margin-left:auto;display:flex;align-items:center;gap:16px}
+.hdr__top-right a{text-decoration:none}
+.hdr__main{height:var(--mainbar-h);background:var(--green);color:var(--paper)}
+.hdr__main-in{height:100%;display:flex;align-items:center;gap:28px}
+.logo{display:inline-flex;align-items:baseline;font-size:21px;font-weight:800;letter-spacing:-.03em;color:var(--paper);text-decoration:none;flex:none}
+.logo span{font-weight:400;opacity:.78}
+.hdr__nav{display:flex;gap:2px;min-width:0}
+.hdr__nav a{display:inline-flex;align-items:center;height:36px;padding:0 12px;border-radius:var(--r-ctrl);font-size:var(--fs-sm);font-weight:500;color:var(--paper);text-decoration:none;white-space:nowrap;transition:background-color 160ms var(--ease)}
+.hdr__nav a:hover{background:rgba(255,255,255,.14)}
+.hdr__act{margin-left:auto;display:flex;align-items:center;gap:14px;flex:none}
+.hdr__phone{font-size:19px;font-weight:700;letter-spacing:-.02em;color:var(--paper);text-decoration:none;white-space:nowrap}
+@media(max-width:1180px){.tophide{display:none}}
+@media(max-width:1080px){.hdr__nav{display:none}}
+@media(max-width:900px){:root{--topbar-h:0px}.hdr{top:0}.hdr__top{display:none}}
+@media(max-width:560px){.hdr__phone{display:none}}
+
+/* Кнопки */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;
+     border-radius:var(--r-ctrl);font-size:var(--fs-sm);font-weight:700;text-decoration:none;white-space:nowrap;
+     border:1px solid transparent;transition:background-color 160ms var(--ease),color 160ms var(--ease),border-color 160ms var(--ease)}
+.btn--primary{background:var(--green-deep);color:var(--paper)}
+.btn--primary:hover{background:var(--green-dark)}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn--ghost:hover{background:var(--mist);border-color:var(--ink-60)}
+.btn--light{background:var(--paper);color:var(--green-deep)}
+.btn--light:hover{background:var(--mist)}
+.btn--onDark{background:transparent;color:var(--paper);border-color:rgba(255,255,255,.35)}
+.btn--onDark:hover{background:rgba(255,255,255,.1);border-color:var(--paper)}
+.btn--sm{min-height:44px;padding:0 16px;font-size:var(--fs-xs)}
+.pill{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:var(--r-pill);
+      border:1px solid var(--line);background:var(--paper);font-size:var(--fs-sm);font-weight:500;
+      transition:background-color 160ms var(--ease),border-color 160ms var(--ease),color 160ms var(--ease)}
+.pill:hover{background:var(--mist)}
+.pill[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+
+/* Поля */
+.field__label{display:block;font-size:var(--fs-xs);font-weight:700;color:var(--ink-60);margin-bottom:6px}
+.input{width:100%;min-height:48px;padding:12px 14px;background:var(--paper);color:var(--ink);
+       border:1px solid var(--line);border-radius:var(--r-ctrl);font:inherit;font-size:var(--fs-body);
+       transition:border-color 160ms var(--ease)}
+.input:hover{border-color:var(--ink-60)}
+.input:focus{outline:none;border-color:var(--green-deep);box-shadow:inset 0 0 0 1px var(--green-deep)}
+.range{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;cursor:pointer}
+.range::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:var(--line)}
+.range::-moz-range-track{height:4px;border-radius:2px;background:var(--line)}
+.range::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;margin-top:-9px;border-radius:50%;background:var(--green-deep);border:3px solid var(--paper)}
+.range::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--green-deep);border:3px solid var(--paper)}
+
+/* Плитки и списки */
+.tile{background:var(--mist);border-radius:var(--r-tile);padding:24px}
+.tile__media{aspect-ratio:4/3;background:var(--paper);border-radius:var(--r-ctrl);display:grid;place-items:center}
+.hairlist{border-top:1px solid var(--line)}
+.hairlist li{border-bottom:1px solid var(--line)}
+.hairlist a{display:grid;grid-template-columns:1fr auto auto;gap:4px 24px;align-items:center;
+            padding:20px 16px;margin-inline:-16px;text-decoration:none;border-radius:var(--r-ctrl);
+            transition:background-color 160ms var(--ease)}
+.hairlist a:hover{background:var(--mist)}
+.hairlist__t{display:flex;flex-direction:column;gap:3px;min-width:0}
+.hairlist__p{color:var(--ink-60);white-space:nowrap;font-weight:500;font-size:var(--fs-sm)}
+.hairlist__a{color:var(--ink-60);width:16px;height:16px;fill:currentColor}
+.hairlist a:hover .hairlist__a{color:var(--green-deep)}
+
+/* Полоса фактов */
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.facts__i{display:flex;flex-direction:column;gap:12px;padding:4px 28px;border-left:1px solid var(--line)}
+.facts__i:first-child{border-left:0;padding-left:0}
+.facts__n{display:flex;align-items:baseline;gap:8px;color:var(--green-deep);min-height:1em}
+.facts__u{font-size:var(--fs-body);font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+.facts__u--tight{margin-left:-5px}
+.facts__u--word{font-size:var(--fs-num-m);font-weight:800;letter-spacing:-.03em;color:var(--ink)}
+.facts__ico{width:clamp(28px,3.2vw,40px);height:clamp(28px,3.2vw,40px);flex:none;fill:var(--green-deep);align-self:center}
+.facts__l{font-size:var(--fs-sm);line-height:1.4;color:var(--ink-60);max-width:22ch}
+@media(max-width:900px){.facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 0}
+  .facts__i:nth-child(odd){border-left:0;padding-left:0}}
+
+/* Образцы палитры */
+.sw{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--gutter)}
+@media(max-width:900px){.sw{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:520px){.sw{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sw__c{height:88px;border-radius:var(--r-tile);border:1px solid var(--line)}
+.sw__n{margin-top:10px;font-size:var(--fs-xs);font-weight:700;font-variant-numeric:tabular-nums}
+.sw__r{font-size:var(--fs-xs);color:var(--ink-60);line-height:1.4}
+
+/* Таблицы */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:var(--fs-sm)}
+th,td{text-align:left;padding:14px 16px 14px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
+th{font-size:var(--fs-label);font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-60);
+   padding-bottom:10px;white-space:nowrap}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:700}
+.verdict{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;font-weight:700;font-size:var(--fs-xs)}
+.verdict svg{width:15px;height:15px;fill:currentColor;flex:none}
+.verdict--no{color:var(--amber-deep)}
+.verdict--was{color:var(--ink-60);font-weight:500;text-decoration:line-through}
+
+/* Спецификации типографики */
+.spec{display:grid;grid-template-columns:auto 1fr;gap:6px 20px;align-items:baseline}
+.spec dt{font-size:var(--fs-label);font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-60);white-space:nowrap}
+.spec dd{margin:0;font-size:var(--fs-sm);font-variant-numeric:tabular-nums}
+
+/* Демонстрация ритма */
+.rhythm{display:flex;align-items:flex-end;gap:16px}
+.rhythm__b{flex:1;background:var(--mist);border-radius:6px 6px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:10px}
+.rhythm__b span{font-size:var(--fs-xs);font-weight:700;color:var(--ink-60)}
+
+.gridviz{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gutter);height:64px}
+.gridviz div{background:var(--mist);border-radius:4px}
+
+.dark .rule{background:rgba(255,255,255,.14)}
+.q{display:grid;grid-template-columns:auto 1fr;gap:2px 18px}
+.q dt{font-family:var(--font-num);font-weight:700;font-size:var(--fs-sm);color:var(--green);font-variant-numeric:tabular-nums}
+.q dd{margin:0 0 22px}
+.q dd:last-child{margin-bottom:0}
+.q h4{margin-bottom:4px}
+
+.ftr{background:var(--ink);color:var(--paper);padding-block:var(--sp-72) 32px}
+.ftr a{color:inherit;text-decoration:none}
+.ftr a:hover{color:var(--green)}
+.ftr__cap{font-size:var(--fs-label);font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:16px}
+.ftr__phone{display:block;font-size:20px;font-weight:700;letter-spacing:-.02em}
+.ftr__bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14);font-size:var(--fs-xs);color:rgba(255,255,255,.55)}
+
+:focus-visible{outline:2px solid var(--green-deep);outline-offset:3px;border-radius:2px}
+.dark :focus-visible,.hdr__main :focus-visible,.ftr :focus-visible{outline-color:var(--paper)}
+
+@media(max-width:1024px){.c-4{grid-column:span 6}.c-5,.c-7{grid-column:span 12}}
+@media(max-width:760px){:root{--gutter:16px}.c-4,.c-6,.c-8{grid-column:span 12}}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+
+<svg style="display:none" aria-hidden="true">
+<symbol id="i-arrow-right" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></symbol>
+<symbol id="i-shield-check" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56v58.78c0,89.61,75.82,119.34,91,124.39a15.53,15.53,0,0,0,10,0c15.2-5.05,91-34.78,91-124.39V56A16,16,0,0,0,208,40Zm0,74.79c0,78.42-66.35,104.62-80,109.18-13.53-4.51-80-30.69-80-109.18V56H208ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.68l50.34-50.34a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></symbol>
+<symbol id="i-x" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></symbol>
+<symbol id="i-check" viewBox="0 0 256 256"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></symbol>
+<symbol id="i-phone" viewBox="0 0 256 256"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></symbol>
+<symbol id="i-gauge" viewBox="0 0 256 256"><path d="M207.06,72.67A111.24,111.24,0,0,0,128,40h-.4C66.07,40.21,16,90.6,16,152v56a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V152A111.25,111.25,0,0,0,207.06,72.67ZM224,208H32V152a95.36,95.36,0,0,1,32-71.16V128a8,8,0,0,0,16,0V69.35a95.32,95.32,0,0,1,40-11V88a8,8,0,0,0,16,0V58.32a95.32,95.32,0,0,1,40,11V128a8,8,0,0,0,16,0V80.79A95.36,95.36,0,0,1,224,152Z"/></symbol>
+</svg>
+
+<header class="hdr">
+  <div class="hdr__top"><div class="shell hdr__top-in">
+    <span class="hdr__city">Златоуст</span>
+    <span class="tophide">ул. Средняя-Ветлужская, д. 38</span>
+    <span class="tophide">Пн–Сб 9:00–20:00</span>
+    <span class="hdr__top-right"><a href="tel:+79088196369">+7 (908) 819-63-69</a><a href="tel:+79385178227">+7 (938) 517-82-27</a></span>
+  </div></div>
+  <div class="hdr__main"><div class="shell hdr__main-in">
+    <a class="logo" href="#top">ГБО<span>-АВТО</span></a>
+    <nav class="hdr__nav" aria-label="Пример меню">
+      <a href="#palette">Установка ГБО</a><a href="#type">Документы ГИБДД</a>
+      <a href="#grid">Цены</a><a href="#elements">Калькулятор</a><a href="#open">Контакты</a>
+    </nav>
+    <div class="hdr__act">
+      <a class="hdr__phone" href="tel:+79088196369">+7 (908) 819-63-69</a>
+      <a class="btn btn--light btn--sm" href="#open">Записаться</a>
+    </div>
+  </div></div>
+</header>
+
+<main id="top">
+
+<section class="sec--72 shell">
+  <div class="grid">
+    <div class="c-7">
+      <span class="bar"></span>
+      <h1>Дизайн-система</h1>
+      <p class="lead" style="margin-top:20px">Визуальный язык сайта автосервиса ГБО в Златоусте. Белая база, воздух, одна насыщенная точка цвета, опора на типографику и цифры. Страница набрана самой системой — всё, что вы видите, это её собственные токены.</p>
+    </div>
+    <div class="c-5" style="display:flex;align-items:flex-end">
+      <dl class="spec" style="width:100%">
+        <dt>Проект</dt><dd>ГБО-АВТО сервис, Златоуст</dd>
+        <dt>Референс</dt><dd>rossko.ru — визуальный язык, не структура</dd>
+        <dt>Стек</dt><dd>Eleventy + Nunjucks, рукописный CSS, ванильный JS</dd>
+        <dt>Этап</dt><dd>2 из 9 — каркас и система</dd>
+        <dt>Вес шрифтов</dt><dd>72 КБ на пять начертаний</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<hr class="rule shell" style="max-width:var(--shell)">
+
+<section class="sec shell" id="palette">
+  <div class="grid" style="margin-bottom:40px">
+    <div class="c-5"><span class="bar"></span><h2>Палитра</h2></div>
+    <div class="c-7" style="display:flex;align-items:flex-end">
+      <p class="sm muted">Десять значений и ни одного сверх. Нейтральные не серые в ноль — во всех трёх есть зелёный подмес, поэтому они не спорят с акцентом. Насыщенный зелёный работает как редкая точка: шапка, кнопки, цифры, активные состояния.</p>
+    </div>
+  </div>
+  <div class="sw">
+    <div><div class="sw__c" style="background:#0B0F0D"></div><p class="sw__n">--ink · 0B0F0D</p><p class="sw__r">Текст, подвал</p></div>
+    <div><div class="sw__c" style="background:#5A625D"></div><p class="sw__n">--ink-60 · 5A625D</p><p class="sw__r">Вторичный текст</p></div>
+    <div><div class="sw__c" style="background:#FFFFFF"></div><p class="sw__n">--paper · FFFFFF</p><p class="sw__r">База</p></div>
+    <div><div class="sw__c" style="background:#F4F5F4"></div><p class="sw__n">--mist · F4F5F4</p><p class="sw__r">Плитки, полосы</p></div>
+    <div><div class="sw__c" style="background:#E3E6E3"></div><p class="sw__n">--line · E3E6E3</p><p class="sw__r">Разделители 1px</p></div>
+    <div><div class="sw__c" style="background:#00A651"></div><p class="sw__n">--green · 00A651</p><p class="sw__r">Шапка, плашки, точка «онлайн»</p></div>
+    <div><div class="sw__c" style="background:#007D3C"></div><p class="sw__n">--green-deep · 007D3C</p><p class="sw__r">Фон кнопок, зелёный текст</p></div>
+    <div><div class="sw__c" style="background:#0A2F1C"></div><p class="sw__n">--green-dark · 0A2F1C</p><p class="sw__r">Тёмные баннеры</p></div>
+    <div><div class="sw__c" style="background:#E8862A"></div><p class="sw__n">--amber · E8862A</p><p class="sw__r">Линия-маркер у окупаемости</p></div>
+    <div><div class="sw__c" style="background:#C96A15"></div><p class="sw__n">--amber-deep · C96A15</p><p class="sw__r">Цифра окупаемости</p></div>
+  </div>
+</section>
+
+<section class="mist">
+  <div class="sec--72 shell">
+    <div class="grid">
+      <div class="c-4">
+        <span class="bar"></span>
+        <h3>Два оттенка пришлось сдвинуть</h3>
+        <p class="sm muted" style="margin-top:16px">Исходная палитра в двух местах не проходила порог 4.5:1. Решение то же, что уже заложено парой green / green-deep: для текста берётся углублённый вариант, исходный остаётся на плашках и линиях, где контраст текста ни при чём.</p>
+      </div>
+      <div class="c-8">
+        <div class="tw"><table>
+          <thead><tr><th>Пара</th><th>Контраст</th><th>Порог</th><th>Итог</th></tr></thead>
+          <tbody>
+            <tr><td>ink на белом</td><td class="n">19.29:1</td><td class="muted">4.5:1</td><td><span class="verdict"><svg><use href="#i-check"/></svg>проходит</span></td></tr>
+            <tr><td>ink-60 на белом</td><td class="n">6.29:1</td><td class="muted">4.5:1</td><td><span class="verdict"><svg><use href="#i-check"/></svg>проходит</span></td></tr>
+            <tr><td>ink-60 на mist</td><td class="n">5.75:1</td><td class="muted">4.5:1</td><td><span class="verdict"><svg><use href="#i-check"/></svg>проходит</span></td></tr>
+            <tr><td>белый на green</td><td class="n">3.19:1</td><td class="muted">4.5:1</td><td><span class="verdict verdict--no"><svg><use href="#i-x"/></svg>мало для кнопки</span></td></tr>
+            <tr><td><b>белый на green-deep</b></td><td class="n">5.25:1</td><td class="muted">4.5:1</td><td><span class="verdict"><svg><use href="#i-check"/></svg>фон кнопок</span></td></tr>
+            <tr><td>green-deep на белом</td><td class="n">5.25:1</td><td class="muted">4.5:1</td><td><span class="verdict"><svg><use href="#i-check"/></svg>зелёный текст</span></td></tr>
+            <tr><td>amber на белом</td><td class="n">2.67:1</td><td class="muted">3:1 крупный</td><td><span class="verdict verdict--no"><svg><use href="#i-x"/></svg>не проходит</span></td></tr>
+            <tr><td><b>amber-deep на белом</b></td><td class="n">3.78:1</td><td class="muted">3:1 крупный</td><td><span class="verdict"><svg><use href="#i-check"/></svg>цифра окупаемости</span></td></tr>
+            <tr><td>белый на green-dark</td><td class="n">14.62:1</td><td class="muted">4.5:1</td><td><span class="verdict"><svg><use href="#i-check"/></svg>тёмные полосы</span></td></tr>
+            <tr><td>green на green-dark</td><td class="n">4.58:1</td><td class="muted">4.5:1</td><td><span class="verdict"><svg><use href="#i-check"/></svg>акцент на тёмном</span></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec shell">
+  <div class="grid">
+    <div class="c-7">
+      <span class="bar"></span>
+      <h2>Сколько в кадре зелёного</h2>
+      <p class="sm muted" style="margin-top:16px;max-width:52ch">Правило было — меньше 5 % площади любого экрана. Замер по пикселям показывает 5.5–6.7 %, и всё это одна зелёная полоса шапки: ниже неё зелёного почти нет.</p>
+      <p class="sm" style="margin-top:16px;max-width:52ch">Косметикой это не лечится. Полоса на всю ширину высотой H на экране высотой V даёт ровно H/V. Чтобы уложиться в 5 % на телефоне 844 px, полоса должна быть ниже 42 px — а внутри неё кнопка звонка и бургер по 44 px. <b>Зелёная шапка на всю ширину и «меньше 5 %» несовместимы арифметически.</b></p>
+    </div>
+    <div class="c-5" style="display:flex;align-items:flex-end">
+      <div style="width:100%">
+        <div class="tw"><table style="min-width:0">
+          <thead><tr><th>Экран</th><th>Всего</th><th>Без шапки</th></tr></thead>
+          <tbody>
+            <tr><td>1280×900</td><td class="n">5.54 %</td><td class="n" style="color:var(--green-deep)">0.08 %</td></tr>
+            <tr><td>390×844</td><td class="n">6.70 %</td><td class="n" style="color:var(--green-deep)">0.32 %</td></tr>
+          </tbody>
+        </table></div>
+        <p class="xs" style="margin-top:14px">Замер воспроизводится: <code style="font-size:12px">node tools/greencheck.js</code></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule shell" style="max-width:var(--shell)">
+
+<section class="sec--72 shell" id="type">
+  <div class="grid" style="margin-bottom:40px">
+    <div class="c-4"><span class="bar"></span><h2>Типографика</h2></div>
+    <div class="c-8" style="display:flex;align-items:flex-end">
+      <p class="sm muted">Onest несёт весь текст: кириллица родная, рисунок спокойный, на крупных кеглях держит плотный трекинг. Unbounded допущен только к числам — цены, экономия, окупаемость, номера шагов. Его сабсет физически содержит одни цифры, так что правило нарушить нельзя даже случайно.</p>
+    </div>
+  </div>
+
+  <div class="flow flow-32">
+    <div class="grid"><div class="c-4"><dl class="spec">
+      <dt>Гарнитура</dt><dd>Onest 800</dd><dt>Кегль</dt><dd>clamp(36 – 64 px)</dd>
+      <dt>Интерлиньяж</dt><dd>1.03</dd><dt>Трекинг</dt><dd>−0.035em</dd></dl></div>
+      <div class="c-8"><p style="font-size:var(--fs-h1);font-weight:800;line-height:1.03;letter-spacing:-.035em;max-width:none">Установка ГБО в Златоусте под ключ</p></div></div>
+    <hr class="rule">
+    <div class="grid"><div class="c-4"><dl class="spec">
+      <dt>Гарнитура</dt><dd>Onest 800</dd><dt>Кегль</dt><dd>clamp(26 – 42 px)</dd>
+      <dt>Трекинг</dt><dd>−0.028em</dd></dl></div>
+      <div class="c-8"><p style="font-size:var(--fs-h2);font-weight:800;line-height:1.08;letter-spacing:-.028em;max-width:none">Как проходит установка</p></div></div>
+    <hr class="rule">
+    <div class="grid"><div class="c-4"><dl class="spec">
+      <dt>Гарнитура</dt><dd>Onest 700</dd><dt>Кегль</dt><dd>clamp(19 – 24 px)</dd></dl></div>
+      <div class="c-8"><h3>Оформление документов в ГИБДД</h3></div></div>
+    <hr class="rule">
+    <div class="grid"><div class="c-4"><dl class="spec">
+      <dt>Роль</dt><dd>Подзаголовок</dd><dt>Кегль</dt><dd>17 – 20 px</dd><dt>Цвет</dt><dd>ink-60</dd></dl></div>
+      <div class="c-8"><p class="lead" style="max-width:none">Ставим комплект за один рабочий день, даём год гарантии на работы и оборудование и ведём переоборудование в ГИБДД до отметки в СТС.</p></div></div>
+    <hr class="rule">
+    <div class="grid"><div class="c-4"><dl class="spec">
+      <dt>Роль</dt><dd>Основной текст</dd><dt>Кегль</dt><dd>17 / 1.6</dd><dt>Мера</dt><dd>до 68 знаков</dd></dl></div>
+      <div class="c-8"><p>Исправно настроенная система четвёртого поколения работает на штатных режимах мотора. Газ сгорает чище бензина, меньше нагара и меньше смывает масляную плёнку со стенок цилиндров.</p></div></div>
+    <hr class="rule">
+    <div class="grid"><div class="c-4"><dl class="spec">
+      <dt>Гарнитура</dt><dd>Unbounded 700</dd><dt>Допуск</dt><dd>только цифры</dd><dt>Цифры</dt><dd>табличные</dd></dl></div>
+      <div class="c-8"><div class="row row-24" style="align-items:baseline">
+        <span class="num num--xl" style="color:var(--amber-deep)">10</span>
+        <span class="num num--l" style="color:var(--green-deep)">5 040 ₽</span>
+        <span class="num num--m">50 000 ₽</span>
+        <span class="num num--m" style="color:var(--line)">01</span>
+      </div>
+      <p class="xs" style="margin-top:12px">Окупаемость в месяцах — amber-deep. Экономия — green-deep. Цена — ink. Номер шага — line, почти невидимый.</p></div></div>
+  </div>
+</section>
+
+<section class="mist">
+  <div class="sec--72 shell">
+    <span class="bar"></span>
+    <h3 style="margin-bottom:32px">Полоса фактов</h3>
+    <ul class="facts">
+      <li class="facts__i"><span class="facts__n"><span class="num num--l">1</span><span class="facts__u">год</span></span><span class="facts__l">гарантии на работы и оборудование</span></li>
+      <li class="facts__i"><span class="facts__n"><span class="num num--l">1</span><span class="facts__u">день</span></span><span class="facts__l">установка комплекта под ключ</span></li>
+      <li class="facts__i"><span class="facts__n"><span class="num num--l">0</span><span class="facts__u facts__u--tight">%</span></span><span class="facts__l">рассрочка на установку</span></li>
+      <li class="facts__i"><span class="facts__n"><svg class="facts__ico"><use href="#i-shield-check"/></svg><span class="facts__u facts__u--word">ГИБДД</span></span><span class="facts__l">документы оформляем под ключ</span></li>
+    </ul>
+    <p class="xs" style="margin-top:28px;max-width:72ch">Прямая цитата из Росско: крупные числа в ряд, разделённые волосяными линиями. Четвёртый факт числа не имеет — вместо выдуманной цифры стоит знак того же оптического размера, ритм строки держится. Здесь только проверяемое: непроверенные «5+ лет опыта» и «100+ установок» на сайт не выводятся.</p>
+  </div>
+</section>
+
+<section class="sec shell" id="grid">
+  <div class="grid" style="margin-bottom:40px">
+    <div class="c-5"><span class="bar"></span><h2>Сетка и ритм</h2></div>
+    <div class="c-7" style="display:flex;align-items:flex-end">
+      <p class="sm muted">Двенадцать колонок, полоса 1320, гаттер 24. Соседние секции не повторяют раскладку: 7/5, потом 5/7, потом на всю ширину, потом 4/8 — на этой странице правило соблюдено буквально, пролистайте назад.</p>
+    </div>
+  </div>
+  <div class="gridviz" aria-hidden="true"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  <div class="grid" style="margin-top:48px">
+    <div class="c-6">
+      <h4 style="margin-bottom:16px">Вертикальный ритм</h4>
+      <div class="rhythm" style="height:140px">
+        <div class="rhythm__b" style="height:56%"><span>72</span></div>
+        <div class="rhythm__b" style="height:75%"><span>96</span></div>
+        <div class="rhythm__b" style="height:100%"><span>128</span></div>
+      </div>
+      <p class="xs" style="margin-top:14px">Три значения вместо одного, чтобы страница не шла конвейером.</p>
+    </div>
+    <div class="c-6">
+      <h4 style="margin-bottom:16px">Радиусы и линии</h4>
+      <dl class="spec">
+        <dt>Плитки</dt><dd>12 px</dd>
+        <dt>Кнопки и поля</dt><dd>8 px</dd>
+        <dt>Пилюли</dt><dd>999 px</dd>
+        <dt>Hero-блоки</dt><dd>24 px</dd>
+        <dt>Разделители</dt><dd>1 px solid --line</dd>
+        <dt>Тени</dt><dd>нет ни одной, кроме плавающего чат-виджета</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<hr class="rule shell" style="max-width:var(--shell)">
+
+<section class="sec--72 shell" id="elements">
+  <span class="bar"></span>
+  <h2 style="margin-bottom:40px">Элементы</h2>
+  <div class="grid">
+    <div class="c-6 flow flow-32">
+      <div>
+        <p class="label" style="margin-bottom:14px">Кнопки</p>
+        <div class="row">
+          <a class="btn btn--primary" href="#top">Рассчитать окупаемость</a>
+          <a class="btn btn--ghost" href="tel:+79088196369"><svg style="width:18px;height:18px;fill:currentColor"><use href="#i-phone"/></svg>Позвонить</a>
+        </div>
+        <p class="xs" style="margin-top:12px">Ховер меняет цвет и фон. Никакого scale.</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:14px">Пилюли — пресеты калькулятора</p>
+        <div class="row">
+          <button class="pill" type="button" aria-pressed="true">Личный авто</button>
+          <button class="pill" type="button" aria-pressed="false">Такси</button>
+          <button class="pill" type="button" aria-pressed="false">Коммерческий</button>
+        </div>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:14px">Поля и ползунок</p>
+        <div class="flow">
+          <label><span class="field__label">Имя</span><input class="input" type="text" placeholder="Как к вам обращаться"></label>
+          <label><span class="field__label">Телефон</span><input class="input" type="tel" placeholder="+7 (___) ___-__-__"></label>
+          <label><span class="field__label">Пробег в месяц, км</span><input class="range" type="range" min="500" max="10000" value="2000"></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="c-6 flow flow-32">
+      <div>
+        <p class="label" style="margin-bottom:14px">Строчный список услуг</p>
+        <ul class="hairlist">
+          <li><a href="#elements"><span class="hairlist__t"><b>Оформление документов в ГИБДД</b><span class="xs">Лаборатория, техэкспертиза, осмотр, изменения в СТС</span></span><span class="hairlist__p">от 15 000 ₽</span><svg class="hairlist__a"><use href="#i-arrow-right"/></svg></a></li>
+          <li><a href="#elements"><span class="hairlist__t"><b>Диагностика и настройка</b><span class="xs">Форсунки, редуктор, датчики, калибровка карт впрыска</span></span><span class="hairlist__p">по диагностике</span><svg class="hairlist__a"><use href="#i-arrow-right"/></svg></a></li>
+          <li><a href="#elements"><span class="hairlist__t"><b>Техническое обслуживание ГБО</b><span class="xs">Фильтры, форсунки, проверка герметичности</span></span><span class="hairlist__p">по диагностике</span><svg class="hairlist__a"><use href="#i-arrow-right"/></svg></a></li>
+        </ul>
+        <p class="xs" style="margin-top:12px">Вместо шести одинаковых карточек с иконками — строки с разделителями. Ховер подсвечивает строку фоном mist.</p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:14px">Плитки оборудования</p>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gutter)">
+          <div class="tile"><div class="tile__media"><svg style="width:44px;height:44px;fill:var(--line)"><use href="#i-gauge"/></svg></div><h4 style="margin-top:16px">Редуктор-испаритель</h4><p class="xs" style="margin-top:4px">Держит стабильное давление на всех режимах</p></div>
+          <div class="tile"><div class="tile__media"><svg style="width:44px;height:44px;fill:var(--line)"><use href="#i-gauge"/></svg></div><h4 style="margin-top:16px">Рампа форсунок</h4><p class="xs" style="margin-top:4px">Дозирует газ по каждому цилиндру</p></div>
+        </div>
+        <p class="xs" style="margin-top:12px">Единственное место, где сетка одинаковых плиток допустима: это прямая цитата референса, а предметы однотипны по смыслу. Предметная съёмка встанет на место заглушек.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="open">
+  <div class="sec--72 shell">
+    <div class="grid">
+      <div class="c-5">
+        <span class="bar"></span>
+        <h2>Что решаете вы</h2>
+        <p class="lead" style="margin-top:16px">Четыре вопроса, на которые я не могу ответить за вас. Пока держу вариант, который считаю верным.</p>
+      </div>
+      <div class="c-7">
+        <dl class="q">
+          <dt>01</dt><dd><h4>Зелёная шапка или пять процентов</h4><p class="sm muted" style="max-width:none">Одновременно не выйдет. Сейчас шапка зелёная, как в брифе. Альтернатива — белая шапка с зелёным логотипом, зелёный остаётся только на кнопках.</p></dd>
+          <dt>02</dt><dd><h4>Навигация в зелёной полосе</h4><p class="sm muted" style="max-width:none">«По центру ничего» я прочитал как «не имитируй поиск Росско». Поиска нет, но десять страниц нужно связать, и меню встало слева после логотипа. Могу вынести третьей тонкой строкой.</p></dd>
+          <dt>03</dt><dd><h4>Аватарка для квиз-виджета</h4><p class="sm muted" style="max-width:none">Файла <code style="font-size:13px">assets/avatar-circle-112.png</code> в проекте нет. Нужен ваш или сделаю сам.</p></dd>
+          <dt>04</dt><dd><h4>Оттенки, сдвинутые ради контраста</h4><p class="sm muted" style="max-width:none">green-deep под кнопки и amber-deep под цифру окупаемости. Если важнее исходные значения — верну, но доступность просядет ниже порога.</p></dd>
+        </dl>
+        <div class="row" style="margin-top:32px">
+          <a class="btn btn--light" href="#top">К началу</a>
+          <a class="btn btn--onDark" href="tel:+79088196369"><svg style="width:18px;height:18px;fill:currentColor"><use href="#i-phone"/></svg>+7 (908) 819-63-69</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="shell">
+    <div class="grid">
+      <div class="c-4">
+        <p style="font-size:24px;font-weight:800;letter-spacing:-.03em">ГБО-АВТО</p>
+        <p class="xs" style="margin-top:16px;max-width:34ch">Установка, обслуживание и ремонт газобаллонного оборудования в Златоусте. Оформление переоборудования в ГИБДД под ключ.</p>
+      </div>
+      <div class="c-4">
+        <p class="ftr__cap">Этап</p>
+        <p class="sm" style="color:rgba(255,255,255,.78)">2 из 9 — каркас и дизайн-система.<br>Дальше: первый экран главной с рабочим калькулятором окупаемости.</p>
+      </div>
+      <div class="c-4">
+        <p class="ftr__cap">Контакты сервиса</p>
+        <a class="ftr__phone" href="tel:+79088196369">+7 (908) 819-63-69</a>
+        <a class="ftr__phone" style="font-size:17px;font-weight:500;color:rgba(255,255,255,.78);margin-top:6px" href="tel:+79385178227">+7 (938) 517-82-27</a>
+        <p class="xs" style="margin-top:18px">ул. Средняя-Ветлужская, д. 38<br>Златоуст, Челябинская область</p>
+        <p class="xs" style="margin-top:12px">Пн–Сб 9:00–20:00<br>Вс — по записи</p>
+      </div>
+    </div>
+    <div class="ftr__bottom">Служебная страница проекта. Цены ориентировочные и не являются публичной офертой.</div>
+  </div>
+</footer>
