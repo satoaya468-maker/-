@@ -42,5 +42,6 @@
   "metrikaId": "",
   "callbackPromise": "Перезвоним в течение 15 минут",
   "timezone": "Asia/Yekaterinburg",
-  "formMinSeconds": 3
+  "formMinSeconds": 3,
+  "telegramNotifyPhone": "+7 951 469-33-35"
 }

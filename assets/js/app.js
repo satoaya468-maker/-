@@ -211,7 +211,7 @@
     if (!root) return;
 
     var CARS = JSON.parse(root.getAttribute('data-cars'));
-    var FUEL = JSON.parse(root.getAttribute('data-fuel'));
+    var FUEL = JSON.parse(root.getAttribute('data-fuel'));   /* только пропан */
 
     var elCar = $('[data-calc-car]', root),
         elConsum = $('[data-calc-consum]', root),
@@ -219,9 +219,6 @@
         elGas = $('[data-calc-gas]', root),
         elMileage = $('[data-calc-mileage]', root),
         elMileageOut = $('[data-calc-mileage-out]', root),
-        elUnit = $('[data-calc-unit]', root),
-        elFuelNote = $('[data-calc-fuelnote]', root),
-        elMethaNote = $('[data-calc-methanote]', root),
         outPayback = $('[data-calc-payback]', root),
         outMonth = $('[data-calc-month]', root),
         outYear = $('[data-calc-year]', root),
@@ -231,7 +228,6 @@
         btnWa = $('[data-calc-wa]', root),
         btnBook = $('[data-calc-book]', root);
 
-    var fuelId = 'propane';
     var used = false;
 
     function car() {
@@ -255,7 +251,7 @@
     }
 
     function calc() {
-      var f = FUEL[fuelId];
+      var f = FUEL;
       var mileage = +elMileage.value;
       var consum = parseFloat(elConsum.value) || 0;
       var petrol = parseFloat(elPetrol.value) || 0;
@@ -290,13 +286,12 @@
       var txt = 'Здравствуйте! Хочу точный расчёт по ГБО.\n'
         + 'Автомобиль: ' + car().name + '\n'
         + 'Пробег: ' + RUB.format(mileage) + ' км/мес\n'
-        + 'Топливо: ' + f.label + '\n'
         + (payback ? 'По калькулятору окупаемость: ' + payback + ' мес.' : '');
       btnWa.href = 'https://wa.me/79088196369?text=' + encodeURIComponent(txt);
 
       if (btnBook) {
         btnBook.dataset.prefill = 'Расчёт с сайта: ' + car().name + ', '
-          + RUB.format(mileage) + ' км/мес, ' + f.label
+          + RUB.format(mileage) + ' км/мес'
           + (payback ? ', окупаемость ' + payback + ' мес.' : '');
       }
 
@@ -309,15 +304,6 @@
       else if (!elConsum.value || !elConsum.hasAttribute('data-manual')) {
         elConsum.value = 10; elConsum.setAttribute('data-manual', '');
       }
-      calc();
-    }
-
-    function applyFuel() {
-      var f = FUEL[fuelId];
-      elGas.value = f.pricePerUnit;
-      elUnit.textContent = '₽/' + f.unit;
-      elFuelNote.textContent = f.note;
-      if (elMethaNote) elMethaNote.hidden = f.confirmed;
       calc();
     }
 
@@ -336,14 +322,6 @@
         calc();
       });
     });
-    $$('[data-calc-fuel]', root).forEach(function (b) {
-      b.addEventListener('click', function () {
-        fuelId = b.getAttribute('data-calc-fuel');
-        $$('[data-calc-fuel]', root).forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
-        applyFuel();
-      });
-    });
-
     if (btnBook) {
       btnBook.addEventListener('click', function () {
         var target = $('#zayavka');
@@ -354,7 +332,6 @@
     }
 
     applyCar();
-    applyFuel();
   })();
 
   /* --- Карусель отзывов: свайп, стрелки, точки, без автопрокрутки ------- */
@@ -520,8 +497,8 @@
       { say: 'Здравствуйте! Я мастер сервиса. Подберу оборудование под вашу машину и посчитаю, за сколько оно окупится.' },
       { ask: 'Подскажите марку и год — например, Lada Granta 2019', key: 'car', input: 'text', ph: 'Марка и год' },
       { say: 'Понял, посмотрю что подойдёт.' },
-      { ask: 'На чём хотите ездить — пропан или метан?', key: 'fuel',
-        opts: ['Пропан', 'Метан', 'Не знаю, подберите сами'] },
+      { ask: 'Что вас интересует?', key: 'need',
+        opts: ['Установка ГБО', 'Документы в ГИБДД', 'Диагностика или ремонт'] },
       { ask: 'Сколько примерно проезжаете в месяц?', key: 'mileage',
         opts: ['До 1500 км', '1500–4000 км', 'Больше 4000 км'] },
       { say: 'Спасибо. Посчитаю точную сумму и сроки по вашей машине.' },
@@ -619,10 +596,10 @@
     }
 
     function finish() {
-      var summary = [answers.car, answers.fuel, answers.mileage].filter(Boolean);
+      var summary = [answers.car, answers.need, answers.mileage].filter(Boolean);
       var txt = 'Здравствуйте! Заявка с сайта.\n'
         + 'Авто: ' + (answers.car || '—') + '\n'
-        + 'Топливо: ' + (answers.fuel || '—') + '\n'
+        + 'Задача: ' + (answers.need || '—') + '\n'
         + 'Пробег: ' + (answers.mileage || '—') + '\n'
         + 'Телефон: ' + (answers.phone || '—');
 
@@ -648,8 +625,8 @@
       window.gboGoal('quiz_complete');
       window.gboSend({
         source: 'Чат-виджет', name: '', phone: answers.phone || '',
-        car: answers.car || '', service: 'Подбор ГБО',
-        comment: 'Топливо: ' + (answers.fuel || '—') + '. Пробег: ' + (answers.mileage || '—')
+        car: answers.car || '', service: answers.need || 'Подбор ГБО',
+        comment: 'Пробег: ' + (answers.mileage || '—')
       }).catch(function () { /* каналы связи уже показаны кнопками выше */ });
     }
 

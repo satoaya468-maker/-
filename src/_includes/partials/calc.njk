@@ -1,7 +1,7 @@
 {#- Калькулятор окупаемости. Данные — cars.json, fuel.json, calc.json. -#}
 <div class="calc card" id="calc" data-calc
      data-cars='{{ cars.list | dump }}'
-     data-fuel='{{ fuel | dump }}'>
+     data-fuel='{{ fuel.propane | dump }}'>
   <div class="calc__grid">
 
     <div class="calc__fields">
@@ -46,16 +46,13 @@
       </div>
 
       <div class="calc__step">
-        <p class="calc__legend"><i>Шаг 3</i><b>Топливо</b></p>
-        <div class="calc__presets" role="group" aria-label="Тип топлива">
-          <button class="pill" type="button" data-calc-fuel="propane" aria-pressed="true">Пропан</button>
-          <button class="pill" type="button" data-calc-fuel="methane" aria-pressed="false">Метан</button>
-        </div>
+        <p class="calc__legend"><i>Шаг 3</i><b>Цена газа</b></p>
         <label class="field" style="max-width:280px">
-          <span class="field__l">Цена газа, <span data-calc-unit>₽/л</span></span>
-          <input class="input" type="number" id="calc-gas" data-calc-gas min="10" max="60" step="0.5" inputmode="decimal">
+          <span class="field__l">Пропан, ₽/{{ fuel.propane.unit }}</span>
+          <input class="input" type="number" id="calc-gas" data-calc-gas min="10" max="60" step="0.5"
+                 value="{{ fuel.propane.pricePerUnit }}" inputmode="decimal">
         </label>
-        <p class="calc__warn" data-calc-fuelnote>{{ fuel.propane.note }}</p>
+        <p class="calc__warn">{{ fuel.propane.note }}</p>
       </div>
     </div>
 
@@ -91,7 +88,6 @@
         </div>
       </div>
       <p class="calc__note">{{ calc.note }}</p>
-      <p class="calc__warn" data-calc-methanote hidden>Данные по метану — рыночный ориентир, владельцем сервиса пока не подтверждены. Точную цену комплекта назовём на диагностике.</p>
     </div>
 
   </div>
