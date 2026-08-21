@@ -40,6 +40,10 @@ module.exports = function (eleventyConfig) {
     const cls = opts.class ? ` class="${opts.class}"` : "";
     const style = opts.style ? ` style="${opts.style}"` : "";
 
+    /* Слот, который просто исчезает, пока файла нет: тёмные карточки
+       должны выглядеть законченными и без изображения */
+    if (!meta && opts.optional) return "";
+
     if (!meta) {
       /* Файла ещё нет: вместо битой картинки — плашка с именем файла.
          Классы отдаём как есть, чтобы медиазапросы (например, скрытие

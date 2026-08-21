@@ -21,7 +21,12 @@ except ImportError:
     print("Pillow не установлен: pip install pillow. Изображения не пересобраны.", file=sys.stderr)
     sys.exit(0)
 
-manifest = {}
+MANIFEST = os.path.join(SRC, "manifest.json")
+try:
+    manifest = json.load(open(MANIFEST, encoding="utf-8"))
+except (OSError, ValueError):
+    manifest = {}
+
 for fn in sorted(os.listdir(SRC)):
     if not fn.lower().endswith(".png"):
         continue

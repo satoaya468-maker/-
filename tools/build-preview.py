@@ -34,6 +34,21 @@ css = re.sub(r"url\('(/assets/fonts/[^']+)'\)", inline_font, css)
 
 js = open(os.path.join(ROOT, "assets/js/app.js"), encoding="utf-8").read()
 
+MIME = {".webp": "image/webp", ".jpg": "image/jpeg", ".png": "image/png",
+        ".svg": "image/svg+xml"}
+
+
+def inline_img(m):
+    """Изображения тоже уходят в data-URI: у превью не должно быть
+    ни одного внешнего запроса, иначе оно не откроется вне сервера."""
+    ref = m.group(1)
+    path = os.path.join(ROOT, ref.lstrip("/"))
+    ext = os.path.splitext(ref)[1].lower()
+    if not os.path.exists(path) or ext not in MIME:
+        return m.group(0)
+    b64 = base64.b64encode(open(path, "rb").read()).decode()
+    return m.group(0).replace(ref, "data:%s;base64,%s" % (MIME[ext], b64))
+
 sprite, bodies, titles = None, {}, {}
 for url, rel in PAGES:
     html = open(os.path.join(DIST, rel), encoding="utf-8").read()
@@ -51,6 +66,7 @@ for url, rel in PAGES:
     # внутренние ссылки переводим на hash-маршруты
     body = re.sub(r'href="(/[a-z0-9\-/]*/?)(#[^"]*)?"',
                   lambda x: 'href="#%s%s"' % (x.group(1), x.group(2) or ""), body)
+    body = re.sub(r'(?:src|srcset)="(/assets/img/[^"]+)"', inline_img, body)
     bodies[url] = body.strip()
 
 def js_str(o):
