@@ -1,12 +1,183 @@
 ---
 layout: layouts/base.njk
-title: Установка ГБО в Златоусте — ГБО-АВТО сервис
-description: Установка газобаллонного оборудования 4 поколения в Златоусте за один рабочий день. Гарантия 1 год, оформление в ГИБДД под ключ, бесплатная диагностика и подбор, рассрочка 0 %.
+title: "Установка ГБО в Златоусте — ГБО-АВТО сервис"
+description: "Установка газобаллонного оборудования 4 поколения в Златоусте за один рабочий день. Гарантия 1 год, документы для ГИБДД под ключ, бесплатная диагностика и подбор, рассрочка 0 %."
 permalink: /
+bookExternal: false
 ---
-<section class="section shell">
-  <span class="bar"></span>
-  <h1>Установка ГБО в Златоусте под ключ</h1>
-  <p class="lead" style="margin-top:20px">Каркас собран. Секции главной страницы — следующим шагом.</p>
-  <p style="margin-top:24px"><a class="link-green" href="/_styleguide/">Открыть дизайн-систему</a></p>
+
+{#- 1. ПЕРВЫЙ ЭКРАН. 7 колонок текст, 5 изображение -#}
+<section class="s-96 shell" style="padding-top:72px">
+  <div class="grid" style="align-items:center">
+    <div class="c-7">
+      <p class="badge"><span class="badge__dot"></span>{{ site.city }} · с выездом по области</p>
+      <h1 style="margin-top:20px">Установка ГБО<br>в Златоусте под ключ</h1>
+      <p class="lead" style="margin-top:20px;max-width:480px">За один рабочий день. Гарантия год на работы и оборудование. Документы для ГИБДД оформляем сами.</p>
+      <div class="row" style="margin-top:32px">
+        <a class="btn btn--primary" href="#calc">Рассчитать окупаемость</a>
+        <a class="btn btn--outline" href="{{ site.phones[0].display | telHref }}" data-goal="phone_click">{{ site.phones[0].display }}</a>
+      </div>
+      <p class="sm muted" style="margin-top:32px">{{ site.address.street }} · {{ site.hours.short }}</p>
+    </div>
+    <div class="c-5" style="display:flex;justify-content:flex-end">
+      {% pic "gbo-kit-hero", "Комплект ГБО: редуктор, рампа форсунок, мультиклапан и тороидальный баллон", { style: "max-height:560px;width:auto;object-fit:contain", eager: true, phHeight: "420px" } %}
+    </div>
+  </div>
+</section>
+
+{#- 2. КАЛЬКУЛЯТОР -#}
+<section class="s-128 shell pt-0" id="raschet">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <h2 style="margin-bottom:40px">Сколько вы сэкономите на газе</h2>
+    {% include "partials/calc.njk" %}
+  </div>
+</section>
+
+{#- 3. ПОЛОСА ФАКТОВ -#}
+<section class="bleed-mist" style="padding-block:56px">
+  <div class="shell">{% include "partials/stats.njk" %}</div>
+</section>
+
+{#- 4. МАРКЕТИНГОВЫЙ БАННЕР -#}
+<section class="s-112 shell">
+  <div class="promo reveal">
+    <div class="promo__in">
+      <h2>Бесплатная диагностика и подбор комплекта под ваш автомобиль</h2>
+      <p class="lead" style="margin-top:16px">Приезжайте — посмотрим машину, посчитаем стоимость и сроки. Без обязательств.</p>
+      <p style="margin-top:28px"><a class="btn btn--onDark" href="/kontakty/#zayavka">Записаться на диагностику</a></p>
+    </div>
+    {% pic "gbo-kit-diagonal", "Комплект ГБО по диагонали", { class: "promo__img", phHeight: "200px" } %}
+  </div>
+</section>
+
+{#- 5. УСЛУГИ. Раскладка 5/7 -#}
+<section class="s-96 shell pt-0">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <div class="grid">
+      <div class="c-5">
+        <h2>Что мы делаем</h2>
+        <p style="margin-top:20px;color:var(--ink-60)">Сервис занимается только газовым оборудованием и ведёт полный цикл: от подбора комплекта под конкретный мотор до <a class="accent-link" href="/dokumenty-gibdd/">отметки о ГБО в СТС</a>. Разбрасываться на всё подряд не пытаемся — поэтому знаем своё дело.</p>
+      </div>
+      <div class="c-7">
+        <a class="svc-lead" href="{{ services.lead.url }}">
+          <h3>{{ services.lead.title }}</h3>
+          <p class="sm muted" style="margin-top:8px;max-width:46ch">{{ services.lead.desc }}</p>
+          <div class="row" style="margin-top:20px;justify-content:space-between">
+            <span class="svc-lead__price">{{ services.lead.priceLabel }}</span>
+            <span class="svc-lead__go">Подробнее<svg aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+          </div>
+        </a>
+        <ul class="svc-list">
+          {%- for s in services.list %}
+          <li><a href="{{ s.url }}">
+            <span class="svc-list__t"><b>{{ s.title }}</b><span>{{ s.desc }}</span></span>
+            <span class="svc-list__p">{{ s.priceLabel }}</span>
+            <svg class="svc-list__a" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          </a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{#- 6. ОБОРУДОВАНИЕ -#}
+<section class="s-80 shell">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <h2 style="margin-bottom:40px">Оборудование, которое мы ставим</h2>
+    <div class="tiles">
+      {%- for e in equipment %}
+      <div class="tile"><span class="tile__mark">{{ e.mark }}</span><span class="tile__t">{{ e.title }}</span></div>
+      {%- endfor %}
+    </div>
+    <p class="sm muted" style="margin-top:24px">Конкретную марку оборудования подбираем под автомобиль и бюджет — на бесплатной диагностике.</p>
+  </div>
+</section>
+
+{#- 7. КАК ПРОХОДИТ УСТАНОВКА -#}
+<section class="s-112 shell pt-0">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <h2 style="margin-bottom:48px">Как проходит установка</h2>
+    <ol class="steps">
+      {%- for s in steps %}
+      <li><span class="steps__n">{{ s.n }}</span><h3 class="steps__t">{{ s.title }}</h3><p class="steps__x">{{ s.text }}</p></li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+{#- 8. ДОКУМЕНТЫ ДЛЯ ГИБДД. Единственная тёмная секция второй половины -#}
+<section class="s-96 shell pt-0">
+  <div class="card card--dark reveal">
+    <div class="section-rule section-rule--onDark"></div>
+    <h2>Поставим на учёт без вашего участия</h2>
+    <div class="cols3" style="margin-top:40px">
+      <div class="cols3__i"><h3>{{ docs.after.title }}</h3><ul>{%- for i in docs.after.items %}<li>{{ i }}</li>{%- endfor %}</ul></div>
+      <div class="cols3__i"><h3>{{ docs.we.title }}</h3><ul>{%- for i in docs.we.items %}<li>{{ i }}</li>{%- endfor %}</ul></div>
+      <div class="cols3__i"><h3>{{ docs.you.title }}</h3><ul>{%- for i in docs.you.items %}<li>{{ i }}</li>{%- endfor %}</ul></div>
+    </div>
+    <div class="row" style="margin-top:40px;gap:24px">
+      <span class="num" style="font-size:32px;color:var(--paper)">от 15 000 ₽</span>
+      <a class="btn btn--onDark" href="/dokumenty-gibdd/">Подробнее о документах</a>
+    </div>
+  </div>
+</section>
+
+{#- 9. МАСТЕР ПОДБЕРЁТ КОМПЛЕКТ -#}
+<section class="s-80 shell pt-0">
+  <div class="reveal">{% include "partials/master.njk" %}</div>
+</section>
+
+{#- 10. ОТЗЫВЫ -#}
+<section class="s-112 shell">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <h2 style="margin-bottom:40px">Что говорят клиенты</h2>
+    {% include "partials/carousel.njk" %}
+  </div>
+</section>
+
+{#- 11. ОЦЕНИТЕ НАС -#}
+<section class="s-80 shell pt-0">
+  <div class="reveal">{% include "partials/rate.njk" %}</div>
+</section>
+
+{#- 12. FAQ -#}
+<section class="s-96 shell">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <div class="grid">
+      <div class="c-8">
+        <h2 style="margin-bottom:32px">Частые вопросы</h2>
+        {% set items = faq.home %}{% include "partials/faq.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{#- 13. КОНТАКТЫ И ЗАЯВКА -#}
+<section class="s-128 shell pt-0" id="zayavka">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <h2 style="margin-bottom:40px">Приезжайте или оставьте заявку</h2>
+    <div class="grid">
+      <div class="c-5">
+        <a class="hdr__phone" style="color:var(--ink);font-size:28px;display:block" href="{{ site.phones[0].display | telHref }}" data-goal="phone_click">{{ site.phones[0].display }}</a>
+        <a class="hdr__phone" style="color:var(--ink-60);font-size:20px;font-weight:600;display:block;margin-top:8px" href="{{ site.phones[1].display | telHref }}" data-goal="phone_click">{{ site.phones[1].display }}</a>
+        <p style="margin-top:24px">{{ site.address.street }}<br>{{ site.city }}, {{ site.region }}</p>
+        <p class="sm muted" style="margin-top:12px">{{ site.hours.weekdays }}<br>{{ site.hours.sunday }}</p>
+        <p class="row" style="margin-top:24px;gap:20px">
+          <a class="accent-link" href="{{ site.whatsapp }}" target="_blank" rel="noopener" data-goal="whatsapp_click">WhatsApp</a>
+          <a class="accent-link" href="{{ site.telegram }}" target="_blank" rel="noopener">Telegram</a>
+          <a class="accent-link" href="{{ site.gis }}" target="_blank" rel="noopener" data-goal="gis_click">Смотреть на 2ГИС</a>
+        </p>
+      </div>
+      <div class="c-7">{% set formSource = 'Форма на главной' %}{% include "partials/form.njk" %}</div>
+    </div>
+    <div style="margin-top:48px">{% include "partials/map.njk" %}</div>
+  </div>
 </section>

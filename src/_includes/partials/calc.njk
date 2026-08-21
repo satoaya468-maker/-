@@ -1,0 +1,98 @@
+{#- Калькулятор окупаемости. Данные — cars.json, fuel.json, calc.json. -#}
+<div class="calc card" id="calc" data-calc
+     data-cars='{{ cars.list | dump }}'
+     data-fuel='{{ fuel | dump }}'>
+  <div class="calc__grid">
+
+    <div class="calc__fields">
+      <div class="calc__step">
+        <p class="calc__legend"><i>Шаг 1</i><b>Ваш автомобиль</b></p>
+        <label class="field">
+          <span class="vh">Автомобиль</span>
+          <select class="input" id="calc-car" data-calc-car>
+            {%- for c in cars.list %}
+            <option value="{{ c.id }}"{% if c.id == 'granta' %} selected{% endif %}>{{ c.name }}</option>
+            {%- endfor %}
+          </select>
+        </label>
+        <div class="calc__two" style="margin-top:12px">
+          <label class="field">
+            <span class="field__l">Расход бензина, л/100 км</span>
+            <input class="input" type="number" id="calc-consum" data-calc-consum min="4" max="30" step="0.1" inputmode="decimal">
+          </label>
+          <label class="field">
+            <span class="field__l">Цена бензина, ₽/л</span>
+            <input class="input" type="number" id="calc-petrol" data-calc-petrol
+                   min="{{ calc.petrol.min }}" max="{{ calc.petrol.max }}" step="{{ calc.petrol.step }}"
+                   value="{{ calc.petrol.default }}" inputmode="decimal">
+          </label>
+        </div>
+      </div>
+
+      <div class="calc__step">
+        <p class="calc__legend"><i>Шаг 2</i><b>Пробег в месяц</b></p>
+        <div class="calc__presets" role="group" aria-label="Пресеты пробега">
+          {%- for p in calc.presets %}
+          <button class="pill" type="button" data-calc-preset="{{ p.mileage }}"
+                  aria-pressed="{{ 'true' if loop.first else 'false' }}">{{ p.label }}</button>
+          {%- endfor %}
+        </div>
+        <div class="calc__mileage">
+          <input class="range" type="range" id="calc-mileage" data-calc-mileage
+                 min="{{ calc.mileage.min }}" max="{{ calc.mileage.max }}" step="{{ calc.mileage.step }}"
+                 value="{{ calc.mileage.default }}" aria-label="Пробег в месяц, км">
+          <output for="calc-mileage" data-calc-mileage-out>1 500 км</output>
+        </div>
+      </div>
+
+      <div class="calc__step">
+        <p class="calc__legend"><i>Шаг 3</i><b>Топливо</b></p>
+        <div class="calc__presets" role="group" aria-label="Тип топлива">
+          <button class="pill" type="button" data-calc-fuel="propane" aria-pressed="true">Пропан</button>
+          <button class="pill" type="button" data-calc-fuel="methane" aria-pressed="false">Метан</button>
+        </div>
+        <label class="field" style="max-width:280px">
+          <span class="field__l">Цена газа, <span data-calc-unit>₽/л</span></span>
+          <input class="input" type="number" id="calc-gas" data-calc-gas min="10" max="60" step="0.5" inputmode="decimal">
+        </label>
+        <p class="calc__warn" data-calc-fuelnote>{{ fuel.propane.note }}</p>
+      </div>
+    </div>
+
+    <div class="calc__out">
+      <div class="calc__card">
+        <p class="calc__payback" data-calc-payback aria-live="polite">—</p>
+        <p class="calc__paybackL">месяцев до окупаемости</p>
+
+        <div class="calc__save">
+          <div>
+            <p class="calc__saveN" data-calc-month>—</p>
+            <p class="calc__saveL">экономия в месяц</p>
+          </div>
+          <div>
+            <p class="calc__saveN" data-calc-year>—</p>
+            <p class="calc__saveL">экономия за год</p>
+          </div>
+        </div>
+
+        <p class="calc__split" data-calc-split>Сейчас на бензине: — → На газе: —</p>
+
+        <dl class="calc__rec">
+          <dt>Рекомендуем</dt><dd data-calc-tank>—</dd>
+          <dt>Ориентировочная стоимость установки</dt><dd data-calc-install>—</dd>
+        </dl>
+
+        <div class="calc__acts">
+          <a class="btn btn--primary btn--wide" data-calc-wa href="{{ site.whatsapp }}" target="_blank" rel="noopener" data-goal="whatsapp_click">
+            <svg class="btn__i" aria-hidden="true"><use href="#i-whatsapp-logo"></use></svg>
+            Получить точный расчёт в WhatsApp
+          </a>
+          <a class="btn btn--outline btn--wide" data-calc-book href="{{ '/kontakty/#zayavka' if bookExternal else '#zayavka' }}">Записаться на установку</a>
+        </div>
+      </div>
+      <p class="calc__note">{{ calc.note }}</p>
+      <p class="calc__warn" data-calc-methanote hidden>Данные по метану — рыночный ориентир, владельцем сервиса пока не подтверждены. Точную цену комплекта назовём на диагностике.</p>
+    </div>
+
+  </div>
+</div>

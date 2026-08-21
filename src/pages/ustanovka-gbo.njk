@@ -1,0 +1,90 @@
+---
+layout: layouts/page.njk
+title: "Установка ГБО 4 поколения в Златоусте — цена от 50 000 ₽"
+description: "Установка газобаллонного оборудования 4 поколения в Златоусте за один рабочий день. Что входит в комплект, сроки, гарантия год, цена от 50 000 ₽, расчёт окупаемости."
+permalink: /ustanovka-gbo/
+crumb: "Установка ГБО"
+bookExternal: true
+---
+<section class="s-96 shell" style="padding-top:40px">
+  <div class="grid" style="align-items:center">
+    <div class="c-7">
+      <h1>Установка ГБО 4 поколения</h1>
+      <p class="lead" style="margin-top:20px;max-width:520px">Ставим комплект за один рабочий день, настраиваем карты впрыска на месте и даём год гарантии на работы и оборудование. Оформление в ГИБДД берём на себя.</p>
+      <div class="row" style="margin-top:32px">
+        <a class="btn btn--primary" href="#zayavka-page">Записаться на установку</a>
+        <a class="btn btn--outline" href="{{ site.phones[0].display | telHref }}" data-goal="phone_click">{{ site.phones[0].display }}</a>
+      </div>
+      <p class="row row-24" style="margin-top:32px">
+        <span class="sm"><b class="num" style="font-size:24px;color:var(--green)">от 50 000 ₽</b></span>
+        <span class="sm muted">точная сумма — после бесплатной диагностики</span>
+      </p>
+    </div>
+    <div class="c-5" style="display:flex;justify-content:flex-end">
+      {% pic "gbo-kit-hero", "Комплект ГБО 4 поколения", { style: "max-height:520px;width:auto;object-fit:contain", eager: true, phHeight: "400px" } %}
+    </div>
+  </div>
+</section>
+
+<section class="bleed-mist" style="padding-block:56px">
+  <div class="shell">{% include "partials/stats.njk" %}</div>
+</section>
+
+<section class="s-112 shell">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <h2 style="margin-bottom:40px">Что входит в комплект</h2>
+    <div class="tiles">
+      {%- for e in equipment %}
+      <div class="tile"><span class="tile__mark">{{ e.mark }}</span><span class="tile__t">{{ e.title }}</span></div>
+      {%- endfor %}
+    </div>
+    <div class="grid" style="margin-top:40px">
+      <div class="c-6">
+        <h3>Также в стоимость входит</h3>
+        <ul class="svc-list" style="margin-top:16px">
+          <li><a href="#zayavka-page"><span class="svc-list__t"><b>Мультиклапан и блок управления</b><span>Электроника, проводка, переключатель в салоне</span></span><svg class="svc-list__a" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></li>
+          <li><a href="#zayavka-page"><span class="svc-list__t"><b>Магистрали и заправочное устройство</b><span>Врезка, крепёж, вынос заправки под лючок или бампер</span></span><svg class="svc-list__a" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></li>
+          <li><a href="#zayavka-page"><span class="svc-list__t"><b>Монтаж и настройка</b><span>Калибровка карт впрыска на месте, проверка герметичности</span></span><svg class="svc-list__a" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></li>
+        </ul>
+      </div>
+      <div class="c-6">
+        <h3>Сроки и гарантия</h3>
+        <p style="margin-top:16px;color:var(--ink-60)">Машину сдаёте утром, вечером забираете с настроенной системой. Гарантия — <b style="color:var(--ink)">год на работы и на установленное оборудование</b>. Первая регулировка после обкатки бесплатная.</p>
+        <p style="margin-top:16px;color:var(--ink-60)">Оформление переоборудования идёт отдельно и автомобиль у нас не держит — подробности на странице <a class="accent-link" href="/dokumenty-gibdd/">документов для ГИБДД</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s-80 shell pt-0">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <h2 style="margin-bottom:40px">Посчитайте окупаемость</h2>
+    {% include "partials/calc.njk" %}
+  </div>
+</section>
+
+<section class="s-96 shell">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <h2 style="margin-bottom:48px">Как проходит установка</h2>
+    <ol class="steps">
+      {%- for s in steps %}
+      <li><span class="steps__n">{{ s.n }}</span><h3 class="steps__t">{{ s.title }}</h3><p class="steps__x">{{ s.text }}</p></li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="s-112 shell pt-0" id="zayavka-page">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <div class="grid">
+      <div class="c-8">
+        <h2 style="margin-bottom:32px">Вопросы про установку</h2>
+        {% set items = faq.install %}{% include "partials/faq.njk" %}
+      </div>
+    </div>
+  </div>
+</section>

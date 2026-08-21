@@ -1,12 +1,34 @@
-[
-  { "url": "/", "title": "Главная", "short": "Главная", "inHeader": false },
-  { "url": "/ustanovka-gbo/", "title": "Установка ГБО", "short": "Установка ГБО", "inHeader": true },
-  { "url": "/dokumenty-gibdd/", "title": "Документы в ГИБДД", "short": "Документы ГИБДД", "inHeader": true },
-  { "url": "/ceny/", "title": "Цены", "short": "Цены", "inHeader": true },
-  { "url": "/diagnostika/", "title": "Диагностика и настройка", "short": "Диагностика", "inHeader": false },
-  { "url": "/to-i-remont/", "title": "ТО и ремонт ГБО", "short": "ТО и ремонт", "inHeader": false },
-  { "url": "/pereoborudovanie/", "title": "Переоборудование на газ", "short": "Переоборудование", "inHeader": false },
-  { "url": "/kalkulyator/", "title": "Калькулятор окупаемости", "short": "Калькулятор", "inHeader": true },
-  { "url": "/otzyvy/", "title": "Отзывы", "short": "Отзывы", "inHeader": false },
-  { "url": "/kontakty/", "title": "Контакты", "short": "Контакты", "inHeader": true }
-]
+{
+  "header": [
+    { "url": "/ustanovka-gbo/",  "title": "Установка ГБО" },
+    { "url": "/dokumenty-gibdd/","title": "Документы ГИБДД" },
+    { "url": "/ceny/",           "title": "Цены" },
+    { "url": "/kalkulyator/",    "title": "Калькулятор" },
+    { "url": "/kontakty/",       "title": "Контакты" }
+  ],
+  "services": [
+    { "url": "/ustanovka-gbo/",    "title": "Установка ГБО 4 поколения" },
+    { "url": "/diagnostika/",      "title": "Диагностика и настройка" },
+    { "url": "/to-i-remont/",      "title": "ТО и ремонт ГБО" },
+    { "url": "/pereoborudovanie/", "title": "Переоборудование на газ" }
+  ],
+  "info": [
+    { "url": "/ceny/",            "title": "Цены" },
+    { "url": "/kalkulyator/",     "title": "Калькулятор окупаемости" },
+    { "url": "/dokumenty-gibdd/", "title": "Документы для ГИБДД" },
+    { "url": "/otzyvy/",          "title": "Отзывы" },
+    { "url": "/kontakty/",        "title": "Контакты" }
+  ],
+  "all": [
+    { "url": "/",                  "title": "Главная" },
+    { "url": "/ustanovka-gbo/",    "title": "Установка ГБО" },
+    { "url": "/dokumenty-gibdd/",  "title": "Документы ГИБДД" },
+    { "url": "/ceny/",             "title": "Цены" },
+    { "url": "/kalkulyator/",      "title": "Калькулятор" },
+    { "url": "/diagnostika/",      "title": "Диагностика и настройка" },
+    { "url": "/to-i-remont/",      "title": "ТО и ремонт ГБО" },
+    { "url": "/pereoborudovanie/", "title": "Переоборудование на газ" },
+    { "url": "/otzyvy/",           "title": "Отзывы" },
+    { "url": "/kontakty/",         "title": "Контакты" }
+  ]
+}

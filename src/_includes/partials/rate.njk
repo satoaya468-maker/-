@@ -1,0 +1,32 @@
+{#- Оцените нас. Поведение зависит от site.reviewGating, по умолчанию false. -#}
+<div class="card" data-rate>
+  <div class="grid">
+    <div class="c-5">
+      <h2>Оцените наш сервис</h2>
+      <p class="lead" style="margin-top:16px">Уже обращались к нам? Поставьте оценку — это занимает секунду и помогает другим водителям в Златоусте.</p>
+    </div>
+    <div class="c-7">
+      <p class="cap">Ваша оценка</p>
+      <div class="rate__stars" role="radiogroup" aria-label="Оценка от 1 до 5">
+        {%- for n in [1,2,3,4,5] %}
+        <button class="rate__star" type="button" role="radio" aria-checked="false" data-rate-star="{{ n }}" aria-label="{{ n }} из 5">
+          <svg aria-hidden="true"><use href="#i-star-fill"></use></svg>
+        </button>
+        {%- endfor %}
+      </div>
+
+      <div class="rate__panel" data-rate-panel hidden></div>
+
+      <form class="rate__panel" data-rate-form hidden>
+        <p class="field__l" style="margin-bottom:10px">Что пошло не так? Напишите — разберёмся.</p>
+        <label class="field"><span class="vh">Комментарий</span>
+          <textarea class="input" name="comment" rows="3" placeholder="Коротко опишите ситуацию"></textarea></label>
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="row" style="margin-top:12px">
+          <button class="btn btn--primary" type="submit">Отправить</button>
+          <a class="accent-link" href="{{ site.gisReviews }}" target="_blank" rel="noopener" data-goal="gis_click">Или оставить отзыв в 2ГИС</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

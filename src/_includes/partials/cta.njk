@@ -1,0 +1,14 @@
+{#- Общий CTA-блок всех внутренних страниц. 3.5: изображение обрезано краем карточки -#}
+<section class="s-96 shell">
+  <div class="promo cta reveal">
+    <div class="promo__in cta__in">
+      <h2>Посчитаем стоимость для вашей машины</h2>
+      <p class="lead" style="margin-top:16px;max-width:44ch">Приезжайте на бесплатную диагностику или оставьте телефон — перезвоним в течение 15 минут и назовём цену и срок.</p>
+      <div class="row" style="margin-top:28px;gap:16px">
+        <a class="btn btn--onDark" href="/kontakty/#zayavka">Оставить заявку</a>
+        <a class="hdr__phone" style="font-size:24px" href="{{ site.phones[0].display | telHref }}" data-goal="phone_click">{{ site.phones[0].display }}</a>
+      </div>
+    </div>
+    {% pic "gbo-kit-diagonal", "Комплект ГБО: редуктор, рампа форсунок и тороидальный баллон", { class: "promo__img cta__img", phHeight: "180px" } %}
+  </div>
+</section>

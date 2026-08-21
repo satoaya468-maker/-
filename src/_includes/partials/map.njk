@@ -1,0 +1,11 @@
+<div class="map" data-map
+     data-src="https://yandex.ru/map-widget/v1/?ll={{ site.address.lon }}%2C{{ site.address.lat }}&z=16&pt={{ site.address.lon }},{{ site.address.lat }},pm2gnm">
+  <div class="map__ph">
+    <p class="h3">{{ site.address.street }}</p>
+    <p class="sm muted" style="margin-top:8px">{{ site.city }}, {{ site.region }} · {{ site.hours.short }}</p>
+    <div class="row" style="justify-content:center;margin-top:20px">
+      <button class="btn btn--primary" type="button" data-map-load>Показать карту</button>
+      <a class="btn btn--outline" href="{{ site.gis }}" target="_blank" rel="noopener" data-goal="gis_click">Открыть в 2ГИС</a>
+    </div>
+  </div>
+</div>

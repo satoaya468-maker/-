@@ -3,37 +3,39 @@
 <footer class="ftr">
   <div class="shell">
     <div class="grid">
-      <div class="c-4 stack-16">
-        <a class="ftr__logo" href="/">ГБО-АВТО</a>
-        <p class="xs" style="max-width:34ch">Установка, обслуживание и ремонт газобаллонного оборудования в Златоусте. Оформление переоборудования в ГИБДД под ключ.</p>
+      <div class="c-3">
+        <a class="ftr__logo" href="/"><b>ГБО</b>-АВТО</a>
+        <p class="sm" style="margin-top:16px;max-width:32ch">Установка, обслуживание и ремонт газобаллонного оборудования в Златоусте. Переоборудование оформляем в ГИБДД под ключ.</p>
+      </div>
+
+      <div class="c-3">
+        <p class="ftr__cap">Услуги</p>
+        <ul class="ftr__nav">
+          {%- for item in nav.services %}<li><a href="{{ item.url }}">{{ item.title }}</a></li>{%- endfor %}
+        </ul>
+      </div>
+
+      <div class="c-3">
+        <p class="ftr__cap">Информация</p>
+        <ul class="ftr__nav">
+          {%- for item in nav.info %}<li><a href="{{ item.url }}">{{ item.title }}</a></li>{%- endfor %}
+        </ul>
+      </div>
+
+      <div class="c-3">
+        <p class="ftr__cap">Контакты</p>
+        <a class="ftr__phone" href="{{ p1 | telHref }}" data-goal="phone_click">{{ p1 }}</a>
+        <a class="ftr__phone ftr__phone--alt" href="{{ p2 | telHref }}" data-goal="phone_click">{{ p2 }}</a>
+        <p class="sm" style="margin-top:18px">{{ site.address.street }}<br>{{ site.city }}, {{ site.region }}</p>
+        <p class="sm" style="margin-top:12px">{{ site.hours.weekdays }}<br>{{ site.hours.sunday }}</p>
         <div class="ftr__msgs">
           <a href="{{ site.whatsapp }}" target="_blank" rel="noopener" data-goal="whatsapp_click">
             <svg class="i i--sm" aria-hidden="true"><use href="#i-whatsapp-logo"></use></svg>WhatsApp</a>
           <a href="{{ site.telegram }}" target="_blank" rel="noopener">
             <svg class="i i--sm" aria-hidden="true"><use href="#i-telegram-logo"></use></svg>Telegram</a>
+          <a href="{{ site.gis }}" target="_blank" rel="noopener" data-goal="gis_click">
+            <svg class="i i--sm" aria-hidden="true"><use href="#i-map-pin"></use></svg>2ГИС</a>
         </div>
-      </div>
-
-      <div class="c-4">
-        <p class="ftr__cap">Страницы</p>
-        <ul class="ftr__nav">
-          {%- for item in nav -%}
-          <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
-          {%- endfor -%}
-        </ul>
-      </div>
-
-      <div class="c-4">
-        <p class="ftr__cap">Контакты</p>
-        <a class="ftr__phone" href="{{ p1 | telHref }}" data-goal="phone_click">{{ p1 }}</a>
-        <a class="ftr__phone ftr__phone--alt" href="{{ p2 | telHref }}" data-goal="phone_click">{{ p2 }}</a>
-        <p class="xs" style="margin-top:18px">
-          {{ site.address.street }}<br>{{ site.city }}, {{ site.region }}
-        </p>
-        <p class="xs" style="margin-top:12px">{{ site.hours.weekdays }}<br>{{ site.hours.sunday }}</p>
-        <p class="xs" style="margin-top:12px">
-          <a href="{{ site.gis }}" target="_blank" rel="noopener" data-goal="gis_click" style="text-decoration:underline;text-decoration-color:rgba(255,255,255,.3)">Карточка и отзывы в 2ГИС</a>
-        </p>
       </div>
     </div>
 

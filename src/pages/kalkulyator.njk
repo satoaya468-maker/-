@@ -1,0 +1,47 @@
+---
+layout: layouts/page.njk
+title: "Калькулятор окупаемости ГБО — расчёт экономии на газе"
+description: "Калькулятор окупаемости газобаллонного оборудования: выберите автомобиль, пробег и тип топлива и увидите экономию в месяц, за год и срок окупаемости установки."
+permalink: /kalkulyator/
+crumb: "Калькулятор"
+bookExternal: true
+---
+<section class="s-80 shell" style="padding-top:40px">
+  <div class="grid">
+    <div class="c-8">
+      <h1>Калькулятор окупаемости ГБО</h1>
+      <p class="lead" style="margin-top:20px">Выберите машину и пробег — расчёт покажет, сколько вы тратите на бензине, сколько будете тратить на газе и за сколько месяцев вернётся стоимость установки.</p>
+    </div>
+  </div>
+</section>
+
+<section class="s-96 shell pt-0">
+  <div class="reveal">{% include "partials/calc.njk" %}</div>
+</section>
+
+<section class="s-112 shell pt-0">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <h2 style="margin-bottom:40px">Как считается</h2>
+    <div class="grid">
+      <div class="c-7">
+        <p>Формула простая, и мы показываем её целиком, чтобы вы могли проверить руками.</p>
+        <ol class="svc-list" style="margin-top:24px;border-top:1px solid var(--line)">
+          <li><div class="svc-list__t" style="padding:16px 0"><b>Литры бензина = пробег ÷ 100 × расход</b><span>Сколько топлива уходит за месяц сейчас</span></div></li>
+          <li><div class="svc-list__t" style="padding:16px 0"><b>Литры газа = литры бензина × 1,10</b><span>На газе мотор расходует примерно на 10 % больше — это учтено</span></div></li>
+          <li><div class="svc-list__t" style="padding:16px 0"><b>Экономия за месяц = затраты на бензине − затраты на газе</b><span>Разница в цене литра, а не в расходе</span></div></li>
+          <li><div class="svc-list__t" style="padding:16px 0"><b>Окупаемость = стоимость установки ÷ экономия за месяц</b><span>Округляем вверх до целого месяца</span></div></li>
+        </ol>
+      </div>
+      <div class="c-5">
+        <h3>Что влияет на реальную экономию</h3>
+        <ul class="flow flow-12" style="margin-top:16px;color:var(--ink-60)">
+          <li><b style="color:var(--ink)">Доля пробега на газе.</b> Прогрев и первые километры мотор работает на бензине. Чем короче поездки, тем меньше экономия.</li>
+          <li><b style="color:var(--ink)">Стиль вождения.</b> Резкие разгоны увеличивают расход одинаково на любом топливе, но разницу в деньгах усиливают.</li>
+          <li><b style="color:var(--ink)">Цены на заправках.</b> Разница между бензином и газом меняется, поэтому оба поля в калькуляторе редактируемые — подставьте свои цифры.</li>
+          <li><b style="color:var(--ink)">Состояние мотора.</b> Изношенные свечи и грязные форсунки поднимают расход, и срок окупаемости растёт.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

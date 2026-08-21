@@ -1,0 +1,10 @@
+{#- items передаётся из страницы -#}
+<div class="faq">
+  {%- for f in items %}
+  <details{% if loop.first %} open{% endif %}>
+    <summary>{{ f.q }}<svg aria-hidden="true"><use href="#i-caret-right"></use></svg></summary>
+    <div class="faq__a">{{ f.a }}</div>
+  </details>
+  {%- endfor %}
+</div>
+<script type="application/ld+json">{{ items | faqLd | jsonld | safe }}</script>

@@ -1,0 +1,62 @@
+---
+layout: layouts/page.njk
+title: "Регистрация ГБО в ГИБДД — оформление под ключ в Златоусте"
+description: "Оформление переоборудования автомобиля на газ в Златоусте от 15 000 ₽. Экспертиза, протокол безопасности, осмотр и отметка о ГБО в СТС — ведём процедуру под ключ."
+permalink: /dokumenty-gibdd/
+crumb: "Документы ГИБДД"
+---
+<section class="s-96 shell" style="padding-top:40px">
+  <div class="grid">
+    <div class="c-7">
+      <h1>Регистрация ГБО в ГИБДД</h1>
+      <p class="lead" style="margin-top:20px;max-width:540px">Установить газ — половина дела. Чтобы машина законно ездила и проходила техосмотр, переоборудование нужно оформить. Мы ведём эту процедуру от начала до отметки в СТС.</p>
+      <div class="row" style="margin-top:32px">
+        <a class="btn btn--primary" href="/kontakty/#zayavka">Оформить документы</a>
+        <a class="btn btn--outline" href="{{ site.phones[0].display | telHref }}" data-goal="phone_click">{{ site.phones[0].display }}</a>
+      </div>
+    </div>
+    <div class="c-5">
+      <div class="card card--tight" style="background:var(--mist)">
+        <p class="cap">Стоимость услуги</p>
+        <p class="num" style="font-size:44px;color:var(--green);margin-top:8px">от 15 000 ₽</p>
+        <p class="sm muted" style="margin-top:12px">Подготовка и подача документов, организация экспертизы и проверки безопасности, сопровождение до отметки в свидетельстве о регистрации.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s-112 shell pt-0">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <h2 style="margin-bottom:48px">Как проходит оформление</h2>
+    <ol class="steps">
+      {%- for s in docs.steps %}
+      <li><span class="steps__n">{{ s.n }}</span><h3 class="steps__t">{{ s.title }}</h3><p class="steps__x">{{ s.text }}</p></li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="s-96 shell pt-0">
+  <div class="card card--dark reveal">
+    <div class="section-rule section-rule--onDark"></div>
+    <h2>Что происходит после установки</h2>
+    <div class="cols3" style="margin-top:40px">
+      <div class="cols3__i"><h3>{{ docs.after.title }}</h3><ul>{%- for i in docs.after.items %}<li>{{ i }}</li>{%- endfor %}</ul></div>
+      <div class="cols3__i"><h3>{{ docs.we.title }}</h3><ul>{%- for i in docs.we.items %}<li>{{ i }}</li>{%- endfor %}</ul></div>
+      <div class="cols3__i"><h3>{{ docs.you.title }}</h3><ul>{%- for i in docs.you.items %}<li>{{ i }}</li>{%- endfor %}</ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="s-80 shell pt-0">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <div class="grid">
+      <div class="c-8">
+        <h2 style="margin-bottom:32px">Вопросы про документы</h2>
+        {% set items = faq.docs %}{% include "partials/faq.njk" %}
+      </div>
+    </div>
+  </div>
+</section>

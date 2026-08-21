@@ -1,0 +1,14 @@
+<nav class="crumbs shell" aria-label="Хлебные крошки">
+  <ol>
+    <li><a href="/">Главная</a></li>
+    <li aria-hidden="true"><svg><use href="#i-caret-right"></use></svg></li>
+    <li><span aria-current="page">{{ crumb or title }}</span></li>
+  </ol>
+</nav>
+<script type="application/ld+json">{{ {
+  "@context":"https://schema.org","@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Главная","item":site.url + "/"},
+    {"@type":"ListItem","position":2,"name":crumb or title,"item":(page.url | absUrl)}
+  ]
+} | jsonld | safe }}</script>

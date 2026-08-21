@@ -1,0 +1,56 @@
+---
+layout: layouts/page.njk
+title: "Цены на установку ГБО в Златоусте — прайс ГБО-АВТО сервис"
+description: "Прайс на установку, диагностику, обслуживание и ремонт ГБО в Златоусте. Установка от 50 000 ₽, документы в ГИБДД от 15 000 ₽, диагностика и подбор комплекта бесплатно."
+permalink: /ceny/
+crumb: "Цены"
+---
+<section class="s-80 shell" style="padding-top:40px">
+  <div class="grid">
+    <div class="c-7">
+      <h1>Цены</h1>
+      <p class="lead" style="margin-top:20px;max-width:540px">Две суммы фиксированы: установка от 50 000 ₽ и оформление документов от 15 000 ₽. Всё остальное считается после осмотра — придумывать цифры до того, как машина заехала в бокс, честнее не делать.</p>
+    </div>
+  </div>
+</section>
+
+<section class="s-96 shell pt-0">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <h2 style="margin-bottom:40px">Прайс</h2>
+    <div class="table-wrap">
+      <table class="price-table">
+        <thead><tr><th scope="col">Услуга</th><th scope="col">Цена</th><th scope="col">Что входит</th></tr></thead>
+        <tbody>
+          {%- for r in prices.rows %}
+          <tr><td>{{ r.service }}</td><td>{{ r.price }}</td><td>{{ r.includes }}</td></tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="sm muted" style="margin-top:24px">Цены ориентировочные и не являются публичной офертой. <a class="accent-link" href="/kontakty/#zayavka">Запишитесь на бесплатную диагностику</a> — назовём точную сумму до начала работ.</p>
+  </div>
+</section>
+
+<section class="s-112 shell pt-0">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <h2 style="margin-bottom:40px">От чего зависит стоимость</h2>
+    <div class="grid">
+      {%- for f in prices.factors %}
+      <div class="c-3">
+        <h3>{{ f.title }}</h3>
+        <p class="sm muted" style="margin-top:12px">{{ f.text }}</p>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="s-80 shell pt-0">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <h2 style="margin-bottom:40px">Посчитайте свою экономию</h2>
+    {% include "partials/calc.njk" %}
+  </div>
+</section>

@@ -4,8 +4,9 @@
   "private": true,
   "description": "Сайт ГБО-АВТО сервис, Златоуст. Eleventy, без зависимостей в рантайме.",
   "scripts": {
+    "images": "python3 tools/build-images.py",
     "start": "eleventy --serve --port=8080",
-    "build": "eleventy",
+    "build": "python3 tools/build-images.py || true; eleventy",
     "clean": "rm -rf dist"
   },
   "devDependencies": {

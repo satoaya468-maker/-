@@ -1,0 +1,45 @@
+---
+layout: layouts/page.njk
+title: "Контакты — ГБО-АВТО сервис в Златоусте"
+description: "Адрес и телефоны сервиса ГБО в Златоусте: ул. Средняя-Ветлужская, 38. Пн–Сб 9:00–20:00. Заявка на установку, WhatsApp, Telegram, карточка в 2ГИС."
+permalink: /kontakty/
+crumb: "Контакты"
+---
+<section class="s-80 shell" style="padding-top:40px">
+  <div class="grid">
+    <div class="c-5">
+      <h1>Контакты</h1>
+      <a class="hdr__phone" style="color:var(--ink);font-size:32px;display:block;margin-top:28px" href="{{ site.phones[0].display | telHref }}" data-goal="phone_click">{{ site.phones[0].display }}</a>
+      <a class="hdr__phone" style="color:var(--ink-60);font-size:22px;font-weight:600;display:block;margin-top:10px" href="{{ site.phones[1].display | telHref }}" data-goal="phone_click">{{ site.phones[1].display }}</a>
+      <p style="margin-top:28px">{{ site.address.street }}<br>{{ site.city }}, {{ site.region }}</p>
+      <p class="sm muted" style="margin-top:12px">{{ site.hours.weekdays }}<br>{{ site.hours.sunday }}</p>
+      <div class="row" style="margin-top:28px;gap:10px">
+        <a class="btn btn--outline btn--sm" href="{{ site.whatsapp }}" target="_blank" rel="noopener" data-goal="whatsapp_click">
+          <svg class="btn__i" aria-hidden="true"><use href="#i-whatsapp-logo"></use></svg>WhatsApp</a>
+        <a class="btn btn--outline btn--sm" href="{{ site.telegram }}" target="_blank" rel="noopener">
+          <svg class="btn__i" aria-hidden="true"><use href="#i-telegram-logo"></use></svg>Telegram</a>
+        <a class="btn btn--outline btn--sm" href="{{ site.gis }}" target="_blank" rel="noopener" data-goal="gis_click">
+          <svg class="btn__i" aria-hidden="true"><use href="#i-map-pin"></use></svg>2ГИС</a>
+      </div>
+    </div>
+    <div class="c-7" id="zayavka">
+      <h2 style="margin-bottom:24px">Оставьте заявку</h2>
+      {% set formSource = 'Форма на странице контактов' %}{% include "partials/form.njk" %}
+    </div>
+  </div>
+</section>
+
+<section class="s-96 shell pt-0">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    <h2 style="margin-bottom:40px">Как нас найти</h2>
+    {% include "partials/map.njk" %}
+  </div>
+</section>
+
+<section class="s-80 shell pt-0">
+  <div class="reveal">
+    <div class="section-rule"></div>
+    {% include "partials/master.njk" %}
+  </div>
+</section>

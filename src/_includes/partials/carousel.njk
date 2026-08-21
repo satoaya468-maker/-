@@ -1,0 +1,37 @@
+{#- Карусель отзывов. Только реальные отзывы с 2ГИС + слайды другого типа. -#}
+<div class="carousel" data-carousel>
+  <div class="carousel__track" data-carousel-track role="group" aria-label="Отзывы и информация о сервисе" aria-live="polite" tabindex="0">
+    {%- for r in reviews.items %}
+    <article class="slide">
+      <div class="slide__stars" role="img" aria-label="Оценка {{ r.stars }} из 5">
+        {%- for i in range(0, r.stars) %}<svg aria-hidden="true"><use href="#i-star-fill"></use></svg>{%- endfor %}
+      </div>
+      <p class="slide__text">{{ r.text }}</p>
+      <p class="slide__src">Отзыв с карточки 2ГИС · <a href="{{ site.gisReviews }}" target="_blank" rel="noopener" data-goal="gis_click">первоисточник</a></p>
+    </article>
+    {%- endfor %}
+
+    {%- for c in reviews.extra %}
+    <article class="slide">
+      {%- if c.type == 'rating' %}
+      <p class="slide__big">2ГИС</p>
+      <h3>{{ c.title }}</h3>
+      <p class="slide__lead">{{ c.lead }}</p>
+      <p class="slide__src"><a class="btn btn--outline btn--sm" href="{{ site.gisReviews }}" target="_blank" rel="noopener" data-goal="gis_click">{{ c.cta }}</a></p>
+      {%- else %}
+      <h3>{{ c.title }}</h3>
+      <p class="slide__lead">{{ c.lead }}</p>
+      <ul>{%- for i in c.items %}<li>{{ i }}</li>{%- endfor %}</ul>
+      {%- endif %}
+    </article>
+    {%- endfor %}
+  </div>
+
+  <div class="carousel__ctrl">
+    <button class="carousel__btn" type="button" data-carousel-prev aria-label="Предыдущий слайд">
+      <svg aria-hidden="true"><use href="#i-caret-left"></use></svg></button>
+    <button class="carousel__btn" type="button" data-carousel-next aria-label="Следующий слайд">
+      <svg aria-hidden="true"><use href="#i-caret-right"></use></svg></button>
+    <div class="carousel__dots" data-carousel-dots></div>
+  </div>
+</div>

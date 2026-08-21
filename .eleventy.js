@@ -1,33 +1,67 @@
 const site = require("./src/_data/site.json");
 
 module.exports = function (eleventyConfig) {
-  /* assets/ лежит рядом с src/, копируется в dist/assets как есть */
+  /* assets/ рядом с src/, копируется в dist/assets как есть */
   eleventyConfig.addPassthroughCopy({ "assets": "assets" });
   eleventyConfig.addWatchTarget("assets/");
 
-  /* +7 (908) 819-63-69 -> +79088196369 */
+  /* +7 (908) 819-63-69 -> tel:+79088196369 */
   eleventyConfig.addFilter("telHref", (v) => "tel:" + String(v).replace(/[^\d+]/g, ""));
 
-  /* 50000 -> 50 000 (неразрывные пробелы, чтобы цена не рвалась) */
+  /* 50000 -> «50 000» неразрывными пробелами, чтобы цена не рвалась */
   eleventyConfig.addFilter("money", (v) =>
     String(v).replace(/\B(?=(\d{3})+(?!\d))/g, " ")
   );
 
   eleventyConfig.addFilter("absUrl", (p) => new URL(p, site.url).href);
+  eleventyConfig.addFilter("jsonld", (o) => JSON.stringify(o).replace(/</g, "\\u003c"));
 
-  eleventyConfig.addFilter("jsonld", (obj) =>
-    JSON.stringify(obj).replace(/</g, "\\u003c")
-  );
+  /* FAQPage: разметка строится из того же массива, что и видимый список,
+     чтобы структурированные данные не разошлись с текстом на странице */
+  eleventyConfig.addFilter("faqLd", (items) => ({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a }
+    }))
+  }));
 
-  eleventyConfig.addFilter("dateISO", (d) => new Date(d).toISOString().slice(0, 10));
+  /*
+   * Изображение проекта. Четыре файла из брифа лежат в assets/img/.
+   * Если файла ещё нет — вместо битой картинки выводится плашка с именем
+   * файла: страницу видно целиком, а подстановка ассета не требует правок
+   * в вёрстке.
+   */
+  eleventyConfig.addShortcode("pic", function (name, alt, opts = {}) {
+    const m = (this.ctx && this.ctx.images) || {};
+    const meta = m[name];
+    const cls = opts.class ? ` class="${opts.class}"` : "";
+    const style = opts.style ? ` style="${opts.style}"` : "";
+
+    if (!meta) {
+      /* Файла ещё нет: вместо битой картинки — плашка с именем файла.
+         Классы отдаём как есть, чтобы медиазапросы (например, скрытие
+         изображения в промо на мобиле) продолжали работать. */
+      const ph = opts.phHeight ? ` style="--ph-h:${opts.phHeight}"` : "";
+      return `<div class="pic-ph${opts.class ? " " + opts.class : ""}"${ph} role="img" aria-label="${alt}">` +
+             `<span class="cap">Изображение <b>assets/img/${name}.png</b><br>положите файл и выполните ` +
+             `<code>python3 tools/build-images.py</code></span></div>`;
+    }
+
+    const loading = opts.eager ? "" : ' loading="lazy" decoding="async"';
+    const fetchp = opts.eager ? ' fetchpriority="high" decoding="async"' : "";
+    const sizes = opts.sizes ? ` sizes="${opts.sizes}"` : "";
+    return `<picture${cls}${style}>` +
+      `<source srcset="/assets/img/${name}.webp" type="image/webp"${sizes}>` +
+      `<img src="/assets/img/${meta.fallback}" alt="${alt}" width="${meta.w}" height="${meta.h}"` +
+      `${loading}${fetchp}>` +
+      `</picture>`;
+  });
 
   return {
-    dir: {
-      input: "src",
-      output: "dist",
-      includes: "_includes",
-      data: "_data"
-    },
+    dir: { input: "src", output: "dist", includes: "_includes", data: "_data" },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     templateFormats: ["njk", "md", "html"]

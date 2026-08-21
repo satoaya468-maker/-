@@ -1,0 +1,9 @@
+{#- 3.3 Полоса цифр с вертикальными разделителями -#}
+<ul class="stats">
+  {%- for p in promises %}
+  <li class="stats__i">
+    <span class="stats__n">{{ p.num }}{% if p.unit %}<span class="stats__u">{{ p.unit }}</span>{% endif %}</span>
+    <span class="stats__l">{{ p.label }}</span>
+  </li>
+  {%- endfor %}
+</ul>
