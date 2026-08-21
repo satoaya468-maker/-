@@ -37,7 +37,7 @@
   "priceRange": "от 15 000 ₽"
 } | jsonld | safe }}</script>
 </head>
-<body data-relay="{{ site.relayUrl }}" data-gating="{{ site.reviewGating }}" data-mindelay="{{ site.formMinSeconds }}">
+<body data-ava="{% if images['avatar-circle-112'] %}/assets/img/avatar-circle-112.png{% endif %}" data-relay="{{ site.relayUrl }}" data-gating="{{ site.reviewGating }}" data-mindelay="{{ site.formMinSeconds }}">
 <a class="skip" href="#main">Перейти к содержимому</a>
 {% include "partials/icons.njk" %}
 {% include "partials/header.njk" %}

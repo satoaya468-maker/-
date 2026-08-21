@@ -1,34 +1,38 @@
-{#- Чат-виджет. Аватарка + зелёная точка. Единственная тень на сайте. -#}
+{%- set hasAva = images['avatar-circle-112'] -%}
+{#- Чат-виджет. Свёрнутое состояние: кружок с аватаркой и репликой. -#}
 <div class="widget" id="widget" hidden>
-  <div class="widget__bubble" id="widget-bubble">Подберём ГБО под вашу машину</div>
-  <button class="widget__btn" type="button" id="widget-btn" aria-label="Открыть подбор ГБО">
-    {%- if images['avatar-circle-112'] %}
+  <button class="widget__bubble" type="button" id="widget-bubble">Подберём ГБО под вашу машину и посчитаем окупаемость</button>
+  <button class="widget__btn" type="button" id="widget-btn" aria-label="Открыть чат с мастером">
+    {%- if hasAva %}
     <img src="/assets/img/avatar-circle-112.png" width="56" height="56" alt="" loading="lazy">
     {%- else %}
     <span class="widget__ph" aria-hidden="true"></span>
     {%- endif %}
     <span class="widget__ring" aria-hidden="true"></span>
     <span class="widget__dot" aria-hidden="true"></span>
+    <span class="widget__badge" id="widget-badge" hidden>1</span>
   </button>
-  <button class="widget__x" type="button" id="widget-close" aria-label="Скрыть виджет">
+  <button class="widget__x" type="button" id="widget-close" aria-label="Скрыть чат">
     <svg aria-hidden="true"><use href="#i-x"></use></svg>
   </button>
 </div>
 
-<div class="quiz" id="quiz" hidden role="dialog" aria-modal="false" aria-labelledby="quiz-title">
+<div class="quiz" id="quiz" hidden role="dialog" aria-labelledby="quiz-title">
   <div class="quiz__top">
-    {%- if images['avatar-circle-112'] %}
-    <img src="/assets/img/avatar-circle-112.png" width="40" height="40" alt="">
+    {%- if hasAva %}
+    <img src="/assets/img/avatar-circle-112.png" width="38" height="38" alt="">
     {%- else %}
-    <span class="widget__ph" style="width:40px;height:40px" aria-hidden="true"></span>
+    <span class="widget__ph" aria-hidden="true"></span>
     {%- endif %}
-    <span><b id="quiz-title">Мастер ГБО-АВТО</b><span>Отвечает за 15 минут</span></span>
-    <button class="quiz__x" type="button" id="quiz-close" aria-label="Закрыть">
+    <span class="quiz__who">
+      <b id="quiz-title">Мастер ГБО-АВТО</b>
+      <span class="quiz__status">На связи · отвечает за 15 минут</span>
+    </span>
+    <button class="quiz__x" type="button" id="quiz-min" aria-label="Свернуть чат">
       <svg aria-hidden="true"><use href="#i-x"></use></svg>
     </button>
   </div>
-  <div class="quiz__body">
-    <div class="quiz__prog" id="quiz-prog" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-    <div id="quiz-step" aria-live="polite"></div>
-  </div>
+
+  <div class="quiz__log" id="quiz-log" role="log" aria-live="polite" aria-label="Переписка с мастером"></div>
+  <div class="quiz__foot" id="quiz-foot"></div>
 </div>

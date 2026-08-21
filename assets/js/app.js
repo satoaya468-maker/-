@@ -23,21 +23,28 @@
     if (el) window.gboGoal(el.getAttribute('data-goal'));
   });
 
-  /* --- Шапка: инфобар прячется при скролле вниз, возвращается вверх ---- */
+  /* --- Шапка: инфобар уезжает при скролле вниз и возвращается вверх ----
+     Порог в 6px нужен, чтобы инерция и резиновая прокрутка не переключали
+     состояние на каждом пикселе. */
   (function () {
     var hdr = document.getElementById('hdr');
     if (!hdr) return;
-    var last = window.pageYOffset, ticking = false;
+    var last = Math.max(0, window.pageYOffset), ticking = false;
+
     function onScroll() {
-      var y = window.pageYOffset;
-      if (y > 80 && y > last) hdr.classList.add('is-hidden');
-      else if (y < last) hdr.classList.remove('is-hidden');
-      last = y;
       ticking = false;
+      var y = Math.max(0, window.pageYOffset);
+      var d = y - last;
+      if (y <= 120) { hdr.classList.remove('is-up'); last = y; return; }
+      if (Math.abs(d) < 6) return;
+      hdr.classList.toggle('is-up', d > 0);
+      last = y;
     }
+
     addEventListener('scroll', function () {
       if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
     }, { passive: true });
+    onScroll();
   })();
 
   /* --- Мобильное меню -------------------------------------------------- */
@@ -487,32 +494,185 @@
     });
   });
 
-  /* --- Чат-виджет и квиз -------------------------------------------------
-     Сценарий заскриптован. Ни языковой модели, ни внешних API: виджет
-     говорит с клиентами сервиса про цены и сроки, и ошибаться ему нельзя. */
+  /* --- Чат-виджет ---------------------------------------------------------
+     Ведёт себя как переписка, а не как анкета: мастер «печатает», реплики
+     приходят по одной, ответы клиента встают справа. Сценарий по-прежнему
+     жёстко заскриптован — ни языковой модели, ни внешних API: виджет
+     говорит с клиентами сервиса про цены и сроки, ошибаться ему нельзя.
+     ------------------------------------------------------------------------ */
   (function () {
     var widget = document.getElementById('widget');
     var quiz = document.getElementById('quiz');
     if (!widget || !quiz) return;
-    if (sessionStorage.getItem('gbo-widget-closed') === '1') return;
+    if (sessionStorage.getItem('gbo-chat-off') === '1') return;
 
-    var stepBox = document.getElementById('quiz-step');
-    var prog = document.getElementById('quiz-prog');
+    var log = document.getElementById('quiz-log');
+    var foot = document.getElementById('quiz-foot');
+    var badge = document.getElementById('widget-badge');
+    var AVA = body.getAttribute('data-ava') || '';
+
     var answers = {};
+    var at = 0;
+    var started = false;
     var shown = false;
 
-    var STEPS = [
-      { key: 'car', q: 'Подберём ГБО под вашу машину. Какая марка и год?', type: 'text', ph: 'Например, Lada Granta 2019' },
-      { key: 'fuel', q: 'Пропан или метан?', type: 'opts', opts: ['Пропан', 'Метан', 'Не знаю, подберите сами'] },
-      { key: 'mileage', q: 'Сколько проезжаете в месяц?', type: 'opts', opts: ['До 1500 км', '1500–4000 км', 'Больше 4000 км'] },
-      { key: 'phone', q: 'Куда отправить расчёт?', type: 'phone' }
+    var SCRIPT = [
+      { say: 'Здравствуйте! Я мастер сервиса. Подберу оборудование под вашу машину и посчитаю, за сколько оно окупится.' },
+      { ask: 'Подскажите марку и год — например, Lada Granta 2019', key: 'car', input: 'text', ph: 'Марка и год' },
+      { say: 'Понял, посмотрю что подойдёт.' },
+      { ask: 'На чём хотите ездить — пропан или метан?', key: 'fuel',
+        opts: ['Пропан', 'Метан', 'Не знаю, подберите сами'] },
+      { ask: 'Сколько примерно проезжаете в месяц?', key: 'mileage',
+        opts: ['До 1500 км', '1500–4000 км', 'Больше 4000 км'] },
+      { say: 'Спасибо. Посчитаю точную сумму и сроки по вашей машине.' },
+      { ask: 'На какой номер отправить расчёт?', key: 'phone', input: 'tel' },
+      { end: true }
     ];
-    var at = 0;
 
+    function now() {
+      var d = new Date();
+      return ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2);
+    }
+    function toBottom() { log.scrollTop = log.scrollHeight; }
+
+    function bubble(html, out) {
+      var m = document.createElement('div');
+      m.className = 'msg ' + (out ? 'msg--out' : 'msg--in');
+      var ava = !out && AVA ? '<img class="msg__ava" src="' + AVA + '" alt="" width="26" height="26">' : '';
+      m.innerHTML = ava + '<div class="msg__b">' + html +
+                    '<span class="msg__time">' + now() + '</span></div>';
+      log.appendChild(m);
+      toBottom();
+      return m;
+    }
+
+    function typing(ms, done) {
+      if (reduced) { done(); return; }
+      var t = document.createElement('div');
+      t.className = 'msg msg--in';
+      t.innerHTML = (AVA ? '<img class="msg__ava" src="' + AVA + '" alt="" width="26" height="26">' : '') +
+                    '<div class="typing"><i></i><i></i><i></i></div>';
+      log.appendChild(t);
+      toBottom();
+      setTimeout(function () { t.remove(); done(); }, ms);
+    }
+
+    /* Длительность «набора» от длины реплики, но в разумных пределах */
+    function pace(text) { return Math.min(1400, 420 + text.length * 12); }
+
+    function answer(key, text) {
+      answers[key] = text;
+      bubble(escapeHtml(text), true);
+      at++;
+      setTimeout(step, 320);
+    }
+
+    function escapeHtml(v) {
+      return String(v).replace(/[&<>"]/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+      });
+    }
+
+    function askOpts(s) {
+      foot.innerHTML = '<div class="quiz__chips">' + s.opts.map(function (o, i) {
+        return '<button class="chip" type="button" data-opt="' + i + '">' + o + '</button>';
+      }).join('') + '</div>';
+      toBottom();
+      $$('[data-opt]', foot).forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          foot.innerHTML = '';
+          answer(s.key, s.opts[+btn.getAttribute('data-opt')]);
+        });
+      });
+    }
+
+    function askInput(s) {
+      var tel = s.input === 'tel';
+      foot.innerHTML =
+        '<form class="quiz__row" novalidate>' +
+        '<label class="vh" for="quiz-in">' + s.ask + '</label>' +
+        '<input class="input" id="quiz-in" name="v" type="' + (tel ? 'tel' : 'text') + '" ' +
+        (tel ? 'inputmode="tel" placeholder="+7 (___) ___-__-__"' : 'placeholder="' + (s.ph || '') + '"') +
+        ' autocomplete="' + (tel ? 'tel' : 'off') + '" required>' +
+        '<button class="quiz__send" type="submit" aria-label="Отправить">' +
+        '<svg aria-hidden="true"><use href="#i-paper-plane-tilt"></use></svg></button>' +
+        '</form>' +
+        (tel ? '<p class="quiz__hint">Номер нужен только чтобы перезвонить с расчётом. Рассылок не будет.</p>' : '');
+
+      toBottom();
+      var form = $('form', foot);
+      var inp = $('input', foot);
+      if (tel) maskPhone(inp);
+      inp.focus({ preventScroll: true });
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var v = inp.value.trim();
+        if (tel && v.replace(/\D/g, '').length !== 11) {
+          inp.setAttribute('aria-invalid', 'true');
+          inp.focus();
+          return;
+        }
+        if (!v) return;
+        foot.innerHTML = '';
+        answer(s.key, v);
+      });
+    }
+
+    function finish() {
+      var summary = [answers.car, answers.fuel, answers.mileage].filter(Boolean);
+      var txt = 'Здравствуйте! Заявка с сайта.\n'
+        + 'Авто: ' + (answers.car || '—') + '\n'
+        + 'Топливо: ' + (answers.fuel || '—') + '\n'
+        + 'Пробег: ' + (answers.mileage || '—') + '\n'
+        + 'Телефон: ' + (answers.phone || '—');
+
+      typing(900, function () {
+        bubble('Записал. Перезвоню в течение 15 минут и назову точную сумму.' +
+          (summary.length ? '<ul><li>' + summary.map(escapeHtml).join('</li><li>') + '</li></ul>' : ''));
+        setTimeout(function () {
+          typing(700, function () {
+            bubble('Если удобнее — напишите мне сразу, отвечу быстрее.');
+            foot.innerHTML =
+              '<div class="quiz__acts">' +
+              '<a class="btn btn--primary btn--sm btn--wide" href="https://wa.me/79088196369?text=' +
+              encodeURIComponent(txt) + '" target="_blank" rel="noopener" data-goal="whatsapp_click">' +
+              '<svg class="btn__i" aria-hidden="true"><use href="#i-whatsapp-logo"></use></svg>Написать в WhatsApp</a>' +
+              '<a class="btn btn--outline btn--sm btn--wide" href="tel:+79088196369" data-goal="phone_click">' +
+              '<svg class="btn__i" aria-hidden="true"><use href="#i-phone"></use></svg>Позвонить сейчас</a>' +
+              '</div>';
+            toBottom();
+          });
+        }, 500);
+      });
+
+      window.gboGoal('quiz_complete');
+      window.gboSend({
+        source: 'Чат-виджет', name: '', phone: answers.phone || '',
+        car: answers.car || '', service: 'Подбор ГБО',
+        comment: 'Топливо: ' + (answers.fuel || '—') + '. Пробег: ' + (answers.mileage || '—')
+      }).catch(function () { /* каналы связи уже показаны кнопками выше */ });
+    }
+
+    function step() {
+      var s = SCRIPT[at];
+      if (!s) return;
+      if (s.end) { finish(); return; }
+
+      var text = s.say || s.ask;
+      typing(pace(text), function () {
+        bubble(escapeHtml(text));
+        if (s.say) { at++; setTimeout(step, 260); return; }
+        if (s.opts) askOpts(s); else askInput(s);
+      });
+    }
+
+    /* --- Появление и состояния --------------------------------------------- */
     function show() {
       if (shown) return;
       shown = true;
       widget.hidden = false;
+      widget.classList.add('has-badge');
+      if (badge) badge.hidden = false;
     }
     setTimeout(show, 18000);
     addEventListener('scroll', function () {
@@ -520,94 +680,35 @@
       if ((h.scrollTop + innerHeight) / h.scrollHeight > 0.4) show();
     }, { passive: true });
 
-    function markProg() {
-      $$('i', prog).forEach(function (i, n) { i.classList.toggle('is-on', n <= at); });
-    }
-
-    function render() {
-      var s = STEPS[at];
-      markProg();
-      if (!s) return finish();
-
-      var html = '<p class="quiz__q">' + s.q + '</p>';
-      if (s.type === 'opts') {
-        html += '<div class="quiz__opts">' + s.opts.map(function (o, i) {
-          return '<button class="quiz__opt" type="button" data-opt="' + i + '">' + o + '</button>';
-        }).join('') + '</div>';
-      } else {
-        var isPhone = s.type === 'phone';
-        html += '<form class="flow flow-12" data-quiz-form>'
-          + '<label class="field"><span class="vh">' + s.q + '</span>'
-          + '<input class="input" type="' + (isPhone ? 'tel' : 'text') + '" name="v" required '
-          + (isPhone ? 'data-mask-phone inputmode="tel" placeholder="+7 (___) ___-__-__"'
-                     : 'placeholder="' + s.ph + '"') + '></label>'
-          + '<button class="btn btn--primary btn--wide" type="submit">'
-          + (isPhone ? 'Получить расчёт' : 'Дальше') + '</button></form>';
-      }
-      stepBox.innerHTML = html;
-
-      $$('[data-opt]', stepBox).forEach(function (b) {
-        b.addEventListener('click', function () {
-          answers[s.key] = s.opts[+b.getAttribute('data-opt')];
-          at++; render();
-        });
-      });
-      var f = $('[data-quiz-form]', stepBox);
-      if (f) {
-        var inp = $('input', f);
-        if (s.type === 'phone') maskPhone(inp);
-        inp.focus();
-        f.addEventListener('submit', function (e) {
-          e.preventDefault();
-          var v = inp.value.trim();
-          if (s.type === 'phone' && v.replace(/\D/g, '').length !== 11) {
-            inp.setAttribute('aria-invalid', 'true');
-            return;
-          }
-          if (!v) return;
-          answers[s.key] = v;
-          at++; render();
-        });
-      }
-    }
-
-    function finish() {
-      var txt = 'Здравствуйте! Заявка с сайта.\n'
-        + 'Авто: ' + (answers.car || '—') + '\n'
-        + 'Топливо: ' + (answers.fuel || '—') + '\n'
-        + 'Пробег: ' + (answers.mileage || '—') + '\n'
-        + 'Телефон: ' + (answers.phone || '—');
-      stepBox.innerHTML = '<p class="quiz__q">Мастер перезвонит в течение 15 минут</p>'
-        + '<p class="sm muted">Мы записали: ' + [answers.car, answers.fuel, answers.mileage].filter(Boolean).join(' · ') + '</p>'
-        + '<div class="flow flow-8" style="margin-top:16px">'
-        + '<a class="btn btn--primary btn--wide" href="tel:+79088196369" data-goal="phone_click">Позвонить сейчас</a>'
-        + '<a class="btn btn--outline btn--wide" href="https://wa.me/79088196369?text='
-        + encodeURIComponent(txt) + '" target="_blank" rel="noopener" data-goal="whatsapp_click">Написать в WhatsApp</a>'
-        + '</div>';
-      window.gboGoal('quiz_complete');
-      window.gboSend({ source: 'Квиз-виджет', name: '', phone: answers.phone || '',
-                       car: answers.car || '', service: 'Подбор ГБО',
-                       comment: 'Топливо: ' + (answers.fuel || '—') + '. Пробег: ' + (answers.mileage || '—') })
-            .catch(function () { /* канал связи уже показан кнопками выше */ });
-    }
-
     function open() {
-      quiz.hidden = false;
       widget.hidden = true;
-      if (!stepBox.innerHTML) render();
+      widget.classList.remove('has-badge');
+      if (badge) badge.hidden = true;
+      quiz.hidden = false;
+      if (!started) { started = true; step(); } else toBottom();
     }
-    function close(remember) {
+
+    /* Свернуть — вернуться к кружку. Переписка сохраняется. */
+    function minimize() {
+      quiz.hidden = true;
+      widget.hidden = false;
+      $('#widget-btn').focus({ preventScroll: true });
+    }
+
+    /* Скрыть совсем — только крестиком на кружке */
+    function dismiss() {
       quiz.hidden = true;
       widget.hidden = true;
-      if (remember) sessionStorage.setItem('gbo-widget-closed', '1');
+      sessionStorage.setItem('gbo-chat-off', '1');
     }
 
-    document.getElementById('widget-btn').addEventListener('click', open);
-    var bub = document.getElementById('widget-bubble');
-    if (bub) bub.addEventListener('click', open);
-    document.getElementById('widget-close').addEventListener('click', function () { close(true); });
-    document.getElementById('quiz-close').addEventListener('click', function () { close(true); });
-    addEventListener('keydown', function (e) { if (e.key === 'Escape' && !quiz.hidden) close(true); });
+    $('#widget-btn').addEventListener('click', open);
+    $('#widget-bubble').addEventListener('click', open);
+    $('#widget-close').addEventListener('click', function (e) { e.stopPropagation(); dismiss(); });
+    $('#quiz-min').addEventListener('click', minimize);
+    addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !quiz.hidden) minimize();
+    });
   })();
 
 })();
