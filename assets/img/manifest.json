@@ -3,18 +3,56 @@
     "w": 725,
     "h": 900,
     "fallback": "gbo-kit-hero.jpg",
-    "alpha": false
+    "alpha": false,
+    "src": "webp"
   },
   "avatar-512": {
     "w": 512,
     "h": 512,
     "fallback": "avatar-512.jpg",
-    "alpha": false
+    "alpha": false,
+    "src": "webp"
   },
   "avatar-circle-112": {
     "w": 112,
     "h": 112,
     "fallback": "avatar-circle-112.png",
-    "alpha": true
+    "alpha": true,
+    "src": "png"
+  },
+  "equip-ecu": {
+    "w": 240,
+    "h": 240,
+    "fallback": "equip-ecu.jpg",
+    "alpha": false,
+    "src": "webp"
+  },
+  "equip-injectors": {
+    "w": 240,
+    "h": 240,
+    "fallback": "equip-injectors.jpg",
+    "alpha": false,
+    "src": "webp"
+  },
+  "equip-reducer": {
+    "w": 240,
+    "h": 240,
+    "fallback": "equip-reducer.jpg",
+    "alpha": false,
+    "src": "webp"
+  },
+  "equip-tank-toroidal": {
+    "w": 240,
+    "h": 240,
+    "fallback": "equip-tank-toroidal.jpg",
+    "alpha": false,
+    "src": "webp"
+  },
+  "gbo-kit-diagonal": {
+    "w": 800,
+    "h": 808,
+    "fallback": "gbo-kit-diagonal.png",
+    "alpha": true,
+    "src": "webp"
   }
 }

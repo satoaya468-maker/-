@@ -21,7 +21,7 @@ bookExternal: true
       </p>
     </div>
     <div class="c-5" style="display:flex;justify-content:flex-end">
-      {% pic "gbo-kit-hero", "Комплект ГБО 4 поколения", { style: "max-height:520px;width:auto;object-fit:contain", eager: true, phHeight: "400px" } %}
+      {% pic "gbo-kit-hero", "Комплект ГБО 4 поколения", { class: "pic-hero", eager: true, phHeight: "400px" } %}
     </div>
   </div>
 </section>
@@ -36,7 +36,7 @@ bookExternal: true
     <h2 style="margin-bottom:40px">Что входит в комплект</h2>
     <div class="tiles">
       {%- for e in equipment %}
-      <div class="tile"><span class="tile__mark">{{ e.mark }}</span><span class="tile__t">{{ e.title }}</span></div>
+      <div class="tile">{% pic e.img, e.title, { class: "tile__img" } %}<span class="tile__t">{{ e.title }}</span></div>
       {%- endfor %}
     </div>
     <div class="grid" style="margin-top:40px">

@@ -20,7 +20,7 @@ bookExternal: false
       <p class="sm muted" style="margin-top:32px">{{ site.address.street }} · {{ site.hours.short }}</p>
     </div>
     <div class="c-5" style="display:flex;justify-content:flex-end">
-      {% pic "gbo-kit-hero", "Комплект ГБО: редуктор, рампа форсунок, мультиклапан и тороидальный баллон", { style: "max-height:560px;width:auto;object-fit:contain", eager: true, phHeight: "420px" } %}
+      {% pic "gbo-kit-hero", "Комплект ГБО: редуктор, рампа форсунок, мультиклапан и тороидальный баллон", { class: "pic-hero", eager: true, phHeight: "420px" } %}
     </div>
   </div>
 </section>
@@ -47,7 +47,7 @@ bookExternal: false
       <p class="lead" style="margin-top:16px">Приезжайте — посмотрим машину, посчитаем стоимость и сроки. Без обязательств.</p>
       <p style="margin-top:28px"><a class="btn btn--onDark" href="/kontakty/#zayavka">Записаться на диагностику</a></p>
     </div>
-    {% pic "gbo-kit-diagonal", "Комплект ГБО по диагонали", { class: "promo__img", optional: true } %}
+    {% pic "gbo-kit-diagonal", "Комплект ГБО по диагонали", { class: "promo__img" } %}
   </div>
 </section>
 
@@ -90,7 +90,7 @@ bookExternal: false
     <h2 style="margin-bottom:40px">Оборудование, которое мы ставим</h2>
     <div class="tiles">
       {%- for e in equipment %}
-      <div class="tile"><span class="tile__mark">{{ e.mark }}</span><span class="tile__t">{{ e.title }}</span></div>
+      <div class="tile">{% pic e.img, e.title, { class: "tile__img" } %}<span class="tile__t">{{ e.title }}</span></div>
       {%- endfor %}
     </div>
     <p class="sm muted" style="margin-top:24px">Конкретную марку оборудования подбираем под автомобиль и бюджет — на бесплатной диагностике.</p>

@@ -327,8 +327,8 @@ body.is-locked{overflow:hidden}
 
 .cta{position:relative;overflow:hidden;min-height:280px;display:flex;align-items:center}
 .cta__in{position:relative;z-index:1;max-width:640px}
-.cta__img{position:absolute;right:-4%;bottom:-14%;width:40%;max-width:none;pointer-events:none;z-index:0}
-@media (max-width:900px){ .cta__img{display:none} .cta__in{max-width:none} }
+/* Кадр комплекта в CTA — тот же .promo__img: ширина и обрезка заданы там. */
+@media (max-width:900px){ .cta__in{max-width:none} }
 
 /* ==========================================================================
    15. 3.3 ПОЛОСА ЦИФР С ВЕРТИКАЛЬНЫМИ РАЗДЕЛИТЕЛЯМИ
@@ -348,29 +348,55 @@ body.is-locked{overflow:hidden}
 @media (max-width:420px){ .stats__i{padding-inline:14px} }
 
 /* ==========================================================================
+   15b. КАДР КОМПЛЕКТА В ПЕРВОМ ЭКРАНЕ
+   ========================================================================== */
+/* Ограничение высоты должно висеть на самой картинке: <picture> — инлайновая
+   обёртка и высоту дочернего <img> не режет. Подложки, рамки, скругления и
+   тени нет — кадр стоит на фоне страницы как есть. */
+.pic-hero{display:block}
+.pic-hero img{
+  display:block;max-height:560px;width:auto;max-width:100%;height:auto;
+  object-fit:contain;margin-left:auto;
+}
+@media (max-width:900px){ .pic-hero img{max-height:320px;margin-inline:auto} }
+
+/* ==========================================================================
    16. 3.4 ПЛИТОЧНАЯ СЕТКА
    ========================================================================== */
-.tiles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--gutter)}
-.tiles--4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gutter)}
 .tile{
-  background:var(--mist);border-radius:var(--r-tile);height:180px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
-  padding:20px;text-align:center;text-decoration:none;
+  /* min-height, а не height: длинная подпись переносится на вторую строку
+     и не должна вылезать за плитку — соседи в ряду подтянутся сами. */
+  background:var(--mist);border-radius:var(--r-tile);min-height:180px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  /* 120px картинки + 16px отступа + строка подписи укладываются в 180px
+     ровно при таких вертикальных полях. */
+  padding:10px 20px;text-align:center;text-decoration:none;
   transition:background-color 160ms var(--ease);
 }
 a.tile:hover{background:#EDEEED}
-.tile__mark{font-size:40px;font-weight:700;letter-spacing:-0.03em;line-height:1;color:var(--line)}
+.tile__mark{font-size:40px;font-weight:700;letter-spacing:-0.03em;line-height:1;color:var(--line);margin-bottom:14px}
+/* Предметная съёмка снята на белом и затонирована в --mist на сборке, поэтому
+   подложка плитки и фон кадра совпадают: рамка и своя тень не нужны. */
+.tile__img{display:block;margin-bottom:16px}
+.tile__img img{display:block;max-height:120px;width:auto;max-width:100%;object-fit:contain}
 .tile__t{font-size:var(--fs-sm);font-weight:500;color:var(--ink)}
-@media (max-width:1100px){ .tiles,.tiles--4{grid-template-columns:repeat(3,minmax(0,1fr))} }
-@media (max-width:760px){ .tiles,.tiles--4{grid-template-columns:repeat(2,minmax(0,1fr))} }
-@media (max-width:420px){ .tile{height:150px} .tile__mark{font-size:32px} }
+@media (max-width:900px){ .tiles{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:420px){
+  .tile{min-height:150px}
+  .tile__mark{font-size:32px}
+  .tile__img img{max-height:88px}
+}
 
 /* ==========================================================================
    17. 3.5 КРУПНАЯ КАРТОЧКА-СЕКЦИЯ С ОБРЕЗАННЫМ ИЗОБРАЖЕНИЕМ
    ========================================================================== */
 .promo{position:relative;overflow:hidden;border-radius:var(--r-card);background:var(--green-dark);color:var(--paper);min-height:340px;display:flex;align-items:center}
 .promo__in{position:relative;z-index:1;padding:clamp(28px,4vw,56px);max-width:56%}
-.promo__img{position:absolute;right:-6%;bottom:-18%;width:55%;max-width:none;pointer-events:none;z-index:0}
+/* Кадр намеренно обрезается правым и нижним краем карточки: он крупнее
+   контейнера и притянут к верху, вписывать его целиком нельзя. */
+.promo__img{position:absolute;right:-6%;top:0;width:55%;max-width:none;pointer-events:none;z-index:0}
+.promo__img img{display:block;width:100%;height:auto}
 @media (max-width:900px){
   .promo{min-height:0}
   .promo__img{display:none}
