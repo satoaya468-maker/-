@@ -609,6 +609,14 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 /* ==========================================================================
    27. БЛОК С МАСТЕРОМ
    ========================================================================== */
+/* Кто примет заявку: лицо мастера рядом с формой. Берём тот же кружок, что
+   и в чат-виджете: он скадрирован под лицо и в 56px попадает ровно в 2x. */
+.form__who{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.form__ava{flex:none;width:56px;height:56px;border-radius:50%;overflow:hidden}
+.form__who--onDark{margin-bottom:20px}
+.form__who--onDark .sm{color:rgba(255,255,255,0.72)}
+.form__ava picture{display:block;width:100%;height:100%}
+.form__ava img{width:100%;height:100%;object-fit:cover;display:block}
 .master__ava{width:180px;height:180px;border-radius:50%;overflow:hidden;background:var(--paper);box-shadow:0 0 0 3px var(--paper);margin-inline:auto}
 .master__ava img{width:100%;height:100%;object-fit:cover}
 .master__form{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;margin-top:24px}

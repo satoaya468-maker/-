@@ -1,4 +1,12 @@
 {#- Полная форма заявки -#}
+<div class="form__who">
+  <div class="form__ava">
+    {#- подпись рядом уже называет мастера, поэтому кадр декоративный -#}
+          {% pic "avatar-circle-112", "", { phHeight: "56px" } %}
+  </div>
+  <p class="sm"><b>Заявку принимает мастер сервиса</b><br>
+    <span class="muted">на связи {{ site.hours.weekdays }}</span></p>
+</div>
 <form class="form flow" data-form data-source="{{ formSource or 'Форма заявки' }}" novalidate>
   <div class="calc__two">
     <label class="field"><span class="field__l">Имя</span>
