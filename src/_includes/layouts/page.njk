@@ -14,7 +14,7 @@ layout: layouts/base.njk
   "description": description,
   "url": (page.url | absUrl),
   "provider": {"@id": site.url + "/#business"},
-  "areaServed": site.areaServed | cities,
+  "areaServed": {"@type":"City","name":site.city},
   "offers": servicePrice | priceOffer(site, page.url | absUrl)
 } | jsonld | safe }}</script>
 {% endif %}

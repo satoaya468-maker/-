@@ -36,16 +36,6 @@ module.exports = function (eleventyConfig) {
       : undefined
   );
 
-  /* Города выезда -> массив schema.org City. Список один и тот же
-     в разметке и в тексте страницы контактов, чтобы не разошлись. */
-  /* areaServed без первого элемента: Златоуст называется отдельно,
-     в перечислении «по области» он был бы лишним. */
-  eleventyConfig.addFilter("slice", (arr, n) => (arr || []).slice(n));
-
-  eleventyConfig.addFilter("cities", (names) =>
-    (names || []).map((n) => ({ "@type": "City", name: n }))
-  );
-
   /* Каталог услуг для карточки организации. Берётся из nav.services,
      поэтому новая услуга в меню попадает в разметку сама. */
   eleventyConfig.addFilter("serviceOffers", (items, s) =>
@@ -55,7 +45,7 @@ module.exports = function (eleventyConfig) {
         "@type": "Service",
         name: it.title,
         url: new URL(it.url, s.url).href,
-        areaServed: (s.areaServed || []).map((n) => ({ "@type": "City", name: n })),
+        areaServed: { "@type": "City", name: s.city },
         provider: { "@id": s.url + "/#business" }
       }
     }))

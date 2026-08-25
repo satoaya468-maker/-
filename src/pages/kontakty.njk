@@ -1,7 +1,7 @@
 ---
 layout: layouts/page.njk
 title: "Контакты автосервиса ГБО в Златоусте — адрес и телефон"
-description: "Адрес и телефоны сервиса ГБО в Златоусте: ул. Средняя-Ветлужская, 38. Пн–Сб 9:00–20:00. Заявка на установку, Telegram, карточка в 2ГИС."
+description: "Адрес и телефоны сервиса ГБО в Златоусте: ул. Средняя-Ветлужская, 38. Пн–Сб 9:00–19:00. Заявка на установку, Telegram, карточка в 2ГИС."
 permalink: /kontakty/
 crumb: "Контакты"
 ---
@@ -37,32 +37,6 @@ crumb: "Контакты"
     <div class="section-rule"></div>
     <h2 style="margin-bottom:40px">Как нас найти</h2>
     {% include "partials/map.njk" %}
-  </div>
-</section>
-
-{#- Города выезда. На первом экране главной уже стоит «с выездом по
-    области» — здесь тот же охват назван поимённо: человеку из Миасса
-    или Сатки нужно прочитать своё название, а не догадываться. Список
-    один и тот же, что в site.areaServed и в разметке организации. -#}
-<section class="s-96 shell pt-0">
-  <div class="reveal">
-    <div class="section-rule"></div>
-    <h2 style="margin-bottom:24px">Куда выезжаем</h2>
-    <div class="grid">
-      <div class="c-7">
-        <p class="lead" style="max-width:560px">Бокс находится в Златоусте, на Средней-Ветлужской. Машины из соседних городов
-          приезжают к нам на установку своим ходом — на бензине, а уезжают уже на газе в тот же день.
-          Города выезда по области: {{ site.areaServed | slice(1) | join(", ") }}.</p>
-        <p class="sm muted" style="margin-top:20px;max-width:560px">Если вашего города в списке нет — позвоните,
-          посмотрим по расстоянию. {{ site.hours.short }}.</p>
-      </div>
-      <div class="c-5">
-        <div class="row" style="margin-top:4px">
-          <a class="btn btn--primary" href="#zayavka">Оставить заявку</a>
-          <a class="btn btn--outline" href="{{ site.phones[0].display | telHref }}" data-goal="phone_click">{{ site.phones[0].display }}</a>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
