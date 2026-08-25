@@ -9,7 +9,10 @@ compatibility_date = "2026-08-01"
 
 [vars]
 # Домены, с которых разрешено принимать заявки. Через запятую, без слэша на конце.
-ALLOWED_ORIGINS = "https://gbo-avto.ru,https://www.gbo-avto.ru,https://gbozlat.host-ai.site,http://localhost:8080"
+# гбо-автосервис.рф записан в punycode: браузер шлёт Origin именно так,
+# на кириллический вид проверка не сработает и заявки получат 403.
+# host-ai оставлен на время переезда, localhost — для локальной сборки.
+ALLOWED_ORIGINS = "https://xn----8sbbgabsz2cdxkeh.xn--p1ai,https://www.xn----8sbbgabsz2cdxkeh.xn--p1ai,https://gbozlat.host-ai.site,http://localhost:8080"
 
 # Секреты (НЕ хранить в этом файле):
 #   wrangler secret put TG_BOT_TOKEN
