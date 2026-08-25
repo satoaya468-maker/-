@@ -407,7 +407,6 @@
     var widget = document.getElementById('widget');
     var quiz = document.getElementById('quiz');
     if (!widget || !quiz) return;
-    if (sessionStorage.getItem('gbo-chat-off') === '1') return;
 
     var log = document.getElementById('quiz-log');
     var foot = document.getElementById('quiz-foot');
@@ -594,11 +593,9 @@
       widget.classList.add('has-badge');
       if (badge) badge.hidden = false;
     }
-    setTimeout(show, 18000);
-    addEventListener('scroll', function () {
-      var h = document.documentElement;
-      if ((h.scrollTop + innerHeight) / h.scrollHeight > 0.4) show();
-    }, { passive: true });
+    /* Показываем сразу на каждой странице: виджет должен быть на виду
+       всегда, а не выезжать по таймеру или после прокрутки. */
+    show();
 
     function open() {
       widget.hidden = true;
@@ -615,11 +612,12 @@
       $('#widget-btn').focus({ preventScroll: true });
     }
 
-    /* Скрыть совсем — только крестиком на кружке */
+    /* Крестик убирает кружок с глаз, но только до следующей страницы:
+       на мобиле он закрывает часть экрана, и не дать его убрать совсем —
+       значит мешать читать. При любом переходе виджет возвращается. */
     function dismiss() {
       quiz.hidden = true;
       widget.hidden = true;
-      sessionStorage.setItem('gbo-chat-off', '1');
     }
 
     $('#widget-btn').addEventListener('click', open);
