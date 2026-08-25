@@ -16,6 +16,51 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("absUrl", (p) => new URL(p, site.url).href);
   eleventyConfig.addFilter("jsonld", (o) => JSON.stringify(o).replace(/</g, "\\u003c"));
 
+  /* Цена услуги -> Offer. Без подтверждённой суммы возвращаем undefined,
+     и ключ offers из разметки выпадает: пустой Offer хуже отсутствия. */
+  eleventyConfig.addFilter("priceOffer", (from, s, url) =>
+    from
+      ? {
+          "@type": "Offer",
+          url,
+          priceCurrency: "RUB",
+          price: String(from),
+          priceSpecification: {
+            "@type": "PriceSpecification",
+            priceCurrency: "RUB",
+            minPrice: String(from),
+            valueAddedTaxIncluded: true
+          },
+          availability: "https://schema.org/InStock"
+        }
+      : undefined
+  );
+
+  /* Города выезда -> массив schema.org City. Список один и тот же
+     в разметке и в тексте страницы контактов, чтобы не разошлись. */
+  /* areaServed без первого элемента: Златоуст называется отдельно,
+     в перечислении «по области» он был бы лишним. */
+  eleventyConfig.addFilter("slice", (arr, n) => (arr || []).slice(n));
+
+  eleventyConfig.addFilter("cities", (names) =>
+    (names || []).map((n) => ({ "@type": "City", name: n }))
+  );
+
+  /* Каталог услуг для карточки организации. Берётся из nav.services,
+     поэтому новая услуга в меню попадает в разметку сама. */
+  eleventyConfig.addFilter("serviceOffers", (items, s) =>
+    (items || []).map((it) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: it.title,
+        url: new URL(it.url, s.url).href,
+        areaServed: (s.areaServed || []).map((n) => ({ "@type": "City", name: n })),
+        provider: { "@id": s.url + "/#business" }
+      }
+    }))
+  );
+
   /* FAQPage: разметка строится из того же массива, что и видимый список,
      чтобы структурированные данные не разошлись с текстом на странице */
   eleventyConfig.addFilter("faqLd", (items) => ({

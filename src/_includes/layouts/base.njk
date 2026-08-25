@@ -8,7 +8,8 @@
 <title>{{ title }}</title>
 <meta name="description" content="{{ description }}">
 <link rel="canonical" href="{{ page.url | absUrl }}">
-{% if noindex %}<meta name="robots" content="noindex, nofollow">{% endif %}
+{% if noindex %}<meta name="robots" content="noindex, nofollow">
+{% else %}<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">{% endif %}
 <meta name="theme-color" content="#007D3C">
 
 <meta property="og:type" content="website">
@@ -17,24 +18,52 @@
 <meta property="og:title" content="{{ ogTitle or title }}">
 <meta property="og:description" content="{{ description }}">
 <meta property="og:url" content="{{ page.url | absUrl }}">
+{#- Ссылку на сервис пересылают в WhatsApp и Telegram: без обложки
+    она разворачивается голым текстом. Собирается tools/build-og.py. -#}
+<meta property="og:image" content="{{ '/assets/img/og-cover.jpg' | absUrl }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Установка ГБО в Златоусте — автосервис ГБО-АВТО">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ ogTitle or title }}">
+<meta name="twitter:description" content="{{ description }}">
+<meta name="twitter:image" content="{{ '/assets/img/og-cover.jpg' | absUrl }}">
 
 <link rel="preload" href="/assets/fonts/golos-text-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/golos-text-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/styles.css">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 
+{#- Карточка организации. alternateName и description несут «автосервис»:
+    по запросу «автосервис Златоуст» сайт иначе не опознаётся, а профиль
+    у нас узкий — только газобаллонное оборудование, и так и написано.
+    areaServed перечисляет города выезда поимённо (см. site.json). -#}
 <script type="application/ld+json">{{ {
   "@context":"https://schema.org","@type":"AutoRepair","@id": site.url + "/#business",
-  "name": site.name, "url": site.url + "/",
+  "name": site.name,
+  "alternateName": "Автосервис ГБО-АВТО, Златоуст",
+  "description": site.seoDescription,
+  "url": site.url + "/",
+  "image": site.url + "/assets/img/og-cover.jpg",
   "telephone": ["+79088196369","+79385178227"],
   "address": {"@type":"PostalAddress","streetAddress":site.address.street,
     "addressLocality":site.address.locality,"addressRegion":site.address.region,
     "postalCode":site.address.postalCode,"addressCountry":site.address.country},
   "geo": {"@type":"GeoCoordinates","latitude":site.address.lat,"longitude":site.address.lon},
+  "hasMap": site.gis,
   "openingHours": site.hours.schemaOrg,
-  "areaServed": {"@type":"City","name":site.city},
+  "openingHoursSpecification": [{
+    "@type":"OpeningHoursSpecification",
+    "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens":"09:00","closes":"20:00"}],
+  "areaServed": site.areaServed | cities,
   "sameAs": [site.gis, site.telegram],
-  "priceRange": "от 15 000 ₽"
+  "currenciesAccepted": "RUB",
+  "priceRange": "от 15 000 ₽",
+  "hasOfferCatalog": {
+    "@type":"OfferCatalog","name":"Услуги по ГБО в Златоусте",
+    "itemListElement": nav.services | serviceOffers(site)
+  }
 } | jsonld | safe }}</script>
 </head>
 <body data-ava="{% if images['avatar-circle-112'] %}/assets/img/avatar-circle-112.png{% endif %}" data-relay="{{ site.relayUrl }}" data-gating="{{ site.reviewGating }}" data-mindelay="{{ site.formMinSeconds }}">

@@ -2,5 +2,21 @@
 layout: layouts/base.njk
 ---
 {% include "partials/crumbs.njk" %}
+{#- Разметка услуги. Ставится на страницах, где во front matter задан
+    serviceName: поисковику видно, что именно оказывается, где и кем.
+    Цену НЕ выдумываем: она берётся из servicePrice, а где суммы нет
+    (диагностика по месту), блок offers просто не выводится. -#}
+{% if serviceName %}
+<script type="application/ld+json">{{ {
+  "@context":"https://schema.org","@type":"Service",
+  "name": serviceName,
+  "serviceType": serviceType or serviceName,
+  "description": description,
+  "url": (page.url | absUrl),
+  "provider": {"@id": site.url + "/#business"},
+  "areaServed": site.areaServed | cities,
+  "offers": servicePrice | priceOffer(site, page.url | absUrl)
+} | jsonld | safe }}</script>
+{% endif %}
 {{ content | safe }}
 {% include "partials/cta.njk" %}
