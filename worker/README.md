@@ -25,15 +25,36 @@ Cloudflare Worker. Принимает POST с сайта и пересылает
 
 ## Развёртывание
 
+Всё выполняется из папки `worker/` — там лежит `wrangler.toml`.
+
 ```bash
+cd worker
+npx wrangler login                      # разовая авторизация в Cloudflare
+npx wrangler secret put TELEGRAM_TOKEN    # вставить токен от @BotFather
+npx wrangler secret put TELEGRAM_CHAT_ID  # вставить chat_id из шага выше
 npx wrangler deploy
-npx wrangler secret put TELEGRAM_TOKEN
-npx wrangler secret put TELEGRAM_CHAT_ID
-npx wrangler secret put ALLOWED_ORIGIN
 ```
 
-Адрес Worker после развёртывания прописать в `src/_data/site.json` →
-`relayUrl` и пересобрать сайт.
+`ALLOWED_ORIGIN` секретом не делается — он лежит в `wrangler.toml`
+открытым текстом, потому что это просто адрес сайта. Токен и chat_id
+идут только через `secret put` и в репозиторий не попадают.
+
+Wrangler напечатает адрес вида
+`https://gbo-avto-relay.<ваш-субдомен>.workers.dev`. Его надо прописать
+в `src/_data/site.json` → `relayUrl` и пересобрать сайт (`npm run build`).
+
+## Проверка после развёртывания
+
+```bash
+curl -i -X POST https://gbo-avto-relay.<субдомен>.workers.dev \
+  -H 'Content-Type: application/json' \
+  -H 'Origin: https://gbozlat.host-ai.site' \
+  -d '{"source":"Проверка релея","phone":"+7 908 819-63-69"}'
+```
+
+Ожидается `HTTP 200 {"ok":true}` и сообщение в Telegram. Если пришёл 403 —
+не совпал `ALLOWED_ORIGIN`; 422 — телефон не из 11 цифр; 502 — Telegram
+отказал, смотреть `npx wrangler tail`.
 
 ## Что приходит в сообщении
 

@@ -69,14 +69,19 @@ export default {
     if (data.website) return reply(200, { ok: true }, allowed);
 
     const digits = String(data.phone || '').replace(/\D/g, '');
-    const needsPhone = data.source !== 'Оценка сайта';
+    /* Оценка сайта приходит без телефона, и source у неё с хвостом
+       («Оценка сайта: 5 звёзд»), поэтому сверяем по началу строки. */
+    const needsPhone = !String(data.source || '').startsWith('Оценка сайта');
     if (needsPhone && digits.length !== 11) {
       return reply(422, { ok: false, error: 'bad-phone' }, allowed);
     }
 
     const lines = ['<b>Заявка с сайта ГБО-АВТО</b>'];
     if (digits.length === 11) {
-      lines.push(`Телефон: <a href="tel:+${digits}">+${digits}</a>`);
+      /* Ссылка сырая, подпись человеческая: номер читают с телефона. */
+      const pretty = digits.replace(
+        /^.(\d{3})(\d{3})(\d{2})(\d{2})$/, '+7 ($1) $2-$3-$4');
+      lines.push(`Телефон: <a href="tel:+${digits}">${pretty}</a>`);
     }
     for (const [key, label] of FIELDS) {
       const v = data[key];

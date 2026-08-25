@@ -8,7 +8,8 @@
     "start": "eleventy --serve --port=8080",
     "build": "python3 tools/build-images.py || true; eleventy",
     "clean": "rm -rf dist",
-    "preview": "python3 tools/build-preview.py"
+    "preview": "python3 tools/build-preview.py",
+    "test:relay": "node worker/test.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"

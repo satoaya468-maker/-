@@ -1,0 +1,13 @@
+# Конфиг для `npx wrangler deploy`, выполнять из папки worker/.
+#
+# Здесь только несекретное. TELEGRAM_TOKEN и TELEGRAM_CHAT_ID кладутся
+# отдельно через `wrangler secret put` — в репозиторий они не попадают
+# ни при каких условиях.
+name = "gbo-avto-relay"
+main = "index.js"
+compatibility_date = "2025-08-01"
+
+[vars]
+# Боевой домен сайта. Запросы с любого другого источника получают 403.
+# Для проверки с локальной сборки временно поставьте http://localhost:8080
+ALLOWED_ORIGIN = "https://gbozlat.host-ai.site"
