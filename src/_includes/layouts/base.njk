@@ -32,6 +32,7 @@
 <link rel="preload" href="/assets/fonts/golos-text-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/golos-text-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/styles.css">
+<link rel="stylesheet" href="/assets/css/leads.css">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 
 {#- Карточка организации. alternateName и description несут «автосервис»:
@@ -78,6 +79,9 @@
 {% include "partials/footer.njk" %}
 {% include "partials/widget.njk" %}
 <script src="/assets/js/app.js" defer></script>
+{#- Модуль заявок: любая форма с data-lead-form уходит в Worker, чат-виджет
+    зовёт window.GBOLeads.send. Адрес Worker'а — data-relay на <body>. -#}
+<script src="/assets/js/leads.js" defer></script>
 {% if site.metrikaId %}
 <script>window.GBO_METRIKA_ID={{ site.metrikaId }};</script>
 {% endif %}

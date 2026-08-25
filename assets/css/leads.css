@@ -1,0 +1,20 @@
+/* Статусы отправки заявки. Цвета — под зелёную палитру ГБО-АВТО. */
+.lead-status {
+  margin: 12px 0 0;
+  font-size: 14px;
+  line-height: 1.45;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.lead-status[hidden] { display: none; }
+.lead-status--success {
+  color: #14532d;
+  background: #dcfce7;
+  border: 1px solid #86efac;
+}
+.lead-status--error {
+  color: #7f1d1d;
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+}
+.lead-status--pending { display: none; }

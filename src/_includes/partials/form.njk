@@ -7,12 +7,12 @@
   <p class="sm"><b>Заявку принимает мастер сервиса</b><br>
     <span class="muted">на связи {{ site.hours.weekdays }}</span></p>
 </div>
-<form class="form flow" data-form data-source="{{ formSource or 'Форма заявки' }}" novalidate>
+<form class="form flow" data-lead-form data-source="{{ formSource or 'Форма заявки' }}" novalidate>
   <div class="calc__two">
     <label class="field"><span class="field__l">Имя</span>
       <input class="input" type="text" name="name" autocomplete="name" placeholder="Как к вам обращаться" required></label>
     <label class="field"><span class="field__l">Телефон</span>
-      <input class="input" type="tel" name="phone" autocomplete="tel" placeholder="+7 (___) ___-__-__" data-mask-phone required></label>
+      <input class="input" type="tel" name="phone" autocomplete="tel" placeholder="+7 (___) ___-__-__" required></label>
   </div>
   <label class="field"><span class="field__l">Марка и модель автомобиля</span>
     <input class="input" type="text" name="car" placeholder="Например, Lada Granta 2019"></label>
@@ -29,8 +29,8 @@
   <label class="field"><span class="field__l">Комментарий</span>
     <textarea class="input" name="comment" rows="3" placeholder="Пробег, пожелания по оборудованию, удобное время"></textarea></label>
 
-  <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+  {#- honeypot и таймер заполнения leads.js добавляет сам -#}
 
-  <button class="btn btn--primary btn--wide" type="submit" data-form-submit>Отправить заявку</button>
+  <button class="btn btn--primary btn--wide" type="submit">Отправить заявку</button>
   <p class="cap">Перезвоним в течение 15 минут. Отправляя форму, вы соглашаетесь на обработку персональных данных.</p>
 </form>

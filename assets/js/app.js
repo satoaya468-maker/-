@@ -105,84 +105,17 @@
     input.addEventListener('focus', function () { if (!input.value) input.value = '+7 ('; });
     input.addEventListener('blur', function () { if (input.value.replace(/\D/g, '').length < 2) input.value = ''; });
   }
-  $$('[data-mask-phone]').forEach(maskPhone);
+  /* Маску полям заявок ставит leads.js; здесь она нужна только вводу
+     телефона в чат-виджете, который формой не является. */
 
-  /* --- Отправка форм ---------------------------------------------------
-     Единая точка: сменить адрес приёмника можно в src/_data/site.json,
-     компоненты при этом не трогаются. Токена бота в клиенте нет и быть
-     не может — за отправку в Telegram отвечает серверный релей.        */
-  var RELAY = body.getAttribute('data-relay') || '';
-  var MIN_DELAY = parseInt(body.getAttribute('data-mindelay') || '3', 10) * 1000;
-  var loadedAt = Date.now();
+  /* --- Отправка заявок --------------------------------------------------
+     Отправкой занимается assets/js/leads.js: он ловит любую форму с
+     data-lead-form и отдаёт заявку в Cloudflare Worker. Здесь остался
+     только вызов window.GBOLeads.send для чат-виджета и блока оценки —
+     у них нет своей формы с data-lead-form.                              */
 
-  /* Недоставленные заявки. Мобильная связь в боксе и по дороге рвётся, и
-     без очереди заявка исчезала молча: человек видел «записал, перезвоню»,
-     а в сервис не приходило ничего. Теперь неудачная отправка ложится
-     в localStorage и уходит при следующем заходе с любой страницы. */
-  var OUTBOX = 'gbo:outbox';
-  var OUTBOX_MAX = 20;
-
-  function outboxRead() {
-    try { return JSON.parse(localStorage.getItem(OUTBOX)) || []; } catch (e) { return []; }
-  }
-  function outboxWrite(list) {
-    /* Приватный режим и переполнение квоты кидают — заявку это уже не
-       спасёт, но и падать на этом нельзя. */
-    try { localStorage.setItem(OUTBOX, JSON.stringify(list.slice(-OUTBOX_MAX))); } catch (e) {}
-  }
-
-  function post(payload) {
-    return fetch(RELAY, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      /* keepalive: запрос доживает до отправки, даже если вкладку закрыли
-         сразу после последнего ответа в чате. */
-      keepalive: true,
-      body: JSON.stringify(payload)
-    }).then(function (r) {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json().catch(function () { return {}; });
-    });
-  }
-
-  window.gboSend = function (payload) {
-    payload.page = location.pathname;
-    payload.url = location.href;
-    payload.time = new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Yekaterinburg' });
-    if (!RELAY) {
-      /* Релей ещё не подключён: не делаем вид, что заявка ушла. */
-      console.info('[ГБО] Заявка не отправлена — relayUrl пуст. Данные:', payload);
-      return Promise.reject(new Error('relay-not-configured'));
-    }
-    return post(payload).catch(function (err) {
-      outboxWrite(outboxRead().concat([payload]));
-      throw err;
-    });
-  };
-
-  /* Досылка при загрузке любой страницы. Помечаем источник, чтобы в
-     сервисе было видно: заявка лежала, время в ней — исходное.
-     «Оценка сайта» остаётся в начале строки, релей сверяет по началу. */
-  function outboxFlush() {
-    var list = outboxRead();
-    if (!RELAY || !list.length) return;
-    outboxWrite([]);
-    var failed = [];
-    var tries = list.map(function (p) {
-      if (String(p.source || '').indexOf('отложенная') < 0) {
-        p.source = (p.source || 'Заявка') + ' · отложенная';
-      }
-      return post(p).catch(function () { failed.push(p); });
-    });
-    Promise.all(tries).then(function () {
-      /* Читаем заново: пока досылали, могла лечь свежая неудача. */
-      if (failed.length) outboxWrite(outboxRead().concat(failed));
-    });
-  }
-  outboxFlush();
-
-  /* Ждём отправку, но не дольше ms. null — ещё не ясно: показываем
-     обычное подтверждение, очередь всё равно подстрахует. */
+  /* Ждём исход отправки, но не дольше ms. null — ещё не ясно: чат в этом
+     случае показывает обычное подтверждение, не выдумывая сбой. */
   function settled(promise, ms) {
     return new Promise(function (resolve) {
       var done = false;
@@ -191,72 +124,6 @@
       promise.then(function () { finish(true); }, function () { finish(false); });
     });
   }
-  window.gboSettled = settled;
-
-  function formState(form, state, text) {
-    var btn = $('[data-form-submit]', form);
-    if (state === 'sending') {
-      btn.setAttribute('aria-disabled', 'true');
-      btn.dataset.label = btn.textContent;
-      btn.innerHTML = '<span class="spinner" aria-hidden="true"></span>Отправляем…';
-    } else if (state === 'idle') {
-      btn.removeAttribute('aria-disabled');
-      if (btn.dataset.label) btn.textContent = btn.dataset.label;
-    } else if (state === 'ok') {
-      var ok = document.createElement('div');
-      ok.className = 'form__msg form__msg--ok';
-      ok.setAttribute('role', 'status');
-      ok.innerHTML = '<b>Заявка принята.</b><br>Перезвоним в течение 15 минут на указанный номер.';
-      form.replaceWith(ok);
-    } else if (state === 'err') {
-      var err = $('.form__msg--err', form.parentNode);
-      if (!err) {
-        err = document.createElement('div');
-        err.className = 'form__msg form__msg--err';
-        err.setAttribute('role', 'alert');
-        err.style.marginTop = '16px';
-        form.parentNode.insertBefore(err, form.nextSibling);
-      }
-      err.innerHTML = text;
-      formState(form, 'idle');
-    }
-  }
-
-  $$('[data-form]').forEach(function (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var fd = new FormData(form);
-
-      if (fd.get('website')) return;                     /* honeypot */
-      if (Date.now() - loadedAt < MIN_DELAY) {
-        formState(form, 'err', 'Слишком быстрая отправка. Попробуйте ещё раз через пару секунд.');
-        return;
-      }
-      var phone = String(fd.get('phone') || '');
-      var need = form.querySelector('[name="phone"][required]');
-      if (need && phone.replace(/\D/g, '').length !== 11) {
-        need.setAttribute('aria-invalid', 'true');
-        formState(form, 'err', 'Проверьте номер телефона — нужны все 11 цифр.');
-        need.focus();
-        return;
-      }
-      if (need) need.removeAttribute('aria-invalid');
-
-      var payload = { source: form.getAttribute('data-source') || 'Форма' };
-      fd.forEach(function (v, k) { if (k !== 'website' && v) payload[k] = v; });
-
-      formState(form, 'sending');
-      window.gboSend(payload).then(function () {
-        window.gboGoal('form_submit');
-        formState(form, 'ok');
-      }).catch(function (err) {
-        var tail = ' Позвоните нам: <a class="accent-link" href="tel:+79088196369">+7 (908) 819-63-69</a>.';
-        formState(form, 'err', err.message === 'relay-not-configured'
-          ? 'Отправка заявок ещё не подключена к этому домену.' + tail
-          : 'Не удалось отправить заявку.' + tail);
-      });
-    });
-  });
 
   /* --- Калькулятор окупаемости ------------------------------------------
      литрыБензина  = пробег / 100 * расход
@@ -494,9 +361,9 @@
         e.preventDefault();
         var fd = new FormData(form);
         if (fd.get('website')) return;
-        window.gboSend({
-          source: 'Оценка сайта: ' + score + ' звёзд',
-          score: score,
+        window.GBOLeads.send({
+          source: 'Оценка сайта: ' + score + ' из 5',
+          phone: fd.get('phone') || '',
           comment: fd.get('comment') || ''
         }).then(function () {
           form.replaceWith(Object.assign(document.createElement('div'), {
@@ -664,32 +531,33 @@
 
       window.gboGoal('quiz_complete');
       /* Отправка идёт параллельно с анимацией печати: к моменту, когда
-         пузырь готов показаться, ответ обычно уже есть. */
-      var sending = window.gboSend({
-        source: 'Чат-виджет', name: '', phone: answers.phone || '',
-        car: answers.car || '', service: answers.need || 'Подбор ГБО',
-        comment: 'Пробег: ' + (answers.mileage || '—')
+         пузырь готов показаться, ответ обычно уже есть. Все ответы
+         складываем в comment одной строкой — так в Telegram виден весь
+         разговор, а не только последний шаг. */
+      var sending = window.GBOLeads.send({
+        source: 'Чат-виджет',
+        phone: answers.phone || '',
+        car: answers.car || '',
+        service: answers.need || 'Подбор ГБО',
+        comment: [
+          'Авто: ' + (answers.car || '—'),
+          'Задача: ' + (answers.need || '—'),
+          'Пробег: ' + (answers.mileage || '—')
+        ].join(' · ')
       });
-      /* Различаем два провала: сеть подвела (заявка легла в очередь и уйдёт
-         сама) и релей вообще не подключён к домену (копить некуда —
-         обещать досылку нельзя, остаются прямые контакты). */
-      var queued = false;
-      sending.catch(function (err) { queued = err.message !== 'relay-not-configured'; });
+      sending.catch(function () { /* исход разбирается ниже, по delivered */ });
 
       typing(900, function () {
         /* Обещать звонок, не отправив заявку, нельзя: раньше диалог
            заканчивался «перезвоню через 15 минут» даже когда до сервиса
            не дошло ничего. Ждём исход, но не дольше секунды. */
-        window.gboSettled(sending, 1000).then(function (delivered) {
+        settled(sending, 1000).then(function (delivered) {
           var list = summary.length
             ? '<ul><li>' + summary.map(escapeHtml).join('</li><li>') + '</li></ul>' : '';
           bubble(delivered !== false
             ? 'Записал. Перезвоню в течение 15 минут и назову точную сумму.' + list
-            : queued
-              ? 'Связь с сервисом сейчас не проходит. Заявку сохранил и отправлю, ' +
-                'как только связь появится — но надёжнее написать или позвонить прямо сейчас.' + list
-              : 'Связь с сервисом сейчас не проходит. Напишите или позвоните напрямую — ' +
-                'так точно не потеряется.' + list);
+            : 'Связь с сервисом сейчас не проходит. Напишите или позвоните напрямую — ' +
+              'так точно не потеряется.' + list);
           setTimeout(function () {
             typing(700, function () {
               bubble(delivered === false

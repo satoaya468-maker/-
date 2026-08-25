@@ -1,13 +1,16 @@
-# Конфиг для `npx wrangler deploy`, выполнять из папки worker/.
-#
-# Здесь только несекретное. TELEGRAM_TOKEN и TELEGRAM_CHAT_ID кладутся
-# отдельно через `wrangler secret put` — в репозиторий они не попадают
-# ни при каких условиях.
-name = "gbo-avto-relay"
-main = "index.js"
-compatibility_date = "2025-08-01"
+name = "gbo-avto-leads"
+main = "src/worker.js"
+compatibility_date = "2026-08-01"
+
+# Антиспам-хранилище (rate limit по IP). Создать: wrangler kv namespace create LEADS_RL
+# [[kv_namespaces]]
+# binding = "LEADS_RL"
+# id = "<kv_namespace_id>"
 
 [vars]
-# Боевой домен сайта. Запросы с любого другого источника получают 403.
-# Для проверки с локальной сборки временно поставьте http://localhost:8080
-ALLOWED_ORIGIN = "https://gbozlat.host-ai.site"
+# Домены, с которых разрешено принимать заявки. Через запятую, без слэша на конце.
+ALLOWED_ORIGINS = "https://gbo-avto.ru,https://www.gbo-avto.ru,https://gbozlat.host-ai.site,http://localhost:8080"
+
+# Секреты (НЕ хранить в этом файле):
+#   wrangler secret put TG_BOT_TOKEN
+#   wrangler secret put TG_CHAT_ID

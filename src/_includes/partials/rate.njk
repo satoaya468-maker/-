@@ -21,7 +21,11 @@
         <p class="field__l" style="margin-bottom:10px">Что пошло не так? Напишите — разберёмся.</p>
         <label class="field"><span class="vh">Комментарий</span>
           <textarea class="input" name="comment" rows="3" placeholder="Коротко опишите ситуацию"></textarea></label>
-        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        {#- Телефон здесь обязателен по двум причинам: панель обещает
+            «разберёмся и ответим», а ответить без контакта нельзя, — и
+            приёмник заявок не принимает обращения без номера. -#}
+        <label class="field"><span class="vh">Телефон для ответа</span>
+          <input class="input" type="tel" name="phone" autocomplete="tel" placeholder="+7 (___) ___-__-__" required></label>
         <div class="row" style="margin-top:12px">
           <button class="btn btn--primary" type="submit">Отправить</button>
           <a class="accent-link" href="{{ site.gisReviews }}" target="_blank" rel="noopener" data-goal="gis_click">Или оставить отзыв в 2ГИС</a>

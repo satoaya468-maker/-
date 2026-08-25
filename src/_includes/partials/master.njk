@@ -11,13 +11,14 @@
     <div class="c-8">
       <h2>Не знаете, какой комплект нужен вашей машине?</h2>
       <p class="lead" style="margin-top:16px">Оставьте телефон — перезвоним в течение 15 минут, спросим про машину и назовём стоимость. Бесплатно и без обязательств.</p>
-      <form class="master__form" data-form data-source="Мини-форма «Мастер подберёт комплект»" novalidate>
+      {#- Источник задаётся на месте включения: партиал стоит и на главной,
+         и на контактах, а в Telegram должно быть видно, откуда заявка. -#}
+      <form class="master__form" data-lead-form data-source="{{ masterSource or 'Мини-форма «Мастер подберёт комплект»' }}" novalidate>
         <label class="field"><span class="vh">Ваше имя</span>
           <input class="input" type="text" name="name" autocomplete="name" placeholder="Ваше имя" required></label>
         <label class="field"><span class="vh">Телефон</span>
-          <input class="input" type="tel" name="phone" autocomplete="tel" placeholder="+7 (___) ___-__-__" data-mask-phone required></label>
-        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="btn btn--primary" type="submit" data-form-submit>Жду звонка</button>
+          <input class="input" type="tel" name="phone" autocomplete="tel" placeholder="+7 (___) ___-__-__" required></label>
+        <button class="btn btn--primary" type="submit">Жду звонка</button>
       </form>
       <p class="cap" style="margin-top:12px">Отправляя форму, вы соглашаетесь на обработку персональных данных.</p>
     </div>

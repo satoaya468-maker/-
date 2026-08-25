@@ -1,71 +1,95 @@
-# Релей заявок → Telegram
+# Приём заявок → Telegram
 
-Cloudflare Worker. Принимает POST с сайта и пересылает заявку в Telegram
-владельцу сервиса.
+Cloudflare Worker «gbo-avto-leads». Принимает POST с сайта и пересылает
+заявку в Telegram владельцу сервиса.
 
 **Токена бота в клиентском коде нет и быть не должно.** Сайт знает только
-адрес этого Worker (`relayUrl` в `src/_data/site.json`), всё остальное —
-переменные окружения Worker.
+адрес этого Worker'а (`relayUrl` в `src/_data/site.json`, оттуда он
+попадает в `data-relay` на `<body>` и читается `assets/js/leads.js`).
+Всё остальное — секреты Worker'а.
 
-## Переменные окружения
-
-| Переменная | Что это |
+| Файл | Что это |
 |---|---|
-| `TELEGRAM_TOKEN` | Токен бота от @BotFather |
-| `TELEGRAM_CHAT_ID` | Чат владельца. Заявки идут на номер **+7 951 469-33-35** — chat_id этого аккаунта подставляется сюда |
-| `ALLOWED_ORIGIN` | Боевой домен, например `https://gbozlat.host-ai.site`. Запросы с других источников отклоняются |
+| `src/worker.js` | сам приёмник |
+| `wrangler.toml` | конфиг развёртывания, только несекретное |
+| `test.mjs` | прогон без развёртывания, `npm run test:relay` |
 
-## Как получить chat_id для +7 951 469-33-35
+## Эндпоинты
 
-1. С этого номера написать боту любое сообщение (иначе бот не сможет
-   ответить первым — так устроен Telegram).
-2. Открыть `https://api.telegram.org/bot<ТОКЕН>/getUpdates` и взять
-   `result[].message.chat.id`.
-3. Положить значение в `TELEGRAM_CHAT_ID`.
+| Метод | Путь | Ответ |
+|---|---|---|
+| `POST` | `/lead` | `200 {"ok":true}` — заявка ушла |
+| `GET` | `/health` | `200 {"ok":true,"ts":…}` — Worker жив |
+
+## Переменные
+
+| Имя | Где задаётся | Что это |
+|---|---|---|
+| `TG_BOT_TOKEN` | `wrangler secret put` | Токен бота от @BotFather |
+| `TG_CHAT_ID` | `wrangler secret put` | Получатель. Можно несколько через запятую — уйдёт в каждый |
+| `ALLOWED_ORIGINS` | `wrangler.toml` → `[vars]` | Домены сайта через запятую, без слэша на конце |
 
 ## Развёртывание
 
-Всё выполняется из папки `worker/` — там лежит `wrangler.toml`.
-
 ```bash
 cd worker
-npx wrangler login                      # разовая авторизация в Cloudflare
-npx wrangler secret put TELEGRAM_TOKEN    # вставить токен от @BotFather
-npx wrangler secret put TELEGRAM_CHAT_ID  # вставить chat_id из шага выше
+npx wrangler login                        # разовая авторизация в Cloudflare
+npx wrangler secret put TG_BOT_TOKEN
+npx wrangler secret put TG_CHAT_ID
 npx wrangler deploy
 ```
 
-`ALLOWED_ORIGIN` секретом не делается — он лежит в `wrangler.toml`
-открытым текстом, потому что это просто адрес сайта. Токен и chat_id
-идут только через `secret put` и в репозиторий не попадают.
+`wrangler secret put` спрашивает значение отдельным приглашением и не пишет
+его ни в файлы, ни в историю команд. Это единственное место, куда токен
+должен попасть.
 
-Wrangler напечатает адрес вида
-`https://gbo-avto-relay.<ваш-субдомен>.workers.dev`. Его надо прописать
-в `src/_data/site.json` → `relayUrl` и пересобрать сайт (`npm run build`).
+Адрес после развёртывания (`https://gbo-avto-leads.<субдомен>.workers.dev/lead`)
+прописать в `src/_data/site.json` → `relayUrl` и пересобрать сайт.
 
-## Проверка после развёртывания
+### Ограничение частоты (необязательно)
+
+Пока закомментировано в `wrangler.toml`. Чтобы включить — создать хранилище
+и вписать его id:
 
 ```bash
-curl -i -X POST https://gbo-avto-relay.<субдомен>.workers.dev \
-  -H 'Content-Type: application/json' \
-  -H 'Origin: https://gbozlat.host-ai.site' \
-  -d '{"source":"Проверка релея","phone":"+7 908 819-63-69"}'
+npx wrangler kv namespace create LEADS_RL
 ```
 
-Ожидается `HTTP 200 {"ok":true}` и сообщение в Telegram. Если пришёл 403 —
-не совпал `ALLOWED_ORIGIN`; 422 — телефон не из 11 цифр; 502 — Telegram
-отказал, смотреть `npx wrangler tail`.
+Без него заявки принимаются без ограничения по частоте; honeypot и проверка
+времени заполнения работают в любом случае.
 
-## Что приходит в сообщении
+## Проверка
 
-Источник (форма заявки, чат-виджет, оценка), имя, телефон кликабельной
-ссылкой, автомобиль, услуга, комментарий, страница отправки и время
-в часовом поясе Asia/Yekaterinburg.
+```bash
+curl -X POST https://gbo-avto-leads.<субдомен>.workers.dev/lead \
+  -H 'Content-Type: application/json' \
+  -H 'Origin: https://gbozlat.host-ai.site' \
+  -d '{"name":"Тест","phone":"+79514693335","car":"Lada Vesta","service":"Установка ГБО","comment":"проверка","t_elapsed":9000}'
+```
+
+| Ответ | Причина |
+|---|---|
+| `200 {"ok":true}` | заявка ушла |
+| `403` | Origin не в `ALLOWED_ORIGINS` |
+| `422` | телефон не распознан |
+| `429` | сработало ограничение частоты по IP |
+| `502` | Telegram не ответил. Заявка целиком пишется в лог: `npx wrangler tail` |
+| `404` | путь не `/lead` — проверьте, что в `relayUrl` есть `/lead` на конце |
+
+## Что шлёт сайт
+
+| Источник | Как отправляется |
+|---|---|
+| Формы заявки и мини-форма мастера | атрибут `data-lead-form`, перехватывает `leads.js` |
+| Чат-виджет | `window.GBOLeads.send({ … source: 'Чат-виджет' })`, ответы диалога — в `comment` |
+| Оценка сайта (1–3 звезды) | `window.GBOLeads.send` с телефоном из формы |
+
+Оценка 4–5 звёзд в Telegram не уходит: этот сценарий ведёт человека в 2ГИС.
 
 ## Защита
 
-- Honeypot-поле `website`: заполнено — запрос тихо отбрасывается.
-- Минимальная задержка 3 секунды от загрузки страницы до отправки
-  проверяется на стороне сайта (`formMinSeconds` в `site.json`).
-- CORS только на боевой домен.
+- Honeypot-поля `website` и `fax` — заполнены, значит бот: отвечаем как
+  обычно и молча выбрасываем.
+- Сабмит быстрее 2 секунд от открытия формы отбрасывается так же.
+- CORS только на домены из `ALLOWED_ORIGINS`.
 - Ответ Telegram наружу не отдаётся: в нём может оказаться часть токена.
