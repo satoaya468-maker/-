@@ -53,6 +53,7 @@ tools/
   deshadow.py      снятие контактной тени с предметного кадра для тёмной карточки
   fade-edges.py    растворение тени к тем краям кадра, которыми её обрезали
   build-og.py      обложка 1200×630 для соцсетей (og:image)
+  build-favicon.py иконки сайта, включая /favicon.ico в корне
   build-preview.py однофайловое превью всего сайта для показа заказчику
   greencheck.js    замер доли зелёного в первом экране
 worker/           релей заявок (пока не подключён)
@@ -159,6 +160,7 @@ window.GBOLeads.send({ phone: '…', comment: '…', source: 'Чат-видже�
 | `BreadcrumbList`, `FAQPage` | `partials/crumbs.njk`, страницы с блоком вопросов |
 | `og:image` 1200×630 | `tools/build-og.py`, ссылка разворачивается картинкой в WhatsApp и Telegram |
 | `robots: max-image-preview:large` | `layouts/base.njk` |
+| `/favicon.ico` в корне | `tools/build-favicon.py` → `static/`, иначе Яндекс не покажет иконку у домена |
 
 **Цену в разметку ставим только подтверждённую.** `servicePrice` во front
 matter задан лишь там, где владелец назвал сумму (установка от 50 000 ₽,

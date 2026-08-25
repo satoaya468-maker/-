@@ -3,6 +3,9 @@ const site = require("./src/_data/site.json");
 module.exports = function (eleventyConfig) {
   /* assets/ рядом с src/, копируется в dist/assets как есть */
   eleventyConfig.addPassthroughCopy({ "assets": "assets" });
+  /* static/ ложится в корень сайта: робот Яндекса ищет иконку по
+     адресу /favicon.ico, из подпапки он её не возьмёт. */
+  eleventyConfig.addPassthroughCopy({ "static": "/" });
   eleventyConfig.addWatchTarget("assets/");
 
   /* +7 (908) 819-63-69 -> tel:+79088196369 */
