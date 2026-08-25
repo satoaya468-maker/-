@@ -115,6 +115,36 @@
   var MIN_DELAY = parseInt(body.getAttribute('data-mindelay') || '3', 10) * 1000;
   var loadedAt = Date.now();
 
+  /* Недоставленные заявки. Мобильная связь в боксе и по дороге рвётся, и
+     без очереди заявка исчезала молча: человек видел «записал, перезвоню»,
+     а в сервис не приходило ничего. Теперь неудачная отправка ложится
+     в localStorage и уходит при следующем заходе с любой страницы. */
+  var OUTBOX = 'gbo:outbox';
+  var OUTBOX_MAX = 20;
+
+  function outboxRead() {
+    try { return JSON.parse(localStorage.getItem(OUTBOX)) || []; } catch (e) { return []; }
+  }
+  function outboxWrite(list) {
+    /* Приватный режим и переполнение квоты кидают — заявку это уже не
+       спасёт, но и падать на этом нельзя. */
+    try { localStorage.setItem(OUTBOX, JSON.stringify(list.slice(-OUTBOX_MAX))); } catch (e) {}
+  }
+
+  function post(payload) {
+    return fetch(RELAY, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      /* keepalive: запрос доживает до отправки, даже если вкладку закрыли
+         сразу после последнего ответа в чате. */
+      keepalive: true,
+      body: JSON.stringify(payload)
+    }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json().catch(function () { return {}; });
+    });
+  }
+
   window.gboSend = function (payload) {
     payload.page = location.pathname;
     payload.url = location.href;
@@ -124,15 +154,44 @@
       console.info('[ГБО] Заявка не отправлена — relayUrl пуст. Данные:', payload);
       return Promise.reject(new Error('relay-not-configured'));
     }
-    return fetch(RELAY, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).then(function (r) {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json().catch(function () { return {}; });
+    return post(payload).catch(function (err) {
+      outboxWrite(outboxRead().concat([payload]));
+      throw err;
     });
   };
+
+  /* Досылка при загрузке любой страницы. Помечаем источник, чтобы в
+     сервисе было видно: заявка лежала, время в ней — исходное.
+     «Оценка сайта» остаётся в начале строки, релей сверяет по началу. */
+  function outboxFlush() {
+    var list = outboxRead();
+    if (!RELAY || !list.length) return;
+    outboxWrite([]);
+    var failed = [];
+    var tries = list.map(function (p) {
+      if (String(p.source || '').indexOf('отложенная') < 0) {
+        p.source = (p.source || 'Заявка') + ' · отложенная';
+      }
+      return post(p).catch(function () { failed.push(p); });
+    });
+    Promise.all(tries).then(function () {
+      /* Читаем заново: пока досылали, могла лечь свежая неудача. */
+      if (failed.length) outboxWrite(outboxRead().concat(failed));
+    });
+  }
+  outboxFlush();
+
+  /* Ждём отправку, но не дольше ms. null — ещё не ясно: показываем
+     обычное подтверждение, очередь всё равно подстрахует. */
+  function settled(promise, ms) {
+    return new Promise(function (resolve) {
+      var done = false;
+      function finish(v) { if (!done) { done = true; resolve(v); } }
+      setTimeout(function () { finish(null); }, ms);
+      promise.then(function () { finish(true); }, function () { finish(false); });
+    });
+  }
+  window.gboSettled = settled;
 
   function formState(form, state, text) {
     var btn = $('[data-form-submit]', form);
@@ -603,31 +662,52 @@
         + 'Пробег: ' + (answers.mileage || '—') + '\n'
         + 'Телефон: ' + (answers.phone || '—');
 
-      typing(900, function () {
-        bubble('Записал. Перезвоню в течение 15 минут и назову точную сумму.' +
-          (summary.length ? '<ul><li>' + summary.map(escapeHtml).join('</li><li>') + '</li></ul>' : ''));
-        setTimeout(function () {
-          typing(700, function () {
-            bubble('Если удобнее — напишите мне сразу, отвечу быстрее.');
-            foot.innerHTML =
-              '<div class="quiz__acts">' +
-              '<a class="btn btn--primary btn--sm btn--wide" href="https://wa.me/79088196369?text=' +
-              encodeURIComponent(txt) + '" target="_blank" rel="noopener" data-goal="whatsapp_click">' +
-              '<svg class="btn__i" aria-hidden="true"><use href="#i-whatsapp-logo"></use></svg>Написать в WhatsApp</a>' +
-              '<a class="btn btn--outline btn--sm btn--wide" href="tel:+79088196369" data-goal="phone_click">' +
-              '<svg class="btn__i" aria-hidden="true"><use href="#i-phone"></use></svg>Позвонить сейчас</a>' +
-              '</div>';
-            toBottom();
-          });
-        }, 500);
-      });
-
       window.gboGoal('quiz_complete');
-      window.gboSend({
+      /* Отправка идёт параллельно с анимацией печати: к моменту, когда
+         пузырь готов показаться, ответ обычно уже есть. */
+      var sending = window.gboSend({
         source: 'Чат-виджет', name: '', phone: answers.phone || '',
         car: answers.car || '', service: answers.need || 'Подбор ГБО',
         comment: 'Пробег: ' + (answers.mileage || '—')
-      }).catch(function () { /* каналы связи уже показаны кнопками выше */ });
+      });
+      /* Различаем два провала: сеть подвела (заявка легла в очередь и уйдёт
+         сама) и релей вообще не подключён к домену (копить некуда —
+         обещать досылку нельзя, остаются прямые контакты). */
+      var queued = false;
+      sending.catch(function (err) { queued = err.message !== 'relay-not-configured'; });
+
+      typing(900, function () {
+        /* Обещать звонок, не отправив заявку, нельзя: раньше диалог
+           заканчивался «перезвоню через 15 минут» даже когда до сервиса
+           не дошло ничего. Ждём исход, но не дольше секунды. */
+        window.gboSettled(sending, 1000).then(function (delivered) {
+          var list = summary.length
+            ? '<ul><li>' + summary.map(escapeHtml).join('</li><li>') + '</li></ul>' : '';
+          bubble(delivered !== false
+            ? 'Записал. Перезвоню в течение 15 минут и назову точную сумму.' + list
+            : queued
+              ? 'Связь с сервисом сейчас не проходит. Заявку сохранил и отправлю, ' +
+                'как только связь появится — но надёжнее написать или позвонить прямо сейчас.' + list
+              : 'Связь с сервисом сейчас не проходит. Напишите или позвоните напрямую — ' +
+                'так точно не потеряется.' + list);
+          setTimeout(function () {
+            typing(700, function () {
+              bubble(delivered === false
+                ? 'Вот прямые контакты мастера.'
+                : 'Если удобнее — напишите мне сразу, отвечу быстрее.');
+              foot.innerHTML =
+                '<div class="quiz__acts">' +
+                '<a class="btn btn--primary btn--sm btn--wide" href="https://wa.me/79088196369?text=' +
+                encodeURIComponent(txt) + '" target="_blank" rel="noopener" data-goal="whatsapp_click">' +
+                '<svg class="btn__i" aria-hidden="true"><use href="#i-whatsapp-logo"></use></svg>Написать в WhatsApp</a>' +
+                '<a class="btn btn--outline btn--sm btn--wide" href="tel:+79088196369" data-goal="phone_click">' +
+                '<svg class="btn__i" aria-hidden="true"><use href="#i-phone"></use></svg>Позвонить сейчас</a>' +
+                '</div>';
+              toBottom();
+            });
+          }, 500);
+        });
+      });
     }
 
     function step() {
