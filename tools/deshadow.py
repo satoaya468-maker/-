@@ -32,7 +32,13 @@ def deshadow(im):
     im = im.convert("RGBA")
     w, h = im.size
     px = im.load()
-    mad = local_mad(im.convert("L")).load()
+    # Под alpha=0 канал RGB неопределён: после кеинга там остаётся мусор, и на
+    # самой кромке он даёт всплеск локального контраста, который запирает
+    # заливку снаружи тени. Считаем контраст по кадру, положенному на белое, —
+    # ровно на том фоне, на котором предмет и снимали.
+    on_white = Image.new("RGB", im.size, (255, 255, 255))
+    on_white.paste(im, (0, 0), im)
+    mad = local_mad(on_white.convert("L")).load()
 
     def is_shadow(x, y):
         r, g, b, a = px[x, y]

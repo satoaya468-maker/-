@@ -49,8 +49,8 @@
     "src": "webp"
   },
   "gbo-kit-diagonal": {
-    "w": 800,
-    "h": 808,
+    "w": 600,
+    "h": 689,
     "fallback": "gbo-kit-diagonal.png",
     "alpha": true,
     "src": "webp"

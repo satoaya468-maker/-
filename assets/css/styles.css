@@ -228,15 +228,17 @@ a{color:inherit}
   height:var(--infobar-h);overflow:hidden;
   display:flex;align-items:center;gap:20px;
   padding-inline:28px;
-  font-size:var(--fs-cap);font-weight:500;color:rgba(255,255,255,.75);
+  /* .90, а не .75: на --green это 4.57:1 — инфобар мелкий (13px) и обязан
+     дотягивать до 4.5:1. Видно только на десктопе, на мобиле бар скрыт. */
+  font-size:var(--fs-cap);font-weight:500;color:rgba(255,255,255,.9);
   border-bottom:1px solid rgba(255,255,255,.15);
 }
 .hdr__city{display:inline-flex;align-items:center;gap:8px;color:var(--paper);font-weight:600;flex:none}
 .hdr__city::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--paper);flex:none}
 .hdr__info-right{margin-left:auto;display:flex;align-items:center;gap:16px;flex:none}
-.hdr__info a{text-decoration:none;color:rgba(255,255,255,.85)}
+.hdr__info a{text-decoration:none;color:rgba(255,255,255,.9)}
 .hdr__info a:hover{color:var(--paper)}
-.hdr__msg{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;color:rgba(255,255,255,.85)}
+.hdr__msg{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;color:rgba(255,255,255,.9)}
 .hdr__msg:hover{color:var(--paper)}
 
 /* Основная строка */
