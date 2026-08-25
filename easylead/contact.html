@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.classList.add('js');</script>
+  <title>Контакты и заявка на расчёт | EasyLead</title>
+  <meta name="description" content="Телефон, Telegram и почта EasyLead. Оставьте заявку на расчёт: ответим в рабочее время и пришлём смету с фиксированной ценой.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="EasyLead">
+  <meta property="og:title" content="Контакты и заявка на расчёт | EasyLead">
+  <meta property="og:description" content="Телефон, Telegram и почта EasyLead. Оставьте заявку на расчёт: ответим в рабочее время и пришлём смету с фиксированной ценой.">
+  <meta property="og:image" content="img/og-cover.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="Контакты">
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <!-- Шапка: прозрачная в самом верху, белая с хайрлайном после прокрутки -->
+  <header class="header" data-header>
+    <div class="container header__inner">
+      <a class="logo" href="index.html" aria-label="EasyLead, на главную">Easy<b>Lead</b></a>
+
+      <nav class="nav" aria-label="Основная навигация">
+          <a class="nav__link" href="index.html">Главная</a>
+          <a class="nav__link" href="services.html">Услуги</a>
+          <a class="nav__link" href="cases.html">Работы</a>
+          <a class="nav__link" href="about.html">О нас</a>
+          <a class="nav__link" href="pricing.html">Цены</a>
+          <a class="nav__link" href="contact.html" aria-current="page">Контакты</a>
+      </nav>
+
+      <a class="btn btn--primary btn--sm header__cta" href="contact.html#form">Получить расчёт</a>
+
+      <button class="burger" type="button" data-burger aria-expanded="false"
+              aria-controls="mobile-menu" aria-label="Открыть меню">
+        <span class="burger__open"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg></span>
+        <span class="burger__close"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Мобильное меню на весь экран -->
+  <div class="mnav" id="mobile-menu" data-mobile-menu hidden>
+    <nav aria-label="Меню разделов">
+      <ul class="mnav__list">
+          <li><a class="mnav__link" href="index.html">Главная<svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></li>
+          <li><a class="mnav__link" href="services.html">Услуги<svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></li>
+          <li><a class="mnav__link" href="cases.html">Работы<svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></li>
+          <li><a class="mnav__link" href="about.html">О нас<svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></li>
+          <li><a class="mnav__link" href="pricing.html">Цены<svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></li>
+          <li><a class="mnav__link" href="contact.html" aria-current="page">Контакты<svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></li>
+      </ul>
+    </nav>
+    <div class="mnav__foot">
+      <a class="btn btn--primary" href="contact.html#form">Получить расчёт</a>
+      <div class="mnav__contacts">
+        <a href="tel:+79990000000">+7 (999) 000-00-00</a>
+        <a href="https://t.me/easylead" rel="noopener">Telegram @easylead</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+      <section class="page-head">
+        <div class="container">
+          <h1>Контакты</h1>
+          <p class="lead">Напишите или позвоните. Если удобнее, оставьте заявку в форме: перезвоним и уточним детали.</p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container contact-grid">
+          <div>
+            <h2 class="visually-hidden">Способы связи</h2>
+            <ul class="contact-list">
+              <li>
+                <a href="tel:+79990000000"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span><b>+7 (999) 000-00-00</b><span>Звонки и мессенджеры</span></span></a>
+              </li>
+              <li>
+                <a href="https://t.me/easylead" rel="noopener"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg><span><b>Telegram @easylead</b><span>Обычно отвечаем быстрее всего</span></span></a>
+              </li>
+              <li>
+                <a href="mailto:hello@easylead.ru"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span><b>hello@easylead.ru</b><span>Для документов и смет</span></span></a>
+              </li>
+              <li>
+                <div><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span><b>Пн-Пт, 10:00-19:00</b><span>В выходные отвечаем на следующий рабочий день</span></span></div>
+              </li>
+            </ul>
+            <p class="form__note" style="margin-top:24px">Работаем удалённо со всей Россией.
+              Созвон, переписка и передача доступов проходят онлайн.</p>
+          </div>
+
+          <div class="form-panel" id="form">
+            <h2>Оставить заявку</h2>
+            <p class="form__note" style="margin:8px 0 24px">Заполните два поля, остальное по желанию.
+              Ответим в рабочее время.</p>
+            <div data-lead-form id="contact-form">
+              <noscript>
+                <p>Для отправки формы нужен включённый JavaScript. Напишите нам в
+                  <a class="link-inline" href="https://t.me/easylead" rel="noopener">Telegram @easylead</a>
+                  или позвоните: <a class="link-inline" href="tel:+79990000000">+7 (999) 000-00-00</a>.</p>
+              </noscript>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Что будет после заявки -->
+      <section class="section" aria-labelledby="after-title">
+        <div class="container">
+          <div class="s-head" data-reveal>
+            <h2 id="after-title">Что будет после заявки</h2>
+            <p>Без долгих согласований и презентаций на сорок слайдов.</p>
+          </div>
+          <ol class="steps steps--3">
+            <li class="step" data-reveal style="--i:0">
+              <span class="step__num">01</span>
+              <h3>Ответим и уточним</h3>
+              <p>Перезвоним или напишем в Telegram, как вам удобнее. Зададим несколько вопросов по задаче.</p>
+            </li>
+            <li class="step" data-reveal style="--i:1">
+              <span class="step__num">02</span>
+              <h3>Пришлём смету</h3>
+              <p>В течение рабочего дня отправим состав работ, срок и фиксированную цену.</p>
+            </li>
+            <li class="step" data-reveal style="--i:2">
+              <span class="step__num">03</span>
+              <h3>Начнём с прототипа</h3>
+              <p>После согласования сметы покажем структуру страниц. Правки на этом этапе бесплатны.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+  </main>
+
+  <!-- Подвал -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <a class="logo" href="index.html">Easy<b>Lead</b></a>
+          <p class="footer__about">Сайты, лендинги и автоматизация для локального бизнеса.
+            Фиксированная цена, срок в договоре, все доступы передаём после запуска.</p>
+        </div>
+        <div>
+          <h3>Разделы</h3>
+          <ul><li><a href="index.html">Главная</a></li><li><a href="services.html">Услуги</a></li><li><a href="cases.html">Работы</a></li><li><a href="about.html">О нас</a></li><li><a href="pricing.html">Цены</a></li><li><a href="contact.html">Контакты</a></li></ul>
+        </div>
+        <div>
+          <h3>Контакты</h3>
+          <ul>
+            <li><a href="tel:+79990000000">+7 (999) 000-00-00</a></li>
+            <li><a href="https://t.me/easylead" rel="noopener">Telegram @easylead</a></li>
+            <li><a href="mailto:hello@easylead.ru">hello@easylead.ru</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 EasyLead</span>
+        <span>Отвечаем в рабочее время: Пн-Пт, 10:00-19:00</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

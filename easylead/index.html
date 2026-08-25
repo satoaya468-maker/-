@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.classList.add('js');</script>
+  <title>EasyLead. Сайты и автоматизация для локального бизнеса</title>
+  <meta name="description" content="Разрабатываем многостраничные сайты, лендинги и автоматизацию для локального бизнеса. Фиксированная цена, срок в договоре, запуск за 7 дней.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="EasyLead">
+  <meta property="og:title" content="EasyLead. Сайты и автоматизация для локального бизнеса">
+  <meta property="og:description" content="Разрабатываем многостраничные сайты, лендинги и автоматизацию для локального бизнеса. Фиксированная цена, срок в договоре, запуск за 7 дней.">
+  <meta property="og:image" content="img/og-cover.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="Главная">
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <!-- Шапка: прозрачная в самом верху, белая с хайрлайном после прокрутки -->
+  <header class="header" data-header>
+    <div class="container header__inner">
+      <a class="logo" href="index.html" aria-label="EasyLead, на главную">Easy<b>Lead</b></a>
+
+      <nav class="nav" aria-label="Основная навигация">
+          <a class="nav__link" href="index.html" aria-current="page">Главная</a>
+          <a class="nav__link" href="services.html">Услуги</a>
+          <a class="nav__link" href="cases.html">Работы</a>
+          <a class="nav__link" href="about.html">О нас</a>
+          <a class="nav__link" href="pricing.html">Цены</a>
+          <a class="nav__link" href="contact.html">Контакты</a>
+      </nav>
+
+      <a class="btn btn--primary btn--sm header__cta" href="contact.html#form" data-lead-open>Получить расчёт</a>
+
+      <button class="burger" type="button" data-burger aria-expanded="false"
+              aria-controls="mobile-menu" aria-label="Открыть меню">
+        <span class="burger__open"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg></span>
+        <span class="burger__close"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Мобильное меню на весь экран -->
+  <div class="mnav" id="mobile-menu" data-mobile-menu hidden>
+    <nav aria-label="Меню разделов">
+      <ul class="mnav__list">
+          <li><a class="mnav__link" href="index.html" aria-current="page">Главная<svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></li>
+          <li><a class="mnav__link" href="services.html">Услуги<svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></li>
+          <li><a class="mnav__link" href="cases.html">Работы<svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></li>
+          <li><a class="mnav__link" href="about.html">О нас<svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></li>
+          <li><a class="mnav__link" href="pricing.html">Цены<svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></li>
+          <li><a class="mnav__link" href="contact.html">Контакты<svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></li>
+      </ul>
+    </nav>
+    <div class="mnav__foot">
+      <a class="btn btn--primary" href="contact.html#form" data-lead-open>Получить расчёт</a>
+      <div class="mnav__contacts">
+        <a href="tel:+79990000000">+7 (999) 000-00-00</a>
+        <a href="https://t.me/easylead" rel="noopener">Telegram @easylead</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+      <!-- Hero: асимметричный сплит 7/5 -->
+      <section class="hero">
+        <div class="container hero__grid">
+          <div>
+            <h1>Делаем сайты, которые приводят <span class="accent">заявки</span></h1>
+            <p class="lead hero__lead">Многостраничные сайты, лендинги и автоматизация для локального
+              бизнеса. Фиксированная цена, срок в договоре, запуск за 7 дней.</p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="contact.html#form" data-lead-open>Получить расчёт</a>
+              <a class="link-arrow" href="cases.html">Посмотреть работы <svg class="ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+            <p class="hero__facts">
+              <span>Запуск за 7 дней</span> <i>&middot;</i> <span>Фиксированная цена</span> <i>&middot;</i> <span>Заявки приходят в Telegram</span>
+            </p>
+          </div>
+          <div class="hero__media">
+            <figure class="media media--4x5"><img class="media__img" src="img/hero-gradient.png" alt="Фоновый градиент первого экрана" loading="lazy" decoding="async"><figcaption class="media__hint">Фоновый градиент первого экрана</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Что мы делаем -->
+      <section class="section" aria-labelledby="services-title">
+        <div class="container">
+          <div class="s-head" data-reveal>
+            <h2 id="services-title">Что мы делаем</h2>
+            <p>Четыре направления, которые закрывают путь клиента от рекламы до заявки в вашей CRM.</p>
+          </div>
+          <div class="cards">
+          <article class="card" data-reveal style="--i:0">
+            <span class="card__icon"><svg class="ic" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></span>
+            <h3>Многостраничные сайты</h3>
+            <p>Отдельная страница на каждую услугу и район. Подходит, когда направлений больше трёх и их нужно продвигать по отдельности.</p>
+          </article>
+          <article class="card" data-reveal style="--i:1">
+            <span class="card__icon"><svg class="ic" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4.1 12 6"/><path d="m5.1 8-2.9-.8"/><path d="m6 12-1.9 2"/><path d="M7.2 2.2 8 5.1"/><path d="M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z"/></svg></span>
+            <h3>Лендинги</h3>
+            <p>Одна страница под один запрос и один рекламный источник. Собираем под трафик: короткий путь от объявления до заявки.</p>
+          </article>
+          <article class="card" data-reveal style="--i:2">
+            <span class="card__icon"><svg class="ic" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <h3>Чат-виджеты и формы заявок</h3>
+            <p>Форма, кнопка в Telegram и WhatsApp, обратный звонок. Заявка приходит туда, где вы её точно увидите.</p>
+          </article>
+          <article class="card" data-reveal style="--i:3">
+            <span class="card__icon"><svg class="ic" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span>
+            <h3>Автоматизация процессов</h3>
+            <p>Заявки в CRM, уведомления менеджеру, выгрузка в таблицу. Связываем сайт с инструментами, которыми вы уже пользуетесь.</p>
+          </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Как мы работаем -->
+      <section class="section" aria-labelledby="process-title">
+        <div class="container">
+          <div class="s-head" data-reveal>
+            <h2 id="process-title">Как мы работаем</h2>
+            <p>Четыре этапа с понятным результатом на каждом. Вы всегда видите, на какой стадии проект.</p>
+          </div>
+          <ol class="steps">
+          <li class="step" data-reveal style="--i:0">
+            <span class="step__num">01</span>
+            <h3>Заявка</h3>
+            <p>Созваниваемся на 20 минут, разбираем задачу и считаем стоимость по фиксированной смете.</p>
+          </li>
+          <li class="step" data-reveal style="--i:1">
+            <span class="step__num">02</span>
+            <h3>Прототип и согласование</h3>
+            <p>Показываем структуру страниц и первый экран. Правки вносим до старта вёрстки.</p>
+          </li>
+          <li class="step" data-reveal style="--i:2">
+            <span class="step__num">03</span>
+            <h3>Разработка</h3>
+            <p>Собираем страницы, подключаем формы и аналитику, проверяем на телефонах и медленной связи.</p>
+          </li>
+          <li class="step" data-reveal style="--i:3">
+            <span class="step__num">04</span>
+            <h3>Запуск и передача</h3>
+            <p>Ставим на ваш домен, отдаём доступы и показываем, как менять тексты без нас.</p>
+          </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Работы -->
+      <section class="section" aria-labelledby="works-title">
+        <div class="container">
+          <div class="s-head" data-reveal>
+            <h2 id="works-title">Работы</h2>
+            <p>Скриншоты и ссылки добавляем по мере согласования с клиентами.</p>
+          </div>
+          <div class="works">
+          <article class="work" data-reveal style="--i:0">
+            <figure class="media media--16x10"><img class="media__img" src="img/case-gbo.png" alt="Скриншот главной страницы сайта установки ГБО" loading="lazy" decoding="async"><figcaption class="media__hint">Скриншот главной страницы сайта установки ГБО</figcaption></figure>
+            <div class="work__body">
+              <p class="work__niche">Автосервис</p>
+              <h3>Установка ГБО</h3>
+              <p>Многостраничный сайт с калькулятором стоимости и записью на установку.</p>
+              <a class="link-arrow" href="cases.html#case-gbo">Открыть сайт <svg class="ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+          </article>
+          <article class="work" data-reveal style="--i:1">
+            <figure class="media media--16x10"><img class="media__img" src="img/case-cleaning.png" alt="Скриншот сайта клининговой компании" loading="lazy" decoding="async"><figcaption class="media__hint">Скриншот сайта клининговой компании</figcaption></figure>
+            <div class="work__body">
+              <p class="work__niche">Бытовые услуги</p>
+              <h3>Клининг квартир и офисов</h3>
+              <p>Лендинг под контекстную рекламу с расчётом по площади.</p>
+              <a class="link-arrow" href="cases.html#case-cleaning">Открыть сайт <svg class="ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+          </article>
+          <article class="work" data-reveal style="--i:2">
+            <figure class="media media--16x10"><img class="media__img" src="img/case-ceilings.png" alt="Скриншот сайта студии натяжных потолков" loading="lazy" decoding="async"><figcaption class="media__hint">Скриншот сайта студии натяжных потолков</figcaption></figure>
+            <div class="work__body">
+              <p class="work__niche">Ремонт и отделка</p>
+              <h3>Студия натяжных потолков</h3>
+              <p>Сайт с каталогом фактур и заявкой на замер.</p>
+              <a class="link-arrow" href="cases.html#case-ceilings">Открыть сайт <svg class="ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+          </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Почему мы -->
+      <section class="section" aria-labelledby="why-title">
+        <div class="container">
+          <div class="s-head" data-reveal>
+            <h2 id="why-title">Почему мы</h2>
+          </div>
+          <ul class="facts">
+          <li data-reveal style="--i:0">
+            <h3>Фиксированная цена</h3>
+            <p>Смету согласовываем до старта работ. Правки внутри согласованного объёма входят в стоимость.</p>
+          </li>
+          <li data-reveal style="--i:1">
+            <h3>Срок в договоре</h3>
+            <p>Дату запуска и этапы фиксируем письменно, а не на словах в переписке.</p>
+          </li>
+          <li data-reveal style="--i:2">
+            <h3>Сайт остаётся вашим</h3>
+            <p>Домен, хостинг и код оформляем на вас. После запуска вы ничем к нам не привязаны.</p>
+          </li>
+          <li data-reveal style="--i:3">
+            <h3>Поддержка после запуска</h3>
+            <p>Первый месяц мелкие правки текстов и блоков входят в проект. Дальше по отдельной договорённости.</p>
+          </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Вопросы -->
+      <section class="section" aria-labelledby="faq-title">
+        <div class="container">
+          <div class="s-head" data-reveal>
+            <h2 id="faq-title">Частые вопросы</h2>
+          </div>
+          <div class="faq" data-faq>
+          <details class="faq__item">
+            <summary>Сколько стоит сайт?<span class="faq__icon"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+            <div class="faq__body"><p>Лендинг от 45 000 рублей, многостраничный сайт от 90 000 рублей, отдельная автоматизация от 25 000 рублей. Точная сумма зависит от количества страниц и интеграций. Считаем после короткого созвона и фиксируем в смете.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary>Сколько занимает разработка?<span class="faq__icon"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+            <div class="faq__body"><p>Лендинг занимает 5-7 рабочих дней, многостраничный сайт от 2 до 4 недель. Срок начинается после того, как вы согласовали прототип и передали тексты и фотографии.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary>Что если результат не понравится?<span class="faq__icon"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+            <div class="faq__body"><p>Структуру и первый экран согласовываем до вёрстки: на этом этапе можно менять что угодно. После согласования правки идут по списку из договора, чтобы проект не уехал по срокам.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary>Кому принадлежит сайт?<span class="faq__icon"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+            <div class="faq__body"><p>Вам. Домен и хостинг регистрируем на ваши данные, исходный код передаём после финальной оплаты. Мы не держим сайт у себя и не берём плату за доступ к нему.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary>Нужен ли домен и хостинг?<span class="faq__icon"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+            <div class="faq__body"><p>Да, это две обязательные статьи расходов. Домен стоит около 1 000 рублей в год, хостинг от 200 рублей в месяц. Вы платите напрямую провайдеру, мы помогаем выбрать и всё настроить.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary>Что делать после запуска?<span class="faq__icon"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+            <div class="faq__body"><p>Ничего срочного. Мы передаём короткую инструкцию по правкам и подключаем аналитику, чтобы было видно, откуда приходят заявки. Если нужно, ведём сайт дальше по договорённости.</p></div>
+          </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Финальный CTA на тёмном фоне -->
+      <section class="section--band band-dark">
+        <div class="container band-dark__inner" data-reveal>
+          <div>
+            <h2>Расскажите про задачу, посчитаем стоимость</h2>
+            <p>Ответим на вопросы, посчитаем смету и назовём срок. Если задача не наша, скажем прямо.</p>
+          </div>
+          <div class="band-dark__aside">
+            <a class="btn btn--primary" href="contact.html#form" data-lead-open>Получить расчёт</a>
+            <ul class="band-dark__contacts">
+              <li><a href="tel:+79990000000"><svg class="ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+7 (999) 000-00-00</a></li>
+              <li><a href="https://t.me/easylead" rel="noopener"><svg class="ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>Telegram @easylead</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+  </main>
+
+  <!-- Подвал -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <a class="logo" href="index.html">Easy<b>Lead</b></a>
+          <p class="footer__about">Сайты, лендинги и автоматизация для локального бизнеса.
+            Фиксированная цена, срок в договоре, все доступы передаём после запуска.</p>
+        </div>
+        <div>
+          <h3>Разделы</h3>
+          <ul><li><a href="index.html">Главная</a></li><li><a href="services.html">Услуги</a></li><li><a href="cases.html">Работы</a></li><li><a href="about.html">О нас</a></li><li><a href="pricing.html">Цены</a></li><li><a href="contact.html">Контакты</a></li></ul>
+        </div>
+        <div>
+          <h3>Контакты</h3>
+          <ul>
+            <li><a href="tel:+79990000000">+7 (999) 000-00-00</a></li>
+            <li><a href="https://t.me/easylead" rel="noopener">Telegram @easylead</a></li>
+            <li><a href="mailto:hello@easylead.ru">hello@easylead.ru</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 EasyLead</span>
+        <span>Отвечаем в рабочее время: Пн-Пт, 10:00-19:00</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
