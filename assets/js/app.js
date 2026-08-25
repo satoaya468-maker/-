@@ -7,6 +7,9 @@
 
   var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var body = document.body;
+  /* Личные сообщения мастера. Адрес живёт в site.json, чтобы номер
+     не был размазан по коду. */
+  var TG = document.body.getAttribute('data-tg') || '';
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
@@ -151,7 +154,6 @@
         outSplit = $('[data-calc-split]', root),
         outTank = $('[data-calc-tank]', root),
         outInstall = $('[data-calc-install]', root),
-        btnWa = $('[data-calc-wa]', root),
         btnBook = $('[data-calc-book]', root);
 
     var used = false;
@@ -209,11 +211,9 @@
       outTank.textContent = car().tank;
       outInstall.textContent = 'от ' + money(f.installFrom) + ' — точная сумма после бесплатной диагностики';
 
-      var txt = 'Здравствуйте! Хочу точный расчёт по ГБО.\n'
-        + 'Автомобиль: ' + car().name + '\n'
-        + 'Пробег: ' + RUB.format(mileage) + ' км/мес\n'
-        + (payback ? 'По калькулятору окупаемость: ' + payback + ' мес.' : '');
-      btnWa.href = 'https://wa.me/79088196369?text=' + encodeURIComponent(txt);
+      /* Ссылка на мессенджер статична: личные сообщения Telegram
+         открываются по номеру и заранее заполненный текст не принимают.
+         Расчёт вместо этого уезжает в форму заявки — строкой ниже. */
 
       if (btnBook) {
         btnBook.dataset.prefill = 'Расчёт с сайта: ' + car().name + ', '
@@ -523,11 +523,6 @@
 
     function finish() {
       var summary = [answers.car, answers.need, answers.mileage].filter(Boolean);
-      var txt = 'Здравствуйте! Заявка с сайта.\n'
-        + 'Авто: ' + (answers.car || '—') + '\n'
-        + 'Задача: ' + (answers.need || '—') + '\n'
-        + 'Пробег: ' + (answers.mileage || '—') + '\n'
-        + 'Телефон: ' + (answers.phone || '—');
 
       window.gboGoal('quiz_complete');
       /* Отправка идёт параллельно с анимацией печати: к моменту, когда
@@ -565,9 +560,9 @@
                 : 'Если удобнее — напишите мне сразу, отвечу быстрее.');
               foot.innerHTML =
                 '<div class="quiz__acts">' +
-                '<a class="btn btn--primary btn--sm btn--wide" href="https://wa.me/79088196369?text=' +
-                encodeURIComponent(txt) + '" target="_blank" rel="noopener" data-goal="whatsapp_click">' +
-                '<svg class="btn__i" aria-hidden="true"><use href="#i-whatsapp-logo"></use></svg>Написать в WhatsApp</a>' +
+                '<a class="btn btn--primary btn--sm btn--wide" href="' + TG + '" ' +
+                'target="_blank" rel="noopener" data-goal="telegram_click">' +
+                '<svg class="btn__i" aria-hidden="true"><use href="#i-telegram-logo"></use></svg>Написать в Telegram</a>' +
                 '<a class="btn btn--outline btn--sm btn--wide" href="tel:+79088196369" data-goal="phone_click">' +
                 '<svg class="btn__i" aria-hidden="true"><use href="#i-phone"></use></svg>Позвонить сейчас</a>' +
                 '</div>';

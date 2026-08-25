@@ -37,8 +37,8 @@
       "Mo-Sa 09:00-20:00"
     ]
   },
-  "whatsapp": "https://wa.me/79088196369",
-  "telegram": "https://t.me/gboavto",
+  "_comment_telegram": "Ссылка на личные сообщения по номеру. t.me/+<цифры> открывает диалог с владельцем напрямую — публичного канала у сервиса нет.",
+  "telegram": "https://t.me/+79514693335",
   "gis": "https://2gis.ru/zlatoust/search/%D0%B3%D0%B1%D0%BE/firm/70000001115046085/59.696001%2C55.177351?m=59.695595%2C55.143818%2F12.06",
   "gisReviews": "https://2gis.ru/zlatoust/search/%D0%B3%D0%B1%D0%BE/firm/70000001115046085/59.696001%2C55.177351/tab/reviews?m=59.695595%2C55.143818%2F12.06",
   "reviewGating": false,

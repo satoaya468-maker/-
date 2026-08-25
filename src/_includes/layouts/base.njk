@@ -18,7 +18,7 @@
 <meta property="og:title" content="{{ ogTitle or title }}">
 <meta property="og:description" content="{{ description }}">
 <meta property="og:url" content="{{ page.url | absUrl }}">
-{#- Ссылку на сервис пересылают в WhatsApp и Telegram: без обложки
+{#- Ссылку на сервис пересылают в мессенджерах: без обложки
     она разворачивается голым текстом. Собирается tools/build-og.py. -#}
 <meta property="og:image" content="{{ '/assets/img/og-cover.jpg' | absUrl }}">
 <meta property="og:image:width" content="1200">
@@ -35,7 +35,9 @@
 <link rel="stylesheet" href="/assets/css/leads.css">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 
-{#- Карточка организации. alternateName и description несут «автосервис»:
+{#- В sameAs только 2ГИС: ссылка на личные сообщения по номеру —
+    не публичный профиль организации, ей там не место.
+    Карточка организации. alternateName и description несут «автосервис»:
     по запросу «автосервис Златоуст» сайт иначе не опознаётся, а профиль
     у нас узкий — только газобаллонное оборудование, и так и написано.
     areaServed перечисляет города выезда поимённо (см. site.json). -#}
@@ -58,7 +60,7 @@
     "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
     "opens":"09:00","closes":"20:00"}],
   "areaServed": site.areaServed | cities,
-  "sameAs": [site.gis, site.telegram],
+  "sameAs": [site.gis],
   "currenciesAccepted": "RUB",
   "priceRange": "от 15 000 ₽",
   "hasOfferCatalog": {
@@ -67,7 +69,7 @@
   }
 } | jsonld | safe }}</script>
 </head>
-<body data-ava="{% if images['avatar-circle-112'] %}/assets/img/avatar-circle-112.png{% endif %}" data-relay="{{ site.relayUrl }}" data-gating="{{ site.reviewGating }}" data-mindelay="{{ site.formMinSeconds }}">
+<body data-ava="{% if images['avatar-circle-112'] %}/assets/img/avatar-circle-112.png{% endif %}" data-relay="{{ site.relayUrl }}" data-tg="{{ site.telegram }}" data-gating="{{ site.reviewGating }}" data-mindelay="{{ site.formMinSeconds }}">
 <a class="skip" href="#main">Перейти к содержимому</a>
 {% include "partials/icons.njk" %}
 {% include "partials/header.njk" %}
