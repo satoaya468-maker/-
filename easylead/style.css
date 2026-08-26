@@ -31,12 +31,15 @@
      на тёмном — это --border (14.6:1). */
   --on-dark: var(--accent-fg);
   --on-dark-muted: var(--border);
+  /* Белый с альфой для тёмных секций: 0.7 даёт 9.27:1 на --dark */
+  --on-dark-70: rgb(255 255 255 / 0.7);
+  --on-dark-line: rgb(255 255 255 / 0.1);
 
   /* Типографика */
   --font: "Golos Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   --fs-h1: clamp(2.125rem, 1.7rem + 2.05vw, 3.5rem);
-  --fs-h2: clamp(1.625rem, 1.3rem + 1.45vw, 2.5rem);
+  --fs-h2: clamp(1.875rem, 1.5rem + 1.85vw, 3rem);
   --fs-h3: clamp(1.125rem, 1.06rem + 0.28vw, 1.25rem);
   --fs-lead: clamp(1.0625rem, 1.01rem + 0.25vw, 1.1875rem);
   --fs-body: 1.0625rem;
@@ -450,8 +453,10 @@ button, input, select, textarea {
 .hero__accent {
   text-decoration-line: underline;
   text-decoration-color: var(--accent);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 8px;
+  /* Цвет и раньше был --accent. Линия читалась как часть чёрного текста
+     из-за близости: увеличены толщина и отбивка. */
+  text-decoration-thickness: 4px;
+  text-underline-offset: 10px;
 }
 
 .hero__lead {
@@ -463,11 +468,14 @@ button, input, select, textarea {
 }
 
 /* Кнопки слева, короткий список справа, выровнены по нижнему краю */
+/* Кнопки и короткий список: колонка начинается на 62% ширины ряда, а не
+   у правого края контейнера. Выравнивание по верху, иначе высокая колонка
+   уводит кнопки вниз и разрыв от подзаголовка вырастает с 40 до 78px. */
 .hero__row {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: var(--sp-5);
+  display: grid;
+  grid-template-columns: 62% minmax(0, 1fr);
+  align-items: start;
+  max-width: 1000px;
   margin-top: var(--sp-5);
 }
 .hero__actions { display: flex; gap: 12px; }
@@ -630,36 +638,62 @@ button, input, select, textarea {
 .media__img.is-loaded + .media__hint { opacity: 0; }
 
 /* --------------------------------------------------------------------------
-   8. Карточки услуг (4 в ряд): рамка-хайрлайн, тень только на hover
+   8. Бенто «Что мы делаем»: первая ячейка во всю ширину с визуалом,
+   три остальные обычного размера. Рамок нет: карточку отделяет от
+   страницы сам фон --card на более холодном --bg.
    -------------------------------------------------------------------------- */
-.cards {
+.bento {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--sp-3);
 }
-.card {
+
+.bento__lead,
+.bento__cell {
+  background: var(--card);
+  border-radius: var(--r-card);
+  padding: var(--sp-4);
+  transition: box-shadow var(--t), transform var(--t);
+}
+.bento__lead:hover,
+.bento__cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px -18px rgb(2 6 23 / 0.28);
+}
+
+.bento__lead {
+  grid-column: 1 / -1;
+  display: grid;
+  /* Поровну: при 5/7 визуал вырастал до 360px и текст слева тонул в пустоте */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 48px);
+  align-items: center;
+}
+.bento__text { display: flex; flex-direction: column; gap: var(--sp-2); }
+
+.bento__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--border);
+  border-radius: 10px;
+}
+
+.bento__cell {
   display: flex;
   flex-direction: column;
   gap: var(--sp-2);
-  padding: var(--sp-4) var(--sp-3);
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--r-card);
-  transition: box-shadow var(--t), transform var(--t), border-color var(--t);
 }
-.card:hover {
-  transform: translateY(-2px);
-  border-color: var(--border);
-  box-shadow: 0 10px 28px -18px rgb(2 6 23 / 0.28);
-}
+
 .card__icon {
   width: 24px; height: 24px;
   color: var(--fg);
   transition: color var(--t);
 }
-.card:hover .card__icon { color: var(--accent); }
-.card h3 { margin-top: 6px; }
-.card p { font-size: var(--fs-sm); }
+.bento__lead:hover .card__icon,
+.bento__cell:hover .card__icon { color: var(--accent); }
+.bento h3 { margin-top: 6px; }
+.bento p { font-size: var(--fs-sm); }
 
 /* --------------------------------------------------------------------------
    9. Процесс: крупные цифры, соединительная линия
@@ -697,6 +731,26 @@ button, input, select, textarea {
 }
 .step h3 { margin-top: var(--sp-3); }
 .step p { margin-top: 6px; font-size: var(--fs-sm); }
+
+/* --------------------------------------------------------------------------
+   9b. Тёмная секция: разбивает страницу, чтобы она не читалась одним блоком
+   -------------------------------------------------------------------------- */
+.section--dark {
+  background: var(--dark);
+  color: var(--on-dark-70);
+  padding-block: var(--section);
+}
+.section--dark h2,
+.section--dark h3 { color: var(--on-dark); }
+.section--dark .s-head p { color: var(--on-dark-70); }
+.section--dark .steps::before,
+.section--dark .step::before { background: var(--on-dark-line); }
+.section--dark .step__num {
+  color: var(--on-dark);
+  background: var(--dark);
+}
+.section--dark :focus-visible { outline-color: var(--on-dark); }
+.section--dark + .section { padding-top: var(--section); }
 
 /* -------------------------------------------------------------------------
    10. Работы
@@ -742,6 +796,7 @@ button, input, select, textarea {
   margin-bottom: var(--sp-3);
 }
 .work--feature .media { border-bottom: 0; border-right: 1px solid var(--border); }
+.work--feature h2 { font-size: 1.75rem; }
 .work--feature .work__body {
   padding: clamp(24px, 3vw, 40px);
   justify-content: center;
@@ -1194,12 +1249,14 @@ button, input, select, textarea {
   .header__inner { grid-template-columns: 1fr auto; }
 
   .hero { padding-block: 96px 0; }
-  .hero__row { flex-direction: column; align-items: stretch; gap: var(--sp-4); }
+  .hero__row { grid-template-columns: minmax(0, 1fr); gap: var(--sp-4); }
   .hero__visual { height: 340px; }
   .strip__inner { flex-direction: column; align-items: stretch; gap: var(--sp-2); }
   .strip__label { max-width: none; }
 
-  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bento__lead { grid-template-columns: minmax(0, 1fr); }
+  .bento__cell:last-child { grid-column: 1 / -1; }
   .works { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   /* Процесс становится вертикальным, линия уходит влево */
@@ -1242,7 +1299,8 @@ button, input, select, textarea {
     --gutter: 20px;
     --fs-body: 1rem;
   }
-  .cards, .works { grid-template-columns: minmax(0, 1fr); }
+  .bento, .works { grid-template-columns: minmax(0, 1fr); }
+  .bento__cell:last-child { grid-column: auto; }
   .form__row { grid-template-columns: minmax(0, 1fr); }
 
   /* Кнопки на всю ширину */

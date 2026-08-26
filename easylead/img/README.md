@@ -20,6 +20,7 @@
 | `service-landing.png` | Услуги | 3:2 | 1500 x 1000 |
 | `service-widgets.png` | Услуги | 3:2 | 1500 x 1000 |
 | `service-automation.png` | Услуги | 3:2 | 1500 x 1000 |
+| `feature-main.png` | Главная, секция «Что мы делаем» | 16:9 | 1200 x 675 |
 | `about-studio.png` | О нас | 3:2 | 1500 x 1000 |
 | `og-cover.png` | Превью для мессенджеров и соцсетей | 1.91:1 | 1200 x 630 |
 
