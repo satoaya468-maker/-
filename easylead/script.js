@@ -22,8 +22,9 @@ const CONTACTS = {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   /* ------------------------------------------------------------------------
-     1. Шапка: прозрачная наверху, белая с границей после прокрутки.
-     Наблюдаем за маячком в начале документа вместо слушателя scroll.
+     1. Шапка: прозрачная наверху, полупрозрачная с размытием после 40px.
+     Наблюдаем за маячком высотой 40px вместо слушателя scroll: он
+     перестаёт пересекаться с экраном ровно на этой отметке.
      ---------------------------------------------------------------------- */
   function initHeader() {
     const header = document.querySelector('[data-header]');
@@ -31,7 +32,7 @@ const CONTACTS = {
 
     const sentinel = document.createElement('div');
     sentinel.setAttribute('aria-hidden', 'true');
-    sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;';
+    sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:40px;pointer-events:none;';
     document.body.prepend(sentinel);
 
     new IntersectionObserver(function (entries) {

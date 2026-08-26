@@ -19,9 +19,12 @@
   --accent-fg: #FFFFFF;
   --dark: #0F172A;
 
-  /* --fg при 70% непрозрачности. Глубокий серый вместо блёклого --muted:
-     новый цвет не вводится, это тот же --fg с альфой. */
-  --fg-soft: rgb(2 6 23 / 0.7);
+  /* Ступени прозрачности --fg. Новых цветов не вводят: это тот же --fg
+     с альфой, поэтому палитра остаётся из восьми значений.
+     Контраст на --bg: 0.7 даёт 7.78:1, 0.65 даёт 6.37:1, 0.6 даёт 5.37:1. */
+  --fg-70: rgb(2 6 23 / 0.7);
+  --fg-65: rgb(2 6 23 / 0.65);
+  --fg-60: rgb(2 6 23 / 0.6);
 
   /* Семантика для тёмных плоскостей.
      --muted на --dark даёт 2.4:1 и проваливает AA, поэтому вторичный текст
@@ -222,11 +225,13 @@ button, input, select, textarea {
 }
 .btn svg { width: 18px; height: 18px; flex: none; }
 
+/* Основная кнопка тёмная, а не акцентная: --accent на странице остаётся
+   только в точке бейджа, подчёркивании слова заголовка и текстовых ссылках. */
 .btn--primary {
-  background: var(--accent);
+  background: var(--dark);
   color: var(--accent-fg);
 }
-.btn--primary:hover { filter: brightness(0.92); transform: translateY(-1px); }
+.btn--primary:hover { filter: brightness(1.55); transform: translateY(-1px); }
 .btn--primary:active { transform: translateY(0) scale(0.99); }
 .btn--primary[disabled] { filter: none; transform: none; cursor: default; opacity: 0.75; }
 
@@ -278,18 +283,24 @@ button, input, select, textarea {
   z-index: var(--z-header);
   background: transparent;
   border-bottom: 1px solid transparent;
-  transition: background-color var(--t), border-color var(--t);
+  transition: background-color 200ms var(--ease), border-color 200ms var(--ease),
+    backdrop-filter 200ms var(--ease);
 }
+/* После 40px прокрутки шапка становится полупрозрачной с размытием.
+   --bg при 80%, новый цвет не вводится. */
 .header.is-scrolled {
-  background: var(--card);
+  background: rgb(248 250 252 / 0.8);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border-bottom-color: var(--border);
 }
 
 .header__inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: var(--sp-4);
-  height: 72px;
+  gap: var(--sp-3);
+  height: 64px;
 }
 
 .logo {
@@ -297,48 +308,50 @@ button, input, select, textarea {
   align-items: baseline;
   gap: 1px;
   color: var(--fg);
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.125rem;
+  font-weight: 600;
   letter-spacing: -0.03em;
 }
-.logo b { font-weight: 700; color: var(--accent); }
+.logo b { font-weight: 600; color: var(--accent); }
 
+/* Меню по центру, активный пункт отличается только плотностью цвета */
 .nav {
   display: flex;
   align-items: center;
-  gap: var(--sp-4);
-  margin-left: auto;
+  gap: 28px;
+  justify-self: center;
 }
 .nav__link {
-  position: relative;
   padding-block: 6px;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--muted);
+  font-size: 0.9375rem;
+  font-weight: 450;
+  color: var(--fg-70);
   transition: color var(--t);
 }
-.nav__link::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 1.5px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--t);
-}
-.nav__link:hover { color: var(--fg); }
+.nav__link:hover,
 .nav__link[aria-current="page"] { color: var(--fg); }
-.nav__link[aria-current="page"]::after { transform: scaleX(1); }
 
-.header__cta { margin-left: var(--sp-2); }
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  justify-self: end;
+}
+.header__phone {
+  font-size: 0.9375rem;
+  color: var(--fg-70);
+  transition: color var(--t);
+  white-space: nowrap;
+}
+.header__phone:hover { color: var(--fg); }
+.header__cta { height: 36px; padding-inline: 16px; font-size: 0.875rem; }
 
 .burger {
   display: none;
   align-items: center;
   justify-content: center;
   width: 44px; height: 44px;
-  margin-left: auto;
+  justify-self: end;
   background: transparent;
   border: 1px solid var(--border);
   border-radius: var(--r-control);
@@ -389,68 +402,123 @@ button, input, select, textarea {
 
 /* --------------------------------------------------------------------------
    6. Hero
-   Полноширинная сетка: слева поле ровно как у контейнера, текст начинается
-   от него, медиа занимает остаток и упирается в правый край экрана.
-   Зазор между текстом и медиа задан отдельной дорожкой, чтобы column-gap
-   не добавлял отступ после поля.
+   Одна колонка по левому краю контейнера, визуал во всю ширину под текстом.
    -------------------------------------------------------------------------- */
-.hero { padding-block: clamp(40px, 5vw, 80px) clamp(56px, 8vw, 112px); }
+.hero { padding-block: 200px 0; }
 
-.hero__grid {
-  display: grid;
-  grid-template-columns:
-    [pad-start] max(var(--gutter), (100% - var(--container)) / 2)
-    [text-start] minmax(0, 40rem)
-    [text-end] clamp(32px, 4vw, 64px)
-    [media-start] minmax(0, 1fr) [media-end];
-  column-gap: 0;
+/* Бейдж-пилюля над заголовком */
+.hero__badge {
+  display: inline-flex;
   align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding-inline: 12px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 0.8125rem;
+  color: var(--fg-70);
+  transition: border-color var(--t), color var(--t);
 }
-.hero__text { grid-column: text-start / text-end; }
-.hero__media { grid-column: media-start / media-end; }
+.hero__badge:hover { border-color: var(--muted); color: var(--fg); }
+.hero__badge:hover .hero__badge-arrow { transform: translateX(2px); }
+.hero__badge-dot {
+  width: 6px; height: 6px;
+  flex: none;
+  border-radius: 999px;
+  background: var(--accent);
+}
+.hero__badge-arrow {
+  width: 14px; height: 14px;
+  flex: none;
+  transition: transform var(--t);
+}
 
 .hero h1 {
-  font-size: clamp(2.375rem, 1.15rem + 4.1vw, 4.5rem);
-  line-height: 0.97;
+  margin-top: var(--sp-4);
+  font-size: clamp(2.375rem, 0.4rem + 6.4vw, 5.25rem);
+  font-weight: 600;
+  line-height: 1;
   letter-spacing: -0.035em;
-  max-width: 100%;
+  text-wrap: balance;
 }
 
-/* Акцентное слово подчёркнуто линией с отступом, а не просто покрашено */
+/* Подчёркнуто только одно слово, сам текст остаётся --fg */
 .hero__accent {
-  color: var(--accent);
   text-decoration-line: underline;
   text-decoration-color: var(--accent);
-  text-decoration-thickness: 0.055em;
-  text-underline-offset: 0.15em;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 8px;
 }
 
 .hero__lead {
   margin-top: var(--sp-3);
-  max-width: 480px;
-  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
-  line-height: 1.5;
-  color: var(--fg-soft);
+  max-width: 440px;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--fg-65);
 }
 
-.hero__actions {
+/* Кнопки слева, короткий список справа, выровнены по нижнему краю */
+.hero__row {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-5);
   margin-top: var(--sp-5);
 }
+.hero__actions { display: flex; gap: 12px; }
+.hero__actions .btn { height: 48px; }
+.hero__meta {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9375rem;
+  line-height: 1.9;
+  color: var(--fg-65);
+}
 
-/* Визуал без рамки и подписи: видна только левая кромка, справа блок
-   уходит за край экрана. Имя файла в src, подсказка в комментарии рядом. */
+/* Визуал во всю ширину окна: лежит вне контейнера, поэтому 100vw и
+   отрицательные поля не нужны и полоса прокрутки ничего не ломает.
+   Низ без скругления: блок обрезается нижней границей экрана. */
 .hero__visual {
   position: relative;
-  aspect-ratio: 5 / 4;
-  min-height: 320px;
-  border-radius: 20px 0 0 20px;
-  background: var(--border);
+  margin-top: var(--sp-8);
+  height: 440px;
   overflow: hidden;
+  background: var(--border);
+  border-radius: 16px 16px 0 0;
 }
+
+/* --------------------------------------------------------------------------
+   6b. Полоса ниш под первым экраном
+   -------------------------------------------------------------------------- */
+.trust { border-block: 1px solid var(--border); }
+.trust__inner {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-5);
+  padding-block: 20px;
+}
+.trust__label {
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.trust__list {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.9375rem;
+  color: var(--fg-60);
+}
+.trust__list li + li::before {
+  content: "\00B7";
+  padding-inline: 10px;
+  color: var(--border);
+}
+/* Секция после полосы получает верхний отступ: сама полоса вплотную к визуалу */
+.trust + .section { padding-top: var(--section); }
 
 /* Страничная шапка внутренних разделов */
 .page-head { padding-block: clamp(40px, 6vw, 80px) clamp(32px, 4vw, 56px); }
@@ -778,6 +846,9 @@ button, input, select, textarea {
 .band-dark h2 { color: var(--on-dark); max-width: 20ch; }
 .band-dark p { color: var(--on-dark-muted); }
 .band-dark :focus-visible { outline-color: var(--on-dark); }
+/* Инверсия основной кнопки: на --dark тёмная кнопка слилась бы с фоном */
+.band-dark .btn--primary { background: var(--accent-fg); color: var(--dark); }
+.band-dark .btn--primary:hover { filter: brightness(0.94); }
 .band-dark__inner {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
@@ -1035,33 +1106,18 @@ button, input, select, textarea {
    ------------------------------------------------------------------------- */
 @media (max-width: 1200px) {
   :root { --gutter: 24px; }
-  .nav { gap: var(--sp-3); }
-}
-
-/* Первый экран складывается раньше остальной сетки: ниже 1080px рядом не
-   помещаются одновременно крупный заголовок и заметный визуал. Текст уходит
-   наверх, визуал под него, по-прежнему упираясь в правый край экрана. */
-@media (max-width: 1080px) {
-  .hero { padding-block: 32px clamp(56px, 7vw, 88px); }
-  .hero__grid {
-    grid-template-columns: [pad-start] var(--gutter) [text-start media-start] minmax(0, 1fr) [text-end media-end];
-    row-gap: clamp(32px, 4vw, 48px);
-  }
-  .hero__text { padding-right: var(--gutter); max-width: 40rem; }
-  .hero h1 br { display: none; }
-  /* В сложенном виде визуал ограничен по высоте, иначе на планшете он
-     занимает пол-экрана и отодвигает всё остальное. */
-  .hero__visual {
-    aspect-ratio: auto;
-    height: clamp(220px, 32vw, 380px);
-    min-height: 0;
-    border-radius: 16px 0 0 16px;
-  }
+  .nav { gap: 20px; }
 }
 
 @media (max-width: 900px) {
-  .nav, .header__cta { display: none; }
+  .nav, .header__right { display: none; }
   .burger { display: inline-flex; }
+  .header__inner { grid-template-columns: 1fr auto; }
+
+  .hero { padding-block: 96px 0; }
+  .hero__row { flex-direction: column; align-items: stretch; gap: var(--sp-4); }
+  .hero__visual { height: 340px; }
+  .trust__inner { flex-direction: column; align-items: flex-start; gap: 12px; }
 
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .works { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1106,13 +1162,15 @@ button, input, select, textarea {
     --gutter: 20px;
     --fs-body: 1rem;
   }
-  .header__inner { height: 60px; }
   .cards, .works { grid-template-columns: minmax(0, 1fr); }
   .form__row { grid-template-columns: minmax(0, 1fr); }
 
   /* Кнопки на всю ширину */
+  .hero { padding-block: 96px 0; }
+  .hero h1 br { display: none; }
   .hero__actions { flex-direction: column; align-items: stretch; }
   .hero__actions .btn { width: 100%; }
+  .hero__visual { height: 260px; margin-top: var(--sp-6); }
   .band-dark .btn { width: 100%; }
   .s-head { margin-bottom: 32px; }
   .footer__grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }

@@ -34,7 +34,10 @@
           <a class="nav__link" href="contact.html">Контакты</a>
       </nav>
 
-      <a class="btn btn--primary btn--sm header__cta" href="contact.html#form" data-lead-open>Получить расчёт</a>
+      <div class="header__right">
+        <a class="header__phone" href="tel:+79990000000">+7 (999) 000-00-00</a>
+        <a class="btn btn--primary header__cta" href="contact.html#form" data-lead-open>Получить расчёт</a>
+      </div>
 
       <button class="burger" type="button" data-burger aria-expanded="false"
               aria-controls="mobile-menu" aria-label="Открыть меню">
@@ -66,25 +69,51 @@
   </div>
 
   <main id="main">
-      <!-- Hero: полноширинная сетка, текст от левого поля, визуал за правый край -->
+      <!-- Hero: одна колонка по левому краю, визуал во всю ширину под текстом -->
       <section class="hero">
-        <div class="hero__grid">
-          <div class="hero__text">
-            <h1>Делаем сайты, <br>которые приводят <br><span class="hero__accent">заявки</span></h1>
-            <p class="hero__lead">Разрабатываем многостраничные сайты, лендинги и автоматизацию
-              для локального бизнеса: от прототипа до заявки в вашей CRM.</p>
+        <div class="container">
+          <a class="hero__badge" href="pricing.html">
+            <span class="hero__badge-dot" aria-hidden="true"></span>
+            <span>Запуск за 7 дней &middot; фиксированная цена</span>
+            <span class="hero__badge-arrow"><svg class="ic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </a>
+
+          <h1>Делаем сайты, которые <br>приводят <span class="hero__accent">заявки</span></h1>
+
+          <p class="hero__lead">Многостраничные сайты, лендинги и автоматизация
+            для локального бизнеса.</p>
+
+          <div class="hero__row">
             <div class="hero__actions">
-              <a class="btn btn--primary btn--lg" href="contact.html#form" data-lead-open>Получить расчёт</a>
-              <a class="btn btn--ghost btn--lg" href="cases.html">Посмотреть работы</a>
+              <a class="btn btn--primary" href="contact.html#form" data-lead-open>Получить расчёт</a>
+              <a class="btn btn--ghost" href="cases.html">Посмотреть работы</a>
             </div>
+            <ul class="hero__meta">
+              <li>Фиксированная цена</li>
+              <li>Срок закреплён в договоре</li>
+              <li>Заявки приходят в Telegram</li>
+            </ul>
           </div>
-          <div class="hero__media">
-            <div class="hero__visual">
-              <!-- Фоновый градиент первого экрана. Положите файл img/hero-gradient.png
-                   с пропорциями 5:4, он подхватится сам. -->
-              <img class="media__img" src="img/hero-gradient.png" alt="" loading="eager" decoding="async">
-            </div>
-          </div>
+        </div>
+
+        <!-- Фоновый визуал первого экрана во всю ширину окна.
+             Положите файл img/hero-gradient.png, он подхватится сам. -->
+        <div class="hero__visual">
+          <img class="media__img" src="img/hero-gradient.png" alt="" loading="eager" decoding="async">
+        </div>
+      </section>
+
+      <!-- Полоса ниш вместо полосы логотипов -->
+      <section class="trust" aria-label="С кем работаем">
+        <div class="container trust__inner">
+          <p class="trust__label">Работаем с локальным бизнесом</p>
+          <ul class="trust__list">
+            <li>автосервисы</li>
+            <li>шиномонтажи</li>
+            <li>отделка</li>
+            <li>склады</li>
+            <li>курсы</li>
+          </ul>
         </div>
       </section>
 
