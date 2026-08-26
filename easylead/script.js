@@ -109,7 +109,7 @@ const CONTACTS = {
      в /img под тем же именем, она проявится и подпись исчезнет.
      ---------------------------------------------------------------------- */
   function initMedia() {
-    document.querySelectorAll('.media__img').forEach(function (img) {
+    document.querySelectorAll('.media__img, .logo-item__img').forEach(function (img) {
       function markLoaded() {
         if (img.naturalWidth > 0) img.classList.add('is-loaded');
       }

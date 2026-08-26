@@ -490,35 +490,98 @@ button, input, select, textarea {
 }
 
 /* --------------------------------------------------------------------------
-   6b. Полоса ниш под первым экраном
+   6b. Полоса интеграций под первым экраном: бесконечная лента логотипов
    -------------------------------------------------------------------------- */
-.trust { border-block: 1px solid var(--border); }
-.trust__inner {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--sp-2) var(--sp-5);
-  padding-block: 20px;
+.strip {
+  background: var(--card);
+  border-block: 1px solid var(--border);
 }
-.trust__label {
-  font-size: var(--fs-xs);
+.strip__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+  min-height: 120px;
+  padding-block: var(--sp-3);
+}
+.strip__label {
+  flex: none;
+  max-width: 15rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
   color: var(--muted);
+}
+
+/* Окно ленты. Маска гасит логотипы у краёв, чтобы они не обрывались резко.
+   black здесь не краска, а альфа маски: палитра не расширяется. */
+.marquee {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 80px, black calc(100% - 80px), transparent);
+  mask-image: linear-gradient(90deg, transparent, black 80px, black calc(100% - 80px), transparent);
+}
+
+/* Дорожка едет ровно на половину своей ширины. Половина совпадает с началом
+   второго набора, потому что у каждого набора есть свой правый отступ:
+   без него стык уезжал бы на половину зазора. */
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 36s linear infinite;
+}
+.marquee:hover .marquee__track { animation-play-state: paused; }
+
+.marquee__group {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  padding-right: 56px;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Логотип: пока файла нет, на его месте читается название сервиса */
+.logo-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  opacity: 0.45;
+  transition: opacity var(--t);
+}
+.logo-item:hover { opacity: 0.8; }
+
+/* Пока файла нет, картинка вынута из потока: иначе браузер отводит место
+   под её alt-текст, наборы получаются разной ширины и в стыке ленты
+   появляется рывок. После загрузки картинка возвращается в поток. */
+.logo-item__img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 24px;
+  width: auto;
+  opacity: 0;
+  /* Приводим разноцветные файлы к одному тону */
+  filter: grayscale(1) brightness(0);
+  transition: opacity 200ms var(--ease);
+}
+.logo-item__img.is-loaded { position: static; opacity: 1; }
+
+.logo-item__name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--fg);
   white-space: nowrap;
 }
-.trust__list {
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 0.9375rem;
-  color: var(--fg-60);
-}
-.trust__list li + li::before {
-  content: "\00B7";
-  padding-inline: 10px;
-  color: var(--border);
-}
+.logo-item__img.is-loaded + .logo-item__name { display: none; }
+
 /* Секция после полосы получает верхний отступ: сама полоса вплотную к визуалу */
-.trust + .section { padding-top: var(--section); }
+.strip + .section { padding-top: var(--section); }
 
 /* Страничная шапка внутренних разделов */
 .page-head { padding-block: clamp(40px, 6vw, 80px) clamp(32px, 4vw, 56px); }
@@ -1092,6 +1155,20 @@ button, input, select, textarea {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+
+  /* Лента останавливается совсем: дубль набора скрывается, ряд можно
+     пролистать пальцем или колесом. Маску тоже убираем, иначе край
+     выглядел бы обрезанным без причины. */
+  .marquee__track {
+    animation: none !important;
+    transform: none !important;
+  }
+  .marquee__group[aria-hidden="true"] { display: none; }
+  .marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
@@ -1117,7 +1194,8 @@ button, input, select, textarea {
   .hero { padding-block: 96px 0; }
   .hero__row { flex-direction: column; align-items: stretch; gap: var(--sp-4); }
   .hero__visual { height: 340px; }
-  .trust__inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .strip__inner { flex-direction: column; align-items: stretch; gap: var(--sp-2); }
+  .strip__label { max-width: none; }
 
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .works { grid-template-columns: repeat(2, minmax(0, 1fr)); }
