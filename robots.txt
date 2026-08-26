@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://spektr-mgn.ru/sitemap.xml
+# ПРОВЕРЬ: замените example.com на свой домен.
+Sitemap: https://example.com/sitemap.xml
