@@ -404,7 +404,10 @@ button, input, select, textarea {
    6. Hero
    Одна колонка по левому краю контейнера, визуал во всю ширину под текстом.
    -------------------------------------------------------------------------- */
-.hero { padding-block: 200px 0; }
+/* Отступ и зазор до визуала считаются от высоты окна: на 1080px это ровно
+   200px и 64px из макета, на низких экранах меньше, иначе контентный блок
+   не помещается над визуалом и прокрутка упирается в сплошную заливку. */
+.hero { padding-block: clamp(96px, 18.5vh, 200px) 0; }
 
 /* Бейдж-пилюля над заголовком */
 .hero__badge {
@@ -482,7 +485,7 @@ button, input, select, textarea {
    Низ без скругления: блок обрезается нижней границей экрана. */
 .hero__visual {
   position: relative;
-  margin-top: var(--sp-8);
+  margin-top: clamp(32px, 5.9vh, 64px);
   height: 440px;
   overflow: hidden;
   background: var(--border);
@@ -499,7 +502,7 @@ button, input, select, textarea {
 .strip__inner {
   display: flex;
   align-items: center;
-  gap: var(--sp-5);
+  gap: 80px;
   min-height: 120px;
   padding-block: var(--sp-3);
 }
@@ -508,7 +511,7 @@ button, input, select, textarea {
   max-width: 15rem;
   font-size: 0.875rem;
   line-height: 1.45;
-  color: var(--muted);
+  color: var(--fg-60);
 }
 
 /* Окно ленты. Маска гасит логотипы у краёв, чтобы они не обрывались резко.
@@ -544,41 +547,19 @@ button, input, select, textarea {
   to { transform: translateX(-50%); }
 }
 
-/* Логотип: пока файла нет, на его месте читается название сервиса */
+/* Логотип. Пока файла нет, на его месте стоит блок-заглушка: тот же
+   inline SVG, только вместо контура сплошной прямоугольник. Прозрачность
+   задана на элементе, поэтому реальный SVG получит её автоматически. */
 .logo-item {
-  position: relative;
   display: inline-flex;
   align-items: center;
   height: 24px;
+  color: var(--fg);
   opacity: 0.45;
   transition: opacity var(--t);
 }
 .logo-item:hover { opacity: 0.8; }
-
-/* Пока файла нет, картинка вынута из потока: иначе браузер отводит место
-   под её alt-текст, наборы получаются разной ширины и в стыке ленты
-   появляется рывок. После загрузки картинка возвращается в поток. */
-.logo-item__img {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 24px;
-  width: auto;
-  opacity: 0;
-  /* Приводим разноцветные файлы к одному тону */
-  filter: grayscale(1) brightness(0);
-  transition: opacity 200ms var(--ease);
-}
-.logo-item__img.is-loaded { position: static; opacity: 1; }
-
-.logo-item__name {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--fg);
-  white-space: nowrap;
-}
-.logo-item__img.is-loaded + .logo-item__name { display: none; }
+.logo-item svg { height: 24px; width: auto; display: block; }
 
 /* Секция после полосы получает верхний отступ: сама полоса вплотную к визуалу */
 .strip + .section { padding-top: var(--section); }
