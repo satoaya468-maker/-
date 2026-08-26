@@ -13,9 +13,9 @@ window.EASYLEAD = {
   endpoint: '',
 
   /* Контакты. Подставляются во все ссылки на странице. */
-  phone:     '+7 000 000-00-00',
-  phoneHref: '+70000000000',
-  telegram:  'https://t.me/easylead',
+  phone:     '+7 933 982-88-07',
+  phoneHref: '+79339828807',
+  telegram:  'https://t.me/ynghustler',
 
   /* Куда вести после успешной отправки. Пусто = остаёмся на странице. */
   thanksUrl: ''
