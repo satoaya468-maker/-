@@ -508,7 +508,7 @@ button, input, select, textarea {
 }
 .strip__label {
   flex: none;
-  max-width: 15rem;
+  max-width: 17rem;
   font-size: 0.875rem;
   line-height: 1.45;
   color: var(--fg-60);
@@ -547,19 +547,40 @@ button, input, select, textarea {
   to { transform: translateX(-50%); }
 }
 
-/* Логотип. Пока файла нет, на его месте стоит блок-заглушка: тот же
-   inline SVG, только вместо контура сплошной прямоугольник. Прозрачность
-   задана на элементе, поэтому реальный SVG получит её автоматически. */
+/* Логотип: небольшой знак плюс начертание. У каждого бренда своя плотность
+   и трекинг, иначе ряд читается как список ссылок, а не как логотипы.
+   Знаки нарисованы приближённо и помечены комментариями: официальные SVG
+   вставляются на место тега и наследуют цвет с .logo-item. */
 .logo-item {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   height: 24px;
   color: var(--fg);
-  opacity: 0.45;
+  opacity: 0.8;
   transition: opacity var(--t);
 }
-.logo-item:hover { opacity: 0.8; }
-.logo-item svg { height: 24px; width: auto; display: block; }
+.logo-item:hover { opacity: 1; }
+
+.logo-item__mark {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  fill: currentColor;
+}
+.logo-item__word {
+  font-size: 1.125rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.lg-vercel   .logo-item__word { font-weight: 600; letter-spacing: -0.035em; }
+.lg-claude   .logo-item__word { font-weight: 500; letter-spacing: -0.005em; }
+.lg-linear   .logo-item__word { font-weight: 600; letter-spacing: -0.02em; }
+.lg-supabase .logo-item__word { font-weight: 600; letter-spacing: -0.025em; }
+.lg-framer   .logo-item__word { font-weight: 600; letter-spacing: -0.01em; }
+.lg-notion   .logo-item__word { font-weight: 600; letter-spacing: -0.03em; }
+.lg-telegram .logo-item__word { font-weight: 500; letter-spacing: -0.015em; }
 
 /* Секция после полосы получает верхний отступ: сама полоса вплотную к визуалу */
 .strip + .section { padding-top: var(--section); }
