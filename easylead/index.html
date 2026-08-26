@@ -66,23 +66,24 @@
   </div>
 
   <main id="main">
-      <!-- Hero: асимметричный сплит 7/5 -->
+      <!-- Hero: полноширинная сетка, текст от левого поля, визуал за правый край -->
       <section class="hero">
-        <div class="container hero__grid">
-          <div>
-            <h1>Делаем сайты, которые приводят <span class="accent">заявки</span></h1>
-            <p class="lead hero__lead">Многостраничные сайты, лендинги и автоматизация для локального
-              бизнеса. Фиксированная цена, срок в договоре, запуск за 7 дней.</p>
+        <div class="hero__grid">
+          <div class="hero__text">
+            <h1>Делаем сайты, <br>которые приводят <br><span class="hero__accent">заявки</span></h1>
+            <p class="hero__lead">Разрабатываем многостраничные сайты, лендинги и автоматизацию
+              для локального бизнеса: от прототипа до заявки в вашей CRM.</p>
             <div class="hero__actions">
-              <a class="btn btn--primary" href="contact.html#form" data-lead-open>Получить расчёт</a>
-              <a class="link-arrow" href="cases.html">Посмотреть работы <svg class="ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+              <a class="btn btn--primary btn--lg" href="contact.html#form" data-lead-open>Получить расчёт</a>
+              <a class="btn btn--ghost btn--lg" href="cases.html">Посмотреть работы</a>
             </div>
-            <p class="hero__facts">
-              <span>Запуск за 7 дней</span> <i>&middot;</i> <span>Фиксированная цена</span> <i>&middot;</i> <span>Заявки приходят в Telegram</span>
-            </p>
           </div>
           <div class="hero__media">
-            <figure class="media media--4x5"><img class="media__img" src="img/hero-gradient.png" alt="Фоновый градиент первого экрана" loading="lazy" decoding="async"><figcaption class="media__hint">Фоновый градиент первого экрана</figcaption></figure>
+            <div class="hero__visual">
+              <!-- Фоновый градиент первого экрана. Положите файл img/hero-gradient.png
+                   с пропорциями 5:4, он подхватится сам. -->
+              <img class="media__img" src="img/hero-gradient.png" alt="" loading="eager" decoding="async">
+            </div>
           </div>
         </div>
       </section>
