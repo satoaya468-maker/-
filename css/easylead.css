@@ -935,6 +935,68 @@ html {
 
 .statement .body { max-width: 52ch; }
 
+/* Что даём на разборе. Три пункта в строку с вертикальными волосяными
+   линиями на десктопе и горизонтальными на телефоне: раскладка не должна
+   повторять нумерованные шаги выше по странице. */
+.audit__list {
+  display: grid;
+  gap: 0;
+  width: 100%;
+  max-width: 58rem;
+  margin-top: .25rem;
+  text-align: left;
+}
+
+.audit__item {
+  display: grid;
+  gap: .35rem;
+  padding-block: 1.15rem;
+  border-top: 1px solid var(--line);
+}
+
+.audit__item .small { color: var(--muted); }
+
+@media (min-width: 840px) {
+  .audit__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    /* Две строки на всю сетку плюс subgrid у пунктов: подписи стоят на одной
+       линии, даже когда один заголовок переносится на вторую строку. */
+    grid-template-rows: auto auto;
+  }
+
+  .audit__item {
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    border-top: 0;
+    border-left: 1px solid var(--line);
+    padding-block: 0;
+    padding-inline: clamp(1rem, 2.2vw, 1.75rem);
+  }
+
+  /* Отступ одинаковый у всех трёх, иначе первая колонка читается шире. */
+  .audit__item:first-child { border-left: 0; }
+}
+
+.audit__free {
+  font-size: clamp(1.05rem, 1.7vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: -.02em;
+  color: var(--text);
+  max-width: 44ch;
+  text-wrap: balance;
+}
+
+/* Готово к вставке видео: слот не занимает места, пока видео нет. */
+.audit__video {
+  width: 100%;
+  max-width: 46rem;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--card-line);
+  border-radius: var(--r-lg);
+  background: var(--card-bg);
+}
+
 /* =========================================================================
    Финальный блок
    ========================================================================= */
