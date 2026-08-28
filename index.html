@@ -143,7 +143,7 @@
         <!-- Панель заявок. Не макет: значения ниже приходят из формы выше,
              пока посетитель печатает. -->
         <div class="reveal" data-delay="3">
-        <aside class="panel" data-panel data-state="idle"
+        <aside class="panel" data-anim="running" data-panel data-state="idle"
                aria-label="Как заявка выглядит у нас">
           <div class="panel__bar">
             <span class="panel__title">Новая заявка</span>
@@ -215,7 +215,7 @@
       </p>
     </div>
 
-    <div class="marquee reveal" data-delay="1" aria-hidden="true">
+    <div class="marquee reveal" data-delay="1" data-anim="running" aria-hidden="true">
       <ul class="marquee__track">
         <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-telegram"/></svg><span>Telegram</span></li>
         <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-whatsapp"/></svg><span>WhatsApp</span></li>

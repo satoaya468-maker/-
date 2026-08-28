@@ -105,6 +105,25 @@
   }
 
   /* ---------------------------------------------------------------------
+     Бесконечные анимации ставим на паузу, пока элемент вне экрана.
+     Лента из 36 логотипов и блик по панели иначе занимают композитор
+     всё время, пока человек читает середину страницы.
+     --------------------------------------------------------------------- */
+
+  function initOffscreenPause() {
+    var nodes = document.querySelectorAll('[data-anim]');
+    if (!nodes.length || !('IntersectionObserver' in window)) return;
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        entry.target.dataset.anim = entry.isIntersecting ? 'running' : 'paused';
+      });
+    }, { rootMargin: '120px 0px' });
+
+    nodes.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ---------------------------------------------------------------------
      Часы в панели заявок. Реальное время устройства, не выдуманная цифра.
      --------------------------------------------------------------------- */
 
@@ -378,6 +397,7 @@
 
   applyContacts();
   initHeader();
+  initOffscreenPause();
   initReveals();
   initDock();
   initClock();

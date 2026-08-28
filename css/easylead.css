@@ -176,8 +176,10 @@ html {
   inset: 0;
   z-index: var(--z-grain);
   pointer-events: none;
-  opacity: .5;
-  mix-blend-mode: overlay;
+  /* Без mix-blend-mode: полноэкранный слой со смешиванием заставляет
+     композитор пересобирать весь вьюпорт на каждом кадре скролла.
+     На почти чёрном фоне разница в картинке неразличима. */
+  opacity: .32;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
 }
 
@@ -297,11 +299,12 @@ html {
   letter-spacing: -.01em;
   white-space: nowrap;
   cursor: pointer;
+  /* Анимируются только transform, opacity и цвет. box-shadow в переходе
+     заставляет перерисовывать тень покадрово. */
   transition:
     transform var(--d-press) var(--ease),
     background-color var(--d-color) ease,
-    border-color var(--d-color) ease,
-    box-shadow var(--d-color) ease;
+    border-color var(--d-color) ease;
 }
 
 .btn:active { transform: scale(.97); }
@@ -379,10 +382,11 @@ html {
   display: flex;
   align-items: center;
   border-bottom: 1px solid transparent;
+  /* backdrop-filter намеренно не в списке: анимировать его дорого,
+     он пересчитывает размытие подложки на каждом кадре перехода. */
   transition:
     background-color var(--d-open) ease,
-    border-color var(--d-open) ease,
-    backdrop-filter var(--d-open) ease;
+    border-color var(--d-open) ease;
 }
 
 .header[data-stuck="true"] {
@@ -456,9 +460,8 @@ html {
   transform: translateX(-50%);
   pointer-events: none;
   background:
-    radial-gradient(closest-side, rgba(255, 255, 255, .16), transparent 70%),
+    radial-gradient(closest-side, rgba(255, 255, 255, .15), transparent 72%),
     radial-gradient(closest-side, rgba(255, 255, 255, .07), transparent 55%);
-  filter: blur(10px);
 }
 
 .hero__grid {
@@ -525,8 +528,7 @@ html {
   border-radius: var(--r-md);
   transition:
     border-color var(--d-color) ease,
-    background-color var(--d-color) ease,
-    box-shadow var(--d-color) ease;
+    background-color var(--d-color) ease;
 }
 
 .field__input::placeholder { color: var(--dim); }
@@ -601,7 +603,6 @@ html {
   transition:
     border-color var(--d-lift) var(--ease),
     transform var(--d-lift) var(--ease),
-    box-shadow var(--d-lift) var(--ease),
     background-color var(--d-lift) var(--ease);
 }
 
@@ -775,6 +776,9 @@ html {
   overflow: hidden;
   border-block: 1px solid var(--line);
   padding-block: 1.35rem;
+  /* Полоса не влияет на раскладку снаружи: браузер может не пересчитывать
+     её при изменениях на остальной странице. */
+  contain: layout paint;
   mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
 }
@@ -788,6 +792,12 @@ html {
 .marquee__track > * { flex: none; }
 
 @keyframes slide { to { transform: translateX(-50%); } }
+
+/* Бесконечные анимации останавливаются, когда элемент ушёл с экрана.
+   Иначе лента из 36 логотипов и блик по панели гоняют композитор
+   всё время, пока читают остальную страницу. */
+[data-anim="paused"] .marquee__track,
+[data-anim="paused"]::after { animation-play-state: paused; }
 
 @media (hover: hover) and (pointer: fine) {
   .marquee:hover .marquee__track { animation-play-state: paused; }
@@ -957,9 +967,10 @@ html {
   gap: .5rem;
   padding: .625rem var(--pad-x);
   padding-bottom: calc(.625rem + env(safe-area-inset-bottom, 0px));
-  background: rgba(8, 9, 11, .86);
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  /* Непрозрачный фон вместо второго backdrop-filter: док висит поверх
+     скроллящегося контента, и размытие подложки пересчитывалось бы
+     на каждом кадре. Размытие на странице осталось только у шапки. */
+  background: #0A0B0E;
   border-top: 1px solid var(--line);
   transform: translateY(110%);
   transition: transform var(--d-open) var(--ease);
