@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-<title>EasyLead. Сайты и автоматизации для локального бизнеса</title>
+<title>EasyLead. Сайты и автоматизации для локального бизнеса</title>
 <meta name="description" content="Делаем сайты, которые приносят заявки: автосервисам, шиномонтажам, отделке и складам. Заявка приходит вам в Telegram. Сайт под заявки от 14 700 рублей, цена фиксируется в смете до начала работ.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 
@@ -55,7 +55,7 @@
 <div class="vignette" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
-<a class="visually-hidden" href="#lead">Перейти к форме заявки</a>
+<a class="visually-hidden" href="#lead">Перейти к форме заявки</a>
 
 <!-- Сентинел для шапки. IntersectionObserver вместо слушателя скролла. -->
 <div id="top-sentinel" aria-hidden="true" style="position:absolute;top:0;height:1px;width:1px"></div>
@@ -70,7 +70,7 @@
       <a href="#process">Как работаем</a>
     </nav>
 
-    <a class="btn btn--primary" href="#lead">Оставить заявку</a>
+    <a class="btn btn--primary" href="#lead">Оставить заявку<svg class="btn__arrow" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7h9M8 3.5 11.5 7 8 10.5"/></svg></a>
   </div>
 </header>
 
@@ -85,16 +85,16 @@
       <div class="hero__copy">
         <h1 class="h-hero reveal">Сайт, который приносит заявки</h1>
         <p class="lede reveal" data-delay="1">
-          Делаем сайты и автоматизации для автосервисов, шиномонтажей, отделки
-          и складов. Заявка падает вам в Telegram за секунды.
+          Делаем сайты и автоматизации для автосервисов, шиномонтажей, отделки
+          и складов. Заявка падает вам в Telegram за секунды.
         </p>
 
         <div class="contact-row hero__contacts reveal" data-delay="2">
           <a class="btn btn--ghost" href="tel:+79339828807" data-contact="phone-link">
-            <span data-contact="phone-text">+7 933 982-88-07</span>
+            <span data-contact="phone-text">+7 933 982-88-07</span>
           </a>
           <a class="btn btn--ghost" href="https://t.me/ynghustler" data-contact="tg-link" rel="noopener">
-            Написать в Telegram
+            Написать в Telegram
           </a>
         </div>
       </div>
@@ -110,7 +110,7 @@
                    autocomplete="name" enterkeyhint="next"
                    placeholder="Как к вам обращаться" required data-mirror="name">
             <span class="field__error" data-error>
-              <svg class="check" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="M8 4.8v4M8 11.1v.1"/></svg>
+              <svg class="check" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="M8 4.8v4M8 11.1v.1"/></svg>
               Напишите имя
             </span>
           </div>
@@ -123,8 +123,8 @@
                    inputmode="tel" autocomplete="tel" enterkeyhint="send"
                    placeholder="+7 (___) ___-__-__" required data-mirror="phone">
             <span class="field__error" data-error>
-              <svg class="check" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="M8 4.8v4M8 11.1v.1"/></svg>
-              Нужны все 11 цифр номера
+              <svg class="check" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="M8 4.8v4M8 11.1v.1"/></svg>
+              Нужны все 11 цифр номера
             </span>
           </div>
 
@@ -135,14 +135,15 @@
           </button>
 
           <div class="form__foot">
-            <p class="tiny">Два поля. Больше ничего не спросим.</p>
+            <p class="tiny">Два поля. Больше ничего не спросим.</p>
             <p class="form__status" data-status role="status" aria-live="polite"></p>
           </div>
         </form>
 
         <!-- Панель заявок. Не макет: значения ниже приходят из формы выше,
              пока посетитель печатает. -->
-        <aside class="panel reveal" data-delay="3" data-panel data-state="idle"
+        <div class="reveal" data-delay="3">
+        <aside class="panel" data-panel data-state="idle"
                aria-label="Как заявка выглядит у нас">
           <div class="panel__bar">
             <span class="panel__title">Новая заявка</span>
@@ -153,14 +154,14 @@
             <div class="ticket">
               <div class="ticket__row">
                 <span class="ticket__key">Имя</span>
-                <span class="ticket__val" data-panel-name data-empty="true">не заполнено</span>
+                <span class="ticket__val" data-panel-name data-empty="true">не заполнено</span>
               </div>
               <div class="ticket__row">
                 <span class="ticket__key">Телефон</span>
-                <span class="ticket__val" data-panel-phone data-empty="true">не заполнено</span>
+                <span class="ticket__val" data-panel-phone data-empty="true">не заполнено</span>
               </div>
               <div class="ticket__foot">
-                <svg class="check" viewBox="0 0 16 16" aria-hidden="true">
+                <svg class="check" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true">
                   <circle cx="8" cy="8" r="6.6"/>
                   <path d="M5.2 8.2l2 2 3.6-4"/>
                 </svg>
@@ -170,10 +171,11 @@
           </div>
 
           <p class="panel__note">
-            Так заявка приходит нам в Telegram. Панель заполняется, пока вы
-            печатаете в форме.
+            Так заявка приходит нам в Telegram. Панель заполняется, пока вы
+            печатаете в форме.
           </p>
         </aside>
+        </div>
       </div>
 
     </div>
@@ -209,77 +211,77 @@
 
     <div class="shell">
       <p class="strip__lede reveal">
-        Интегрируем с сервисами, которым доверяют во всём мире
+        Интегрируем с сервисами, которым доверяют во всём мире
       </p>
     </div>
 
     <div class="marquee reveal" data-delay="1" aria-hidden="true">
       <ul class="marquee__track">
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-telegram"/></svg><span>Telegram</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-whatsapp"/></svg><span>WhatsApp</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-vk"/></svg><span>VK</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-yandexcloud"/></svg><span>Yandex Cloud</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-googlesheets"/></svg><span>Google Sheets</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-googleanalytics"/></svg><span>Google Analytics</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-supabase"/></svg><span>Supabase</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-claude"/></svg><span>Claude</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-n8n"/></svg><span>n8n</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-make"/></svg><span>Make</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-zapier"/></svg><span>Zapier</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-notion"/></svg><span>Notion</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-airtable"/></svg><span>Airtable</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-figma"/></svg><span>Figma</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-framer"/></svg><span>Framer</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-cloudflare"/></svg><span>Cloudflare</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-vercel"/></svg><span>Vercel</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-tildapublishing"/></svg><span>Tilda</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-telegram"/></svg><span>Telegram</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-whatsapp"/></svg><span>WhatsApp</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-vk"/></svg><span>VK</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-yandexcloud"/></svg><span>Yandex Cloud</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-googlesheets"/></svg><span>Google Sheets</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-googleanalytics"/></svg><span>Google Analytics</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-supabase"/></svg><span>Supabase</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-claude"/></svg><span>Claude</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-n8n"/></svg><span>n8n</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-make"/></svg><span>Make</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-zapier"/></svg><span>Zapier</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-notion"/></svg><span>Notion</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-airtable"/></svg><span>Airtable</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-figma"/></svg><span>Figma</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-framer"/></svg><span>Framer</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-cloudflare"/></svg><span>Cloudflare</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-vercel"/></svg><span>Vercel</span></li>
-        <li class="logo"><svg class="logo__mark" aria-hidden="true"><use href="#lg-tildapublishing"/></svg><span>Tilda</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-telegram"/></svg><span>Telegram</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-whatsapp"/></svg><span>WhatsApp</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-vk"/></svg><span>VK</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-yandexcloud"/></svg><span>Yandex Cloud</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-googlesheets"/></svg><span>Google Sheets</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-googleanalytics"/></svg><span>Google Analytics</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-supabase"/></svg><span>Supabase</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-claude"/></svg><span>Claude</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-n8n"/></svg><span>n8n</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-make"/></svg><span>Make</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-zapier"/></svg><span>Zapier</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-notion"/></svg><span>Notion</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-airtable"/></svg><span>Airtable</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-figma"/></svg><span>Figma</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-framer"/></svg><span>Framer</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-cloudflare"/></svg><span>Cloudflare</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-vercel"/></svg><span>Vercel</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-tildapublishing"/></svg><span>Tilda</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-telegram"/></svg><span>Telegram</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-whatsapp"/></svg><span>WhatsApp</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-vk"/></svg><span>VK</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-yandexcloud"/></svg><span>Yandex Cloud</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-googlesheets"/></svg><span>Google Sheets</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-googleanalytics"/></svg><span>Google Analytics</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-supabase"/></svg><span>Supabase</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-claude"/></svg><span>Claude</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-n8n"/></svg><span>n8n</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-make"/></svg><span>Make</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-zapier"/></svg><span>Zapier</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-notion"/></svg><span>Notion</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-airtable"/></svg><span>Airtable</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-figma"/></svg><span>Figma</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-framer"/></svg><span>Framer</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-cloudflare"/></svg><span>Cloudflare</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-vercel"/></svg><span>Vercel</span></li>
+        <li class="logo"><svg class="logo__mark" width="22" height="22" aria-hidden="true"><use href="#lg-tildapublishing"/></svg><span>Tilda</span></li>
       </ul>
     </div>
 
-    <p class="visually-hidden">Интегрируем с сервисами: Telegram, WhatsApp, VK, Yandex Cloud, Google Sheets, Google Analytics, Supabase, Claude, n8n, Make, Zapier, Notion, Airtable, Figma, Framer, Cloudflare, Vercel, Tilda.</p>
+    <p class="visually-hidden">Интегрируем с сервисами: Telegram, WhatsApp, VK, Yandex Cloud, Google Sheets, Google Analytics, Supabase, Claude, n8n, Make, Zapier, Notion, Airtable, Figma, Framer, Cloudflare, Vercel, Tilda.</p>
   </section>
 
   <!-- ================= ЧТО ДЕЛАЕМ ================= -->
   <section class="section" id="services">
     <div class="shell">
       <div class="section-head">
-        <h2 class="h2 reveal">Две вещи, и обе про заявки</h2>
+        <h2 class="h2 reveal">Две вещи, и обе про заявки</h2>
         <p class="body reveal" data-delay="1">
-          Мы не делаем «присутствие в интернете». Мы делаем инструмент, у которого
+          Мы не делаем «присутствие в интернете». Мы делаем инструмент, у которого
           есть одна измеримая задача.
         </p>
       </div>
 
       <div class="offers reveal" data-delay="2">
         <article class="offer">
-          <h3 class="h3">Сайты под заявки</h3>
+          <h3 class="h3">Сайты под заявки</h3>
           <p class="body">
-            Одна или несколько страниц, собранных вокруг того, что человек на самом
-            деле спрашивает по телефону. Первый экран отвечает на три вопроса:
-            что вы делаете, сколько это стоит, как оставить заявку.
+            Одна или несколько страниц, собранных вокруг того, что человек на самом
+            деле спрашивает по телефону. Первый экран отвечает на три вопроса:
+            что вы делаете, сколько это стоит, как оставить заявку.
           </p>
           <ul class="offer__list">
-            <li><span>Структура и прототип</span></li>
-            <li><span>Дизайн и вёрстка, сначала под телефон</span></li>
-            <li><span>Форма заявки с отправкой в Telegram</span></li>
+            <li><span>Структура и прототип</span></li>
+            <li><span>Дизайн и вёрстка, сначала под телефон</span></li>
+            <li><span>Форма заявки с отправкой в Telegram</span></li>
             <li><span>Домен, хостинг, публикация</span></li>
           </ul>
         </article>
@@ -287,12 +289,12 @@
         <article class="offer">
           <h3 class="h3">Автоматизации</h3>
           <p class="body">
-            Связываем сайт, заявки и мессенджеры так, чтобы ни одно обращение не
-            терялось между вкладками и блокнотом.
+            Связываем сайт, заявки и мессенджеры так, чтобы ни одно обращение не
+            терялось между вкладками и блокнотом.
           </p>
           <p class="body">
-            Что именно автоматизировать, решаем после разбора: у шиномонтажа и у
-            склада это разные вещи, и продавать одну коробку обоим нечестно.
+            Что именно автоматизировать, решаем после разбора: у шиномонтажа и у
+            склада это разные вещи, и продавать одну коробку обоим нечестно.
           </p>
         </article>
       </div>
@@ -305,26 +307,26 @@
       <div class="section-head">
         <h2 class="h2 reveal">Сколько это стоит</h2>
         <p class="body reveal" data-delay="1">
-          Цену называем до начала работ и фиксируем в смете. Она не меняется
-          по ходу, если не меняется объём.
+          Цену называем до начала работ и фиксируем в смете. Она не меняется
+          по ходу, если не меняется объём.
         </p>
       </div>
 
       <div class="price-grid">
         <div class="price reveal" data-delay="2">
-          <p class="price__amount"><span>от</span> 14 700 <span>₽</span></p>
-          <h3 class="h3">Сайт под заявки</h3>
+          <p class="price__amount"><span>от</span> 14 700 <span>₽</span></p>
+          <h3 class="h3">Сайт под заявки</h3>
           <p class="body">
-            Итог зависит от числа экранов и объёма текста. Точную цифру называем
-            после разбора и фиксируем в смете, до этого никаких предоплат.
+            Итог зависит от числа экранов и объёма текста. Точную цифру называем
+            после разбора и фиксируем в смете, до этого никаких предоплат.
           </p>
         </div>
 
         <div class="price reveal" data-delay="3">
-          <p class="price__amount price__amount--text">По задаче</p>
+          <p class="price__amount price__amount--text">По задаче</p>
           <h3 class="h3">Автоматизации</h3>
           <p class="body">
-            Считаем от объёма: сколько источников заявок сводим в одно место и что
+            Считаем от объёма: сколько источников заявок сводим в одно место и что
             должно происходить после того, как заявка пришла.
           </p>
         </div>
@@ -344,28 +346,28 @@
           <span class="step__n num" aria-hidden="true"></span>
           <div class="step__body">
             <h3 class="h3">Заявка</h3>
-            <p class="body">Оставляете имя и телефон. Дальше созваниваемся, анкет не будет.</p>
+            <p class="body">Оставляете имя и телефон. Дальше созваниваемся, анкет не будет.</p>
           </div>
         </li>
         <li class="step">
           <span class="step__n num" aria-hidden="true"></span>
           <div class="step__body">
             <h3 class="h3">Разбор</h3>
-            <p class="body">Что за бизнес, откуда сейчас идут клиенты, на каком шаге теряются заявки.</p>
+            <p class="body">Что за бизнес, откуда сейчас идут клиенты, на каком шаге теряются заявки.</p>
           </div>
         </li>
         <li class="step">
           <span class="step__n num" aria-hidden="true"></span>
           <div class="step__body">
             <h3 class="h3">Смета</h3>
-            <p class="body">Фиксируем объём, срок и цену письменно, до начала работ.</p>
+            <p class="body">Фиксируем объём, срок и цену письменно, до начала работ.</p>
           </div>
         </li>
         <li class="step">
           <span class="step__n num" aria-hidden="true"></span>
           <div class="step__body">
             <h3 class="h3">Запуск</h3>
-            <p class="body">Сайт в работе. Заявки падают вам в Telegram, а не в почту, которую вы не открываете.</p>
+            <p class="body">Сайт в работе. Заявки падают вам в Telegram, а не в почту, которую вы не открываете.</p>
           </div>
         </li>
       </ol>
@@ -375,15 +377,15 @@
   <!-- ================= ЧЕСТНО ================= -->
   <section class="section section--lift section--spot">
     <div class="shell statement">
-      <h2 class="statement__big reveal">Этот сайт и есть портфолио</h2>
+      <h2 class="statement__big reveal">Этот сайт и есть портфолио</h2>
       <p class="body reveal" data-delay="1">
-        Вы уже видите, как мы работаем. Страница открылась мгновенно, всё главное
-        поместилось в первый экран, заявка занимает два поля и десять секунд.
+        Вы уже видите, как мы работаем. Страница открылась мгновенно, всё главное
+        поместилось в первый экран, заявка занимает два поля и десять секунд.
       </p>
       <p class="body reveal" data-delay="2">
-        Так же соберём и ваш.
+        Так же соберём и ваш.
       </p>
-      <a class="btn btn--ghost btn--lg reveal" data-delay="3" href="#lead">Оставить заявку</a>
+      <a class="btn btn--ghost btn--lg reveal" data-delay="3" href="#lead">Оставить заявку<svg class="btn__arrow" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7h9M8 3.5 11.5 7 8 10.5"/></svg></a>
     </div>
   </section>
 
@@ -393,15 +395,15 @@
       <div class="section-head" style="margin-bottom:0">
         <h2 class="h2 reveal">Оставьте заявку</h2>
         <p class="body reveal" data-delay="1">
-          Два поля: имя и телефон. Перезвоним, разберём задачу и назовём цену.
-          Если не подойдём, скажем об этом сразу.
+          Два поля: имя и телефон. Перезвоним, разберём задачу и назовём цену.
+          Если не подойдём, скажем об этом сразу.
         </p>
         <div class="contact-row reveal" data-delay="2">
           <a class="btn btn--ghost" href="tel:+79339828807" data-contact="phone-link">
-            <span data-contact="phone-text">+7 933 982-88-07</span>
+            <span data-contact="phone-text">+7 933 982-88-07</span>
           </a>
           <a class="btn btn--ghost" href="https://t.me/ynghustler" data-contact="tg-link" rel="noopener">
-            Написать в Telegram
+            Написать в Telegram
           </a>
         </div>
       </div>
@@ -416,7 +418,7 @@
                  autocomplete="name" enterkeyhint="next"
                  placeholder="Как к вам обращаться" required data-mirror="name">
           <span class="field__error" data-error>
-            <svg class="check" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="M8 4.8v4M8 11.1v.1"/></svg>
+            <svg class="check" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="M8 4.8v4M8 11.1v.1"/></svg>
             Напишите имя
           </span>
         </div>
@@ -429,8 +431,8 @@
                  inputmode="tel" autocomplete="tel" enterkeyhint="send"
                  placeholder="+7 (___) ___-__-__" required data-mirror="phone">
           <span class="field__error" data-error>
-            <svg class="check" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="M8 4.8v4M8 11.1v.1"/></svg>
-            Нужны все 11 цифр номера
+            <svg class="check" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="M8 4.8v4M8 11.1v.1"/></svg>
+            Нужны все 11 цифр номера
           </span>
         </div>
 
@@ -441,14 +443,14 @@
         </button>
 
         <div class="form__foot">
-          <p class="tiny">Позвоним на этот номер. Рассылок не будет.</p>
+          <p class="tiny">Позвоним на этот номер. Рассылок не будет.</p>
           <p class="form__status" data-status role="status" aria-live="polite"></p>
         </div>
       </form>
       <noscript>
         <p class="body">
-          Форма работает только со включённым JavaScript. Позвоните нам или
-          напишите в Telegram: кнопки выше рабочие.
+          Форма работает только со включённым JavaScript. Позвоните нам или
+          напишите в Telegram: кнопки выше рабочие.
         </p>
       </noscript>
     </div>
@@ -459,10 +461,10 @@
 <footer class="footer">
   <div class="shell footer__inner">
     <span class="wordmark">EasyLead</span>
-    <p class="tiny">Сайты и автоматизации для локального бизнеса</p>
+    <p class="tiny">Сайты и автоматизации для локального бизнеса</p>
     <p class="tiny">
       <a class="link-quiet" href="tel:+79339828807" data-contact="phone-link">
-        <span data-contact="phone-text">+7 933 982-88-07</span>
+        <span data-contact="phone-text">+7 933 982-88-07</span>
       </a>
     </p>
   </div>
@@ -470,7 +472,7 @@
 
 <!-- Мобильный док. Появляется, когда герой ушёл за экран. -->
 <div class="dock" data-dock aria-hidden="true">
-  <a class="btn btn--primary" href="#lead">Оставить заявку</a>
+  <a class="btn btn--primary" href="#lead">Оставить заявку<svg class="btn__arrow" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7h9M8 3.5 11.5 7 8 10.5"/></svg></a>
   <a class="btn btn--ghost btn--icon" href="tel:+79339828807" data-contact="phone-link" aria-label="Позвонить">
     <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>
