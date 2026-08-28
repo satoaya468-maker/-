@@ -24,7 +24,9 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <meta name="theme-color" content="#000000">
-<link rel="icon" href="assets/img/easylead-favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/svg+xml" href="/img/logo-icon.svg">
+<link rel="icon" sizes="32x32" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 
 <!-- Шрифты локальные: ни одного стороннего запроса на первом экране. -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/onest-cyrillic.woff2" crossorigin>
@@ -61,7 +63,12 @@
 
 <header class="header" id="header">
   <div class="shell header__inner">
-    <a class="wordmark" href="#top" aria-label="EasyLead, на главную">EasyLead</a>
+    <a class="wordmark" href="#top" aria-label="EasyLead, на главную">
+      <svg class="wordmark__mark" viewBox="0 0 26 19.8" fill="currentColor" aria-hidden="true">
+        <path d="M0 0H26L21 5H0Z M0 7.4H21L16 12.4H0Z M0 14.8H24.5L19.5 19.8H0Z"/>
+      </svg>
+      <span class="wordmark__text">EasyLead</span>
+    </a>
 
     <nav class="nav" aria-label="Разделы страницы">
       <a href="#services">Что делаем</a>
@@ -459,7 +466,12 @@
 
 <footer class="footer">
   <div class="shell footer__inner">
-    <span class="wordmark">EasyLead</span>
+    <a class="wordmark" href="#top" aria-label="EasyLead, на главную">
+      <svg class="wordmark__mark" viewBox="0 0 26 19.8" fill="currentColor" aria-hidden="true">
+        <path d="M0 0H26L21 5H0Z M0 7.4H21L16 12.4H0Z M0 14.8H24.5L19.5 19.8H0Z"/>
+      </svg>
+      <span class="wordmark__text">EasyLead</span>
+    </a>
     <p class="tiny">Сайты и автоматизации для локального бизнеса</p>
     <p class="tiny">
       <a class="link-quiet" href="tel:+79339828807" data-contact="phone-link">

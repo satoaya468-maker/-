@@ -52,6 +52,13 @@ telegram:  'https://t.me/ynghustler',
 
 ### 3. Домен
 
+Ссылки на иконки абсолютные: `/img/logo-icon.svg`, `/favicon.ico`,
+`/img/apple-touch-icon.png`. Это работает, когда сайт лежит в корне домена.
+Если публиковать его в подпапке, например на GitHub Pages вида
+`логин.github.io/репозиторий/`, три ссылки в `<head>` нужно сделать
+относительными: убрать ведущий слэш.
+
+
 Замените `example.com` на свой домен в трёх местах: `index.html`
 (теги `canonical` и `og:*`), `robots.txt`, `sitemap.xml`.
 
@@ -101,6 +108,10 @@ telegram:  'https://t.me/ynghustler',
 
 ```
 index.html                 страница целиком
+img/logo-mark.svg          знак, вставляется в разметку инлайном
+img/logo-icon.svg          знак для фавиконки, цвета заданы явно
+img/apple-touch-icon.png   иконка для iOS, 180x180
+favicon.ico                запасная иконка 32x32
 css/fonts.css              локальные шрифты
 css/easylead.css           дизайн-система и вёрстка
 js/config.js               единственный файл с настройками

@@ -403,13 +403,30 @@ html {
   width: 100%;
 }
 
+/* Лок-ап логотипа. Знак вставлен в разметку инлайном, поэтому наследует
+   currentColor: на тёмном фоне белый, в инверсии чёрный. Отдельных файлов
+   под темы не нужно. */
 .wordmark {
-  font-size: 1.0625rem;
-  font-weight: 700;
-  letter-spacing: -.035em;
   display: inline-flex;
   align-items: center;
+  gap: 11px;
   min-height: 44px;
+  color: var(--text);
+}
+
+.wordmark__mark {
+  height: 24px;
+  width: auto;
+  flex: none;
+  /* Оптическая компенсация: срез правого края тянет знак вверх. */
+  transform: translateY(-.5px);
+}
+
+.wordmark__text {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1;
 }
 
 .nav { display: none; gap: 2rem; }
