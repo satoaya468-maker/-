@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <title>EasyLead. Сайты и автоматизация бизнеса в Магнитогорске</title>
-<meta name="description" content="Делаем сайты и автоматизации для бизнеса любого профиля в Магнитогорске и Челябинской области. Сайт под заявки от 14 700 рублей. Бесплатный разбор за 15 минут.">
+<meta name="description" content="Сайты и автоматизация в Магнитогорске. Запуск за три дня, цена 14 700 до 24 700 рублей. Бесплатный макет до оплаты. Не понравится результат, вернём деньги.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 
 <!-- ПРОВЕРЬ ПЕРЕД ПУБЛИКАЦИЕЙ: замените example.com на свой домен здесь,
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="EasyLead">
 <meta property="og:title" content="EasyLead. Сайты и автоматизация бизнеса в Магнитогорске">
-<meta property="og:description" content="Сайт, который приносит заявки. Бесплатный разбор за 15 минут: покажем первый экран вашего сайта.">
+<meta property="og:description" content="Клиенты из интернета, пока вы занимаетесь делом. Запуск за три дня, бесплатный макет до оплаты.">
 <meta property="og:url" content="https://example.com/">
 <meta property="og:image" content="https://example.com/assets/img/easylead-og.png">
 <meta property="og:image:width" content="1200">
@@ -44,6 +44,24 @@
     "addressCountry": "RU"
   },
   "serviceType": ["Разработка сайтов", "Автоматизация бизнес-процессов"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "А если не понравится дизайн?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Макет первого экрана вы видите до оплаты и бесплатно. Не подошло, расходимся, макет остаётся у вас. Начали работу и результат не устроил, вернём деньги."}},
+    {"@type": "Question", "name": "Сколько это по времени?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Обычно запуск за три дня."}},
+    {"@type": "Question", "name": "Что нужно от меня? У меня нет ни текстов, ни фотографий",
+     "acceptedAnswer": {"@type": "Answer", "text": "Готовить ничего не нужно. Вы рассказываете, что делаете и для кого, остальное собираем мы."}},
+    {"@type": "Question", "name": "У меня уже есть сайт",
+     "acceptedAnswer": {"@type": "Answer", "text": "Переделаем, если с него не идут заявки. Если идут, честно скажем, что трогать не надо."}},
+    {"@type": "Question", "name": "Вы точно доведёте до конца?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Да. Если не довели, деньги возвращаются. В этом и смысл гарантии."}}
+  ]
 }
 </script>
 
@@ -90,7 +108,7 @@
     </nav>
 
     <div class="header__right">
-      <a class="btn btn--primary" href="#lead">Оставить заявку<svg class="btn__arrow" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7h9M8 3.5 11.5 7 8 10.5"/></svg></a>
+      <a class="btn btn--primary" href="#lead">Получить макет бесплатно<svg class="btn__arrow" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7h9M8 3.5 11.5 7 8 10.5"/></svg></a>
 
       <!-- Кнопка меню только на телефоне: на многостраничнике без неё
            разделы недоступны, а раньше навигация просто пряталась. -->
@@ -111,7 +129,7 @@
     <a href="/kontakty/">Контакты</a>
   </nav>
   <div class="menu__foot">
-    <a class="btn btn--primary btn--lg btn--block" href="#lead">Оставить заявку</a>
+    <a class="btn btn--primary btn--lg btn--block" href="#lead">Получить макет бесплатно</a>
     <a class="btn btn--ghost btn--lg btn--block" href="tel:+79339828807" data-contact="phone-link">
       <span data-contact="phone-text">+7 933 982-88-07</span>
     </a>
@@ -128,10 +146,10 @@
     <div class="shell hero__grid">
 
       <div class="hero__copy">
-        <h1 class="h-hero reveal">Сайт, который приносит заявки</h1>
+        <h1 class="h-hero reveal">Клиенты, пока вы работаете</h1>
         <p class="lede reveal" data-delay="1">
-          Делаем сайты и автоматизации для бизнеса любого профиля. Собираем так,
-          чтобы посетитель оставлял заявку, а не уходил.
+          Сайты и автоматизация в Магнитогорске. Запуск за три дня.
+          Не понравится результат, вернём деньги.
         </p>
 
         <div class="contact-row hero__contacts reveal" data-delay="2">
@@ -176,7 +194,7 @@
           <input class="honey" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <button class="btn btn--primary btn--lg btn--block" type="submit" data-submit>
-            <span data-submit-label>Оставить заявку</span>
+            <span data-submit-label>Получить макет бесплатно</span>
           </button>
 
           <div class="form__foot">
@@ -359,11 +377,12 @@
 
       <div class="price-grid">
         <div class="price reveal" data-delay="2">
-          <p class="price__amount"><span>от</span> 14 700 <span>₽</span></p>
+          <p class="price__amount price__amount--range">14 700 <span>до</span> 24 700 <span>₽</span></p>
           <h3 class="h3">Сайт под заявки</h3>
           <p class="body">
-            Итог зависит от числа экранов и объёма текста. Точную цифру называем
-            после разбора и фиксируем в смете, до этого никаких предоплат.
+            Почти всегда попадаем в эту вилку. Дороже выходит только интернет-магазин
+            или большой каталог. Точную цифру называем после разбора и фиксируем
+            в смете, до этого никаких предоплат.
           </p>
         </div>
 
@@ -373,6 +392,26 @@
           <p class="body">
             Считаем от объёма: сколько источников заявок сводим в одно место и что
             должно происходить после того, как заявка пришла.
+          </p>
+        </div>
+      </div>
+
+      <!-- ПРОВЕРЬ: решите две вещи и впишите их сюда.
+           1. Срок гарантии: сколько дней после запуска действует возврат.
+           2. Что считается «результат не устроил».
+           Публичное обещание вернуть деньги без срока и условия работает
+           против вас: спорить придётся на условиях клиента. -->
+      <div class="guarantee reveal" data-delay="4">
+        <svg class="guarantee__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2.5 4 6v6c0 4.6 3.2 8.3 8 9.5 4.8-1.2 8-4.9 8-9.5V6l-8-3.5Z"/>
+          <path d="M8.6 12.2l2.3 2.3 4.5-4.8"/>
+        </svg>
+        <div class="guarantee__text">
+          <h3 class="h3">Не понравится результат, вернём деньги</h3>
+          <p class="body">
+            Макет вы видите бесплатно и до оплаты. Если после запуска результат
+            вас не устроил, деньги возвращаются. Риск на нашей стороне.
           </p>
         </div>
       </div>
@@ -411,7 +450,7 @@
         <li class="step">
           <span class="step__n num" aria-hidden="true"></span>
           <div class="step__body">
-            <h3 class="h3">Запуск</h3>
+            <h3 class="h3">Запуск за три дня</h3>
             <p class="body">Сайт в работе. Заявки приходят вам сразу, а не копятся там, куда вы не заглядываете.</p>
           </div>
         </li>
@@ -462,7 +501,57 @@
         Бесплатно. Понравится, работаем дальше. Нет, макет остаётся у вас.
       </p>
 
-      <a class="btn btn--ghost btn--lg reveal" data-delay="3" href="#lead">Оставить заявку<svg class="btn__arrow" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7h9M8 3.5 11.5 7 8 10.5"/></svg></a>
+      <a class="btn btn--ghost btn--lg reveal" data-delay="3" href="#lead">Получить макет бесплатно<svg class="btn__arrow" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7h9M8 3.5 11.5 7 8 10.5"/></svg></a>
+    </div>
+  </section>
+
+  <!-- ================= ВОПРОСЫ ================= -->
+  <section class="section" id="faq">
+    <div class="shell">
+      <div class="section-head">
+        <h2 class="h2 reveal">Что обычно спрашивают</h2>
+      </div>
+
+      <div class="faq reveal" data-delay="1">
+        <details class="faq__item">
+          <summary class="faq__q">А если не понравится дизайн?<span class="faq__sign" aria-hidden="true"></span></summary>
+          <div class="faq__a"><p class="body">
+            Макет первого экрана вы видите до оплаты и бесплатно. Не подошло,
+            расходимся, макет остаётся у вас. Начали работу и результат не
+            устроил, вернём деньги.
+          </p></div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">Сколько это по времени?<span class="faq__sign" aria-hidden="true"></span></summary>
+          <div class="faq__a"><p class="body">
+            Обычно запуск за три дня.
+          </p></div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">Что нужно от меня? У меня нет ни текстов, ни фотографий<span class="faq__sign" aria-hidden="true"></span></summary>
+          <div class="faq__a"><p class="body">
+            Готовить ничего не нужно. Вы рассказываете, что делаете и для кого,
+            остальное собираем мы.
+          </p></div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">У меня уже есть сайт<span class="faq__sign" aria-hidden="true"></span></summary>
+          <div class="faq__a"><p class="body">
+            Переделаем, если с него не идут заявки. Если идут, честно скажем,
+            что трогать не надо.
+          </p></div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">Вы точно доведёте до конца?<span class="faq__sign" aria-hidden="true"></span></summary>
+          <div class="faq__a"><p class="body">
+            Да. Если не довели, деньги возвращаются. В этом и смысл гарантии.
+          </p></div>
+        </details>
+      </div>
     </div>
   </section>
 
@@ -516,7 +605,7 @@
         <input class="honey" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <button class="btn btn--primary btn--lg btn--block" type="submit" data-submit>
-          <span data-submit-label>Оставить заявку</span>
+          <span data-submit-label>Получить макет бесплатно</span>
         </button>
 
         <div class="form__foot">
@@ -555,7 +644,7 @@
 
 <!-- Мобильный док. Появляется, когда герой ушёл за экран. -->
 <div class="dock" data-dock aria-hidden="true">
-  <a class="btn btn--primary" href="#lead">Оставить заявку<svg class="btn__arrow" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7h9M8 3.5 11.5 7 8 10.5"/></svg></a>
+  <a class="btn btn--primary" href="#lead">Получить макет<svg class="btn__arrow" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7h9M8 3.5 11.5 7 8 10.5"/></svg></a>
   <a class="btn btn--ghost btn--icon" href="tel:+79339828807" data-contact="phone-link" aria-label="Позвонить">
     <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>

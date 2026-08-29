@@ -1005,6 +1005,85 @@ body[data-menu-open="true"] { overflow: hidden; }
 
 .price__amount--text { font-family: var(--font); font-weight: 600; letter-spacing: -.03em; }
 
+/* Вилка длиннее одного числа, поэтому кегль ниже: иначе не влезает в колонку. */
+.price__amount--range { font-size: clamp(1.65rem, 4vw, 2.45rem); }
+
+/* --- Гарантия. Стоит сразу под ценой: там, где у человека тревога
+       за деньги, там же и снятие риска. ---------------------------------- */
+.guarantee {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  margin-top: var(--gap-head);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  background: var(--card-bg);
+  border: 1px solid var(--card-line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--card-shadow);
+}
+
+.guarantee__mark { width: 26px; height: 26px; flex: none; margin-top: .15rem; }
+
+.guarantee__text { display: grid; gap: .5rem; }
+
+/* --- Блок возражений. Родной details: работает без JS и с клавиатуры. -- */
+.faq { border-top: 1px solid var(--line); }
+
+.faq__item { border-bottom: 1px solid var(--line); }
+
+.faq__q {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: clamp(1.1rem, 2.4vw, 1.4rem);
+  font-size: var(--t-h3);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.35;
+  cursor: pointer;
+  list-style: none;
+  transition: color var(--d-color) ease;
+}
+
+.faq__q::-webkit-details-marker { display: none; }
+
+@media (hover: hover) and (pointer: fine) {
+  .faq__q:hover { color: var(--muted); }
+}
+
+/* Плюс, который становится минусом. Крутится за --d-open, как и задумано
+   для раскрытия. */
+.faq__sign {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  flex: none;
+  align-self: center;
+}
+
+.faq__sign::before,
+.faq__sign::after {
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto 0;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform var(--d-open) var(--ease), opacity var(--d-open) var(--ease);
+}
+
+.faq__sign::after { transform: rotate(90deg); }
+
+.faq__item[open] .faq__sign::after { transform: rotate(0deg); opacity: 0; }
+
+.faq__a { padding-bottom: clamp(1.1rem, 2.4vw, 1.4rem); max-width: 62ch; }
+
+@media (prefers-reduced-motion: reduce) {
+  .faq__sign::before, .faq__sign::after { transition: none; }
+}
+
 .price__amount span { font-family: var(--font); font-size: .46em; font-weight: 400; color: var(--muted); letter-spacing: -.01em; }
 
 @media (min-width: 800px) {

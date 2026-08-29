@@ -350,7 +350,7 @@
     } else {
       var sp = btn.querySelector('.spinner');
       if (sp) sp.remove();
-      label.textContent = 'Оставить заявку';
+      label.textContent = 'Получить макет бесплатно';
     }
   }
 

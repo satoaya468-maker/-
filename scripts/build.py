@@ -49,8 +49,8 @@ def form_for(slug):
 PAGES = [
   dict(slug='index', path='/', out='index.html',
        title='EasyLead. Сайты и автоматизация бизнеса в Магнитогорске',
-       desc='Делаем сайты и автоматизации для бизнеса любого профиля в Магнитогорске и Челябинской области. Сайт под заявки от 14 700 рублей. Бесплатный разбор за 15 минут.',
-       og='Сайт, который приносит заявки. Бесплатный разбор за 15 минут: покажем первый экран вашего сайта.',
+       desc='Сайты и автоматизация в Магнитогорске. Запуск за три дня, цена 14 700 до 24 700 рублей. Бесплатный макет до оплаты. Не понравится результат, вернём деньги.',
+       og='Клиенты из интернета, пока вы занимаетесь делом. Запуск за три дня, бесплатный макет до оплаты.',
        nav=None),
   dict(slug='sayty', path='/sayty/', out='sayty/index.html',
        title='Разработка сайтов в Магнитогорске от 14 700 ₽ | EasyLead',
@@ -108,6 +108,26 @@ def crumbs_schema(name, path):
 CRUMB_NAMES = {'sayty': 'Сайты', 'avtomatizatsiya': 'Автоматизация',
                'tseny': 'Цены', 'kontakty': 'Контакты'}
 
+def faq_schema(body):
+    """Собирает FAQPage из самого блока вопросов, чтобы разметка не разъехалась
+    с текстом на странице. Ставится только на главную: одинаковый FAQPage
+    на нескольких адресах поисковик считает дублем."""
+    items = re.findall(
+        r'<summary class="faq__q">(.*?)<span class="faq__sign".*?</summary>\s*'
+        r'<div class="faq__a"><p class="body">(.*?)</p>', body, re.S)
+    if not items:
+        return ''
+    def clean(t):
+        t = re.sub(r'<[^>]+>', '', t)
+        return re.sub(r'\s+', ' ', t).replace('\u00a0', ' ').replace('"', '\\"').strip()
+    qa = ',\n'.join(
+        '    {"@type": "Question", "name": "%s",\n'
+        '     "acceptedAnswer": {"@type": "Answer", "text": "%s"}}' % (clean(q), clean(a))
+        for q, a in items)
+    return ('<script type="application/ld+json">\n{\n'
+            '  "@context": "https://schema.org",\n  "@type": "FAQPage",\n'
+            '  "mainEntity": [\n%s\n  ]\n}\n</script>' % qa)
+
 built = []
 for p in PAGES:
     body = HOME if p['slug'] == 'index' else read(SRC, 'pages', p['slug'] + '.body.html')
@@ -121,6 +141,10 @@ for p in PAGES:
     schema = ORG_SCHEMA
     if p['slug'] in CRUMB_NAMES:
         schema += '\n' + crumbs_schema(CRUMB_NAMES[p['slug']], p['path'])
+    if p['slug'] == 'index':
+        faq = faq_schema(body)
+        if faq:
+            schema += '\n' + faq
 
     head = (HEAD.replace('{{TITLE}}', p['title'])
                 .replace('{{DESC}}', p['desc'])
