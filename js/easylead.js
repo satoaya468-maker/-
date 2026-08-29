@@ -89,6 +89,54 @@
   }
 
   /* ---------------------------------------------------------------------
+     Меню на телефоне. На многостраничнике это единственный способ попасть
+     в раздел: навигация в шапке спрятана до 900px.
+     --------------------------------------------------------------------- */
+
+  function initMenu() {
+    var btn  = document.querySelector('[data-burger]');
+    var menu = document.querySelector('[data-menu]');
+    if (!btn || !menu) return;
+
+    /* Текущий раздел подсвечиваем по адресу, а не руками в каждой странице. */
+    var here = location.pathname.replace(/index\.html$/, '');
+    menu.querySelectorAll('a[href^="/"]').forEach(function (a) {
+      if (a.getAttribute('href') === here) a.setAttribute('aria-current', 'page');
+    });
+
+    function setOpen(open) {
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+      document.body.dataset.menuOpen = String(open);
+      if (open) {
+        menu.hidden = false;
+        requestAnimationFrame(function () { menu.dataset.open = 'true'; });
+      } else {
+        menu.dataset.open = 'false';
+        var hide = function () { menu.hidden = true; };
+        if (reduced) hide();
+        else setTimeout(hide, 280);
+      }
+    }
+
+    btn.addEventListener('click', function () {
+      setOpen(btn.getAttribute('aria-expanded') !== 'true');
+    });
+
+    /* Ссылка внутри страницы меню не перезагружает, поэтому закрываем сами. */
+    menu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setOpen(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        btn.focus();
+      }
+    });
+  }
+
+  /* ---------------------------------------------------------------------
      Мобильный док. Показываем, когда герой ушёл за верхний край.
      --------------------------------------------------------------------- */
 
@@ -102,6 +150,19 @@
       dock.dataset.show = String(show);
       dock.setAttribute('aria-hidden', String(!show));
     }, { threshold: 0, rootMargin: '-70px 0px 0px 0px' }).observe(hero);
+  }
+
+  /* На подстраницах героя нет, там за док отвечает верх страницы. */
+  function initDockFallback() {
+    var dock = document.querySelector('[data-dock]');
+    var head = document.querySelector('.page-head');
+    if (!dock || !head || !('IntersectionObserver' in window)) return;
+
+    new IntersectionObserver(function (entries) {
+      var show = !entries[0].isIntersecting;
+      dock.dataset.show = String(show);
+      dock.setAttribute('aria-hidden', String(!show));
+    }, { threshold: 0, rootMargin: '-70px 0px 0px 0px' }).observe(head);
   }
 
   /* ---------------------------------------------------------------------
@@ -397,9 +458,11 @@
 
   applyContacts();
   initHeader();
+  initMenu();
   initOffscreenPause();
   initReveals();
   initDock();
+  initDockFallback();
   initClock();
   initForms();
 })();

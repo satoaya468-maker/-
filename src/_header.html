@@ -1,0 +1,44 @@
+<header class="header" id="header">
+  <div class="shell header__inner">
+    <a class="wordmark" href="/" aria-label="EasyLead, на главную">
+      <svg class="wordmark__mark" viewBox="0 0 26 19.8" fill="currentColor" aria-hidden="true">
+        <path d="M0 0H26L21 5H0Z M0 7.4H21L16 12.4H0Z M0 14.8H24.5L19.5 19.8H0Z"/>
+      </svg>
+      <span class="wordmark__text">EasyLead</span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Разделы сайта">
+      <a href="/sayty/"{{NAV_SAYTY}}>Сайты</a>
+      <a href="/avtomatizatsiya/"{{NAV_AUTO}}>Автоматизация</a>
+      <a href="/tseny/"{{NAV_TSENY}}>Цены</a>
+      <a href="/kontakty/"{{NAV_KONTAKTY}}>Контакты</a>
+    </nav>
+
+    <div class="header__right">
+      <a class="btn btn--primary" href="#lead">Оставить заявку<svg class="btn__arrow" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7h9M8 3.5 11.5 7 8 10.5"/></svg></a>
+
+      <!-- Кнопка меню только на телефоне: на многостраничнике без неё
+           разделы недоступны, а раньше навигация просто пряталась. -->
+      <button class="burger" type="button" data-burger
+              aria-label="Открыть меню" aria-expanded="false" aria-controls="menu">
+        <span class="burger__box" aria-hidden="true"><i></i><i></i></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" data-menu hidden>
+  <nav class="menu__list" aria-label="Разделы сайта">
+    <a href="/">Главная</a>
+    <a href="/sayty/">Сайты</a>
+    <a href="/avtomatizatsiya/">Автоматизация</a>
+    <a href="/tseny/">Цены</a>
+    <a href="/kontakty/">Контакты</a>
+  </nav>
+  <div class="menu__foot">
+    <a class="btn btn--primary btn--lg btn--block" href="#lead">Оставить заявку</a>
+    <a class="btn btn--ghost btn--lg btn--block" href="tel:+79339828807" data-contact="phone-link">
+      <span data-contact="phone-text">+7 933 982-88-07</span>
+    </a>
+  </div>
+</div>

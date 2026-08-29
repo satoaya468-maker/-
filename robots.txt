@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-# ПРОВЕРЬ: замените example.com на свой домен.
+# ПРОВЕРЬ: замените example.com на свой домен здесь и в scripts/build.py
 Sitemap: https://example.com/sitemap.xml

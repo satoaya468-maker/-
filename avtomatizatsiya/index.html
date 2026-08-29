@@ -6,20 +6,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-<title>EasyLead. Сайты и автоматизация бизнеса в Магнитогорске</title>
-<meta name="description" content="Делаем сайты и автоматизации для бизнеса любого профиля в Магнитогорске и Челябинской области. Сайт под заявки от 14 700 рублей. Бесплатный разбор за 15 минут.">
+<title>Автоматизация бизнеса в Магнитогорске | EasyLead</title>
+<meta name="description" content="Автоматизация бизнеса в Магнитогорске: связываем сайт, заявки и мессенджеры так, чтобы ни одно обращение не терялось. Объём и цену считаем после бесплатного разбора.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 
 <!-- ПРОВЕРЬ ПЕРЕД ПУБЛИКАЦИЕЙ: замените example.com на свой домен здесь,
      в robots.txt и в sitemap.xml. -->
-<link rel="canonical" href="https://example.com/">
+<link rel="canonical" href="https://example.com/avtomatizatsiya/">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="EasyLead">
-<meta property="og:title" content="EasyLead. Сайты и автоматизация бизнеса в Магнитогорске">
-<meta property="og:description" content="Сайт, который приносит заявки. Бесплатный разбор за 15 минут: покажем первый экран вашего сайта.">
-<meta property="og:url" content="https://example.com/">
+<meta property="og:title" content="Автоматизация бизнеса в Магнитогорске | EasyLead">
+<meta property="og:description" content="Связываем сайт, заявки и мессенджеры так, чтобы ни одно обращение не терялось.">
+<meta property="og:url" content="https://example.com/avtomatizatsiya/">
 <meta property="og:image" content="https://example.com/assets/img/easylead-og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -44,6 +44,16 @@
     "addressCountry": "RU"
   },
   "serviceType": ["Разработка сайтов", "Автоматизация бизнес-процессов"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://example.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Автоматизация", "item": "https://example.com/avtomatizatsiya/"}
+  ]
 }
 </script>
 
@@ -84,7 +94,7 @@
 
     <nav class="nav" id="nav" aria-label="Разделы сайта">
       <a href="/sayty/">Сайты</a>
-      <a href="/avtomatizatsiya/">Автоматизация</a>
+      <a href="/avtomatizatsiya/" aria-current="page">Автоматизация</a>
       <a href="/tseny/">Цены</a>
       <a href="/kontakty/">Контакты</a>
     </nav>
@@ -121,112 +131,20 @@
 
 <main id="top">
 
-  <!-- ================= ГЕРОЙ ================= -->
-  <section class="hero">
-    <div class="hero__glow" aria-hidden="true"></div>
-
-    <div class="shell hero__grid">
-
-      <div class="hero__copy">
-        <h1 class="h-hero reveal">Сайт, который приносит заявки</h1>
-        <p class="lede reveal" data-delay="1">
-          Делаем сайты и автоматизации для бизнеса любого профиля. Собираем так,
-          чтобы посетитель оставлял заявку, а не уходил.
-        </p>
-
-        <div class="contact-row hero__contacts reveal" data-delay="2">
-          <a class="btn btn--ghost" href="tel:+79339828807" data-contact="phone-link">
-            <span data-contact="phone-text">+7 933 982-88-07</span>
-          </a>
-          <a class="btn btn--ghost" href="https://t.me/ynghustler" data-contact="tg-link" rel="noopener">
-            Написать в Telegram
-          </a>
-        </div>
-      </div>
-
-      <div class="hero__form-wrap">
-        <!-- Форма 1. Обе формы на странице собираются одним и тем же кодом. -->
-        <form class="lead-form reveal" data-delay="2" data-lead-form novalidate>
-          <div class="field">
-            <label class="field__label" for="hero-name">
-              Имя <span class="field__req" aria-hidden="true">*</span>
-            </label>
-            <input class="field__input" id="hero-name" name="name" type="text"
-                   autocomplete="name" enterkeyhint="next"
-                   placeholder="Как к вам обращаться" required data-mirror="name">
-            <span class="field__error" data-error>
-              <svg class="check" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="M8 4.8v4M8 11.1v.1"/></svg>
-              Напишите имя
-            </span>
-          </div>
-
-          <div class="field">
-            <label class="field__label" for="hero-phone">
-              Телефон <span class="field__req" aria-hidden="true">*</span>
-            </label>
-            <input class="field__input" id="hero-phone" name="phone" type="tel"
-                   inputmode="tel" autocomplete="tel" enterkeyhint="send"
-                   placeholder="+7 (___) ___-__-__" required data-mirror="phone">
-            <span class="field__error" data-error>
-              <svg class="check" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="M8 4.8v4M8 11.1v.1"/></svg>
-              Нужны все 11 цифр номера
-            </span>
-          </div>
-
-          <input class="honey" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
-
-          <button class="btn btn--primary btn--lg btn--block" type="submit" data-submit>
-            <span data-submit-label>Оставить заявку</span>
-          </button>
-
-          <div class="form__foot">
-            <p class="tiny">Два поля. Больше ничего не спросим.</p>
-            <p class="form__status" data-status role="status" aria-live="polite"></p>
-          </div>
-        </form>
-
-        <!-- Панель заявок. Не макет: значения ниже приходят из формы выше,
-             пока посетитель печатает. -->
-        <div class="reveal" data-delay="3">
-        <aside class="panel" data-anim="running" data-panel data-state="idle"
-               aria-label="Как заявка выглядит у нас">
-          <div class="panel__bar">
-            <span class="panel__title">Новая заявка</span>
-            <span class="panel__clock num" data-clock></span>
-          </div>
-
-          <div class="panel__body">
-            <div class="ticket">
-              <div class="ticket__row">
-                <span class="ticket__key">Имя</span>
-                <span class="ticket__val" data-panel-name data-empty="true">не заполнено</span>
-              </div>
-              <div class="ticket__row">
-                <span class="ticket__key">Телефон</span>
-                <span class="ticket__val" data-panel-phone data-empty="true">не заполнено</span>
-              </div>
-              <div class="ticket__foot">
-                <svg class="check" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true">
-                  <circle cx="8" cy="8" r="6.6"/>
-                  <path d="M5.2 8.2l2 2 3.6-4"/>
-                </svg>
-                <span data-panel-status>Ждём заявку</span>
-              </div>
-            </div>
-          </div>
-
-          <p class="panel__note">
-            Так ваша заявка выглядит у нас. Панель заполняется, пока вы печатаете
-            в форме.
-          </p>
-        </aside>
-        </div>
-      </div>
-
+  <section class="section page-head">
+    <div class="shell">
+      <nav class="crumbs reveal" aria-label="Хлебные крошки">
+        <a href="/">Главная</a><span aria-hidden="true">/</span><span>Автоматизация</span>
+      </nav>
+      <h1 class="h-page reveal" data-delay="1">Автоматизация бизнеса в Магнитогорске</h1>
+      <p class="lede reveal" data-delay="2">
+        Связываем сайт, заявки и мессенджеры так, чтобы ни одно обращение
+        не терялось между вкладками и блокнотом.
+      </p>
     </div>
   </section>
 
-  <!-- ================= ИНТЕГРАЦИИ =================
+    <!-- ================= ИНТЕГРАЦИИ =================
        Знаки взяты из Simple Icons без изменения контуров: официальные
        однотонные логотипы, лицензия CC0. Спрайт один на обе половины
        ленты, поэтому дубликат для бесшовной прокрутки ничего не весит. -->
@@ -304,232 +222,110 @@
     <p class="visually-hidden">Интегрируем с сервисами: Telegram, WhatsApp, VK, Yandex Cloud, Google Sheets, Google Analytics, Supabase, Claude, n8n, Make, Zapier, Notion, Airtable, Figma, Framer, Cloudflare, Vercel, Tilda.</p>
   </section>
 
-  <!-- ================= ЧТО ДЕЛАЕМ ================= -->
-  <section class="section" id="services">
+  <section class="section section--lift">
     <div class="shell">
       <div class="section-head">
-        <h2 class="h2 reveal">Две вещи, и обе про заявки</h2>
+        <h2 class="h2 reveal">Как считаем объём</h2>
         <p class="body reveal" data-delay="1">
-          Мы не делаем «присутствие в интернете». Мы делаем инструмент, у которого
-          есть одна измеримая задача.
+          Что именно автоматизировать, решаем после разбора. У каждого бизнеса
+          это разные вещи, и продавать одну коробку всем подряд нечестно.
         </p>
       </div>
-
-      <div class="offers reveal" data-delay="2">
-        <article class="offer">
-          <h3 class="h3">Сайты под заявки</h3>
-          <p class="body">
-            Одна или несколько страниц, собранных вокруг того, что человек на самом
-            деле спрашивает по телефону. Первый экран отвечает на три вопроса:
-            что вы делаете, сколько это стоит, как оставить заявку.
-          </p>
-          <ul class="offer__list">
-            <li><span>Структура и прототип</span></li>
-            <li><span>Дизайн и вёрстка, сначала под телефон</span></li>
-            <li><span>Форма заявки, которая доходит до вас</span></li>
-            <li><span>Домен, хостинг, публикация</span></li>
-          </ul>
-        </article>
-
-        <article class="offer">
-          <h3 class="h3">Автоматизации</h3>
-          <p class="body">
-            Связываем сайт, заявки и мессенджеры так, чтобы ни одно обращение не
-            терялось между вкладками и блокнотом.
-          </p>
-          <p class="body">
-            Что именно автоматизировать, решаем после разбора. У каждого бизнеса
-            это разные вещи, и продавать одну коробку всем подряд нечестно.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= ЦЕНА ================= -->
-  <section class="section section--lift" id="pricing">
-    <div class="shell">
-      <div class="section-head">
-        <h2 class="h2 reveal">Сколько это стоит</h2>
-        <p class="body reveal" data-delay="1">
-          Цену называем до начала работ и фиксируем в смете. Она не меняется
-          по ходу, если не меняется объём.
-        </p>
-      </div>
-
-      <div class="price-grid">
-        <div class="price reveal" data-delay="2">
-          <p class="price__amount"><span>от</span> 14 700 <span>₽</span></p>
-          <h3 class="h3">Сайт под заявки</h3>
-          <p class="body">
-            Итог зависит от числа экранов и объёма текста. Точную цифру называем
-            после разбора и фиксируем в смете, до этого никаких предоплат.
-          </p>
-        </div>
-
-        <div class="price reveal" data-delay="3">
-          <p class="price__amount price__amount--text">По задаче</p>
-          <h3 class="h3">Автоматизации</h3>
-          <p class="body">
-            Считаем от объёма: сколько источников заявок сводим в одно место и что
-            должно происходить после того, как заявка пришла.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= КАК РАБОТАЕМ ================= -->
-  <section class="section" id="process">
-    <div class="shell">
-      <div class="section-head">
-        <h2 class="h2 reveal">Как идёт работа</h2>
-      </div>
-
-      <ol class="steps reveal" data-delay="1">
-        <li class="step">
-          <span class="step__n num" aria-hidden="true"></span>
-          <div class="step__body">
-            <h3 class="h3">Заявка</h3>
-            <p class="body">Оставляете имя и телефон. Дальше созваниваемся, анкет не будет.</p>
-          </div>
-        </li>
-        <li class="step">
-          <span class="step__n num" aria-hidden="true"></span>
-          <div class="step__body">
-            <h3 class="h3">Разбор</h3>
-            <p class="body">Что за бизнес, откуда сейчас идут клиенты, на каком шаге теряются заявки.</p>
-          </div>
-        </li>
-        <li class="step">
-          <span class="step__n num" aria-hidden="true"></span>
-          <div class="step__body">
-            <h3 class="h3">Смета</h3>
-            <p class="body">Фиксируем объём, срок и цену письменно, до начала работ.</p>
-          </div>
-        </li>
-        <li class="step">
-          <span class="step__n num" aria-hidden="true"></span>
-          <div class="step__body">
-            <h3 class="h3">Запуск</h3>
-            <p class="body">Сайт в работе. Заявки приходят вам сразу, а не копятся там, куда вы не заглядываете.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ================= БЕСПЛАТНЫЙ РАЗБОР ================= -->
-  <section class="section section--lift section--spot">
-    <div class="shell statement">
-
-      <!-- ВИДЕО. Когда будет готово, вставьте разметку сюда, перед заголовком:
-
-           <video class="audit__video" controls playsinline preload="none"
-                  width="1280" height="720" poster="/img/video-poster.jpg">
-             <source src="/img/david.mp4" type="video/mp4">
-             <track kind="captions" srclang="ru" label="Русские субтитры"
-                    src="/img/david.vtt" default>
-           </video>
-
-           Три вещи обязательны. Субтитры: с рекламы смотрят с телефона и без
-           звука. preload="none": иначе видео начнёт качаться до того, как
-           человек дойдёт до формы. width и height: иначе страница прыгнет
-           при загрузке. -->
-
-      <h2 class="statement__big reveal">Покажем ваш сайт до того, как вы заплатите</h2>
-
-      <p class="body reveal" data-delay="1">
-        Созвон на пятнадцать минут. Показываем три вещи и ничего не просим взамен.
-      </p>
-
       <ul class="audit__list reveal" data-delay="2">
         <li class="audit__item">
-          <h3 class="h3">Первый экран вашего сайта</h3>
-          <p class="small">Готовый макет, а не описание словами.</p>
+          <h3 class="h3">Откуда идут обращения</h3>
+          <p class="small">Сколько источников сводим в одно место.</p>
         </li>
         <li class="audit__item">
-          <h3 class="h3">Спрос на ваши услуги</h3>
-          <p class="small">Сколько людей уже ищет то, что вы делаете.</p>
+          <h3 class="h3">Что происходит дальше</h3>
+          <p class="small">Какие шаги повторяются каждый раз руками.</p>
         </li>
         <li class="audit__item">
-          <h3 class="h3">Откуда пойдут заявки</h3>
-          <p class="small">Понятная логика вместо обещания трафика.</p>
+          <h3 class="h3">Где сейчас теряется</h3>
+          <p class="small">На каком шаге обращение перестаёт двигаться.</p>
         </li>
       </ul>
-
-      <p class="audit__free reveal" data-delay="3">
-        Бесплатно. Понравится, работаем дальше. Нет, макет остаётся у вас.
-      </p>
-
-      <a class="btn btn--ghost btn--lg reveal" data-delay="3" href="#lead">Оставить заявку<svg class="btn__arrow" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7h9M8 3.5 11.5 7 8 10.5"/></svg></a>
     </div>
   </section>
 
-  <!-- ================= ФИНАЛЬНЫЙ БЛОК ================= -->
+  <section class="section">
+    <div class="shell">
+      <div class="price-grid">
+        <div class="price reveal">
+          <p class="price__amount price__amount--text">По задаче</p>
+          <h2 class="h3">Цена</h2>
+          <p class="body">
+            Считаем от объёма после разбора и фиксируем в смете до начала работ.
+            <a class="link-quiet" href="/tseny/">Подробнее о ценах</a>
+          </p>
+        </div>
+        <div class="price reveal" data-delay="1">
+          <p class="price__amount price__amount--text">Бесплатно</p>
+          <h2 class="h3">Разбор перед началом</h2>
+          <p class="body">
+            Пятнадцать минут по телефону. Разбираем, где у вас сейчас теряются
+            обращения, и что с этим можно сделать.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="lead">
     <div class="shell closer">
       <div class="section-head" style="margin-bottom:0">
         <h2 class="h2 reveal">Оставьте заявку</h2>
         <p class="body reveal" data-delay="1">
-          Два поля: имя и телефон. Перезвоним, разберём задачу и назовём цену.
-          Если не подойдём, скажем об этом сразу.
+          Два поля: имя и телефон. Перезвоним, разберём задачу и назовём цену.
+          Если не подойдём, скажем об этом сразу.
         </p>
         <div class="contact-row reveal" data-delay="2">
           <a class="btn btn--ghost" href="tel:+79339828807" data-contact="phone-link">
-            <span data-contact="phone-text">+7 933 982-88-07</span>
+            <span data-contact="phone-text">+7 933 982-88-07</span>
           </a>
           <a class="btn btn--ghost" href="https://t.me/ynghustler" data-contact="tg-link" rel="noopener">
-            Написать в Telegram
+            Написать в Telegram
           </a>
         </div>
       </div>
-
-      <!-- Форма 2. Тот же обработчик, те же состояния. -->
       <form class="lead-form reveal" data-delay="2" data-lead-form novalidate>
-        <div class="field">
-          <label class="field__label" for="closer-name">
-            Имя <span class="field__req" aria-hidden="true">*</span>
-          </label>
-          <input class="field__input" id="closer-name" name="name" type="text"
-                 autocomplete="name" enterkeyhint="next"
-                 placeholder="Как к вам обращаться" required data-mirror="name">
-          <span class="field__error" data-error>
-            <svg class="check" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="M8 4.8v4M8 11.1v.1"/></svg>
-            Напишите имя
-          </span>
-        </div>
+          <div class="field">
+            <label class="field__label" for="hero-name">
+              Имя <span class="field__req" aria-hidden="true">*</span>
+            </label>
+            <input class="field__input" id="hero-name" name="name" type="text"
+                   autocomplete="name" enterkeyhint="next"
+                   placeholder="Как к вам обращаться" required data-mirror="name">
+            <span class="field__error" data-error>
+              <svg class="check" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="M8 4.8v4M8 11.1v.1"/></svg>
+              Напишите имя
+            </span>
+          </div>
 
-        <div class="field">
-          <label class="field__label" for="closer-phone">
-            Телефон <span class="field__req" aria-hidden="true">*</span>
-          </label>
-          <input class="field__input" id="closer-phone" name="phone" type="tel"
-                 inputmode="tel" autocomplete="tel" enterkeyhint="send"
-                 placeholder="+7 (___) ___-__-__" required data-mirror="phone">
-          <span class="field__error" data-error>
-            <svg class="check" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="M8 4.8v4M8 11.1v.1"/></svg>
-            Нужны все 11 цифр номера
-          </span>
-        </div>
+          <div class="field">
+            <label class="field__label" for="hero-phone">
+              Телефон <span class="field__req" aria-hidden="true">*</span>
+            </label>
+            <input class="field__input" id="hero-phone" name="phone" type="tel"
+                   inputmode="tel" autocomplete="tel" enterkeyhint="send"
+                   placeholder="+7 (___) ___-__-__" required data-mirror="phone">
+            <span class="field__error" data-error>
+              <svg class="check" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="M8 4.8v4M8 11.1v.1"/></svg>
+              Нужны все 11 цифр номера
+            </span>
+          </div>
 
-        <input class="honey" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input class="honey" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-        <button class="btn btn--primary btn--lg btn--block" type="submit" data-submit>
-          <span data-submit-label>Оставить заявку</span>
-        </button>
+          <button class="btn btn--primary btn--lg btn--block" type="submit" data-submit>
+            <span data-submit-label>Оставить заявку</span>
+          </button>
 
-        <div class="form__foot">
-          <p class="tiny">Позвоним на этот номер. Рассылок не будет.</p>
-          <p class="form__status" data-status role="status" aria-live="polite"></p>
-        </div>
-      </form>
-      <noscript>
-        <p class="body">
-          Форма работает только со включённым JavaScript. Позвоните нам или
-          напишите в Telegram: кнопки выше рабочие.
-        </p>
-      </noscript>
+          <div class="form__foot">
+            <p class="tiny">Два поля. Больше ничего не спросим.</p>
+            <p class="form__status" data-status role="status" aria-live="polite"></p>
+          </div>
+        </form>
     </div>
   </section>
 

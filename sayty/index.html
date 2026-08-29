@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>Разработка сайтов в Магнитогорске от 14 700 ₽ | EasyLead</title>
+<meta name="description" content="Разработка сайтов под заявки в Магнитогорске. Структура, дизайн под телефон, форма заявки, домен и публикация. Цена от 14 700 рублей, фиксируется в смете.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<!-- ПРОВЕРЬ ПЕРЕД ПУБЛИКАЦИЕЙ: замените example.com на свой домен здесь,
+     в robots.txt и в sitemap.xml. -->
+<link rel="canonical" href="https://example.com/sayty/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="EasyLead">
+<meta property="og:title" content="Разработка сайтов в Магнитогорске от 14 700 ₽ | EasyLead">
+<meta property="og:description" content="Разработка сайтов в Магнитогорске. Собираем страницу вокруг одной задачи: чтобы посетитель оставил заявку.">
+<meta property="og:url" content="https://example.com/sayty/">
+<meta property="og:image" content="https://example.com/assets/img/easylead-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "EasyLead",
+  "description": "Сайты и автоматизации для бизнеса любого профиля.",
+  "url": "https://example.com/",
+  "telephone": "+7-933-982-88-07",
+  "priceRange": "от 14700 RUB",
+  "areaServed": [
+    {"@type": "City", "name": "Магнитогорск"},
+    {"@type": "AdministrativeArea", "name": "Челябинская область"}
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Магнитогорск",
+    "addressRegion": "Челябинская область",
+    "addressCountry": "RU"
+  },
+  "serviceType": ["Разработка сайтов", "Автоматизация бизнес-процессов"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://example.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Сайты", "item": "https://example.com/sayty/"}
+  ]
+}
+</script>
+
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/svg+xml" href="/img/logo-icon.svg">
+<link rel="icon" sizes="32x32" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+
+<!-- Шрифты локальные: ни одного стороннего запроса на первом экране. -->
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/onest-cyrillic.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/onest-latin.woff2" crossorigin>
+<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/easylead.css">
+
+<!-- Ставится синхронно, до первой отрисовки: без JS секции не прячутся
+     и страница видна целиком с первого кадра. -->
+<script>document.documentElement.classList.add('js');</script>
+
+</head>
+
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<a class="visually-hidden" href="#lead">Перейти к форме заявки</a>
+
+<!-- Сентинел для шапки. IntersectionObserver вместо слушателя скролла. -->
+<div id="top-sentinel" aria-hidden="true" style="position:absolute;top:0;height:1px;width:1px"></div>
+
+<header class="header" id="header">
+  <div class="shell header__inner">
+    <a class="wordmark" href="/" aria-label="EasyLead, на главную">
+      <svg class="wordmark__mark" viewBox="0 0 26 19.8" fill="currentColor" aria-hidden="true">
+        <path d="M0 0H26L21 5H0Z M0 7.4H21L16 12.4H0Z M0 14.8H24.5L19.5 19.8H0Z"/>
+      </svg>
+      <span class="wordmark__text">EasyLead</span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Разделы сайта">
+      <a href="/sayty/" aria-current="page">Сайты</a>
+      <a href="/avtomatizatsiya/">Автоматизация</a>
+      <a href="/tseny/">Цены</a>
+      <a href="/kontakty/">Контакты</a>
+    </nav>
+
+    <div class="header__right">
+      <a class="btn btn--primary" href="#lead">Оставить заявку<svg class="btn__arrow" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7h9M8 3.5 11.5 7 8 10.5"/></svg></a>
+
+      <!-- Кнопка меню только на телефоне: на многостраничнике без неё
+           разделы недоступны, а раньше навигация просто пряталась. -->
+      <button class="burger" type="button" data-burger
+              aria-label="Открыть меню" aria-expanded="false" aria-controls="menu">
+        <span class="burger__box" aria-hidden="true"><i></i><i></i></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" data-menu hidden>
+  <nav class="menu__list" aria-label="Разделы сайта">
+    <a href="/">Главная</a>
+    <a href="/sayty/">Сайты</a>
+    <a href="/avtomatizatsiya/">Автоматизация</a>
+    <a href="/tseny/">Цены</a>
+    <a href="/kontakty/">Контакты</a>
+  </nav>
+  <div class="menu__foot">
+    <a class="btn btn--primary btn--lg btn--block" href="#lead">Оставить заявку</a>
+    <a class="btn btn--ghost btn--lg btn--block" href="tel:+79339828807" data-contact="phone-link">
+      <span data-contact="phone-text">+7 933 982-88-07</span>
+    </a>
+  </div>
+</div>
+
+
+<main id="top">
+
+  <section class="section page-head">
+    <div class="shell">
+      <nav class="crumbs reveal" aria-label="Хлебные крошки">
+        <a href="/">Главная</a><span aria-hidden="true">/</span><span>Сайты</span>
+      </nav>
+      <h1 class="h-page reveal" data-delay="1">Разработка сайтов в Магнитогорске</h1>
+      <p class="lede reveal" data-delay="2">
+        Собираем сайт вокруг одной задачи: чтобы посетитель оставил заявку.
+        Не витрину, не «присутствие в интернете».
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--lift">
+    <div class="shell">
+      <div class="section-head">
+        <h2 class="h2 reveal">Что входит в работу</h2>
+      </div>
+      <ol class="steps reveal" data-delay="1">
+        <li class="step">
+          <span class="step__n num" aria-hidden="true"></span>
+          <div class="step__body">
+            <h3 class="h3">Структура и прототип</h3>
+            <p class="body">Разбираем, что человек на самом деле спрашивает по телефону, и строим страницу вокруг этих вопросов.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step__n num" aria-hidden="true"></span>
+          <div class="step__body">
+            <h3 class="h3">Дизайн и вёрстка</h3>
+            <p class="body">Сначала под телефон: оттуда приходит большинство. Потом под десктоп.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step__n num" aria-hidden="true"></span>
+          <div class="step__body">
+            <h3 class="h3">Форма заявки</h3>
+            <p class="body">Два поля вместо анкеты. Заявка доходит до вас, а не теряется по дороге.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step__n num" aria-hidden="true"></span>
+          <div class="step__body">
+            <h3 class="h3">Домен, хостинг, публикация</h3>
+            <p class="body">Берём на себя. Вам не нужно ни в чём из этого разбираться.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="price-grid">
+        <div class="price reveal">
+          <p class="price__amount"><span>от</span> 14 700 <span>₽</span></p>
+          <h2 class="h3">Сколько стоит</h2>
+          <p class="body">
+            Итог зависит от числа экранов и объёма текста. Точную цифру называем
+            после разбора и фиксируем в смете, до этого никаких предоплат.
+            <a class="link-quiet" href="/tseny/">Подробнее о ценах</a>
+          </p>
+        </div>
+        <div class="price reveal" data-delay="1">
+          <p class="price__amount price__amount--text">Бесплатно</p>
+          <h2 class="h3">Разбор перед началом</h2>
+          <p class="body">
+            Пятнадцать минут по телефону. Показываем макет первого экрана, спрос
+            на ваши услуги и логику заявок. Не понравится, макет остаётся у вас.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="lead">
+    <div class="shell closer">
+      <div class="section-head" style="margin-bottom:0">
+        <h2 class="h2 reveal">Оставьте заявку</h2>
+        <p class="body reveal" data-delay="1">
+          Два поля: имя и телефон. Перезвоним, разберём задачу и назовём цену.
+          Если не подойдём, скажем об этом сразу.
+        </p>
+        <div class="contact-row reveal" data-delay="2">
+          <a class="btn btn--ghost" href="tel:+79339828807" data-contact="phone-link">
+            <span data-contact="phone-text">+7 933 982-88-07</span>
+          </a>
+          <a class="btn btn--ghost" href="https://t.me/ynghustler" data-contact="tg-link" rel="noopener">
+            Написать в Telegram
+          </a>
+        </div>
+      </div>
+      <form class="lead-form reveal" data-delay="2" data-lead-form novalidate>
+          <div class="field">
+            <label class="field__label" for="hero-name">
+              Имя <span class="field__req" aria-hidden="true">*</span>
+            </label>
+            <input class="field__input" id="hero-name" name="name" type="text"
+                   autocomplete="name" enterkeyhint="next"
+                   placeholder="Как к вам обращаться" required data-mirror="name">
+            <span class="field__error" data-error>
+              <svg class="check" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="M8 4.8v4M8 11.1v.1"/></svg>
+              Напишите имя
+            </span>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="hero-phone">
+              Телефон <span class="field__req" aria-hidden="true">*</span>
+            </label>
+            <input class="field__input" id="hero-phone" name="phone" type="tel"
+                   inputmode="tel" autocomplete="tel" enterkeyhint="send"
+                   placeholder="+7 (___) ___-__-__" required data-mirror="phone">
+            <span class="field__error" data-error>
+              <svg class="check" width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.6"/><path d="M8 4.8v4M8 11.1v.1"/></svg>
+              Нужны все 11 цифр номера
+            </span>
+          </div>
+
+          <input class="honey" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <button class="btn btn--primary btn--lg btn--block" type="submit" data-submit>
+            <span data-submit-label>Оставить заявку</span>
+          </button>
+
+          <div class="form__foot">
+            <p class="tiny">Два поля. Больше ничего не спросим.</p>
+            <p class="form__status" data-status role="status" aria-live="polite"></p>
+          </div>
+        </form>
+    </div>
+  </section>
+
+</main>
+
+
+<footer class="footer">
+  <div class="shell footer__inner">
+    <a class="wordmark" href="#top" aria-label="EasyLead, на главную">
+      <svg class="wordmark__mark" viewBox="0 0 26 19.8" fill="currentColor" aria-hidden="true">
+        <path d="M0 0H26L21 5H0Z M0 7.4H21L16 12.4H0Z M0 14.8H24.5L19.5 19.8H0Z"/>
+      </svg>
+      <span class="wordmark__text">EasyLead</span>
+    </a>
+    <p class="tiny">Сайты и автоматизации, которые приносят заявки</p>
+    <p class="tiny">
+      <a class="link-quiet" href="tel:+79339828807" data-contact="phone-link">
+        <span data-contact="phone-text">+7 933 982-88-07</span>
+      </a>
+    </p>
+  </div>
+</footer>
+
+<!-- Мобильный док. Появляется, когда герой ушёл за экран. -->
+<div class="dock" data-dock aria-hidden="true">
+  <a class="btn btn--primary" href="#lead">Оставить заявку<svg class="btn__arrow" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7h9M8 3.5 11.5 7 8 10.5"/></svg></a>
+  <a class="btn btn--ghost btn--icon" href="tel:+79339828807" data-contact="phone-link" aria-label="Позвонить">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>
+    </svg>
+  </a>
+</div>
+
+<script src="/js/config.js"></script>
+<script src="/js/easylead.js" defer></script>
+</body>
+</html>
