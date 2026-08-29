@@ -889,10 +889,18 @@ body[data-menu-open="true"] { overflow: hidden; }
   border-block: 1px solid var(--line);
 }
 
-.strip__inner { display: grid; gap: .9rem; }
+/* Та же контентная колонка, что и у остальных секций: логотипы
+   обрезаются по её правому краю, а не по краю окна. */
+.strip__inner {
+  display: grid;
+  gap: .9rem;
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--pad-x);
+}
 
 .strip__lede {
-  padding-inline: var(--pad-x);
   color: var(--dim);
   font-size: var(--t-sm);
   letter-spacing: -.01em;
@@ -906,12 +914,7 @@ body[data-menu-open="true"] { overflow: hidden; }
     grid-template-columns: 15rem minmax(0, 1fr);
     align-items: center;
     gap: 2rem;
-    /* Подпись встаёт по контентной сетке страницы, а логотипы уходят
-       за правый край, как лента, которая едет из-за экрана. */
-    padding-left: max(var(--pad-x), calc((100% - var(--max)) / 2 + var(--pad-x)));
   }
-
-  .strip__lede { padding-inline: 0; }
 }
 
 .logo {
@@ -940,8 +943,8 @@ body[data-menu-open="true"] { overflow: hidden; }
   /* Полоса не влияет на раскладку снаружи: браузер может не пересчитывать
      её при изменениях на остальной странице. */
   contain: layout paint;
-  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 92%, transparent);
 }
 
 .marquee__track {
