@@ -1,28 +1,39 @@
 /* =========================================================
    Фисташка: орехи, сухофрукты и семечки, Магнитогорск
-   Дизайн-система: тёплая кремово-терракотовая палитра
+   Дизайн-система: натуральная зелёная палитра
    ========================================================= */
 
 :root {
-  /* Цвет */
-  --bg: #FBF7F0;
-  --surface: #FFFFFF;
-  --fg: #2B1F16;
-  --muted: #6B5A4A;
-  --border: #EAE0D2;
-  --accent: #B4531F;
-  --accent-deep: #7A3512;
-  --gold: #C9A24B;
+  /* Цвет: натуральная зелень «Фисташки» */
+  --bg: #F5F8EF;          /* светлый фисташково-кремовый фон */
+  --surface: #FFFFFF;     /* карточки */
+  --fg: #172914;          /* глубокий тёмно-зелёный текст */
+  --muted: #566B4C;       /* вторичный приглушённый зелёный */
+  --border: #E1EAD5;      /* границы */
+  --accent: #5FB020;      /* яркий сочный фисташковый: заливки, иконки */
+  --accent-deep: #4A8F18; /* ховер акцента и акцентный текст на светлом */
+  --accent-soft: #EAF5DC; /* светлая заливка акцентом для фонов блоков */
+  --gold: #C9A24B;        /* золото на тёмных секциях */
   --gold-deep: #A8802F;   /* звёзды на светлом фоне, контраст 3.4:1 */
-  --dark: #2B1F16;
+  --dark: #172914;        /* тёмно-зелёные секции: опт, футер */
 
-  --accent-wash: #F7EBE1; /* подложка плиток, тон акцента */
-  --cream-wash: #F4EEE2;
+  /* Текст поверх яркой заливки --accent. Белый на #5FB020 даёт всего
+     2.7:1 и не проходит AA. Тёмная зелень даёт 7.0:1 в покое и 4.8:1
+     на ховере, когда фон темнеет до --accent-deep. */
+  --on-accent: #081208;
 
-  /* Тень: тёплая, не серая */
-  --shadow-sm: 0 2px 8px rgba(43, 31, 22, .06);
-  --shadow-md: 0 8px 24px rgba(43, 31, 22, .08);
-  --shadow-lg: 0 18px 48px rgba(43, 31, 22, .12);
+  /* Акцент как цвет ТЕКСТА на светлом. Яркий #5FB020 даёт 2.5-2.7:1 и
+     для надписей не годится, этот оттенок держит 6.5:1 даже на
+     --accent-soft. Для крупных чисел хватает --accent-deep. */
+  --accent-ink: #35601F;
+
+  --leaf-wash: #EDF1E4;   /* нейтральная светло-зелёная подложка секции */
+  --placeholder: #667A5C; /* подсказки в полях, 4.7:1 на белом */
+
+  /* Тень: зеленоватая, не серая */
+  --shadow-sm: 0 2px 8px rgba(23, 41, 20, .07);
+  --shadow-md: 0 8px 24px rgba(23, 41, 20, .09);
+  --shadow-lg: 0 18px 48px rgba(23, 41, 20, .13);
 
   /* Форма */
   --r-card: 16px;
@@ -80,11 +91,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* ---------- Фокус ---------- */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-deep);
   outline-offset: 3px;
   border-radius: 4px;
 }
-.wholesale :focus-visible, .footer :focus-visible { outline-color: var(--gold); }
+.wholesale :focus-visible, .footer :focus-visible { outline-color: var(--accent); }
 
 .skip-link {
   position: absolute;
@@ -92,7 +103,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   top: 8px;
   z-index: 100;
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
   padding: 12px 20px;
   border-radius: var(--r-btn);
   text-decoration: none;
@@ -152,19 +163,19 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .btn--accent {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
   box-shadow: var(--shadow-sm);
 }
 .btn--accent:hover { background: var(--accent-deep); box-shadow: var(--shadow-md); }
 .btn--accent:active { transform: translateY(1px); box-shadow: var(--shadow-sm); }
-.btn--accent[disabled] { background: var(--muted); cursor: progress; box-shadow: none; }
+.btn--accent[disabled] { background: var(--muted); color: #fff; cursor: progress; box-shadow: none; }
 
 .btn--ghost {
   background: transparent;
   color: var(--fg);
   border-color: var(--border);
 }
-.btn--ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
+.btn--ghost:hover { border-color: var(--accent); color: var(--accent-ink); background: var(--surface); }
 .btn--ghost:active { transform: translateY(1px); }
 
 /* ---------- Шапка ---------- */
@@ -184,7 +195,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .site-header.is-open {
   background: var(--bg);
   border-bottom-color: var(--border);
-  box-shadow: 0 6px 24px rgba(43, 31, 22, .08);
+  box-shadow: 0 6px 24px rgba(23, 41, 20, .09);
 }
 
 .header__inner {
@@ -227,7 +238,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   color: var(--fg);
   transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease);
 }
-.nav a:hover { color: var(--accent); background: var(--accent-wash); }
+.nav a:hover { color: var(--accent-ink); background: var(--accent-soft); }
 
 .header__actions {
   display: flex;
@@ -243,7 +254,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   white-space: nowrap;
   transition: color var(--dur) var(--ease);
 }
-.header__phone:hover { color: var(--accent); }
+.header__phone:hover { color: var(--accent-ink); }
 
 .burger {
   display: none;
@@ -277,7 +288,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   overflow: hidden;
   margin: 0;
   border-radius: var(--r-card);
-  background: linear-gradient(140deg, #F3E9DA, #E9DAC4 60%, #E2CFB4);
+  background: linear-gradient(140deg, #EDEFE7, #E2E6D9 60%, #D7DDCB);
 }
 .ph::after {
   content: "Фото: " attr(data-ph);
@@ -382,12 +393,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
   box-shadow: var(--shadow-sm);
 }
 .tile--wide { grid-column: span 2; }
-.tile--accent { background: var(--accent-wash); border-color: #E7D6C6; }
+.tile--accent { background: var(--accent-soft); border-color: #D8E6C4; }
 .tile--cream {
-  background: linear-gradient(135deg, var(--cream-wash), #FFFFFF);
+  background: linear-gradient(135deg, var(--leaf-wash), #FFFFFF);
   border-color: var(--border);
 }
-.tile__icon { width: 32px; height: 32px; color: var(--accent); }
+.tile__icon { width: 32px; height: 32px; color: var(--accent-deep); }
 .tile__title { margin-top: 20px; font-size: 22px; }
 .tile__text { margin-top: 8px; color: var(--muted); font-size: 16px; max-width: 44ch; }
 
@@ -396,7 +407,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   padding-block: var(--sp-section);
   background-color: var(--dark);
   background-image:
-    linear-gradient(105deg, rgba(43, 31, 22, .94) 40%, rgba(43, 31, 22, .82)),
+    linear-gradient(105deg, rgba(23, 41, 20, .94) 40%, rgba(23, 41, 20, .82)),
     url("img/wholesale-bg.jpg");
   background-size: cover;
   background-position: center;
@@ -469,17 +480,17 @@ button, input, select, textarea { font: inherit; color: inherit; }
   font-size: 16px;
   transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
-.field__input::placeholder { color: #8C7A69; }
-.field__input:hover { border-color: #DCCDB8; }
+.field__input::placeholder { color: var(--placeholder); }
+.field__input:hover { border-color: #CFDDBE; }
 .field__input:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(180, 83, 31, .18);
+  box-shadow: 0 0 0 3px rgba(95, 176, 32, .25);
 }
 .field__input--area { resize: vertical; min-height: 96px; }
 .field__input--select {
   appearance: none;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%236B5A4A' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m3 6 5 5 5-5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23566B4C' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m3 6 5 5 5-5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 16px center;
   padding-right: 44px;
@@ -494,7 +505,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .form--dark .field__input:hover { border-color: rgba(255, 255, 255, .4); }
 .form--dark .field__input:focus {
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(201, 162, 75, .28);
+  box-shadow: 0 0 0 3px rgba(95, 176, 32, .32);
 }
 
 .field__input[aria-invalid="true"] { border-color: #C0341B; }
@@ -532,7 +543,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   font-weight: 700;
   line-height: 1;
   letter-spacing: -.03em;
-  color: var(--accent);
+  color: var(--accent-deep);
 }
 .rating__count { font-size: 15px; color: var(--muted); }
 .rating__body .btn { margin-top: 24px; }
@@ -553,12 +564,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
   font-weight: 600;
 }
 .contacts__row dd a { text-decoration: none; transition: color var(--dur) var(--ease); }
-.contacts__row dd a:hover { color: var(--accent); }
+.contacts__row dd a:hover { color: var(--accent-ink); }
 .contacts__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .map { aspect-ratio: 4 / 3; box-shadow: var(--shadow-sm); }
 
 /* ---------- Финальный CTA ---------- */
-.order { background: var(--cream-wash); }
+.order { background: var(--leaf-wash); }
 
 /* ---------- Подвал ---------- */
 .footer { background: var(--dark); color: rgba(255, 255, 255, .72); }
@@ -636,7 +647,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .nav .header__phone {
     padding: 14px 16px;
     font-size: 18px;
-    color: var(--accent);
+    color: var(--accent-ink);
   }
 
   .header__actions { margin-left: auto; }
