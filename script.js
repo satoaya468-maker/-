@@ -78,11 +78,13 @@ const FORM_ENDPOINT = 'ЗАМЕНИТЬ_НА_URL_ВОРКЕРА';
         картинку и показываем подпись, что за кадр сюда нужен.
      --------------------------------------------------------- */
   function markEmpty(img) {
-    const box = img.closest('.ph');
+    // .ph покажет подпись с описанием нужного кадра,
+    // .hero__media просто скроет битую картинку: там ждём боевое фото
+    const box = img.closest('.ph, .hero__media');
     if (box) box.classList.add('is-empty');
   }
 
-  document.querySelectorAll('.ph img').forEach(function (img) {
+  document.querySelectorAll('.ph img, .hero__media img').forEach(function (img) {
     img.addEventListener('error', function () { markEmpty(img); });
     // изображение могло не загрузиться ещё до навешивания обработчика
     if (img.complete && img.naturalWidth === 0) markEmpty(img);
