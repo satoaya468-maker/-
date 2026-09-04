@@ -170,6 +170,14 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .btn--accent:active { transform: translateY(1px); box-shadow: var(--shadow-sm); }
 .btn--accent[disabled] { background: var(--muted); color: #fff; cursor: progress; box-shadow: none; }
 
+.btn--on-dark {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, .45);
+}
+.btn--on-dark:hover { background: rgba(255, 255, 255, .12); border-color: #fff; }
+.btn--on-dark:active { transform: translateY(1px); }
+
 .btn--ghost {
   background: transparent;
   color: var(--fg);
@@ -377,6 +385,150 @@ button, input, select, textarea { font: inherit; color: inherit; }
   object-position: center;
 }
 .hero__media.is-empty img { display: none; }
+
+/* ---------- Акции: карусель ---------- */
+.promo { padding-block: 0 0; }
+
+.promo__viewport { position: relative; }
+
+/* Прокрутка со scroll-snap вместо самописного драга: свайп, инерция и
+   клавиатура достаются от браузера, а точки синхронизируем обсервером. */
+.promo__track {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  border-radius: 20px;
+}
+.promo__track::-webkit-scrollbar { display: none; }
+.promo__track:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 3px; }
+
+.promo__slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  display: grid;
+  grid-template-columns: 1fr .8fr;
+  align-items: center;
+  min-height: 340px;
+  border-radius: 20px;
+  overflow: hidden;
+  color: #fff;
+}
+/* Белый текст на ярком --accent даёт 2.7:1, поэтому подложки слайдов
+   тёмные: на --dark белый держит 15.4:1, на --accent-ink 7.4:1. */
+.promo__slide--deep { background: var(--dark); }
+.promo__slide--green { background: var(--accent-ink); }
+/* Пара «подложка + кнопка»: на --deep яркая .btn--accent видна (5.7:1),
+   на --green она сливается (2.7:1), там ставим .btn--on-dark. */
+
+.promo__copy {
+  padding: clamp(32px, 3.5vw, 48px);
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+}
+.promo__title {
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1.15;
+  max-width: 16ch;
+}
+.promo__text {
+  color: rgba(255, 255, 255, .82);
+  font-size: 16px;
+  max-width: 40ch;
+}
+.promo__copy .btn { margin-top: 8px; }
+
+/* Картинка выведена из потока: иначе её собственные пропорции 4:3
+   задавали высоту слайда вместо min-height, и он вырастал до 379px.
+   Теперь высоту держит копия, а фото кадрируется под неё. */
+.promo__media {
+  position: relative;
+  align-self: stretch;
+  border-radius: 0;
+  overflow: hidden;
+  background: linear-gradient(140deg, #EDEFE7, #E2E6D9 60%, #D7DDCB);
+}
+.promo__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Стрелки поверх слайда */
+.promo__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--fg);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: background-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.promo__arrow svg { width: 22px; height: 22px; }
+.promo__arrow:hover { background: var(--accent); color: var(--on-accent); }
+.promo__arrow:active { transform: translateY(-50%) scale(.94); }
+/* Стрелки сидят на кромке слайда, наполовину снаружи: внутри они
+   наезжали на текст копии. 22px укладываются в поле секции на всех
+   ширинах, где стрелки вообще показаны. */
+.promo__arrow--prev { left: -22px; }
+.promo__arrow--next { right: -22px; }
+
+/* Точки */
+.promo__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+/* Активность показана формой, а не только цветом: заливка против кольца.
+   Два зелёных разной светлоты различались бы всего на 1.2:1. */
+.promo__dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 1.5px solid var(--muted);
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  transition: width var(--dur) var(--ease),
+              background-color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease);
+}
+.promo__dot:hover { background: var(--muted); }
+.promo__dot[aria-current="true"] {
+  width: 28px;
+  background: var(--accent-deep);
+  border-color: var(--accent-deep);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* ---------- Каталог ---------- */
 .cards {
@@ -676,6 +828,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
   .hero__media { aspect-ratio: 4 / 3; }
 
+  .promo__slide { grid-template-columns: 1fr .7fr; min-height: 300px; }
+
   .cards { grid-template-columns: repeat(2, 1fr); }
 
   .bento { grid-template-columns: repeat(2, 1fr); }
@@ -699,6 +853,18 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .trust { gap: 10px 16px; margin-top: 24px; font-size: 14px; }
 
   .section__head { margin-bottom: 32px; }
+
+  /* Мобильный слайд пересобран: текст сверху, фото полосой снизу,
+     стрелки убраны за ненадобностью, листается свайпом и точками. */
+  .promo__slide {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .promo__copy { padding: 24px; gap: 12px; }
+  .promo__copy .btn { width: 100%; }
+  .promo__title { font-size: 24px; max-width: none; }
+  .promo__media { aspect-ratio: 16 / 9; height: auto; }
+  .promo__arrow { display: none; }
 
   .cards { grid-template-columns: 1fr; gap: 16px; }
   /* на телефоне квадратные кадры растягивают страницу, 3:2 держит фото
@@ -725,6 +891,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* ---------- Уважение к prefers-reduced-motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   .js .reveal { opacity: 1; transform: none; transition: none; }
+  /* Без этого CSS-значение smooth перебивает behavior: 'auto',
+     который передаёт скрипт, и карусель всё равно едет плавно. */
+  .promo__track { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;

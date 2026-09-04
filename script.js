@@ -7,6 +7,13 @@
    Никаких токенов и ключей во фронтенде: авторизация остаётся на стороне воркера. */
 const FORM_ENDPOINT = 'ЗАМЕНИТЬ_НА_URL_ВОРКЕРА';
 
+/* Автопрокрутка карусели акций, миллисекунды. 0 выключает её совсем,
+   это значение по умолчанию: баннеры листаются вручную.
+   Меньше 7000 не бывает, короткие значения поднимаются до 7000:
+   быстрая карусель уводит внимание и мешает дочитать слайд.
+   При prefers-reduced-motion автопрокрутка не запускается вообще. */
+const PROMO_AUTOPLAY_MS = 0;
+
 (function () {
   'use strict';
 
@@ -137,6 +144,125 @@ const FORM_ENDPOINT = 'ЗАМЕНИТЬ_НА_URL_ВОРКЕРА';
       window.setTimeout(revealPassed, 400);
     });
   }
+
+  /* ---------------------------------------------------------
+     4а. Карусель акций.
+         Прокрутку и свайп делает сам браузер через scroll-snap,
+         скрипт лишь синхронизирует точки и двигает контейнер.
+     --------------------------------------------------------- */
+  (function initPromo() {
+    const track = document.getElementById('promo-track');
+    const dotsBox = document.getElementById('promo-dots');
+    if (!track || !dotsBox) return;
+
+    const slides = Array.prototype.slice.call(track.children);
+    if (slides.length < 2) return;
+
+    const status = document.getElementById('promo-status');
+    const prev = document.querySelector('.promo__arrow--prev');
+    const next = document.querySelector('.promo__arrow--next');
+    let index = 0;
+
+    // точки строим по числу слайдов, чтобы разметку не правили дважды
+    const dots = slides.map(function (slide, i) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'promo__dot';
+      dot.setAttribute('aria-label', 'Акция ' + (i + 1) + ' из ' + slides.length);
+      dot.addEventListener('click', function () { goTo(i); });
+      dotsBox.appendChild(dot);
+      return dot;
+    });
+
+    function render() {
+      dots.forEach(function (dot, i) {
+        dot.setAttribute('aria-current', i === index ? 'true' : 'false');
+      });
+      if (status) status.textContent = 'Акция ' + (index + 1) + ' из ' + slides.length;
+    }
+
+    function goTo(i) {
+      index = (i + slides.length) % slides.length;
+      track.scrollTo({
+        left: index * track.clientWidth,
+        behavior: prefersReducedMotion ? 'auto' : 'smooth'
+      });
+      render();
+    }
+
+    if (prev) prev.addEventListener('click', function () { stopAuto(); goTo(index - 1); });
+    if (next) next.addEventListener('click', function () { stopAuto(); goTo(index + 1); });
+
+    track.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      stopAuto();
+      goTo(e.key === 'ArrowLeft' ? index - 1 : index + 1);
+    });
+
+    // свайп и прокрутка колесом меняют позицию мимо goTo, поэтому
+    // активный слайд определяем наблюдением, а не слушателем скролла
+    if ('IntersectionObserver' in window) {
+      const spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          const i = slides.indexOf(entry.target);
+          if (i !== -1 && i !== index) { index = i; render(); }
+        });
+      }, { root: track, threshold: 0.6 });
+      slides.forEach(function (slide) { spy.observe(slide); });
+    }
+
+    // при смене ширины окна пиксельная позиция слайда уезжает
+    let resizeTimer;
+    window.addEventListener('resize', function () {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(function () {
+        track.scrollTo({ left: index * track.clientWidth, behavior: 'auto' });
+      }, 150);
+    });
+
+    /* ---- автопрокрутка ----
+       Выключена, пока PROMO_AUTOPLAY_MS равен нулю. Ниже 7 секунд не
+       опускается, останавливается при наведении, фокусе, ручном
+       переключении и когда секция ушла с экрана. */
+    let timer = null;
+    const delay = Math.max(7000, PROMO_AUTOPLAY_MS);
+    const autoAllowed = PROMO_AUTOPLAY_MS > 0 && !prefersReducedMotion;
+
+    function startAuto() {
+      if (!autoAllowed || timer) return;
+      timer = window.setInterval(function () { goTo(index + 1); }, delay);
+    }
+    function pauseAuto() {
+      window.clearInterval(timer);
+      timer = null;
+    }
+    function stopAuto() {
+      pauseAuto();
+    }
+
+    if (autoAllowed) {
+      const promo = document.getElementById('promo');
+      promo.addEventListener('pointerenter', pauseAuto);
+      promo.addEventListener('pointerleave', startAuto);
+      promo.addEventListener('focusin', pauseAuto);
+      promo.addEventListener('focusout', startAuto);
+      document.addEventListener('visibilitychange', function () {
+        document.hidden ? pauseAuto() : startAuto();
+      });
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          entries[0].isIntersecting ? startAuto() : pauseAuto();
+        }, { threshold: 0.3 }).observe(promo);
+      } else {
+        startAuto();
+      }
+    }
+
+    render();
+  })();
 
   /* ---------------------------------------------------------
      5. Маска телефона +7 (999) 999-99-99
