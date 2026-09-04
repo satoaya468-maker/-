@@ -87,47 +87,13 @@
 
 <main>
 
-  <!-- 1. HERO: асимметричный сплит, текст слева, фото справа -->
-  <section class="hero">
-    <div class="wrap hero__inner">
-      <div class="hero__copy">
-        <h1 class="hero__title">Орехи и сухофрукты, которые хочется есть каждый день</h1>
-        <p class="hero__sub">Магазин «Фисташка» в Магнитогорске. Свежие поставки, честный вес, розница и опт для кафе, ресторанов и пекарен.</p>
-
-        <div class="hero__cta">
-          <a class="btn btn--accent btn--lg" href="#catalog">Смотреть каталог</a>
-          <a class="btn btn--ghost btn--lg" href="#wholesale">Оптовые цены</a>
-        </div>
-
-        <ul class="trust" aria-label="Коротко о магазине">
-          <li class="trust__item">
-            <span class="stars" role="img" aria-label="Рейтинг 5 из 5">
-              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.4 5.2 5.6.7-4.1 3.9 1 5.6L10 14.3 5.1 17l1-5.6L2 7.5l5.6-.7L10 1.6Z"/></svg>
-              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.4 5.2 5.6.7-4.1 3.9 1 5.6L10 14.3 5.1 17l1-5.6L2 7.5l5.6-.7L10 1.6Z"/></svg>
-              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.4 5.2 5.6.7-4.1 3.9 1 5.6L10 14.3 5.1 17l1-5.6L2 7.5l5.6-.7L10 1.6Z"/></svg>
-              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.4 5.2 5.6.7-4.1 3.9 1 5.6L10 14.3 5.1 17l1-5.6L2 7.5l5.6-.7L10 1.6Z"/></svg>
-              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.4 5.2 5.6.7-4.1 3.9 1 5.6L10 14.3 5.1 17l1-5.6L2 7.5l5.6-.7L10 1.6Z"/></svg>
-            </span>
-            <span>5,0 в 2ГИС, 8 оценок</span>
-          </li>
-          <li class="trust__item">Свежие поставки</li>
-          <li class="trust__item">Розница и опт</li>
-        </ul>
-      </div>
-
-      <figure class="hero__media">
-        <img src="img/hero-nuts.jpg" alt="Ассортимент орехов и сухофруктов магазина «Фисташка»" width="900" height="1125" fetchpriority="high">
-      </figure>
-    </div>
-  </section>
-
-  <!-- 1а. АКЦИИ: карусель промо-баннеров.
+  <!-- 1. АКЦИИ: карусель промо-баннеров.
        Тексты и ссылки слайдов лежат здесь и меняются на месте.
        Автопрокрутка настраивается одной константой PROMO_AUTOPLAY_MS
        в начале script.js, по умолчанию выключена. -->
   <section class="promo" id="promo" aria-roledescription="карусель" aria-label="Акции">
     <div class="wrap">
-      <div class="promo__viewport reveal">
+      <div class="promo__viewport">
 
         <ul class="promo__track" id="promo-track" tabindex="0" aria-label="Слайды с акциями">
 
@@ -196,7 +162,41 @@
     </div>
   </section>
 
-  <!-- 2. КАТАЛОГ: сетка карточек с квадратными фото -->
+  <!-- 2. HERO: асимметричный сплит, текст слева, фото справа -->
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <div class="hero__copy">
+        <h1 class="hero__title">Орехи и сухофрукты, которые хочется есть каждый день</h1>
+        <p class="hero__sub">Магазин «Фисташка» в Магнитогорске. Свежие поставки, честный вес, розница и опт для кафе, ресторанов и пекарен.</p>
+
+        <div class="hero__cta">
+          <a class="btn btn--accent btn--lg" href="#catalog">Смотреть каталог</a>
+          <a class="btn btn--ghost btn--lg" href="#wholesale">Оптовые цены</a>
+        </div>
+
+        <ul class="trust" aria-label="Коротко о магазине">
+          <li class="trust__item">
+            <span class="stars" role="img" aria-label="Рейтинг 5 из 5">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.4 5.2 5.6.7-4.1 3.9 1 5.6L10 14.3 5.1 17l1-5.6L2 7.5l5.6-.7L10 1.6Z"/></svg>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.4 5.2 5.6.7-4.1 3.9 1 5.6L10 14.3 5.1 17l1-5.6L2 7.5l5.6-.7L10 1.6Z"/></svg>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.4 5.2 5.6.7-4.1 3.9 1 5.6L10 14.3 5.1 17l1-5.6L2 7.5l5.6-.7L10 1.6Z"/></svg>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.4 5.2 5.6.7-4.1 3.9 1 5.6L10 14.3 5.1 17l1-5.6L2 7.5l5.6-.7L10 1.6Z"/></svg>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.4 5.2 5.6.7-4.1 3.9 1 5.6L10 14.3 5.1 17l1-5.6L2 7.5l5.6-.7L10 1.6Z"/></svg>
+            </span>
+            <span>5,0 в 2ГИС, 8 оценок</span>
+          </li>
+          <li class="trust__item">Свежие поставки</li>
+          <li class="trust__item">Розница и опт</li>
+        </ul>
+      </div>
+
+      <figure class="hero__media">
+        <img src="img/hero-nuts.jpg" alt="Ассортимент орехов и сухофруктов магазина «Фисташка»" width="900" height="1125" fetchpriority="high">
+      </figure>
+    </div>
+  </section>
+
+  <!-- 3. КАТАЛОГ: сетка карточек с квадратными фото -->
   <section class="section" id="catalog">
     <div class="wrap">
       <header class="section__head reveal">
@@ -251,7 +251,7 @@
     </div>
   </section>
 
-  <!-- 3. ПОЧЕМУ МЫ: бенто из 4 плиток с разной подложкой -->
+  <!-- 4. ПОЧЕМУ МЫ: бенто из 4 плиток с разной подложкой -->
   <section class="section section--tight" id="why">
     <div class="wrap">
       <header class="section__head reveal">
@@ -302,7 +302,7 @@
     </div>
   </section>
 
-  <!-- 4. ОПТ: тёмная секция с фото-подложкой и формой -->
+  <!-- 5. ОПТ: тёмная секция с фото-подложкой и формой -->
   <section class="wholesale" id="wholesale">
     <div class="wrap wholesale__inner">
       <div class="wholesale__copy reveal">
@@ -346,7 +346,7 @@
     </div>
   </section>
 
-  <!-- 5. ОТЗЫВЫ: только реальный рейтинг 2ГИС, без выдуманных цитат -->
+  <!-- 6. ОТЗЫВЫ: только реальный рейтинг 2ГИС, без выдуманных цитат -->
   <section class="section section--tight" id="reviews">
     <div class="wrap">
       <div class="rating reveal">
@@ -372,7 +372,7 @@
     </div>
   </section>
 
-  <!-- 6. КОНТАКТЫ: инфо слева, место под карту справа -->
+  <!-- 7. КОНТАКТЫ: инфо слева, место под карту справа -->
   <section class="section" id="contacts">
     <div class="wrap">
       <header class="section__head reveal">
@@ -414,7 +414,7 @@
     </div>
   </section>
 
-  <!-- 7. ФИНАЛЬНЫЙ CTA -->
+  <!-- 8. ФИНАЛЬНЫЙ CTA -->
   <section class="section order" id="order">
     <div class="wrap order__inner">
       <header class="section__head section__head--center reveal">

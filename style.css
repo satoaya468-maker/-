@@ -387,7 +387,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .hero__media.is-empty img { display: none; }
 
 /* ---------- Акции: карусель ---------- */
-.promo { padding-block: 0 0; }
+/* Секция открывает страницу, поэтому сверху нужен отступ от шапки.
+   Снизу его даёт собственный верхний отступ hero. */
+.promo { padding-block: clamp(24px, 3vw, 40px) 0; }
 
 .promo__viewport { position: relative; }
 
