@@ -535,8 +535,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* ---------- Каталог ---------- */
 .cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 .card {
   background: var(--surface);
@@ -550,6 +550,17 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .card__media { aspect-ratio: 1 / 1; }
 .card__title { margin-top: 20px; font-size: 21px; }
 .card__text { margin-top: 8px; color: var(--muted); font-size: 15px; }
+.card__badge {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+}
 
 /* ---------- Бенто «почему мы» ---------- */
 .bento {
@@ -790,6 +801,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 @media (max-width: 1200px) {
   .header__inner { gap: 16px; }
   .nav a { padding-inline: 10px; }
+
+  .cards { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* ---------- Адаптив: 900 ---------- */
