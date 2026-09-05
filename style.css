@@ -296,21 +296,21 @@ button, input, select, textarea { font: inherit; color: inherit; }
   overflow: hidden;
   margin: 0;
   border-radius: var(--r-card);
-  background: linear-gradient(140deg, #EDEFE7, #E2E6D9 60%, #D7DDCB);
+  background: var(--accent-soft);
 }
+/* Пока фото нет, слот показывает фирменный знак, а не служебную подпись:
+   на боевом сайте «Фото: орехи, 1:1» читалось бы как недоделка.
+   Что за кадр сюда нужен, записано в data-ph и в img/README.md. */
 .ph::after {
-  content: "Фото: " attr(data-ph);
+  content: "";
   position: absolute;
   inset: 0;
   z-index: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  text-align: center;
-  font-size: 14px;
-  line-height: 1.4;
-  color: var(--muted);
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2028%2028'%20fill='none'%20stroke='%23A8C293'%20stroke-width='1.4'><path%20d='M14%2025c5.2%200%209-4.2%209-9.6%200-5.6-3.6-9.6-9-12.4C8.6%205.8%205%209.8%205%2015.4%205%2020.8%208.8%2025%2014%2025Z'%20stroke-linejoin='round'/><path%20d='M14%2025V12.5M14%2016.5l3.4-3.4M14%2019.6l-3.2-3.2'%20stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 56px 56px;
+  opacity: .85;
 }
 .ph img {
   position: relative;
@@ -454,7 +454,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   align-self: stretch;
   border-radius: 0;
   overflow: hidden;
-  background: linear-gradient(140deg, #EDEFE7, #E2E6D9 60%, #D7DDCB);
+  background: var(--accent-soft);
 }
 .promo__media img {
   position: absolute;
