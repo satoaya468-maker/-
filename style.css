@@ -731,6 +731,22 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .rating__count { font-size: 15px; color: var(--muted); }
 .rating__body .btn { margin-top: 24px; }
 
+/* ---------- О магазине ---------- */
+.about {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+.about__media {
+  aspect-ratio: 4 / 3;
+  box-shadow: var(--shadow-md);
+}
+.about__copy .section__lead {
+  max-width: 32ch;
+  font-size: 18px;
+}
+
 /* ---------- Контакты ---------- */
 .contacts {
   display: grid;
@@ -839,6 +855,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
   .hero__inner,
   .wholesale__inner,
+  .about,
   .contacts { grid-template-columns: 1fr; }
 
   .hero__media { aspect-ratio: 4 / 3; }
