@@ -70,13 +70,11 @@
       <a href="#wholesale">Опт</a>
       <a href="#reviews">Отзывы</a>
       <a href="#contacts">Контакты</a>
-      <a class="header__phone nav__extra" href="tel:+79823332728">+7 982 333-27-28</a>
-      <a class="btn btn--accent nav__extra" href="#order">Заказать</a>
+      <a class="btn btn--accent nav__extra" href="tel:+79823332728">+7 982 333-27-28</a>
     </nav>
 
     <div class="header__actions">
-      <a class="header__phone" href="tel:+79823332728">+7 982 333-27-28</a>
-      <a class="btn btn--accent btn--sm" href="#order">Заказать</a>
+      <a class="btn btn--accent btn--sm" href="tel:+79823332728">+7 982 333-27-28</a>
     </div>
 
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Открыть меню">
@@ -101,7 +99,7 @@
             <div class="promo__copy">
               <h2 class="promo__title">Свежий урожай кураги</h2>
               <p class="promo__text">Новая партия уже на витрине. Отпускаем на вес, столько, сколько нужно.</p>
-              <a class="btn btn--accent" href="#order">Заказать</a>
+              <a class="btn btn--accent" href="tel:+79823332728">Позвонить</a>
             </div>
             <figure class="promo__media ph" data-ph="курага крупным планом, 4:3">
               <img src="img/promo-1.jpg" alt="Курага нового урожая" loading="lazy" width="800" height="600">
@@ -338,7 +336,7 @@
     <div class="wrap wholesale__inner">
       <div class="wholesale__copy reveal">
         <h2 class="wholesale__title">Оптовые поставки для кафе, ресторанов и пекарен</h2>
-        <p class="wholesale__text">Работаем с общепитом и небольшими производствами: стабильные объёмы, отгрузки по графику, цена зависит от количества. Расскажите, какие позиции нужны, и мы посчитаем стоимость.</p>
+        <p class="wholesale__text">Работаем с общепитом и небольшими производствами: стабильные объёмы, отгрузки по графику, цена зависит от количества.</p>
         <ul class="wholesale__list">
           <li>Регулярные отгрузки под ваш график</li>
           <li>Цена рассчитывается от объёма</li>
@@ -346,33 +344,12 @@
         </ul>
       </div>
 
-      <div class="wholesale__form-wrap reveal">
-        <form class="form form--dark" id="form-wholesale" novalidate>
-          <h3 class="form__title">Заявка на опт</h3>
-
-          <div class="field">
-            <label class="field__label" for="w-name">Имя</label>
-            <input class="field__input" type="text" id="w-name" name="name" autocomplete="name" placeholder="Как к вам обращаться" required>
-            <p class="field__error" id="w-name-error" hidden></p>
-          </div>
-
-          <div class="field">
-            <label class="field__label" for="w-phone">Телефон</label>
-            <input class="field__input" type="tel" id="w-phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" data-phone required>
-            <p class="field__error" id="w-phone-error" hidden></p>
-          </div>
-
-          <div class="field">
-            <label class="field__label" for="w-comment">Что интересует</label>
-            <textarea class="field__input field__input--area" id="w-comment" name="comment" rows="3" placeholder="Например: миндаль и курага, 20 кг в месяц"></textarea>
-          </div>
-
-          <input type="hidden" name="type" value="опт">
-
-          <button class="btn btn--accent btn--block" type="submit" data-submit>Получить оптовый прайс</button>
-          <p class="form__status" data-status role="status" aria-live="polite"></p>
-          <p class="form__note">Нажимая кнопку, вы соглашаетесь на обработку своих контактных данных для ответа на заявку.</p>
-        </form>
+      <div class="wholesale__cta reveal">
+        <div class="callcard">
+          <a class="callcard__phone" href="tel:+79823332728">+7 982 333-27-28</a>
+          <p class="callcard__note">Расскажите, какие позиции нужны и в каком объёме. Посчитаем цену и сроки поставки.</p>
+          <a class="btn btn--accent btn--lg btn--block" href="tel:+79823332728">Позвонить</a>
+        </div>
       </div>
     </div>
   </section>
@@ -445,8 +422,7 @@
           </dl>
 
           <div class="contacts__actions">
-            <a class="btn btn--accent" href="tel:+79823332728">Позвонить</a>
-            <a class="btn btn--ghost" href="#order">Заказать</a>
+            <a class="btn btn--accent btn--lg" href="tel:+79823332728">Позвонить</a>
           </div>
         </div>
 
@@ -463,41 +439,14 @@
     <div class="wrap order__inner">
       <header class="section__head section__head--center reveal">
         <h2 class="section__title">Закажите или приезжайте</h2>
-        <p class="section__lead">Соберём заказ к вашему приходу или посчитаем оптовую стоимость. Отвечаем в рабочие часы.</p>
+        <p class="section__lead">Соберём заказ к вашему приходу или посчитаем оптовую стоимость. Быстрее всего просто позвонить.</p>
       </header>
 
-      <form class="form form--light reveal" id="form-order" novalidate>
-        <div class="form__grid">
-          <div class="field">
-            <label class="field__label" for="o-name">Имя</label>
-            <input class="field__input" type="text" id="o-name" name="name" autocomplete="name" placeholder="Как к вам обращаться" required>
-            <p class="field__error" id="o-name-error" hidden></p>
-          </div>
-
-          <div class="field">
-            <label class="field__label" for="o-phone">Телефон</label>
-            <input class="field__input" type="tel" id="o-phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" data-phone required>
-            <p class="field__error" id="o-phone-error" hidden></p>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field__label" for="o-type">Тип заявки</label>
-          <select class="field__input field__input--select" id="o-type" name="type">
-            <option value="розница">Розница</option>
-            <option value="опт">Опт</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label class="field__label" for="o-comment">Комментарий <span class="field__hint">необязательно</span></label>
-          <textarea class="field__input field__input--area" id="o-comment" name="comment" rows="3" placeholder="Что хотите заказать"></textarea>
-        </div>
-
-        <button class="btn btn--accent btn--lg btn--block" type="submit" data-submit>Оставить заявку</button>
-        <p class="form__status" data-status role="status" aria-live="polite"></p>
-        <p class="form__note">Нажимая кнопку, вы соглашаетесь на обработку своих контактных данных для ответа на заявку.</p>
-      </form>
+      <div class="callcard callcard--light reveal">
+        <a class="callcard__phone" href="tel:+79823332728">+7 982 333-27-28</a>
+        <p class="callcard__note">Магнитогорск, улица Карла Маркса, 214. Работаем с 9:00.</p>
+        <a class="btn btn--accent btn--lg" href="tel:+79823332728">Позвонить</a>
+      </div>
     </div>
   </section>
 

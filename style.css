@@ -262,15 +262,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   gap: 16px;
   flex-shrink: 0;
 }
-.header__phone {
-  font-family: var(--font-head);
-  font-weight: 600;
-  font-size: 16px;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: color var(--dur) var(--ease);
-}
-.header__phone:hover { color: var(--accent-ink); }
 
 .burger {
   display: none;
@@ -635,85 +626,48 @@ button, input, select, textarea { font: inherit; color: inherit; }
   transform: rotate(-45deg);
 }
 
-/* ---------- Формы ---------- */
-.form {
-  border-radius: var(--r-card);
+/* ---------- Карточка звонка ---------- */
+/* Заменила формы заявок: магазину удобнее принимать заказ голосом. */
+.callcard {
+  display: grid;
+  justify-items: start;
+  gap: 16px;
   padding: clamp(24px, 3vw, 40px);
-}
-.form--dark {
-  background: rgba(255, 255, 255, .06);
-  border: 1px solid rgba(255, 255, 255, .16);
-  backdrop-filter: blur(6px);
-}
-.form--light {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-md);
-  max-width: 640px;
-  margin-inline: auto;
-}
-.form__title { font-size: 24px; margin-bottom: 24px; }
-.form__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-.field { display: grid; gap: 8px; margin-bottom: 16px; }
-.field__label { font-size: 15px; font-weight: 500; }
-.field__hint { color: var(--muted); font-weight: 400; }
-.form--dark .field__hint { color: rgba(255, 255, 255, .6); }
-
-.field__input {
-  width: 100%;
-  min-height: 48px;
-  padding: 12px 16px;
-  border-radius: var(--r-btn);
-  border: 1.5px solid var(--border);
-  background: var(--surface);
-  color: var(--fg);
-  font-size: 16px;
-  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
-}
-.field__input::placeholder { color: var(--placeholder); }
-.field__input:hover { border-color: #CFDDBE; }
-.field__input:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(95, 176, 32, .25);
-}
-.field__input--area { resize: vertical; min-height: 96px; }
-.field__input--select {
-  appearance: none;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23566B4C' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m3 6 5 5 5-5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 16px center;
-  padding-right: 44px;
-}
-
-.form--dark .field__input {
+  border-radius: var(--r-card);
   background: rgba(255, 255, 255, .07);
-  border-color: rgba(255, 255, 255, .22);
+  border: 1px solid rgba(255, 255, 255, .18);
+}
+.callcard__phone {
+  font-family: var(--font-head);
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  line-height: 1.1;
   color: #fff;
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+  transition: color var(--dur) var(--ease);
 }
-.form--dark .field__input::placeholder { color: rgba(255, 255, 255, .62); }
-.form--dark .field__input:hover { border-color: rgba(255, 255, 255, .4); }
-.form--dark .field__input:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(95, 176, 32, .32);
+.callcard__phone:hover { color: var(--gold); }
+.callcard__note {
+  color: rgba(255, 255, 255, .8);
+  font-size: 16px;
+  max-width: 40ch;
 }
 
-.field__input[aria-invalid="true"] { border-color: #C0341B; }
-.form--dark .field__input[aria-invalid="true"] { border-color: #F0A08E; }
-
-.field__error { font-size: 14px; color: #A82D16; }
-.form--dark .field__error { color: #F5B5A5; }
-
-.form__status { margin-top: 16px; font-size: 15px; }
-.form__status:empty { margin-top: 0; }
-.form__status.is-error { color: #A82D16; }
-.form__status.is-success { color: #2F6B3A; font-weight: 500; }
-.form--dark .form__status.is-error { color: #F5B5A5; }
-.form--dark .form__status.is-success { color: #A8D8B0; }
-
-.form__note { margin-top: 16px; font-size: 13px; color: var(--muted); }
-.form--dark .form__note { color: rgba(255, 255, 255, .55); }
+/* Светлый вариант для финальной секции */
+.callcard--light {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: var(--shadow-md);
+  max-width: 560px;
+  margin-inline: auto;
+  justify-items: center;
+  text-align: center;
+}
+.callcard--light .callcard__phone { color: var(--fg); }
+.callcard--light .callcard__phone:hover { color: var(--accent-ink); }
+.callcard--light .callcard__note { color: var(--muted); }
 
 /* ---------- Рейтинг ---------- */
 .rating {
@@ -853,11 +807,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .nav.is-open { display: flex; }
   .nav a { padding: 14px 16px; font-size: 17px; }
   .nav .btn { margin-top: 8px; }
-  .nav .header__phone {
-    padding: 14px 16px;
-    font-size: 18px;
-    color: var(--accent-ink);
-  }
 
   .header__actions { margin-left: auto; }
 
@@ -884,7 +833,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   body { font-size: 16px; }
 
   .header__actions .btn { display: none; }
-  .header__actions .header__phone { display: none; }
 
   .hero { padding-top: 32px; }
   .hero__sub { margin-top: 16px; }
@@ -916,8 +864,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .tile--wide { grid-column: span 1; }
   .tile { padding: 24px; }
 
-  .form__grid { grid-template-columns: 1fr; }
-
   .rating { grid-template-columns: 1fr; text-align: center; }
   .rating__body .btn { width: 100%; }
 
@@ -945,5 +891,4 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .nav__extra { display: none; }
 @media (max-width: 900px) {
   .nav__extra { display: flex; }
-  .nav a.nav__extra.header__phone { justify-content: flex-start; }
 }
