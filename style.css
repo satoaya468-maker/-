@@ -649,6 +649,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
   transition: color var(--dur) var(--ease);
 }
 .callcard__phone:hover { color: var(--gold); }
+.callcard__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 .callcard__note {
   color: rgba(255, 255, 255, .8);
   font-size: 16px;
@@ -867,8 +872,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .rating { grid-template-columns: 1fr; text-align: center; }
   .rating__body .btn { width: 100%; }
 
-  .contacts__actions { flex-direction: column; align-items: stretch; }
-  .contacts__actions .btn { width: 100%; }
+  .contacts__actions,
+  .callcard__actions { flex-direction: column; align-items: stretch; }
+  .contacts__actions .btn,
+  .callcard__actions .btn { width: 100%; }
 
   .footer__inner { grid-template-columns: 1fr; gap: 32px; }
   .footer__brand { grid-column: span 1; }

@@ -110,8 +110,7 @@
             <div class="promo__copy">
               <h2 class="promo__title">Акции первыми в группе ВКонтакте</h2>
               <p class="promo__text">Новые поставки, цены и анонсы публикуем там. Подпишитесь, чтобы не пропустить.</p>
-              <!-- TODO: подставить ссылку на группу ВКонтакте -->
-              <a class="btn btn--on-dark" href="#" target="_blank" rel="noopener">
+              <a class="btn btn--on-dark" data-vk>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M12.8 17.3c-5.5 0-8.9-3.8-9-10.1h2.8c.1 4.6 2.2 6.6 3.8 7V7.2h2.6v4c1.6-.2 3.3-2 3.9-4h2.6c-.4 2.5-2.2 4.3-3.4 5 1.2.6 3.2 2.2 4 5h-2.9c-.6-1.9-2.1-3.4-4.2-3.7v3.7h-.2Z"/>
                 </svg>
@@ -256,20 +255,6 @@
           <p class="card__badge">Одни из самых низких цен в городе</p>
         </li>
         <li class="card reveal">
-          <figure class="card__media ph" data-ph="цукаты, 1:1">
-            <img src="img/cat-candied.jpg" alt="Цукаты: ананас, папайя, манго, имбирь" loading="lazy" width="600" height="600">
-          </figure>
-          <h3 class="card__title">Цукаты</h3>
-          <p class="card__text">Ананас, папайя, манго, имбирь</p>
-        </li>
-        <li class="card reveal">
-          <figure class="card__media ph" data-ph="ореховый микс, 1:1">
-            <img src="img/cat-mixes.jpg" alt="Ореховые смеси и миксы" loading="lazy" width="600" height="600">
-          </figure>
-          <h3 class="card__title">Смеси и миксы</h3>
-          <p class="card__text">Ореховое ассорти, смеси для завтрака и перекуса</p>
-        </li>
-        <li class="card reveal">
           <figure class="card__media ph" data-ph="восточные сладости, 1:1">
             <img src="img/cat-sweets.jpg" alt="Восточные сладости и конфеты" loading="lazy" width="600" height="600">
           </figure>
@@ -348,7 +333,10 @@
         <div class="callcard">
           <a class="callcard__phone" href="tel:+79823332728">+7 982 333-27-28</a>
           <p class="callcard__note">Расскажите, какие позиции нужны и в каком объёме. Посчитаем цену и сроки поставки.</p>
-          <a class="btn btn--accent btn--lg btn--block" href="tel:+79823332728">Позвонить</a>
+          <div class="callcard__actions">
+            <a class="btn btn--accent btn--lg" href="tel:+79823332728">Позвонить</a>
+            <a class="btn btn--on-dark btn--lg" data-vk><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.8 17.3c-5.5 0-8.9-3.8-9-10.1h2.8c.1 4.6 2.2 6.6 3.8 7V7.2h2.6v4c1.6-.2 3.3-2 3.9-4h2.6c-.4 2.5-2.2 4.3-3.4 5 1.2.6 3.2 2.2 4 5h-2.9c-.6-1.9-2.1-3.4-4.2-3.7v3.7h-.2Z"/></svg> Написать в ВК</a>
+          </div>
         </div>
       </div>
     </div>
@@ -423,6 +411,7 @@
 
           <div class="contacts__actions">
             <a class="btn btn--accent btn--lg" href="tel:+79823332728">Позвонить</a>
+            <a class="btn btn--ghost btn--lg" data-vk><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.8 17.3c-5.5 0-8.9-3.8-9-10.1h2.8c.1 4.6 2.2 6.6 3.8 7V7.2h2.6v4c1.6-.2 3.3-2 3.9-4h2.6c-.4 2.5-2.2 4.3-3.4 5 1.2.6 3.2 2.2 4 5h-2.9c-.6-1.9-2.1-3.4-4.2-3.7v3.7h-.2Z"/></svg> Написать в ВК</a>
           </div>
         </div>
 
@@ -445,7 +434,10 @@
       <div class="callcard callcard--light reveal">
         <a class="callcard__phone" href="tel:+79823332728">+7 982 333-27-28</a>
         <p class="callcard__note">Магнитогорск, улица Карла Маркса, 214. Работаем с 9:00.</p>
-        <a class="btn btn--accent btn--lg" href="tel:+79823332728">Позвонить</a>
+        <div class="callcard__actions">
+          <a class="btn btn--accent btn--lg" href="tel:+79823332728">Позвонить</a>
+          <a class="btn btn--ghost btn--lg" data-vk><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.8 17.3c-5.5 0-8.9-3.8-9-10.1h2.8c.1 4.6 2.2 6.6 3.8 7V7.2h2.6v4c1.6-.2 3.3-2 3.9-4h2.6c-.4 2.5-2.2 4.3-3.4 5 1.2.6 3.2 2.2 4 5h-2.9c-.6-1.9-2.1-3.4-4.2-3.7v3.7h-.2Z"/></svg> Написать в ВК</a>
+        </div>
       </div>
     </div>
   </section>
