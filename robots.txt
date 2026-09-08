@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://spektr-mgn.ru/sitemap.xml
+# Карту сайта укажите здесь, когда появится домен, например:
+# Sitemap: https://ВАШ-ДОМЕН/sitemap.xml

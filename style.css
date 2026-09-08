@@ -433,7 +433,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
   justify-items: start;
   gap: 16px;
 }
+/* Не заголовок, а рекламная подпись: карусель стоит выше h1, и четыре
+   h2 перед ним ломали структуру страницы. Начертание берём вручную. */
 .promo__title {
+  font-family: var(--font-head);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  text-wrap: balance;
   font-size: clamp(24px, 2.6vw, 34px);
   line-height: 1.15;
   max-width: 16ch;

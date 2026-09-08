@@ -4,19 +4,43 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-<title>Фисташка: орехи, фрукты, напитки и сладости в Магнитогорске | Розница и опт</title>
-<meta name="description" content="Магазин «Фисташка» на Карла Маркса 214 в Магнитогорске: орехи, сухофрукты, семечки, свежие фрукты и ягоды, бахчевые, напитки по низким ценам, восточные сладости и конфеты. Розница и опт для кафе, ресторанов и пекарен.">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<title>Продуктовый магазин «Фисташка» в Магнитогорске: орехи, сухофрукты</title>
+<meta name="description" content="Орехи, сухофрукты, семечки, фрукты, ягоды, напитки и восточные сладости в Магнитогорске. Продуктовый магазин «Фисташка» на Карла Маркса, 214. Розница и опт.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="keywords" content="продуктовый магазин Магнитогорск, орехи Магнитогорск, сухофрукты Магнитогорск, семечки на развес, свежие фрукты, ягоды, клубника, арбузы, дыни, напитки дёшево, восточные сладости, конфеты, орехи оптом, Карла Маркса 214, Фисташка">
+<meta name="author" content="Фисташка">
 <meta name="geo.region" content="RU-CHE">
 <meta name="geo.placename" content="Магнитогорск">
+<!-- TODO: geo.position и ICBM с координатами магазина заметно помогают
+     локальной выдаче. Возьмите широту и долготу из карточки 2ГИС и
+     раскомментируйте, подставив свои значения:
+<meta name="geo.position" content="ШИРОТА;ДОЛГОТА">
+<meta name="ICBM" content="ШИРОТА, ДОЛГОТА"> -->
 <meta name="theme-color" content="#F5F8EF">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="Фисташка">
-<meta property="og:title" content="Фисташка: орехи, фрукты, напитки и сладости в Магнитогорске">
-<meta property="og:description" content="Орехи, сухофрукты, свежие фрукты и ягоды, напитки и сладости на Карла Маркса 214. Розница и опт для кафе, ресторанов и пекарен.">
-<!-- TODO: после покупки домена добавить <link rel="canonical">, og:url и og:image с абсолютными URL -->
+<meta property="og:title" content="Продуктовый магазин «Фисташка» в Магнитогорске">
+<meta property="og:description" content="Орехи, сухофрукты, семечки, фрукты, ягоды, напитки и восточные сладости. Карла Маркса, 214. Розница и опт, свежие поставки.">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Продуктовый магазин «Фисташка» в Магнитогорске">
+<meta name="twitter:description" content="Орехи, сухофрукты, семечки, фрукты, ягоды, напитки и восточные сладости. Карла Маркса, 214.">
+
+<!-- TODO: домена пока нет, поэтому canonical, og:url и og:image не заданы.
+     Поисковики требуют здесь АБСОЛЮТНЫЕ адреса, относительные не годятся.
+     Как появится домен, раскомментируйте и подставьте его:
+<link rel="canonical" href="https://ВАШ-ДОМЕН/">
+<meta property="og:url" content="https://ВАШ-ДОМЕН/">
+<meta property="og:image" content="https://ВАШ-ДОМЕН/img/store-shelf.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="Витрина магазина «Фисташка»">
+<meta name="twitter:image" content="https://ВАШ-ДОМЕН/img/store-shelf.jpg">
+     Туда же добавьте подтверждение прав в Яндекс.Вебмастере и Google Search Console:
+<meta name="yandex-verification" content="КОД">
+<meta name="google-site-verification" content="КОД"> -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,14 +51,25 @@
 
 <script>document.documentElement.className = 'js';</script>
 
+<!-- Микроразметка организации. Относительные пути в logo и image
+     поисковики раскроют относительно адреса страницы, это допустимо.
+     TODO: как уточните время закрытия и выходные, добавьте сюда
+     openingHoursSpecification, а из карточки 2ГИС возьмите geo с
+     координатами. Оба поля сильно влияют на локальную выдачу. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "GroceryStore",
+  "@id": "#store",
   "name": "Фисташка",
+  "alternateName": "Продуктовый магазин Фисташка",
+  "description": "Продуктовый магазин в Магнитогорске: орехи, сухофрукты, семечки, свежие фрукты и ягоды, бахчевые, напитки, восточные сладости и конфеты. Розница и оптовые поставки для кафе, ресторанов и пекарен.",
+  "slogan": "Орехи, фрукты, напитки и всё к столу",
   "logo": "img/logo.webp",
-  "description": "Орехи, сухофрукты, семечки, свежие фрукты и ягоды, бахчевые, напитки, восточные сладости и конфеты. Розница и оптовые поставки для кафе, ресторанов и пекарен.",
+  "image": "img/store-shelf.jpg",
   "telephone": "+7-982-333-27-28",
+  "currenciesAccepted": "RUB",
+  "priceRange": "₽",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "улица Карла Маркса, 214",
@@ -42,11 +77,31 @@
     "addressRegion": "Челябинская область",
     "addressCountry": "RU"
   },
+  "areaServed": {
+    "@type": "City",
+    "name": "Магнитогорск"
+  },
+  "sameAs": ["https://vk.ru/club241336451"],
+  "hasMap": "https://2gis.ru/magnitogorsk/search/%D0%A4%D0%B8%D1%81%D1%82%D0%B0%D1%88%D0%BA%D0%B0%20%D0%9A%D0%B0%D1%80%D0%BB%D0%B0%20%D0%9C%D0%B0%D1%80%D0%BA%D1%81%D0%B0%20214",
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "5",
     "reviewCount": "8",
     "bestRating": "5"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Ассортимент",
+    "itemListElement": [
+      { "@type": "OfferCatalog", "name": "Орехи" },
+      { "@type": "OfferCatalog", "name": "Сухофрукты" },
+      { "@type": "OfferCatalog", "name": "Семечки" },
+      { "@type": "OfferCatalog", "name": "Свежие фрукты" },
+      { "@type": "OfferCatalog", "name": "Ягоды" },
+      { "@type": "OfferCatalog", "name": "Бахчевые" },
+      { "@type": "OfferCatalog", "name": "Напитки" },
+      { "@type": "OfferCatalog", "name": "Восточные сладости и конфеты" }
+    ]
   }
 }
 </script>
@@ -97,7 +152,7 @@
 
           <li class="promo__slide promo__slide--deep" role="group" aria-roledescription="слайд" aria-label="1 из 4">
             <div class="promo__copy">
-              <h2 class="promo__title">Свежий урожай кураги</h2>
+              <p class="promo__title">Свежий урожай кураги</p>
               <p class="promo__text">Новая партия уже на витрине. Отпускаем на вес, столько, сколько нужно.</p>
               <a class="btn btn--accent" href="tel:+79823332728">Позвонить</a>
             </div>
@@ -108,7 +163,7 @@
 
           <li class="promo__slide promo__slide--green" role="group" aria-roledescription="слайд" aria-label="2 из 4">
             <div class="promo__copy">
-              <h2 class="promo__title">Акции первыми в группе ВКонтакте</h2>
+              <p class="promo__title">Акции первыми в группе ВКонтакте</p>
               <p class="promo__text">Новые поставки, цены и анонсы публикуем там. Подпишитесь, чтобы не пропустить.</p>
               <a class="btn btn--on-dark" data-vk>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -124,7 +179,7 @@
 
           <li class="promo__slide promo__slide--deep" role="group" aria-roledescription="слайд" aria-label="3 из 4">
             <div class="promo__copy">
-              <h2 class="promo__title">Грецкий орех оптом от 5 кг</h2>
+              <p class="promo__title">Грецкий орех оптом от 5 кг</p>
               <p class="promo__text">Для кафе, пекарен и кондитерских. Цена зависит от объёма партии.</p>
               <a class="btn btn--accent" href="#wholesale">Оптовые цены</a>
             </div>
@@ -135,7 +190,7 @@
 
           <li class="promo__slide promo__slide--green" role="group" aria-roledescription="слайд" aria-label="4 из 4">
             <div class="promo__copy">
-              <h2 class="promo__title">Миксы орехов и сухофруктов</h2>
+              <p class="promo__title">Миксы орехов и сухофруктов</p>
               <p class="promo__text">Готовые наборы для перекуса и в подарок. Соберём состав под ваш вкус.</p>
               <a class="btn btn--on-dark" href="#catalog">Подробнее</a>
             </div>
@@ -376,7 +431,7 @@
       </figure>
       <div class="about__copy reveal">
         <h2 class="section__title">О магазине</h2>
-        <p class="section__lead">Более 100 позиций орехов, сухофруктов и семечек на развес. Свежие поставки, честный вес, приезжайте выбирать.</p>
+        <p class="section__lead">Продуктовый магазин «Фисташка» работает на улице Карла Маркса, 214 в Магнитогорске. Более 100 позиций орехов, сухофруктов и семечек на развес. Свежие поставки, честный вес, приезжайте выбирать.</p>
       </div>
     </div>
   </section>
@@ -451,7 +506,7 @@
         <img class="logo__mark" src="img/logo.webp" alt="" width="40" height="40" loading="lazy">
         <span class="logo__text">Фисташка</span>
       </span>
-      <p class="footer__tag">Орехи, фрукты, напитки и сладости в Магнитогорске. Розница и опт.</p>
+      <p class="footer__tag">Продуктовый магазин в Магнитогорске: орехи, фрукты, напитки и сладости. Розница и опт.</p>
     </div>
 
     <nav class="footer__nav" aria-label="Навигация в подвале">
