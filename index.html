@@ -28,17 +28,19 @@
 <meta name="twitter:title" content="Продуктовый магазин «Фисташка» в Магнитогорске">
 <meta name="twitter:description" content="Орехи, сухофрукты, семечки, фрукты, ягоды, напитки и восточные сладости. Карла Маркса, 214.">
 
-<!-- TODO: домена пока нет, поэтому canonical, og:url и og:image не заданы.
-     Поисковики требуют здесь АБСОЛЮТНЫЕ адреса, относительные не годятся.
-     Как появится домен, раскомментируйте и подставьте его:
-<link rel="canonical" href="https://ВАШ-ДОМЕН/">
-<meta property="og:url" content="https://ВАШ-ДОМЕН/">
-<meta property="og:image" content="https://ВАШ-ДОМЕН/img/store-shelf.jpg">
+<!-- Домен фисташка-продуктовый.рф записан в punycode: кириллические
+     адреса поисковики хранят именно в этой форме, и смешивать две
+     записи одного адреса нельзя, иначе страница задваивается в индексе. -->
+<link rel="canonical" href="https://xn----7sbajjumdd2bcinipjpg4fsd.xn--p1ai/">
+<meta property="og:url" content="https://xn----7sbajjumdd2bcinipjpg4fsd.xn--p1ai/">
+<meta property="og:image" content="https://xn----7sbajjumdd2bcinipjpg4fsd.xn--p1ai/img/store-shelf.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="900">
-<meta property="og:image:alt" content="Витрина магазина «Фисташка»">
-<meta name="twitter:image" content="https://ВАШ-ДОМЕН/img/store-shelf.jpg">
-     Туда же добавьте подтверждение прав в Яндекс.Вебмастере и Google Search Console:
+<meta property="og:image:alt" content="Витрина магазина «Фисташка» с орехами и сухофруктами на развес">
+<meta name="twitter:image" content="https://xn----7sbajjumdd2bcinipjpg4fsd.xn--p1ai/img/store-shelf.jpg">
+
+<!-- TODO: подтверждение прав на сайт. Коды выдадут Яндекс.Вебмастер и
+     Google Search Console, когда добавите туда домен:
 <meta name="yandex-verification" content="КОД">
 <meta name="google-site-verification" content="КОД"> -->
 
@@ -60,13 +62,14 @@
 {
   "@context": "https://schema.org",
   "@type": "GroceryStore",
-  "@id": "#store",
+  "@id": "https://xn----7sbajjumdd2bcinipjpg4fsd.xn--p1ai/#store",
+  "url": "https://xn----7sbajjumdd2bcinipjpg4fsd.xn--p1ai/",
   "name": "Фисташка",
   "alternateName": "Продуктовый магазин Фисташка",
   "description": "Продуктовый магазин в Магнитогорске: орехи, сухофрукты, семечки, свежие фрукты и ягоды, бахчевые, напитки, восточные сладости и конфеты. Розница и оптовые поставки для кафе, ресторанов и пекарен.",
   "slogan": "Орехи, фрукты, напитки и всё к столу",
-  "logo": "img/logo.webp",
-  "image": "img/store-shelf.jpg",
+  "logo": "https://xn----7sbajjumdd2bcinipjpg4fsd.xn--p1ai/img/logo.webp",
+  "image": "https://xn----7sbajjumdd2bcinipjpg4fsd.xn--p1ai/img/store-shelf.jpg",
   "telephone": "+7-982-333-27-28",
   "currenciesAccepted": "RUB",
   "priceRange": "₽",

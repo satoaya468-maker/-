@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Карту сайта укажите здесь, когда появится домен, например:
-# Sitemap: https://ВАШ-ДОМЕН/sitemap.xml
+Sitemap: https://xn----7sbajjumdd2bcinipjpg4fsd.xn--p1ai/sitemap.xml
