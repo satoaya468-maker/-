@@ -196,7 +196,8 @@
         </a>
         <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu"
                 class="grid h-11 w-11 place-items-center rounded-xl border border-slate-300 text-slate-900 lg:hidden">
-          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          <i class="js-icon-open fa-solid fa-bars" aria-hidden="true"></i>
+          <i class="js-icon-close fa-solid fa-xmark" aria-hidden="true" hidden></i>
           <span class="sr-only">Открыть меню</span>
         </button>
       </div>
@@ -812,18 +813,19 @@
   var menuToggle = document.getElementById('menu-toggle');
   var mobileMenu = document.getElementById('mobile-menu');
   if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener('click', function () {
-      var open = mobileMenu.hidden;
+    var iconOpen = menuToggle.querySelector('.js-icon-open');
+    var iconClose = menuToggle.querySelector('.js-icon-close');
+
+    function setMenu(open) {
       mobileMenu.hidden = !open;
       menuToggle.setAttribute('aria-expanded', String(open));
-      menuToggle.querySelector('i').className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
-    });
+      if (iconOpen) iconOpen.hidden = open;
+      if (iconClose) iconClose.hidden = !open;
+    }
+
+    menuToggle.addEventListener('click', function () { setMenu(mobileMenu.hidden); });
     mobileMenu.addEventListener('click', function (e) {
-      if (e.target.closest('a')) {
-        mobileMenu.hidden = true;
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.querySelector('i').className = 'fa-solid fa-bars';
-      }
+      if (e.target.closest('a')) setMenu(false);
     });
   }
 
