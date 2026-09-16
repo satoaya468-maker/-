@@ -6,9 +6,9 @@
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#0f172a">
 
-<title>СТРОЙ-БАЗА 74 - оптовая продажа цемента, блоков и сыпучих материалов в Магнитогорске</title>
-<meta name="description" content="Оптово-розничный склад стройматериалов на Западном шоссе: цемент, шлакоблок, газоблок, песок, щебень, сухие смеси, арматура. Доставка в день заказа по Магнитогорску и поселкам. Цены от 1 поддона, оплата по факту выгрузки.">
-<meta name="keywords" content="цемент оптом Магнитогорск, шлакоблок купить, газоблок цена, песок щебень с доставкой, стройматериалы оптом, сухие смеси, арматура">
+<title>СТРОЙ-БАЗА 74 - оптово-розничный склад стройматериалов в Магнитогорске</title>
+<meta name="description" content="Цемент, шлакоблок, газоблок, песок, щебень, сухие смеси и металл со склада на Западном шоссе. Доставка собственным транспортом по Магнитогорску и поселкам в день заказа. Оплата при выгрузке, работаем с НДС. Телефон +7 (912) 805-49-47.">
+<meta name="keywords" content="стройматериалы Магнитогорск, цемент оптом, шлакоблок купить, газоблок цена, песок щебень с доставкой, сухие смеси, арматура, склад на Западном шоссе">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="geo.region" content="RU-CHE">
 <meta name="geo.placename" content="Магнитогорск">
@@ -17,8 +17,8 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="СТРОЙ-БАЗА 74">
-<meta property="og:title" content="СТРОЙ-БАЗА 74 - стройматериалы оптом с доставкой в день заказа">
-<meta property="og:description" content="Прямые поставки от заводов без посредников. Оптовые цены от 1 поддона, собственный автопарк, оплата по факту выгрузки.">
+<meta property="og:title" content="СТРОЙ-БАЗА 74 - стройматериалы с доставкой в день заказа">
+<meta property="og:description" content="Прямые поставки от заводов. Оптовые и розничные цены от 1 поддона, доставка по Магнитогорску и поселкам, оплата при выгрузке.">
 <meta property="og:url" content="https://stroybaza74.ru/">
 <!-- TODO: подставить реальную обложку 1200x630 -->
 <meta property="og:image" content="https://stroybaza74.ru/assets/og-cover.jpg">
@@ -26,6 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
 <!-- Tailwind через CDN. Для продакшена собрать CSS локально (CDN-рантайм не кэшируется и весит лишнее). -->
@@ -40,7 +41,9 @@
         colors: {
           /* Один акцент на всю страницу: оранжевый.
              brand-700 - фон сплошных кнопок (контраст с белым 5.16:1, WCAG AA).
-             brand-600/500 - иконки, рамки, подложки. */
+             brand-600/500 - иконки, рамки, подложки.
+             tg - синий Telegram, притемнен до контраста 4.95:1 с белым (WCAG AA),
+             используется только на кнопках мессенджера. */
           brand: {
             50:  '#fff7ed',
             100: '#ffedd5',
@@ -49,7 +52,8 @@
             600: '#ea580c',
             700: '#c2410c',
             800: '#9a3412'
-          }
+          },
+          tg: { 500: '#1678a8', 600: '#12658d' }
         },
         maxWidth: { content: '1320px' },
         boxShadow: {
@@ -64,12 +68,12 @@
 
 <style>
   :root {
-    /* Семантическая шкала слоев: выпадающее меню -> шапка -> подложка модалки -> модалка -> мобильная панель */
+    /* Семантическая шкала слоев: выпадающее меню -> шапка -> плавающие кнопки -> подложка модалки -> модалка */
     --z-dropdown: 30;
     --z-sticky: 40;
+    --z-dock: 45;
     --z-backdrop: 50;
     --z-modal: 60;
-    --z-dock: 45;
     --ease-out-quint: cubic-bezier(.22,1,.36,1);
   }
 
@@ -83,7 +87,7 @@
 
   .num { font-variant-numeric: tabular-nums; }
 
-  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
     outline: 2px solid #c2410c;
     outline-offset: 2px;
     border-radius: 4px;
@@ -99,6 +103,12 @@
     display: grid;
     place-items: center;
   }
+
+  /* Аккордеон на <details>: работает и без JS */
+  .faq summary { list-style: none; cursor: pointer; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary .chev { transition: transform .25s var(--ease-out-quint); }
+  .faq details[open] summary .chev { transform: rotate(180deg); }
 
   /* Вход первого экрана. Базовое состояние элементов - видимое,
      анимация только добавляет движение, поэтому без JS и в краулерах все на месте. */
@@ -116,7 +126,6 @@
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
 
-  /* Скрытие мобильной панели, когда открыта модалка */
   body.is-locked { overflow: hidden; }
 </style>
 </head>
@@ -125,16 +134,16 @@
 
 <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:rounded-xl focus:bg-brand-700 focus:px-4 focus:py-2 focus:font-semibold focus:text-white">Перейти к содержанию</a>
 
-<!-- ============ ВЕРХНЯЯ ПАНЕЛЬ ============ -->
+<!-- ============ 1. ВЕРХНЯЯ ПЛАШКА ============ -->
 <div class="bg-slate-900 text-slate-300">
   <div class="mx-auto flex max-w-content flex-col gap-1.5 px-4 py-2.5 text-[13px] leading-snug md:flex-row md:items-center md:justify-between md:px-6">
     <p class="flex items-start gap-2">
       <i class="fa-solid fa-warehouse mt-0.5 text-brand-500" aria-hidden="true"></i>
-      <span>Оптово-розничный склад на Западном шоссе. Доставка по Магнитогорску и поселкам: Нежный, Западный, Светлый</span>
+      <span>Оптово-розничный склад на Западном шоссе. Доставка по Магнитогорску и пригородным поселкам</span>
     </p>
     <nav aria-label="Служебное меню" class="hidden flex-wrap items-center gap-x-5 gap-y-1 text-slate-400 sm:flex">
       <a class="transition-colors hover:text-white" href="#dostavka">Доставка и оплата</a>
-      <a class="transition-colors hover:text-white" href="#yurlicam">Юридическим лицам</a>
+      <a class="transition-colors hover:text-white" href="#b2b">Снабженцам</a>
       <a class="transition-colors hover:text-white" href="#kontakty">Контакты</a>
     </nav>
   </div>
@@ -148,7 +157,6 @@
 
     <div class="flex items-center gap-3 py-3 md:gap-5 md:py-4">
 
-      <!-- Логотип -->
       <a href="/" class="flex shrink-0 items-center gap-2.5" aria-label="СТРОЙ-БАЗА 74, на главную">
         <span class="grid h-10 w-10 place-items-center rounded-xl bg-brand-700 text-white md:h-11 md:w-11">
           <i class="fa-solid fa-trowel-bricks text-lg" aria-hidden="true"></i>
@@ -159,30 +167,27 @@
         </span>
       </a>
 
-      <!-- Каталог -->
       <button type="button" id="catalog-toggle" aria-expanded="false" aria-controls="catalog-panel"
               class="hidden shrink-0 items-center gap-2.5 rounded-xl bg-brand-700 px-5 py-3 text-[15px] font-bold text-white transition-colors duration-200 hover:bg-brand-800 active:translate-y-px lg:inline-flex">
         <i class="fa-solid fa-bars" aria-hidden="true"></i>
         Каталог
       </button>
 
-      <!-- Поиск -->
       <form class="hidden min-w-0 flex-1 md:block" role="search" action="/search" method="get">
         <label for="site-search" class="sr-only">Поиск по каталогу</label>
         <div class="flex items-stretch overflow-hidden rounded-xl border border-slate-300 bg-white transition-colors focus-within:border-brand-600">
           <span class="grid w-11 place-items-center text-slate-500"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
           <input id="site-search" name="q" type="search" autocomplete="off"
-                 placeholder="Поиск по 5000+ товарам: цемент, шлакоблок..."
+                 placeholder="Поиск по каталогу: цемент, шлакоблок, щебень, песок..."
                  class="min-w-0 flex-1 bg-transparent py-3 pr-3 text-[15px] text-slate-900 outline-none placeholder:text-slate-500">
           <button type="submit" class="shrink-0 bg-slate-100 px-5 text-[15px] font-semibold text-slate-900 transition-colors hover:bg-slate-200">Найти</button>
         </div>
       </form>
 
-      <!-- Контакты -->
       <div class="ml-auto flex items-center gap-3 md:gap-4">
         <div class="hidden text-right lg:block">
-          <a href="tel:+73519457012" class="block whitespace-nowrap text-[19px] font-extrabold leading-tight tracking-tight num text-slate-900 transition-colors hover:text-brand-700">8 (3519) 45-70-12</a>
-          <span class="ml-auto block max-w-[184px] text-[12px] leading-tight text-slate-500">Звонок бесплатный. Прямой отдел продаж</span>
+          <a href="tel:+79128054947" class="block whitespace-nowrap text-[19px] font-extrabold leading-tight tracking-tight num text-slate-900 transition-colors hover:text-brand-700">+7 (912) 805-49-47</a>
+          <span class="ml-auto block max-w-[184px] text-[12px] leading-tight text-slate-500">Звонок прямой. Отдел продаж</span>
         </div>
         <button type="button" class="js-modal hidden items-center gap-2 rounded-xl border-2 border-brand-700 px-4 py-2.5 text-[15px] font-bold text-brand-700 transition-colors duration-200 hover:bg-brand-50 active:translate-y-px lg:inline-flex"
                 data-subject="Заказать звонок" data-title="Заказать звонок" data-note="Перезвоним в течение 15 минут в рабочее время.">
@@ -190,8 +195,7 @@
           Заказать звонок
         </button>
 
-        <!-- Мобильные действия -->
-        <a href="tel:+73519457012" class="grid h-11 w-11 place-items-center rounded-xl bg-brand-700 text-white lg:hidden" aria-label="Позвонить: 8 (3519) 45-70-12">
+        <a href="tel:+79128054947" class="grid h-11 w-11 place-items-center rounded-xl bg-brand-700 text-white lg:hidden" aria-label="Позвонить: +7 912 805-49-47">
           <i class="fa-solid fa-phone" aria-hidden="true"></i>
         </a>
         <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu"
@@ -203,43 +207,41 @@
       </div>
     </div>
 
-    <!-- Поиск на мобильных -->
     <form class="pb-3 md:hidden" role="search" action="/search" method="get">
       <label for="site-search-mobile" class="sr-only">Поиск по каталогу</label>
       <div class="flex items-stretch overflow-hidden rounded-xl border border-slate-300 bg-white focus-within:border-brand-600">
         <span class="grid w-10 place-items-center text-slate-500"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
-        <input id="site-search-mobile" name="q" type="search" placeholder="Цемент, шлакоблок, песок..."
+        <input id="site-search-mobile" name="q" type="search" placeholder="Цемент, шлакоблок, щебень, песок..."
                class="min-w-0 flex-1 bg-transparent py-2.5 pr-3 text-[15px] outline-none placeholder:text-slate-500">
       </div>
     </form>
   </div>
 
-  <!-- Панель каталога -->
   <div id="catalog-panel" hidden class="absolute inset-x-0 top-full border-b border-slate-200 bg-white shadow-lift" style="z-index: var(--z-dropdown)">
     <div class="mx-auto max-w-content px-6 py-6">
       <div class="grid gap-x-8 gap-y-1 md:grid-cols-3">
         <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-slate-50" href="#katalog"><i class="fa-solid fa-sack-xmark w-5 text-center text-brand-600" aria-hidden="true"></i> Цемент и ЖБИ</a>
         <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-slate-50" href="#katalog"><i class="fa-solid fa-cubes w-5 text-center text-brand-600" aria-hidden="true"></i> Шлакоблок и газоблок</a>
-        <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-slate-50" href="#katalog"><i class="fa-solid fa-mountain w-5 text-center text-brand-600" aria-hidden="true"></i> Сыпучие: песок, щебень</a>
+        <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-slate-50" href="#katalog"><i class="fa-solid fa-mountain w-5 text-center text-brand-600" aria-hidden="true"></i> Сыпучие: песок, щебень, отсев</a>
         <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-slate-50" href="#katalog"><i class="fa-solid fa-house-chimney w-5 text-center text-brand-600" aria-hidden="true"></i> Кровельные материалы</a>
         <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-slate-50" href="#katalog"><i class="fa-solid fa-fill-drip w-5 text-center text-brand-600" aria-hidden="true"></i> Сухие смеси</a>
         <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-slate-50" href="#katalog"><i class="fa-solid fa-grip-lines w-5 text-center text-brand-600" aria-hidden="true"></i> Арматура и металл</a>
         <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-slate-50" href="#katalog"><i class="fa-solid fa-layer-group w-5 text-center text-brand-600" aria-hidden="true"></i> Утеплитель и гидроизоляция</a>
-        <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-slate-50" href="#katalog"><i class="fa-solid fa-truck-ramp-box w-5 text-center text-brand-600" aria-hidden="true"></i> Аренда техники</a>
+        <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-slate-50" href="#sklad"><i class="fa-solid fa-truck-ramp-box w-5 text-center text-brand-600" aria-hidden="true"></i> Аренда техники</a>
         <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 font-semibold text-brand-700 transition-colors hover:bg-brand-50" href="#katalog"><i class="fa-solid fa-arrow-right w-5 text-center" aria-hidden="true"></i> Весь каталог</a>
       </div>
     </div>
   </div>
 
-  <!-- Мобильное меню -->
   <div id="mobile-menu" hidden class="border-t border-slate-200 bg-white lg:hidden">
     <nav aria-label="Основное меню" class="mx-auto max-w-content px-4 py-4">
       <ul class="divide-y divide-slate-100 text-[15px] font-semibold">
         <li><a class="flex items-center justify-between py-3" href="#katalog">Каталог товаров <i class="fa-solid fa-chevron-right text-slate-400" aria-hidden="true"></i></a></li>
-        <li><a class="flex items-center justify-between py-3" href="#ceny">Оптовые цены <i class="fa-solid fa-chevron-right text-slate-400" aria-hidden="true"></i></a></li>
-        <li><a class="flex items-center justify-between py-3" href="#dostavka">Доставка и оплата <i class="fa-solid fa-chevron-right text-slate-400" aria-hidden="true"></i></a></li>
-        <li><a class="flex items-center justify-between py-3" href="#yurlicam">Юридическим лицам <i class="fa-solid fa-chevron-right text-slate-400" aria-hidden="true"></i></a></li>
-        <li><a class="flex items-center justify-between py-3" href="#kontakty">Контакты <i class="fa-solid fa-chevron-right text-slate-400" aria-hidden="true"></i></a></li>
+        <li><a class="flex items-center justify-between py-3" href="#ceny">Популярные позиции <i class="fa-solid fa-chevron-right text-slate-400" aria-hidden="true"></i></a></li>
+        <li><a class="flex items-center justify-between py-3" href="#b2b">Снабженцам и подрядчикам <i class="fa-solid fa-chevron-right text-slate-400" aria-hidden="true"></i></a></li>
+        <li><a class="flex items-center justify-between py-3" href="#sklad">Наш склад и техника <i class="fa-solid fa-chevron-right text-slate-400" aria-hidden="true"></i></a></li>
+        <li><a class="flex items-center justify-between py-3" href="#faq">Вопросы и ответы <i class="fa-solid fa-chevron-right text-slate-400" aria-hidden="true"></i></a></li>
+        <li><a class="flex items-center justify-between py-3" href="#kontakty">Контакты и карта <i class="fa-solid fa-chevron-right text-slate-400" aria-hidden="true"></i></a></li>
       </ul>
       <button type="button" class="js-modal mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-brand-700 px-5 py-3.5 text-[15px] font-bold text-white"
               data-subject="Заказать звонок" data-title="Заказать звонок" data-note="Перезвоним в течение 15 минут в рабочее время.">
@@ -251,10 +253,10 @@
 
 <main id="main">
 
-<!-- ============ HERO: ЛИД-МАГНИТ ============ -->
+<!-- ============ 2. HERO: ЛИД-МАГНИТ НА ВИДЕО-ФОНЕ ============ -->
 <section class="relative isolate overflow-hidden bg-slate-900">
 
-  <!-- TODO: заменить src на готовое видео Higgsfield (склад, погрузка, самосвал). Poster обязателен для LCP. -->
+  <!-- TODO: заменить src на готовое видео (склад, погрузка манипулятора, самосвал). Poster обязателен для LCP. -->
   <video class="absolute inset-0 -z-10 h-full w-full object-cover" autoplay loop muted playsinline preload="none" src="https://test-video.mp4"></video>
 
   <!-- Подложка на случай, пока видео не подключено, плюс затемнение под текст -->
@@ -264,30 +266,23 @@
 
   <div class="mx-auto grid max-w-content items-center gap-10 px-4 py-12 md:px-6 md:py-16 lg:grid-cols-[1.05fr_minmax(400px,440px)] lg:gap-14 lg:py-20">
 
-    <!-- Левая часть -->
     <div class="text-white">
       <h1 class="rise text-[30px] font-extrabold leading-[1.1] tracking-[-0.02em] sm:text-[40px] lg:text-[44px] xl:text-[50px]">
         Цемент, блоки и сыпучие материалы с доставкой в день заказа
       </h1>
 
-      <p class="rise rise-1 mt-5 max-w-[46ch] text-[17px] leading-relaxed text-slate-200 md:text-[19px]">
-        Прямые поставки от заводов без посредников. Оптовые цены от 1 поддона.
+      <p class="rise rise-1 mt-5 max-w-[58ch] text-[16px] leading-relaxed text-slate-200 md:text-[17px]">
+        Прямые поставки от заводов. Оптовые и розничные цены от 1 поддона. Быстрая доставка в поселки Нежный, Западный, Светлый, Княжье Поле, Зеленая Долина и по всему Магнитогорску.
       </p>
 
       <ul class="rise rise-2 mt-7 flex flex-wrap gap-x-7 gap-y-3 text-[15px] font-semibold text-white">
-        <li class="flex items-center gap-2.5">
-          <i class="fa-solid fa-check text-brand-500" aria-hidden="true"></i> Собственный автопарк
-        </li>
-        <li class="flex items-center gap-2.5">
-          <i class="fa-solid fa-check text-brand-500" aria-hidden="true"></i> Любые объемы на складе
-        </li>
-        <li class="flex items-center gap-2.5">
-          <i class="fa-solid fa-check text-brand-500" aria-hidden="true"></i> Оплата по факту выгрузки
-        </li>
+        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-500" aria-hidden="true"></i> Доставка собственным транспортом</li>
+        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-500" aria-hidden="true"></i> Оплата при выгрузке</li>
+        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-500" aria-hidden="true"></i> Работаем с НДС и физлицами</li>
       </ul>
     </div>
 
-    <!-- Правая часть: калькулятор-заявка -->
+    <!-- Карточка-калькулятор -->
     <div id="raschet" class="rise rise-1 rounded-2xl bg-white p-5 shadow-form sm:p-6">
       <h2 class="text-[21px] font-extrabold leading-tight tracking-tight sm:text-[23px]">Рассчитать оптовую стоимость за 2 минуты</h2>
       <p class="mt-2 text-[14px] leading-snug text-slate-600">Менеджер соберет смету по вашему объему и пришлет цену с учетом доставки.</p>
@@ -301,11 +296,10 @@
           <div class="relative">
             <select id="lead-category" name="category" required
                     class="w-full appearance-none rounded-xl border border-slate-300 bg-white px-3.5 py-3 pr-10 text-[15px] text-slate-900 outline-none transition-colors focus:border-brand-600">
-              <option value="Цемент">Цемент и ЖБИ</option>
-              <option value="Блоки">Блоки: шлакоблок, газоблок</option>
-              <option value="Сыпучие">Сыпучие: песок, щебень, отсев</option>
-              <option value="Сухие смеси">Сухие смеси</option>
-              <option value="Арматура">Арматура и металл</option>
+              <option value="Цемент">Цемент</option>
+              <option value="Блоки">Блоки</option>
+              <option value="Сыпучие">Сыпучие</option>
+              <option value="Металл">Металл</option>
             </select>
             <i class="fa-solid fa-chevron-down pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-500" aria-hidden="true"></i>
           </div>
@@ -358,7 +352,6 @@
         </label>
       </form>
 
-      <!-- Состояние после отправки -->
       <div class="js-success hidden">
         <div class="mt-5 rounded-xl border border-emerald-200 bg-emerald-50 p-5 text-center">
           <i class="fa-solid fa-circle-check text-3xl text-emerald-700" aria-hidden="true"></i>
@@ -371,219 +364,235 @@
   </div>
 </section>
 
-<!-- ============ ФАКТЫ О БАЗЕ ============ -->
-<!-- TODO: сверить цифры с клиентом перед публикацией -->
-<section class="border-b border-slate-200 bg-white">
-  <div class="mx-auto grid max-w-content grid-cols-2 gap-y-6 px-4 py-8 md:px-6 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-slate-200">
-    <div class="flex items-start gap-3 lg:px-6 lg:first:pl-0">
-      <i class="fa-solid fa-truck-fast mt-0.5 text-xl text-brand-600" aria-hidden="true"></i>
-      <p class="text-[14px] leading-snug"><span class="block font-bold text-slate-900">12 машин в автопарке</span><span class="text-slate-600">Манипулятор, самосвал, шаланда</span></p>
-    </div>
-    <div class="flex items-start gap-3 lg:px-6">
-      <i class="fa-solid fa-boxes-stacked mt-0.5 text-xl text-brand-600" aria-hidden="true"></i>
-      <p class="text-[14px] leading-snug"><span class="block font-bold text-slate-900">5000+ позиций</span><span class="text-slate-600">Склад 4200 кв.м, отгрузка без ожидания</span></p>
-    </div>
-    <div class="flex items-start gap-3 lg:px-6">
-      <i class="fa-solid fa-stopwatch mt-0.5 text-xl text-brand-600" aria-hidden="true"></i>
-      <p class="text-[14px] leading-snug"><span class="block font-bold text-slate-900">Отгрузка от 2 часов</span><span class="text-slate-600">По городу и поселкам в день заказа</span></p>
-    </div>
-    <div class="flex items-start gap-3 lg:px-6">
-      <i class="fa-solid fa-file-invoice mt-0.5 text-xl text-brand-600" aria-hidden="true"></i>
-      <p class="text-[14px] leading-snug"><span class="block font-bold text-slate-900">Работаем по безналу</span><span class="text-slate-600">С НДС, закрывающие документы сразу</span></p>
-    </div>
+<!-- ============ 3. ПРЕИМУЩЕСТВА БАЗЫ ============ -->
+<section class="mx-auto max-w-content px-4 py-12 md:px-6 md:py-16">
+  <h2 class="text-[26px] font-extrabold tracking-tight md:text-[32px]">Почему с базой удобно работать</h2>
+
+  <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+    <article class="rounded-2xl border border-slate-200 bg-white p-5">
+      <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700"><i class="fa-solid fa-truck-fast text-lg" aria-hidden="true"></i></span>
+      <h3 class="mt-4 text-[17px] font-bold">Собственная доставка</h3>
+      <p class="mt-2 text-[14px] leading-relaxed text-slate-600">Манипуляторы и самосвалы по Магнитогорску и поселкам.</p>
+    </article>
+
+    <article class="rounded-2xl border border-slate-200 bg-white p-5">
+      <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700"><i class="fa-solid fa-warehouse text-lg" aria-hidden="true"></i></span>
+      <h3 class="mt-4 text-[17px] font-bold">Склад на Западном шоссе</h3>
+      <p class="mt-2 text-[14px] leading-relaxed text-slate-600">Удобный въезд для грузовиков и самовывоза без пробок.</p>
+    </article>
+
+    <article class="rounded-2xl border border-slate-200 bg-white p-5">
+      <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700"><i class="fa-solid fa-phone-volume text-lg" aria-hidden="true"></i></span>
+      <h3 class="mt-4 text-[17px] font-bold">Отгрузка по звонку</h3>
+      <p class="mt-2 text-[14px] leading-relaxed text-slate-600">Привезем материалы на объект в день обращения.</p>
+    </article>
+
+    <article class="rounded-2xl border border-slate-200 bg-white p-5">
+      <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700"><i class="fa-solid fa-ruble-sign text-lg" aria-hidden="true"></i></span>
+      <h3 class="mt-4 text-[17px] font-bold">Любая форма оплаты</h3>
+      <p class="mt-2 text-[14px] leading-relaxed text-slate-600">Наличный расчет при выгрузке, карта или безнал с НДС.</p>
+    </article>
   </div>
 </section>
 
-<!-- ============ КАТЕГОРИИ ============ -->
-<section id="katalog" class="mx-auto max-w-content px-4 py-12 md:px-6 md:py-16">
-  <div class="flex flex-wrap items-end justify-between gap-3">
-    <h2 class="text-[26px] font-extrabold tracking-tight md:text-[32px]">Категории товаров</h2>
-    <a href="#katalog" class="text-[15px] font-semibold text-brand-700 hover:underline">Весь каталог <i class="fa-solid fa-arrow-right text-[13px]" aria-hidden="true"></i></a>
-  </div>
-
-  <div class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4">
-
-    <a href="#katalog" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
-      <!-- TODO: фото категории 400x400 -->
-      <span class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-sack-xmark text-2xl" aria-hidden="true"></i></span>
-      <span class="mt-3 block text-[15px] font-bold leading-snug group-hover:text-brand-700">Цемент и ЖБИ</span>
-      <span class="mt-auto pt-1 block text-[13px] text-slate-600">М400, М500, кольца, плиты</span>
-    </a>
-
-    <a href="#katalog" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
-      <!-- TODO: фото категории 400x400 -->
-      <span class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-cubes text-2xl" aria-hidden="true"></i></span>
-      <span class="mt-3 block text-[15px] font-bold leading-snug group-hover:text-brand-700">Шлакоблок и газоблок</span>
-      <span class="mt-auto pt-1 block text-[13px] text-slate-600">Стеновой, перегородочный</span>
-    </a>
-
-    <a href="#katalog" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
-      <!-- TODO: фото категории 400x400 -->
-      <span class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-mountain text-2xl" aria-hidden="true"></i></span>
-      <span class="mt-3 block text-[15px] font-bold leading-snug group-hover:text-brand-700">Сыпучие материалы</span>
-      <span class="mt-auto pt-1 block text-[13px] text-slate-600">Песок, щебень, отсев, ПГС</span>
-    </a>
-
-    <a href="#katalog" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
-      <!-- TODO: фото категории 400x400 -->
-      <span class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-house-chimney text-2xl" aria-hidden="true"></i></span>
-      <span class="mt-3 block text-[15px] font-bold leading-snug group-hover:text-brand-700">Кровельные материалы</span>
-      <span class="mt-auto pt-1 block text-[13px] text-slate-600">Профнастил, металлочерепица</span>
-    </a>
-
-    <a href="#katalog" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
-      <!-- TODO: фото категории 400x400 -->
-      <span class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-fill-drip text-2xl" aria-hidden="true"></i></span>
-      <span class="mt-3 block text-[15px] font-bold leading-snug group-hover:text-brand-700">Сухие смеси</span>
-      <span class="mt-auto pt-1 block text-[13px] text-slate-600">Штукатурка, наливной пол, клей</span>
-    </a>
-
-    <a href="#katalog" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
-      <!-- TODO: фото категории 400x400 -->
-      <span class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-grip-lines text-2xl" aria-hidden="true"></i></span>
-      <span class="mt-3 block text-[15px] font-bold leading-snug group-hover:text-brand-700">Арматура и металл</span>
-      <span class="mt-auto pt-1 block text-[13px] text-slate-600">А500С, труба, уголок, сетка</span>
-    </a>
-  </div>
-</section>
-
-<!-- ============ ТОВАРЫ ============ -->
-<section id="ceny" class="bg-white py-12 md:py-16">
+<!-- ============ 4. КАТЕГОРИИ ТОВАРОВ ============ -->
+<section id="katalog" class="bg-white py-12 md:py-16">
   <div class="mx-auto max-w-content px-4 md:px-6">
-
     <div class="flex flex-wrap items-end justify-between gap-3">
-      <div>
-        <h2 class="text-[26px] font-extrabold tracking-tight md:text-[32px]">Специальные оптовые цены</h2>
-        <p class="mt-2 max-w-[62ch] text-[15px] text-slate-600">Популярные позиции на складе. Цена указана за розницу, при объеме от 10 тонн или 1 фуры считаем индивидуально.</p>
-      </div>
-      <a href="#katalog" class="text-[15px] font-semibold text-brand-700 hover:underline">Все позиции склада <i class="fa-solid fa-arrow-right text-[13px]" aria-hidden="true"></i></a>
+      <h2 class="text-[26px] font-extrabold tracking-tight md:text-[32px]">Категории товаров</h2>
+      <a href="#katalog" class="text-[15px] font-semibold text-brand-700 hover:underline">Весь каталог <i class="fa-solid fa-arrow-right text-[13px]" aria-hidden="true"></i></a>
     </div>
 
-    <div class="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5 lg:gap-4">
+    <div class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4">
 
-      <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
-        <!-- TODO: фото товара 600x600 на белом фоне -->
-        <div class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-sack-xmark text-3xl" aria-hidden="true"></i></div>
-        <p class="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[12px] font-semibold text-emerald-800">
-          <i class="fa-solid fa-circle text-[6px]" aria-hidden="true"></i> В наличии: 500+ шт
-        </p>
-        <h3 class="mt-2 text-[15px] font-bold leading-snug">Портландцемент М500 Д20, 50 кг</h3>
-        <p class="mt-1 text-[13px] text-slate-600">Завод Магнитогорск, отгрузка поддонами</p>
-        <p class="mt-auto pt-3 text-[19px] font-extrabold tracking-tight num">от 385 ₽ <span class="text-[13px] font-semibold text-slate-600">/ мешок</span></p>
-        <div class="mt-3 flex flex-col gap-2">
-          <button type="button" class="js-modal rounded-xl bg-brand-700 px-3 py-2.5 text-[13.5px] font-bold text-white transition-colors duration-200 hover:bg-brand-800 active:translate-y-px sm:text-[14px]"
-                  data-subject="Купить в 1 клик: Портландцемент М500 Д20, 50 кг" data-title="Купить в 1 клик" data-note="Портландцемент М500 Д20, 50 кг. Подтвердим наличие и цену по телефону.">Купить в 1 клик</button>
-          <button type="button" class="js-modal text-[13px] font-semibold text-slate-600 underline underline-offset-2 transition-colors hover:text-brand-700"
-                  data-subject="Запросить скидку: Портландцемент М500 Д20, 50 кг" data-title="Запросить скидку" data-note="Скажите объем, и мы посчитаем оптовую цену на Портландцемент М500 Д20.">Запросить скидку</button>
-        </div>
-      </article>
+      <a href="#katalog" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
+        <!-- TODO: фото категории 400x400 -->
+        <span class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-sack-xmark text-2xl" aria-hidden="true"></i></span>
+        <span class="mt-3 block text-[15px] font-bold leading-snug group-hover:text-brand-700">Цемент и ЖБИ</span>
+        <span class="mt-auto pt-1 block text-[13px] text-slate-600">М400, М500, кольца, плиты</span>
+      </a>
 
-      <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
-        <!-- TODO: фото товара 600x600 на белом фоне -->
-        <div class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-cubes text-3xl" aria-hidden="true"></i></div>
-        <p class="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[12px] font-semibold text-emerald-800">
-          <i class="fa-solid fa-circle text-[6px]" aria-hidden="true"></i> В наличии: 12 000 шт
-        </p>
-        <h3 class="mt-2 text-[15px] font-bold leading-snug">Шлакоблок стеновой 390х190х188</h3>
-        <p class="mt-1 text-[13px] text-slate-600">Пустотность 40%, марка М50</p>
-        <p class="mt-auto pt-3 text-[19px] font-extrabold tracking-tight num">от 46 ₽ <span class="text-[13px] font-semibold text-slate-600">/ шт</span></p>
-        <div class="mt-3 flex flex-col gap-2">
-          <button type="button" class="js-modal rounded-xl bg-brand-700 px-3 py-2.5 text-[13.5px] font-bold text-white transition-colors duration-200 hover:bg-brand-800 active:translate-y-px sm:text-[14px]"
-                  data-subject="Купить в 1 клик: Шлакоблок 390х190х188" data-title="Купить в 1 клик" data-note="Шлакоблок стеновой 390х190х188. Подтвердим наличие и цену по телефону.">Купить в 1 клик</button>
-          <button type="button" class="js-modal text-[13px] font-semibold text-slate-600 underline underline-offset-2 transition-colors hover:text-brand-700"
-                  data-subject="Запросить скидку: Шлакоблок 390х190х188" data-title="Запросить скидку" data-note="Скажите объем, и мы посчитаем оптовую цену на шлакоблок.">Запросить скидку</button>
-        </div>
-      </article>
+      <a href="#katalog" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
+        <!-- TODO: фото категории 400x400 -->
+        <span class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-cubes text-2xl" aria-hidden="true"></i></span>
+        <span class="mt-3 block text-[15px] font-bold leading-snug group-hover:text-brand-700">Шлакоблок и газоблок</span>
+        <span class="mt-auto pt-1 block text-[13px] text-slate-600">Стеновой, перегородочный</span>
+      </a>
 
-      <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
-        <!-- TODO: фото товара 600x600 на белом фоне -->
-        <div class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-cube text-3xl" aria-hidden="true"></i></div>
-        <p class="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[12px] font-semibold text-emerald-800">
-          <i class="fa-solid fa-circle text-[6px]" aria-hidden="true"></i> В наличии: 340 поддонов
-        </p>
-        <h3 class="mt-2 text-[15px] font-bold leading-snug">Газоблок D500 600х300х200</h3>
-        <p class="mt-1 text-[13px] text-slate-600">Автоклавный, первая категория</p>
-        <p class="mt-auto pt-3 text-[19px] font-extrabold tracking-tight num">от 4 150 ₽ <span class="text-[13px] font-semibold text-slate-600">/ м3</span></p>
-        <div class="mt-3 flex flex-col gap-2">
-          <button type="button" class="js-modal rounded-xl bg-brand-700 px-3 py-2.5 text-[13.5px] font-bold text-white transition-colors duration-200 hover:bg-brand-800 active:translate-y-px sm:text-[14px]"
-                  data-subject="Купить в 1 клик: Газоблок D500 600х300х200" data-title="Купить в 1 клик" data-note="Газоблок D500 600х300х200. Подтвердим наличие и цену по телефону.">Купить в 1 клик</button>
-          <button type="button" class="js-modal text-[13px] font-semibold text-slate-600 underline underline-offset-2 transition-colors hover:text-brand-700"
-                  data-subject="Запросить скидку: Газоблок D500" data-title="Запросить скидку" data-note="Скажите объем, и мы посчитаем оптовую цену на газоблок.">Запросить скидку</button>
-        </div>
-      </article>
+      <a href="#katalog" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
+        <!-- TODO: фото категории 400x400 -->
+        <span class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-mountain text-2xl" aria-hidden="true"></i></span>
+        <span class="mt-3 block text-[15px] font-bold leading-snug group-hover:text-brand-700">Сыпучие материалы</span>
+        <span class="mt-auto pt-1 block text-[13px] text-slate-600">Песок, щебень, отсев, ПГС</span>
+      </a>
 
-      <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
-        <!-- TODO: фото товара 600x600 на белом фоне -->
-        <div class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-mound text-3xl" aria-hidden="true"></i></div>
-        <p class="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[12px] font-semibold text-emerald-800">
-          <i class="fa-solid fa-circle text-[6px]" aria-hidden="true"></i> Отгрузка самосвалом
-        </p>
-        <h3 class="mt-2 text-[15px] font-bold leading-snug">Песок строительный мытый</h3>
-        <p class="mt-1 text-[13px] text-slate-600">Модуль крупности 2.0, от 5 тонн</p>
-        <p class="mt-auto pt-3 text-[19px] font-extrabold tracking-tight num">от 380 ₽ <span class="text-[13px] font-semibold text-slate-600">/ тонна</span></p>
-        <div class="mt-3 flex flex-col gap-2">
-          <button type="button" class="js-modal rounded-xl bg-brand-700 px-3 py-2.5 text-[13.5px] font-bold text-white transition-colors duration-200 hover:bg-brand-800 active:translate-y-px sm:text-[14px]"
-                  data-subject="Купить в 1 клик: Песок строительный мытый" data-title="Купить в 1 клик" data-note="Песок строительный мытый. Подтвердим объем и стоимость доставки.">Купить в 1 клик</button>
-          <button type="button" class="js-modal text-[13px] font-semibold text-slate-600 underline underline-offset-2 transition-colors hover:text-brand-700"
-                  data-subject="Запросить скидку: Песок строительный мытый" data-title="Запросить скидку" data-note="Скажите объем, и мы посчитаем цену с доставкой на объект.">Запросить скидку</button>
-        </div>
-      </article>
+      <a href="#katalog" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
+        <!-- TODO: фото категории 400x400 -->
+        <span class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-house-chimney text-2xl" aria-hidden="true"></i></span>
+        <span class="mt-3 block text-[15px] font-bold leading-snug group-hover:text-brand-700">Кровельные материалы</span>
+        <span class="mt-auto pt-1 block text-[13px] text-slate-600">Профнастил, металлочерепица</span>
+      </a>
 
-      <article class="col-span-2 flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card md:col-span-1">
-        <!-- TODO: фото товара 600x600 на белом фоне -->
-        <div class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-mountain-sun text-3xl" aria-hidden="true"></i></div>
-        <p class="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[12px] font-semibold text-emerald-800">
-          <i class="fa-solid fa-circle text-[6px]" aria-hidden="true"></i> В наличии: 800 тонн
-        </p>
-        <h3 class="mt-2 text-[15px] font-bold leading-snug">Щебень гранитный, фракция 20-40</h3>
-        <p class="mt-1 text-[13px] text-slate-600">Марка прочности 1200, для фундамента</p>
-        <p class="mt-auto pt-3 text-[19px] font-extrabold tracking-tight num">от 1 250 ₽ <span class="text-[13px] font-semibold text-slate-600">/ тонна</span></p>
-        <div class="mt-3 flex flex-col gap-2">
-          <button type="button" class="js-modal rounded-xl bg-brand-700 px-3 py-2.5 text-[13.5px] font-bold text-white transition-colors duration-200 hover:bg-brand-800 active:translate-y-px sm:text-[14px]"
-                  data-subject="Купить в 1 клик: Щебень гранитный 20-40" data-title="Купить в 1 клик" data-note="Щебень гранитный фракция 20-40. Подтвердим объем и стоимость доставки.">Купить в 1 клик</button>
-          <button type="button" class="js-modal text-[13px] font-semibold text-slate-600 underline underline-offset-2 transition-colors hover:text-brand-700"
-                  data-subject="Запросить скидку: Щебень гранитный 20-40" data-title="Запросить скидку" data-note="Скажите объем, и мы посчитаем цену с доставкой на объект.">Запросить скидку</button>
-        </div>
-      </article>
+      <a href="#katalog" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
+        <!-- TODO: фото категории 400x400 -->
+        <span class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-fill-drip text-2xl" aria-hidden="true"></i></span>
+        <span class="mt-3 block text-[15px] font-bold leading-snug group-hover:text-brand-700">Сухие смеси</span>
+        <span class="mt-auto pt-1 block text-[13px] text-slate-600">Штукатурка, наливной пол, клей</span>
+      </a>
+
+      <a href="#katalog" class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
+        <!-- TODO: фото категории 400x400 -->
+        <span class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-grip-lines text-2xl" aria-hidden="true"></i></span>
+        <span class="mt-3 block text-[15px] font-bold leading-snug group-hover:text-brand-700">Арматура и металл</span>
+        <span class="mt-auto pt-1 block text-[13px] text-slate-600">А500С, труба, уголок, сетка</span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ============ УСЛОВИЯ ДЛЯ ЮРЛИЦ + ВТОРАЯ ТОЧКА ЗАХВАТА ============ -->
-<section id="yurlicam" class="bg-slate-900 py-12 text-white md:py-16">
+<!-- ============ 5. ПОПУЛЯРНЫЕ ПОЗИЦИИ НА СКЛАДЕ ============ -->
+<section id="ceny" class="mx-auto max-w-content px-4 py-12 md:px-6 md:py-16">
+
+  <div class="flex flex-wrap items-end justify-between gap-3">
+    <div>
+      <h2 class="text-[26px] font-extrabold tracking-tight md:text-[32px]">Популярные позиции на складе</h2>
+      <p class="mt-2 max-w-[62ch] text-[15px] text-slate-600">Цена указана за розницу. При объеме от 10 тонн или от фуры считаем индивидуально.</p>
+    </div>
+    <a href="#katalog" class="text-[15px] font-semibold text-brand-700 hover:underline">Все позиции склада <i class="fa-solid fa-arrow-right text-[13px]" aria-hidden="true"></i></a>
+  </div>
+
+  <div class="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5 lg:gap-4">
+
+    <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
+      <!-- TODO: фото товара 600x600 на белом фоне -->
+      <div class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-sack-xmark text-3xl" aria-hidden="true"></i></div>
+      <p class="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[12px] font-semibold text-emerald-800">
+        <i class="fa-solid fa-circle text-[6px]" aria-hidden="true"></i> В наличии: 500+ шт
+      </p>
+      <h3 class="mt-2 text-[15px] font-bold leading-snug">Портландцемент М500 Д20, 50 кг</h3>
+      <p class="mt-1 text-[13px] text-slate-600">Заводская упаковка, отгрузка поддонами</p>
+      <p class="mt-auto pt-3 text-[19px] font-extrabold tracking-tight num">от 385 ₽ <span class="text-[13px] font-semibold text-slate-600">/ мешок</span></p>
+      <div class="mt-3 flex flex-col gap-2">
+        <button type="button" class="js-modal rounded-xl bg-brand-700 px-3 py-2.5 text-[13.5px] font-bold text-white transition-colors duration-200 hover:bg-brand-800 active:translate-y-px sm:text-[14px]"
+                data-subject="Купить в 1 клик: Портландцемент М500 Д20, 50 кг" data-title="Купить в 1 клик" data-note="Портландцемент М500 Д20, 50 кг. Подтвердим наличие и цену по телефону.">Купить в 1 клик</button>
+        <button type="button" class="js-modal text-[13px] font-semibold text-slate-600 underline underline-offset-2 transition-colors hover:text-brand-700"
+                data-subject="Запросить скидку: Портландцемент М500 Д20, 50 кг" data-title="Запросить скидку" data-note="Скажите объем, и мы посчитаем оптовую цену на цемент М500.">Запросить скидку</button>
+      </div>
+    </article>
+
+    <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
+      <!-- TODO: фото товара 600x600 на белом фоне -->
+      <div class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-cubes text-3xl" aria-hidden="true"></i></div>
+      <p class="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[12px] font-semibold text-emerald-800">
+        <i class="fa-solid fa-circle text-[6px]" aria-hidden="true"></i> В наличии: 12 000 шт
+      </p>
+      <h3 class="mt-2 text-[15px] font-bold leading-snug">Шлакоблок стеновой 390х190х188</h3>
+      <p class="mt-1 text-[13px] text-slate-600">Пустотность 40%, марка М50</p>
+      <p class="mt-auto pt-3 text-[19px] font-extrabold tracking-tight num">от 46 ₽ <span class="text-[13px] font-semibold text-slate-600">/ шт</span></p>
+      <div class="mt-3 flex flex-col gap-2">
+        <button type="button" class="js-modal rounded-xl bg-brand-700 px-3 py-2.5 text-[13.5px] font-bold text-white transition-colors duration-200 hover:bg-brand-800 active:translate-y-px sm:text-[14px]"
+                data-subject="Купить в 1 клик: Шлакоблок 390х190х188" data-title="Купить в 1 клик" data-note="Шлакоблок стеновой 390х190х188. Подтвердим наличие и цену по телефону.">Купить в 1 клик</button>
+        <button type="button" class="js-modal text-[13px] font-semibold text-slate-600 underline underline-offset-2 transition-colors hover:text-brand-700"
+                data-subject="Запросить скидку: Шлакоблок 390х190х188" data-title="Запросить скидку" data-note="Скажите объем, и мы посчитаем оптовую цену на шлакоблок.">Запросить скидку</button>
+      </div>
+    </article>
+
+    <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
+      <!-- TODO: фото товара 600x600 на белом фоне -->
+      <div class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-cube text-3xl" aria-hidden="true"></i></div>
+      <p class="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[12px] font-semibold text-emerald-800">
+        <i class="fa-solid fa-circle text-[6px]" aria-hidden="true"></i> В наличии: 340 поддонов
+      </p>
+      <h3 class="mt-2 text-[15px] font-bold leading-snug">Газоблок D500 600х300х200</h3>
+      <p class="mt-1 text-[13px] text-slate-600">Автоклавный, первая категория</p>
+      <p class="mt-auto pt-3 text-[19px] font-extrabold tracking-tight num">от 4 150 ₽ <span class="text-[13px] font-semibold text-slate-600">/ м3</span></p>
+      <div class="mt-3 flex flex-col gap-2">
+        <button type="button" class="js-modal rounded-xl bg-brand-700 px-3 py-2.5 text-[13.5px] font-bold text-white transition-colors duration-200 hover:bg-brand-800 active:translate-y-px sm:text-[14px]"
+                data-subject="Купить в 1 клик: Газоблок D500 600х300х200" data-title="Купить в 1 клик" data-note="Газоблок D500 600х300х200. Подтвердим наличие и цену по телефону.">Купить в 1 клик</button>
+        <button type="button" class="js-modal text-[13px] font-semibold text-slate-600 underline underline-offset-2 transition-colors hover:text-brand-700"
+                data-subject="Запросить скидку: Газоблок D500" data-title="Запросить скидку" data-note="Скажите объем, и мы посчитаем оптовую цену на газоблок.">Запросить скидку</button>
+      </div>
+    </article>
+
+    <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
+      <!-- TODO: фото товара 600x600 на белом фоне -->
+      <div class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-mound text-3xl" aria-hidden="true"></i></div>
+      <p class="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[12px] font-semibold text-emerald-800">
+        <i class="fa-solid fa-circle text-[6px]" aria-hidden="true"></i> В наличии, отгрузка самосвалом
+      </p>
+      <h3 class="mt-2 text-[15px] font-bold leading-snug">Песок строительный мытый</h3>
+      <p class="mt-1 text-[13px] text-slate-600">Модуль крупности 2.0, от 5 тонн</p>
+      <p class="mt-auto pt-3 text-[19px] font-extrabold tracking-tight num">от 380 ₽ <span class="text-[13px] font-semibold text-slate-600">/ тонна</span></p>
+      <div class="mt-3 flex flex-col gap-2">
+        <button type="button" class="js-modal rounded-xl bg-brand-700 px-3 py-2.5 text-[13.5px] font-bold text-white transition-colors duration-200 hover:bg-brand-800 active:translate-y-px sm:text-[14px]"
+                data-subject="Купить в 1 клик: Песок строительный мытый" data-title="Купить в 1 клик" data-note="Песок строительный мытый. Подтвердим объем и стоимость доставки.">Купить в 1 клик</button>
+        <button type="button" class="js-modal text-[13px] font-semibold text-slate-600 underline underline-offset-2 transition-colors hover:text-brand-700"
+                data-subject="Запросить скидку: Песок строительный мытый" data-title="Запросить скидку" data-note="Скажите объем, и мы посчитаем цену с доставкой на объект.">Запросить скидку</button>
+      </div>
+    </article>
+
+    <article class="col-span-2 flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card md:col-span-1">
+      <!-- TODO: фото товара 600x600 на белом фоне -->
+      <div class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-mountain-sun text-3xl" aria-hidden="true"></i></div>
+      <p class="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[12px] font-semibold text-emerald-800">
+        <i class="fa-solid fa-circle text-[6px]" aria-hidden="true"></i> В наличии: 800 тонн
+      </p>
+      <h3 class="mt-2 text-[15px] font-bold leading-snug">Щебень гранитный, фракция 20-40</h3>
+      <p class="mt-1 text-[13px] text-slate-600">Марка прочности 1200, для фундамента</p>
+      <p class="mt-auto pt-3 text-[19px] font-extrabold tracking-tight num">от 1 250 ₽ <span class="text-[13px] font-semibold text-slate-600">/ тонна</span></p>
+      <div class="mt-3 flex flex-col gap-2">
+        <button type="button" class="js-modal rounded-xl bg-brand-700 px-3 py-2.5 text-[13.5px] font-bold text-white transition-colors duration-200 hover:bg-brand-800 active:translate-y-px sm:text-[14px]"
+                data-subject="Купить в 1 клик: Щебень гранитный 20-40" data-title="Купить в 1 клик" data-note="Щебень гранитный фракция 20-40. Подтвердим объем и стоимость доставки.">Купить в 1 клик</button>
+        <button type="button" class="js-modal text-[13px] font-semibold text-slate-600 underline underline-offset-2 transition-colors hover:text-brand-700"
+                data-subject="Запросить скидку: Щебень гранитный 20-40" data-title="Запросить скидку" data-note="Скажите объем, и мы посчитаем цену с доставкой на объект.">Запросить скидку</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 6. СНАБЖЕНЦАМ, ПРОРАБАМ И ПОДРЯДЧИКАМ ============ -->
+<section id="b2b" class="bg-slate-900 py-12 text-white md:py-16">
   <div class="mx-auto grid max-w-content items-start gap-10 px-4 md:px-6 lg:grid-cols-[1.15fr_minmax(340px,420px)] lg:gap-14">
 
     <div>
-      <p class="text-[13px] font-semibold uppercase tracking-[.16em] text-brand-500">Оптовым покупателям</p>
-      <h2 class="mt-3 text-[26px] font-extrabold leading-tight tracking-tight md:text-[32px]">Отгружаем подрядчикам и частным застройщикам на одинаковых условиях</h2>
+      <p class="text-[13px] font-semibold uppercase tracking-[.16em] text-brand-500">Работа с организациями</p>
+      <h2 class="mt-3 text-[26px] font-extrabold leading-tight tracking-tight md:text-[32px]">Снабженцам, прорабам и подрядчикам</h2>
 
-      <dl class="mt-8 grid gap-6 sm:grid-cols-3">
-        <div id="dostavka">
-          <dt class="flex items-center gap-2.5 text-[16px] font-bold">
-            <i class="fa-solid fa-truck-ramp-box text-brand-500" aria-hidden="true"></i> Доставка
-          </dt>
-          <dd class="mt-2 text-[14px] leading-relaxed text-slate-300">Свой транспорт: манипулятор до 10 тонн, самосвал, шаланда. По городу в день заказа, в поселки на следующее утро.</dd>
+      <dl class="mt-8 space-y-6">
+        <div class="flex gap-4">
+          <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10 text-brand-500"><i class="fa-solid fa-file-invoice text-lg" aria-hidden="true"></i></span>
+          <div>
+            <dt class="text-[17px] font-bold">Полный пакет документов</dt>
+            <dd class="mt-1.5 max-w-[62ch] text-[15px] leading-relaxed text-slate-300">Выставляем счета с НДС и без НДС, УПД, чеки.</dd>
+          </div>
         </div>
-        <div>
-          <dt class="flex items-center gap-2.5 text-[16px] font-bold">
-            <i class="fa-solid fa-ruble-sign text-brand-500" aria-hidden="true"></i> Оплата
-          </dt>
-          <dd class="mt-2 text-[14px] leading-relaxed text-slate-300">Наличные, карта, безнал с НДС. Постоянным клиентам даем отсрочку до 30 дней по договору.</dd>
+        <div class="flex gap-4">
+          <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10 text-brand-500"><i class="fa-solid fa-ruler-combined text-lg" aria-hidden="true"></i></span>
+          <div>
+            <dt class="text-[17px] font-bold">Расчет сметы по чертежу</dt>
+            <dd class="mt-1.5 max-w-[62ch] text-[15px] leading-relaxed text-slate-300">Присылайте проект в Telegram: бесплатно обсчитаем за 15 минут.</dd>
+          </div>
         </div>
-        <div>
-          <dt class="flex items-center gap-2.5 text-[16px] font-bold">
-            <i class="fa-solid fa-scale-balanced text-brand-500" aria-hidden="true"></i> Приемка
-          </dt>
-          <dd class="mt-2 text-[14px] leading-relaxed text-slate-300">Взвешивание при вас, паспорта качества на партию, пересчет при недовесе в тот же день.</dd>
+        <div class="flex gap-4">
+          <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10 text-brand-500"><i class="fa-solid fa-percent text-lg" aria-hidden="true"></i></span>
+          <div>
+            <dt class="text-[17px] font-bold">Персональные скидки от объема</dt>
+            <dd class="mt-1.5 max-w-[62ch] text-[15px] leading-relaxed text-slate-300">Для постоянных бригад закрепляем цену и менеджера.</dd>
+          </div>
         </div>
       </dl>
+
+      <a href="https://t.me/" target="_blank" rel="noopener" class="mt-8 inline-flex items-center gap-2.5 rounded-xl bg-tg-500 px-5 py-3 text-[15px] font-bold text-white transition-colors hover:bg-tg-600">
+        <i class="fa-brands fa-telegram text-lg" aria-hidden="true"></i> Прислать чертеж в Telegram
+      </a>
     </div>
 
     <div class="rounded-2xl bg-white p-5 text-slate-900 shadow-form sm:p-6">
       <h3 class="text-[19px] font-extrabold leading-tight tracking-tight">Нужен прайс на весь ассортимент?</h3>
       <p class="mt-2 text-[14px] leading-snug text-slate-600">Оставьте номер: пришлем актуальный прайс и закрепим менеджера за вашим объектом.</p>
 
-      <form class="js-lead mt-5 space-y-4" novalidate data-form="Прайс для юрлиц">
+      <form class="js-lead mt-5 space-y-4" novalidate data-form="Прайс для организаций">
         <div>
           <label for="b2b-phone" class="mb-1.5 block text-[13px] font-semibold text-slate-700">
             Телефон <span class="text-brand-700" aria-hidden="true">*</span>
@@ -616,10 +625,129 @@
   </div>
 </section>
 
+<!-- ============ 7. ГАЛЕРЕЯ: НАШ СКЛАД И ТЕХНИКА ============ -->
+<section id="sklad" class="mx-auto max-w-content px-4 py-12 md:px-6 md:py-16">
+  <h2 class="text-[26px] font-extrabold tracking-tight md:text-[32px]">Наш склад и техника</h2>
+  <p class="mt-2 max-w-[62ch] text-[15px] text-slate-600">Приезжайте на самовывоз или отправьте водителя: территория открытая, погрузка без очереди.</p>
+
+  <!-- Две строки по схеме «широкий + узкий» и «узкий + широкий»: сетка заполняется без пустых ячеек.
+       Узкие плитки тянутся по высоте строки, поэтому подписи стоят на одной линии. -->
+  <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-4">
+
+    <figure class="flex flex-col lg:col-span-2">
+      <!-- TODO: фото склада 1200x675 -->
+      <div class="ph aspect-[4/3] w-full flex-1 rounded-2xl sm:aspect-[16/9]"><i class="fa-solid fa-warehouse text-4xl" aria-hidden="true"></i></div>
+      <figcaption class="mt-2.5 text-[14px] font-semibold">Склад на Западном шоссе</figcaption>
+    </figure>
+
+    <figure class="flex flex-col">
+      <!-- TODO: фото погрузки 800x600 -->
+      <div class="ph aspect-[4/3] w-full flex-1 rounded-2xl lg:aspect-auto"><i class="fa-solid fa-truck-ramp-box text-3xl" aria-hidden="true"></i></div>
+      <figcaption class="mt-2.5 text-[14px] font-semibold">Погрузка манипулятора</figcaption>
+    </figure>
+
+    <figure class="flex flex-col">
+      <!-- TODO: фото поддонов 800x600 -->
+      <div class="ph aspect-[4/3] w-full flex-1 rounded-2xl lg:aspect-auto"><i class="fa-solid fa-pallet text-3xl" aria-hidden="true"></i></div>
+      <figcaption class="mt-2.5 text-[14px] font-semibold">Запас блоков и цемента</figcaption>
+    </figure>
+
+    <figure class="flex flex-col sm:col-span-2">
+      <!-- TODO: фото отгрузки сыпучих 1200x675 -->
+      <div class="ph aspect-[4/3] w-full flex-1 rounded-2xl sm:aspect-[16/9]"><i class="fa-solid fa-truck-moving text-3xl" aria-hidden="true"></i></div>
+      <figcaption class="mt-2.5 text-[14px] font-semibold">Отгрузка сыпучих самосвалом</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 8. ВОПРОСЫ И ОТВЕТЫ ============ -->
+<section id="faq" class="bg-white py-12 md:py-16">
+  <div class="mx-auto max-w-content px-4 md:px-6">
+    <h2 class="text-[26px] font-extrabold tracking-tight md:text-[32px]">Вопросы и ответы</h2>
+
+    <div class="faq mt-6 max-w-[860px] divide-y divide-slate-200 border-y border-slate-200">
+
+      <details>
+        <summary class="flex items-center justify-between gap-4 py-5 text-[17px] font-bold">
+          Можно ли оплатить на месте при выгрузке?
+          <i class="chev fa-solid fa-chevron-down shrink-0 text-[15px] text-brand-700" aria-hidden="true"></i>
+        </summary>
+        <p class="max-w-[70ch] pb-5 text-[15px] leading-relaxed text-slate-700">Да. Можно рассчитаться наличными или переводом водителю после осмотра материала. Организациям выставляем счет и принимаем безнал.</p>
+      </details>
+
+      <details>
+        <summary class="flex items-center justify-between gap-4 py-5 text-[17px] font-bold">
+          Как происходит разгрузка?
+          <i class="chev fa-solid fa-chevron-down shrink-0 text-[15px] text-brand-700" aria-hidden="true"></i>
+        </summary>
+        <p class="max-w-[70ch] pb-5 text-[15px] leading-relaxed text-slate-700">Доставляем манипулятором и аккуратно расставляем поддоны по вашему участку. Сыпучие привозим самосвалом и выгружаем в указанное место.</p>
+      </details>
+
+      <details>
+        <summary class="flex items-center justify-between gap-4 py-5 text-[17px] font-bold">
+          Работаете ли вы с юридическими лицами?
+          <i class="chev fa-solid fa-chevron-down shrink-0 text-[15px] text-brand-700" aria-hidden="true"></i>
+        </summary>
+        <p class="max-w-[70ch] pb-5 text-[15px] leading-relaxed text-slate-700">Да, работаем с НДС и без НДС, предоставляем все закрывающие документы: счет, УПД, чек. Постоянным клиентам открываем отсрочку по договору.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. КАРТА И КОНТАКТЫ ============ -->
+<section id="kontakty" class="mx-auto max-w-content px-4 py-12 md:px-6 md:py-16">
+  <h2 class="text-[26px] font-extrabold tracking-tight md:text-[32px]">Как нас найти</h2>
+
+  <div class="mt-6 grid gap-4 lg:grid-cols-[1.4fr_1fr] lg:gap-6">
+
+    <!-- TODO: заменить заглушку на карту (Яндекс.Карты, iframe с координатами въезда) -->
+    <div class="ph relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-slate-200 sm:aspect-[16/9]">
+      <i class="fa-solid fa-location-dot text-4xl text-brand-600" aria-hidden="true"></i>
+      <p class="absolute bottom-4 left-4 right-4 rounded-xl bg-white/95 px-4 py-3 text-[14px] font-semibold text-slate-900 shadow-card sm:right-auto">
+        г. Магнитогорск, Западное шоссе
+      </p>
+    </div>
+
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+      <dl class="space-y-5">
+        <div class="flex gap-3.5">
+          <i class="fa-solid fa-location-dot mt-1 w-4 text-center text-brand-600" aria-hidden="true"></i>
+          <div>
+            <dt class="text-[14px] font-bold">Адрес базы</dt>
+            <dd class="mt-1 text-[15px] leading-relaxed text-slate-700">г. Магнитогорск, Западное шоссе.<br>Удобный заезд для фур и длинномеров.</dd>
+          </div>
+        </div>
+        <div class="flex gap-3.5">
+          <i class="fa-regular fa-clock mt-1 w-4 text-center text-brand-600" aria-hidden="true"></i>
+          <div>
+            <dt class="text-[14px] font-bold">График работы</dt>
+            <dd class="mt-1 text-[15px] leading-relaxed text-slate-700">Пн-Сб: 8:00-18:00. Воскресенье: по договоренности.</dd>
+          </div>
+        </div>
+        <div class="flex gap-3.5">
+          <i class="fa-solid fa-phone mt-1 w-4 text-center text-brand-600" aria-hidden="true"></i>
+          <div>
+            <dt class="text-[14px] font-bold">Телефон</dt>
+            <dd class="mt-1">
+              <a href="tel:+79128054947" class="text-[21px] font-extrabold tracking-tight num text-slate-900 transition-colors hover:text-brand-700">+7 (912) 805-49-47</a>
+              <span class="mt-0.5 block text-[13px] text-slate-600">Звонок прямой. Отдел продаж</span>
+            </dd>
+          </div>
+        </div>
+      </dl>
+
+      <button type="button" class="js-modal mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-brand-700 px-5 py-3.5 text-[15px] font-bold text-white transition-colors hover:bg-brand-800 active:translate-y-px"
+              data-subject="Заказать звонок" data-title="Заказать звонок" data-note="Перезвоним в течение 15 минут в рабочее время.">
+        <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Заказать звонок
+      </button>
+    </div>
+  </div>
+</section>
+
 </main>
 
-<!-- ============ ПОДВАЛ ============ -->
-<footer id="kontakty" class="bg-slate-950 pb-24 pt-12 text-slate-300 md:pb-12 md:pt-16">
+<!-- ============ 11. ПОДВАЛ ============ -->
+<footer class="bg-slate-950 pb-24 pt-12 text-slate-300 md:pb-12 md:pt-16">
   <div class="mx-auto max-w-content px-4 md:px-6">
 
     <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
@@ -639,7 +767,7 @@
       <nav aria-labelledby="f-catalog">
         <h2 id="f-catalog" class="text-[15px] font-bold text-white">Каталог</h2>
         <ul class="mt-4 space-y-2.5 text-[14px]">
-          <li><a class="transition-colors hover:text-white" href="#katalog">Цемент оптом в Магнитогорске</a></li>
+          <li><a class="transition-colors hover:text-white" href="#katalog">Цемент и ЖБИ</a></li>
           <li><a class="transition-colors hover:text-white" href="#katalog">Шлакоблок и газоблок</a></li>
           <li><a class="transition-colors hover:text-white" href="#katalog">Песок, щебень, отсев, ПГС</a></li>
           <li><a class="transition-colors hover:text-white" href="#katalog">Сухие строительные смеси</a></li>
@@ -651,36 +779,36 @@
       <nav aria-labelledby="f-info">
         <h2 id="f-info" class="text-[15px] font-bold text-white">Покупателям</h2>
         <ul class="mt-4 space-y-2.5 text-[14px]">
-          <li><a class="transition-colors hover:text-white" href="#dostavka">Доставка по городу и поселкам</a></li>
-          <li><a class="transition-colors hover:text-white" href="#dostavka">Оплата и отсрочка</a></li>
-          <li><a class="transition-colors hover:text-white" href="#yurlicam">Юридическим лицам</a></li>
+          <li><a class="transition-colors hover:text-white" href="#dostavka">Доставка и оплата</a></li>
+          <li><a class="transition-colors hover:text-white" href="#b2b">Снабженцам и подрядчикам</a></li>
+          <li><a class="transition-colors hover:text-white" href="#sklad">Наш склад и техника</a></li>
+          <li><a class="transition-colors hover:text-white" href="#faq">Вопросы и ответы</a></li>
           <li><a class="transition-colors hover:text-white" href="#ceny">Оптовый прайс-лист</a></li>
-          <li><a class="transition-colors hover:text-white" href="#">Возврат и обмен</a></li>
           <li><a class="transition-colors hover:text-white" href="#">Политика конфиденциальности</a></li>
         </ul>
       </nav>
 
-      <div>
+      <div id="dostavka">
         <h2 class="text-[15px] font-bold text-white">Контакты</h2>
         <ul class="mt-4 space-y-3 text-[14px]">
           <li class="flex gap-3">
             <i class="fa-solid fa-phone mt-1 w-4 text-brand-500" aria-hidden="true"></i>
             <span>
-              <a href="tel:+73519457012" class="block text-[18px] font-extrabold tracking-tight text-white num">8 (3519) 45-70-12</a>
-              <span class="text-slate-400">Звонок бесплатный</span>
+              <a href="tel:+79128054947" class="block text-[18px] font-extrabold tracking-tight text-white num">+7 (912) 805-49-47</a>
+              <span class="text-slate-400">Звонок прямой. Отдел продаж</span>
             </span>
           </li>
           <li class="flex gap-3">
             <i class="fa-solid fa-location-dot mt-1 w-4 text-brand-500" aria-hidden="true"></i>
-            <span>Магнитогорск, Западное шоссе, 15<br><span class="text-slate-400">Въезд для фур со стороны объездной</span></span>
+            <span>г. Магнитогорск, Западное шоссе<br><span class="text-slate-400">Заезд для фур и длинномеров</span></span>
           </li>
           <li class="flex gap-3">
             <i class="fa-regular fa-clock mt-1 w-4 text-brand-500" aria-hidden="true"></i>
-            <span>Пн-Сб: 8:00-18:00<br>Вс: 9:00-15:00</span>
+            <span>Пн-Сб: 8:00-18:00<br><span class="text-slate-400">Вс: по договоренности</span></span>
           </li>
           <li class="flex gap-3">
-            <i class="fa-regular fa-envelope mt-1 w-4 text-brand-500" aria-hidden="true"></i>
-            <a href="mailto:zakaz@stroybaza74.ru" class="transition-colors hover:text-white">zakaz@stroybaza74.ru</a>
+            <i class="fa-brands fa-telegram mt-1 w-4 text-brand-500" aria-hidden="true"></i>
+            <a href="https://t.me/" target="_blank" rel="noopener" class="transition-colors hover:text-white">Написать в Telegram</a>
           </li>
         </ul>
       </div>
@@ -694,9 +822,18 @@
   </div>
 </footer>
 
+<!-- ============ 10. ПЛАВАЮЩАЯ КНОПКА TELEGRAM ============ -->
+<a href="https://t.me/" target="_blank" rel="noopener"
+   class="fixed bottom-[88px] right-4 flex items-center gap-2.5 rounded-full bg-tg-500 px-4 py-4 text-white shadow-lift transition-colors hover:bg-tg-600 md:bottom-6 md:px-5"
+   style="z-index: var(--z-dock)">
+  <i class="fa-brands fa-telegram text-2xl md:text-xl" aria-hidden="true"></i>
+  <span class="hidden text-[15px] font-bold leading-tight md:block">Скинуть список<span class="block text-[12px] font-medium text-white/85">Написать в TG</span></span>
+  <span class="sr-only md:hidden">Скинуть список, написать в Telegram</span>
+</a>
+
 <!-- ============ МОБИЛЬНАЯ ПАНЕЛЬ ДЕЙСТВИЙ ============ -->
 <div id="dock" class="fixed inset-x-0 bottom-0 grid grid-cols-2 gap-2 border-t border-slate-200 bg-white/95 p-2.5 backdrop-blur md:hidden" style="z-index: var(--z-dock)">
-  <a href="tel:+73519457012" class="flex items-center justify-center gap-2 rounded-xl border-2 border-brand-700 px-3 py-3 text-[15px] font-bold text-brand-700">
+  <a href="tel:+79128054947" class="flex items-center justify-center gap-2 rounded-xl border-2 border-brand-700 px-3 py-3 text-[15px] font-bold text-brand-700">
     <i class="fa-solid fa-phone" aria-hidden="true"></i> Позвонить
   </a>
   <a href="#raschet" class="flex items-center justify-center gap-2 rounded-xl bg-brand-700 px-3 py-3 text-[15px] font-bold text-white">
@@ -762,22 +899,20 @@
   "@context": "https://schema.org",
   "@type": "HardwareStore",
   "name": "СТРОЙ-БАЗА 74",
-  "description": "Оптово-розничный склад стройматериалов в Магнитогорске: цемент, шлакоблок, газоблок, песок, щебень, сухие смеси, арматура. Доставка в день заказа.",
+  "description": "Оптово-розничный склад стройматериалов в Магнитогорске: цемент, шлакоблок, газоблок, песок, щебень, сухие смеси, арматура. Доставка собственным транспортом в день заказа.",
   "url": "https://stroybaza74.ru/",
-  "telephone": "+7-3519-45-70-12",
-  "email": "zakaz@stroybaza74.ru",
+  "telephone": "+7-912-805-49-47",
   "priceRange": "₽₽",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Западное шоссе, 15",
+    "streetAddress": "Западное шоссе",
     "addressLocality": "Магнитогорск",
     "addressRegion": "Челябинская область",
     "addressCountry": "RU"
   },
-  "areaServed": ["Магнитогорск", "поселок Нежный", "поселок Западный", "поселок Светлый"],
+  "areaServed": ["Магнитогорск", "поселок Нежный", "поселок Западный", "поселок Светлый", "Княжье Поле", "Зеленая Долина"],
   "openingHoursSpecification": [
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "08:00", "closes": "18:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "09:00", "closes": "15:00" }
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "08:00", "closes": "18:00" }
   ]
 }
 </script>
@@ -797,9 +932,7 @@
     catalogToggle.setAttribute('aria-expanded', String(open));
   }
   if (catalogToggle && catalogPanel) {
-    catalogToggle.addEventListener('click', function () {
-      setCatalog(catalogPanel.hidden);
-    });
+    catalogToggle.addEventListener('click', function () { setCatalog(catalogPanel.hidden); });
     document.addEventListener('click', function (e) {
       if (catalogPanel.hidden) return;
       if (!catalogPanel.contains(e.target) && !catalogToggle.contains(e.target)) setCatalog(false);
@@ -845,6 +978,15 @@
     heroVideo.pause();
   }
 
+  /* ---------- FAQ: открыт только один вопрос ---------- */
+  var faqItems = document.querySelectorAll('.faq details');
+  faqItems.forEach(function (item) {
+    item.addEventListener('toggle', function () {
+      if (!item.open) return;
+      faqItems.forEach(function (other) { if (other !== item) other.open = false; });
+    });
+  });
+
   /* ---------- Маска и проверка телефона ---------- */
   function digitsOf(value) {
     var d = value.replace(/\D/g, '');
@@ -865,12 +1007,8 @@
   }
 
   document.querySelectorAll('.js-phone').forEach(function (input) {
-    input.addEventListener('focus', function () {
-      if (!input.value) input.value = '+7 ';
-    });
-    input.addEventListener('input', function () {
-      input.value = formatPhone(input.value);
-    });
+    input.addEventListener('focus', function () { if (!input.value) input.value = '+7 '; });
+    input.addEventListener('input', function () { input.value = formatPhone(input.value); });
     input.addEventListener('blur', function () {
       if (input.value.trim() === '+7' || input.value.trim() === '+7 (') input.value = '';
     });
@@ -907,7 +1045,7 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      if (digitsOf(phone.value).length !== 11 || phone.value.replace(/\D/g, '').length < 11) {
+      if (phone.value.replace(/\D/g, '').length < 11) {
         showError(phone, 'Введите номер полностью: 10 цифр после +7');
         phone.focus();
         return;
@@ -924,7 +1062,7 @@
       loading.classList.remove('hidden');
       loading.classList.add('flex');
 
-      /* TODO: заменить на реальную отправку (fetch на CRM, Битрикс24, Telegram-бот)
+      /* TODO: заменить на реальную отправку (CRM, Битрикс24, Telegram-бот)
          и на цель в Яндекс.Метрике: ym(XXXXXX, 'reachGoal', 'lead'); */
       var payload = Object.fromEntries(new FormData(form).entries());
       payload.form = form.dataset.form;
@@ -997,9 +1135,7 @@
 
   document.getElementById('modal-close').addEventListener('click', closeModal);
   backdrop.addEventListener('click', closeModal);
-  modal.addEventListener('click', function (e) {
-    if (e.target === modal) closeModal();
-  });
+  modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
 
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
@@ -1011,13 +1147,8 @@
       if (!focusable.length) return;
       var first = focusable[0];
       var last = focusable[focusable.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   });
 })();
