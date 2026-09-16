@@ -187,10 +187,10 @@
       <div class="ml-auto flex items-center gap-3 md:gap-4">
         <div class="hidden text-right lg:block">
           <a href="tel:+79128054947" class="block whitespace-nowrap text-[19px] font-extrabold leading-tight tracking-tight num text-slate-900 transition-colors hover:text-brand-700">+7 (912) 805-49-47</a>
-          <span class="ml-auto block max-w-[184px] text-[12px] leading-tight text-slate-500">Звонок прямой. Отдел продаж</span>
+          <span class="ml-auto block max-w-[184px] text-[12px] leading-tight text-slate-500">Звонок прямой</span>
         </div>
         <button type="button" class="js-modal hidden items-center gap-2 rounded-xl border-2 border-brand-700 px-4 py-2.5 text-[15px] font-bold text-brand-700 transition-colors duration-200 hover:bg-brand-50 active:translate-y-px lg:inline-flex"
-                data-subject="Заказать звонок" data-title="Заказать звонок" data-note="Перезвоним в течение 15 минут в рабочее время.">
+                data-subject="Заказать звонок" data-title="Заказать звонок" data-note="Перезвоним в течение 5 минут в рабочее время.">
           <i class="fa-solid fa-phone-volume" aria-hidden="true"></i>
           Заказать звонок
         </button>
@@ -227,7 +227,7 @@
         <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-slate-50" href="#katalog"><i class="fa-solid fa-fill-drip w-5 text-center text-brand-600" aria-hidden="true"></i> Сухие смеси</a>
         <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-slate-50" href="#katalog"><i class="fa-solid fa-grip-lines w-5 text-center text-brand-600" aria-hidden="true"></i> Арматура и металл</a>
         <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-slate-50" href="#katalog"><i class="fa-solid fa-layer-group w-5 text-center text-brand-600" aria-hidden="true"></i> Утеплитель и гидроизоляция</a>
-        <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-slate-50" href="#sklad"><i class="fa-solid fa-truck-ramp-box w-5 text-center text-brand-600" aria-hidden="true"></i> Аренда техники</a>
+        <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-slate-50" href="#katalog"><i class="fa-solid fa-truck-ramp-box w-5 text-center text-brand-600" aria-hidden="true"></i> Аренда техники</a>
         <a class="flex items-center gap-3 rounded-xl px-3 py-2.5 font-semibold text-brand-700 transition-colors hover:bg-brand-50" href="#katalog"><i class="fa-solid fa-arrow-right w-5 text-center" aria-hidden="true"></i> Весь каталог</a>
       </div>
     </div>
@@ -239,12 +239,11 @@
         <li><a class="flex items-center justify-between py-3" href="#katalog">Каталог товаров <i class="fa-solid fa-chevron-right text-slate-400" aria-hidden="true"></i></a></li>
         <li><a class="flex items-center justify-between py-3" href="#ceny">Популярные позиции <i class="fa-solid fa-chevron-right text-slate-400" aria-hidden="true"></i></a></li>
         <li><a class="flex items-center justify-between py-3" href="#b2b">Снабженцам и подрядчикам <i class="fa-solid fa-chevron-right text-slate-400" aria-hidden="true"></i></a></li>
-        <li><a class="flex items-center justify-between py-3" href="#sklad">Наш склад и техника <i class="fa-solid fa-chevron-right text-slate-400" aria-hidden="true"></i></a></li>
         <li><a class="flex items-center justify-between py-3" href="#faq">Вопросы и ответы <i class="fa-solid fa-chevron-right text-slate-400" aria-hidden="true"></i></a></li>
         <li><a class="flex items-center justify-between py-3" href="#kontakty">Контакты и карта <i class="fa-solid fa-chevron-right text-slate-400" aria-hidden="true"></i></a></li>
       </ul>
       <button type="button" class="js-modal mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-brand-700 px-5 py-3.5 text-[15px] font-bold text-white"
-              data-subject="Заказать звонок" data-title="Заказать звонок" data-note="Перезвоним в течение 15 минут в рабочее время.">
+              data-subject="Заказать звонок" data-title="Заказать звонок" data-note="Перезвоним в течение 5 минут в рабочее время.">
         <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Заказать звонок
       </button>
     </nav>
@@ -336,15 +335,17 @@
           <p class="js-error mt-1.5 hidden text-[12.5px] font-medium text-red-700" role="alert"></p>
         </div>
 
-        <button type="submit" class="js-submit w-full rounded-xl bg-brand-700 px-5 py-4 text-white transition-colors duration-200 hover:bg-brand-800 active:translate-y-px disabled:opacity-70">
-          <span class="js-submit-label">
-            <span class="block text-[16px] font-bold leading-tight">Получить оптовый прайс и расчет</span>
-            <span class="mt-0.5 block text-[13px] font-medium leading-tight text-brand-50">в Telegram или SMS</span>
-          </span>
-          <span class="js-submit-loading hidden items-center justify-center gap-2 text-[16px] font-bold">
+        <button type="submit" class="js-submit w-full rounded-xl bg-brand-700 px-5 py-4 text-[16px] font-bold text-white transition-colors duration-200 hover:bg-brand-800 active:translate-y-px disabled:opacity-70">
+          <span class="js-submit-label">Получить расчет и оптовый прайс</span>
+          <span class="js-submit-loading hidden items-center justify-center gap-2">
             <i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i> Отправляем...
           </span>
         </button>
+
+        <p class="flex items-start gap-2 text-[13px] leading-snug text-slate-700">
+          <i class="fa-solid fa-check mt-0.5 shrink-0 text-brand-700" aria-hidden="true"></i>
+          Перезвоним в течение 5 минут, уточним объем и точную стоимость доставки
+        </p>
 
         <label class="flex cursor-pointer items-start gap-2.5 text-[12.5px] leading-snug text-slate-600">
           <input type="checkbox" name="consent" required checked class="mt-0.5 h-4 w-4 shrink-0 accent-brand-700">
@@ -356,7 +357,7 @@
         <div class="mt-5 rounded-xl border border-emerald-200 bg-emerald-50 p-5 text-center">
           <i class="fa-solid fa-circle-check text-3xl text-emerald-700" aria-hidden="true"></i>
           <p class="mt-3 text-[17px] font-bold text-slate-900">Заявка принята</p>
-          <p class="mt-1.5 text-[14px] leading-snug text-slate-700">Менеджер пришлет прайс и расчет на указанный номер. Обычно это занимает до 15 минут в рабочее время.</p>
+          <p class="mt-1.5 text-[14px] leading-snug text-slate-700">Менеджер пришлет прайс и расчет на указанный номер. Обычно это занимает до 5 минут в рабочее время.</p>
           <button type="button" class="js-reset mt-4 text-[14px] font-semibold text-brand-700 underline underline-offset-2">Отправить еще одну заявку</button>
         </div>
       </div>
@@ -617,7 +618,7 @@
         <div class="mt-5 rounded-xl border border-emerald-200 bg-emerald-50 p-5 text-center">
           <i class="fa-solid fa-circle-check text-3xl text-emerald-700" aria-hidden="true"></i>
           <p class="mt-3 text-[17px] font-bold">Заявка принята</p>
-          <p class="mt-1.5 text-[14px] leading-snug text-slate-700">Перезвоним в течение 15 минут в рабочее время и пришлем прайс.</p>
+          <p class="mt-1.5 text-[14px] leading-snug text-slate-700">Перезвоним в течение 5 минут в рабочее время и пришлем прайс.</p>
           <button type="button" class="js-reset mt-4 text-[14px] font-semibold text-brand-700 underline underline-offset-2">Отправить еще одну заявку</button>
         </div>
       </div>
@@ -625,42 +626,7 @@
   </div>
 </section>
 
-<!-- ============ 7. ГАЛЕРЕЯ: НАШ СКЛАД И ТЕХНИКА ============ -->
-<section id="sklad" class="mx-auto max-w-content px-4 py-12 md:px-6 md:py-16">
-  <h2 class="text-[26px] font-extrabold tracking-tight md:text-[32px]">Наш склад и техника</h2>
-  <p class="mt-2 max-w-[62ch] text-[15px] text-slate-600">Приезжайте на самовывоз или отправьте водителя: территория открытая, погрузка без очереди.</p>
-
-  <!-- Две строки по схеме «широкий + узкий» и «узкий + широкий»: сетка заполняется без пустых ячеек.
-       Узкие плитки тянутся по высоте строки, поэтому подписи стоят на одной линии. -->
-  <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-4">
-
-    <figure class="flex flex-col lg:col-span-2">
-      <!-- TODO: фото склада 1200x675 -->
-      <div class="ph aspect-[4/3] w-full flex-1 rounded-2xl sm:aspect-[16/9]"><i class="fa-solid fa-warehouse text-4xl" aria-hidden="true"></i></div>
-      <figcaption class="mt-2.5 text-[14px] font-semibold">Склад на Западном шоссе</figcaption>
-    </figure>
-
-    <figure class="flex flex-col">
-      <!-- TODO: фото погрузки 800x600 -->
-      <div class="ph aspect-[4/3] w-full flex-1 rounded-2xl lg:aspect-auto"><i class="fa-solid fa-truck-ramp-box text-3xl" aria-hidden="true"></i></div>
-      <figcaption class="mt-2.5 text-[14px] font-semibold">Погрузка манипулятора</figcaption>
-    </figure>
-
-    <figure class="flex flex-col">
-      <!-- TODO: фото поддонов 800x600 -->
-      <div class="ph aspect-[4/3] w-full flex-1 rounded-2xl lg:aspect-auto"><i class="fa-solid fa-pallet text-3xl" aria-hidden="true"></i></div>
-      <figcaption class="mt-2.5 text-[14px] font-semibold">Запас блоков и цемента</figcaption>
-    </figure>
-
-    <figure class="flex flex-col sm:col-span-2">
-      <!-- TODO: фото отгрузки сыпучих 1200x675 -->
-      <div class="ph aspect-[4/3] w-full flex-1 rounded-2xl sm:aspect-[16/9]"><i class="fa-solid fa-truck-moving text-3xl" aria-hidden="true"></i></div>
-      <figcaption class="mt-2.5 text-[14px] font-semibold">Отгрузка сыпучих самосвалом</figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- ============ 8. ВОПРОСЫ И ОТВЕТЫ ============ -->
+<!-- ============ 7. ВОПРОСЫ И ОТВЕТЫ ============ -->
 <section id="faq" class="bg-white py-12 md:py-16">
   <div class="mx-auto max-w-content px-4 md:px-6">
     <h2 class="text-[26px] font-extrabold tracking-tight md:text-[32px]">Вопросы и ответы</h2>
@@ -694,7 +660,7 @@
   </div>
 </section>
 
-<!-- ============ 9. КАРТА И КОНТАКТЫ ============ -->
+<!-- ============ 8. КАРТА И КОНТАКТЫ ============ -->
 <section id="kontakty" class="mx-auto max-w-content px-4 py-12 md:px-6 md:py-16">
   <h2 class="text-[26px] font-extrabold tracking-tight md:text-[32px]">Как нас найти</h2>
 
@@ -730,14 +696,14 @@
             <dt class="text-[14px] font-bold">Телефон</dt>
             <dd class="mt-1">
               <a href="tel:+79128054947" class="text-[21px] font-extrabold tracking-tight num text-slate-900 transition-colors hover:text-brand-700">+7 (912) 805-49-47</a>
-              <span class="mt-0.5 block text-[13px] text-slate-600">Звонок прямой. Отдел продаж</span>
+              <span class="mt-0.5 block text-[13px] text-slate-600">Звонок прямой</span>
             </dd>
           </div>
         </div>
       </dl>
 
       <button type="button" class="js-modal mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-brand-700 px-5 py-3.5 text-[15px] font-bold text-white transition-colors hover:bg-brand-800 active:translate-y-px"
-              data-subject="Заказать звонок" data-title="Заказать звонок" data-note="Перезвоним в течение 15 минут в рабочее время.">
+              data-subject="Заказать звонок" data-title="Заказать звонок" data-note="Перезвоним в течение 5 минут в рабочее время.">
         <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Заказать звонок
       </button>
     </div>
@@ -746,7 +712,7 @@
 
 </main>
 
-<!-- ============ 11. ПОДВАЛ ============ -->
+<!-- ============ 10. ПОДВАЛ ============ -->
 <footer class="bg-slate-950 pb-24 pt-12 text-slate-300 md:pb-12 md:pt-16">
   <div class="mx-auto max-w-content px-4 md:px-6">
 
@@ -759,7 +725,7 @@
         </a>
         <p class="mt-4 max-w-[38ch] text-[14px] leading-relaxed text-slate-400">Оптово-розничный склад стройматериалов в Магнитогорске. Работаем с подрядчиками, бригадами и частными застройщиками.</p>
         <button type="button" class="js-modal mt-5 inline-flex items-center gap-2 rounded-xl bg-brand-700 px-4 py-2.5 text-[14px] font-bold text-white transition-colors hover:bg-brand-800"
-                data-subject="Заказать звонок" data-title="Заказать звонок" data-note="Перезвоним в течение 15 минут в рабочее время.">
+                data-subject="Заказать звонок" data-title="Заказать звонок" data-note="Перезвоним в течение 5 минут в рабочее время.">
           <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Заказать звонок
         </button>
       </div>
@@ -781,7 +747,6 @@
         <ul class="mt-4 space-y-2.5 text-[14px]">
           <li><a class="transition-colors hover:text-white" href="#dostavka">Доставка и оплата</a></li>
           <li><a class="transition-colors hover:text-white" href="#b2b">Снабженцам и подрядчикам</a></li>
-          <li><a class="transition-colors hover:text-white" href="#sklad">Наш склад и техника</a></li>
           <li><a class="transition-colors hover:text-white" href="#faq">Вопросы и ответы</a></li>
           <li><a class="transition-colors hover:text-white" href="#ceny">Оптовый прайс-лист</a></li>
           <li><a class="transition-colors hover:text-white" href="#">Политика конфиденциальности</a></li>
@@ -795,7 +760,7 @@
             <i class="fa-solid fa-phone mt-1 w-4 text-brand-500" aria-hidden="true"></i>
             <span>
               <a href="tel:+79128054947" class="block text-[18px] font-extrabold tracking-tight text-white num">+7 (912) 805-49-47</a>
-              <span class="text-slate-400">Звонок прямой. Отдел продаж</span>
+              <span class="text-slate-400">Звонок прямой</span>
             </span>
           </li>
           <li class="flex gap-3">
@@ -822,14 +787,45 @@
   </div>
 </footer>
 
-<!-- ============ 10. ПЛАВАЮЩАЯ КНОПКА TELEGRAM ============ -->
-<a href="https://t.me/" target="_blank" rel="noopener"
-   class="fixed bottom-[88px] right-4 flex items-center gap-2.5 rounded-full bg-tg-500 px-4 py-4 text-white shadow-lift transition-colors hover:bg-tg-600 md:bottom-6 md:px-5"
-   style="z-index: var(--z-dock)">
-  <i class="fa-brands fa-telegram text-2xl md:text-xl" aria-hidden="true"></i>
-  <span class="hidden text-[15px] font-bold leading-tight md:block">Скинуть список<span class="block text-[12px] font-medium text-white/85">Написать в TG</span></span>
-  <span class="sr-only md:hidden">Скинуть список, написать в Telegram</span>
-</a>
+<!-- ============ 9. ВИДЖЕТ РАСЧЕТА ============ -->
+<!-- TODO: заменить заглушку аватара на фото менеджера и поставить его настоящее имя -->
+<aside id="quiz-widget" class="rise fixed bottom-[88px] right-4 md:bottom-6 md:right-6" style="z-index: var(--z-dock)">
+
+  <!-- Мобильный вид: компактная кнопка, чтобы не перекрывать контент -->
+  <button type="button" class="js-modal relative grid h-14 w-14 place-items-center rounded-full bg-white shadow-xl ring-1 ring-slate-200 md:hidden"
+          data-subject="Виджет расчета" data-title="Рассчитать за 2 минуты"
+          data-note="Уточним объем, подберем материал и посчитаем доставку. Перезвоним в течение 5 минут.">
+    <i class="fa-solid fa-user-tie text-xl text-slate-700" aria-hidden="true"></i>
+    <span class="absolute bottom-1 right-1 h-3 w-3 rounded-full border-2 border-white bg-emerald-500"></span>
+    <span class="sr-only">Рассчитать объем материалов за 2 минуты</span>
+  </button>
+
+  <!-- Десктоп: карточка с предложением помощи -->
+  <div class="relative hidden max-w-xs rounded-2xl bg-white p-4 shadow-xl ring-1 ring-slate-200 md:block">
+    <button type="button" id="quiz-close" class="absolute right-2 top-2 grid h-7 w-7 place-items-center rounded-lg text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900">
+      <i class="fa-solid fa-xmark text-[13px]" aria-hidden="true"></i><span class="sr-only">Закрыть подсказку</span>
+    </button>
+
+    <div class="flex items-center gap-3">
+      <span class="relative grid h-11 w-11 shrink-0 place-items-center rounded-full bg-slate-100 text-slate-600">
+        <i class="fa-solid fa-user-tie text-lg" aria-hidden="true"></i>
+        <span class="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-emerald-500"></span>
+      </span>
+      <span class="leading-tight">
+        <span class="block text-[14px] font-bold">Максим, менеджер базы</span>
+        <span class="mt-0.5 block text-[12.5px] font-semibold text-emerald-700">онлайн</span>
+      </span>
+    </div>
+
+    <p class="mt-3 text-[14px] leading-snug text-slate-700">Помочь рассчитать объем материалов или составить смету?</p>
+
+    <button type="button" class="js-modal mt-3 w-full rounded-xl bg-brand-700 px-4 py-3 text-[14.5px] font-bold text-white transition-colors hover:bg-brand-800 active:translate-y-px"
+            data-subject="Виджет расчета" data-title="Рассчитать за 2 минуты"
+            data-note="Уточним объем, подберем материал и посчитаем доставку. Перезвоним в течение 5 минут.">
+      Рассчитать за 2 минуты
+    </button>
+  </div>
+</aside>
 
 <!-- ============ МОБИЛЬНАЯ ПАНЕЛЬ ДЕЙСТВИЙ ============ -->
 <div id="dock" class="fixed inset-x-0 bottom-0 grid grid-cols-2 gap-2 border-t border-slate-200 bg-white/95 p-2.5 backdrop-blur md:hidden" style="z-index: var(--z-dock)">
@@ -886,7 +882,7 @@
       <div class="mt-5 rounded-xl border border-emerald-200 bg-emerald-50 p-5 text-center">
         <i class="fa-solid fa-circle-check text-3xl text-emerald-700" aria-hidden="true"></i>
         <p class="mt-3 text-[17px] font-bold">Заявка принята</p>
-        <p class="mt-1.5 text-[14px] leading-snug text-slate-700">Менеджер перезвонит в течение 15 минут в рабочее время.</p>
+        <p class="mt-1.5 text-[14px] leading-snug text-slate-700">Менеджер перезвонит в течение 5 минут в рабочее время.</p>
         <button type="button" class="js-reset mt-4 text-[14px] font-semibold text-brand-700 underline underline-offset-2">Отправить еще одну заявку</button>
       </div>
     </div>
@@ -1132,6 +1128,32 @@
   document.querySelectorAll('.js-modal').forEach(function (trigger) {
     trigger.addEventListener('click', function () { openModal(trigger); });
   });
+
+  /* ---------- Виджет расчета ----------
+     На первом экране уже стоит калькулятор, поэтому виджет появляется только
+     после hero: два конкурирующих призыва одновременно не показываем.
+     Без JS виджет просто остается видимым. */
+  var quizWidget = document.getElementById('quiz-widget');
+  var quizClose = document.getElementById('quiz-close');
+  var quizDismissed = false;
+
+  if (quizWidget) {
+    if (quizClose) {
+      quizClose.addEventListener('click', function () {
+        quizDismissed = true;
+        quizWidget.hidden = true;
+      });
+    }
+
+    var hero = document.querySelector('main > section');
+    if (hero && 'IntersectionObserver' in window) {
+      quizWidget.hidden = true;
+      new IntersectionObserver(function (entries) {
+        if (quizDismissed) return;
+        quizWidget.hidden = entries[0].isIntersecting;
+      }, { threshold: 0.3 }).observe(hero);
+    }
+  }
 
   document.getElementById('modal-close').addEventListener('click', closeModal);
   backdrop.addEventListener('click', closeModal);
