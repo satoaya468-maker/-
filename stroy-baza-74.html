@@ -183,16 +183,17 @@
         Каталог
       </button>
 
-      <!-- Поиск пока статичный: подключится, когда появится каталог на бэкенде -->
-      <div class="hidden min-w-0 flex-1 md:block">
+      <!-- Поиск фильтрует сетку товаров прямо на странице, форма никуда не отправляется -->
+      <form class="js-search-form hidden min-w-0 flex-1 md:block" role="search">
         <label for="site-search" class="sr-only">Поиск по каталогу</label>
-        <div class="search-field flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 transition-colors">
+        <div class="search-field flex items-center gap-2 rounded-xl border border-slate-200 bg-white pl-3.5 transition-colors">
           <i class="fa-solid fa-magnifying-glass text-slate-500" aria-hidden="true"></i>
           <input id="site-search" type="text" autocomplete="off"
                  placeholder="Поиск по каталогу: цемент, шлакоблок, щебень, песок..."
                  class="js-search min-w-0 flex-1 bg-transparent py-3 text-[15px] text-slate-900 placeholder:text-slate-500">
+          <button type="submit" class="my-1 mr-1 shrink-0 rounded-lg bg-slate-100 px-5 py-2 text-[15px] font-semibold text-slate-900 transition-colors hover:bg-slate-200">Найти</button>
         </div>
-      </div>
+      </form>
 
       <div class="ml-auto flex items-center gap-3 md:gap-4">
         <div class="hidden text-right lg:block">
@@ -217,14 +218,15 @@
       </div>
     </div>
 
-    <div class="pb-3 md:hidden">
+    <form class="js-search-form pb-3 md:hidden" role="search">
       <label for="site-search-mobile" class="sr-only">Поиск по каталогу</label>
-      <div class="search-field flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 transition-colors">
+      <div class="search-field flex items-center gap-2 rounded-xl border border-slate-200 bg-white pl-3 transition-colors">
         <i class="fa-solid fa-magnifying-glass text-slate-500" aria-hidden="true"></i>
         <input id="site-search-mobile" type="text" autocomplete="off" placeholder="Цемент, шлакоблок, щебень, песок..."
                class="js-search min-w-0 flex-1 bg-transparent py-2.5 text-[15px] placeholder:text-slate-500">
+        <button type="submit" class="my-1 mr-1 shrink-0 rounded-lg bg-slate-100 px-4 py-2 text-[14px] font-semibold text-slate-900 transition-colors hover:bg-slate-200">Найти</button>
       </div>
-    </div>
+    </form>
   </div>
 
   <div id="catalog-panel" hidden class="absolute inset-x-0 top-full border-b border-slate-200 bg-white shadow-lift" style="z-index: var(--z-dropdown)">
@@ -1019,28 +1021,31 @@
   }
 
   if (searchInputs.length && products.length) {
-    var scrolledForQuery = false;
 
+    /* Фильтрация идет по ходу набора */
     searchInputs.forEach(function (input) {
-      input.addEventListener('input', function () {
-        runSearch(input.value);
-
-        /* Сетка товаров ниже шапки: при первом вводе подводим ее к глазам */
-        if (input.value.trim()) {
-          if (!scrolledForQuery && productsSection) {
-            scrolledForQuery = true;
-            productsSection.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-          }
-        } else {
-          scrolledForQuery = false;
-        }
-      });
+      input.addEventListener('input', function () { runSearch(input.value); });
 
       input.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && input.value) {
           input.value = '';
           runSearch('');
-          scrolledForQuery = false;
+        }
+      });
+    });
+
+    /* Enter и кнопка «Найти» идут одним путем: страница не перезагружается,
+       сетка фильтруется и подъезжает к глазам. Пустой запрос просто возвращает все карточки. */
+    document.querySelectorAll('.js-search-form').forEach(function (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var input = form.querySelector('.js-search');
+        var value = input ? input.value : '';
+        runSearch(value);
+
+        if (value.trim() && productsSection) {
+          productsSection.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
         }
       });
     });
