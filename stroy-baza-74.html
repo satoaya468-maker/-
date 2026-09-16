@@ -190,7 +190,7 @@
           <i class="fa-solid fa-magnifying-glass text-slate-500" aria-hidden="true"></i>
           <input id="site-search" type="text" autocomplete="off"
                  placeholder="Поиск по каталогу: цемент, шлакоблок, щебень, песок..."
-                 class="min-w-0 flex-1 bg-transparent py-3 text-[15px] text-slate-900 placeholder:text-slate-500">
+                 class="js-search min-w-0 flex-1 bg-transparent py-3 text-[15px] text-slate-900 placeholder:text-slate-500">
         </div>
       </div>
 
@@ -222,7 +222,7 @@
       <div class="search-field flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 transition-colors">
         <i class="fa-solid fa-magnifying-glass text-slate-500" aria-hidden="true"></i>
         <input id="site-search-mobile" type="text" autocomplete="off" placeholder="Цемент, шлакоблок, щебень, песок..."
-               class="min-w-0 flex-1 bg-transparent py-2.5 text-[15px] placeholder:text-slate-500">
+               class="js-search min-w-0 flex-1 bg-transparent py-2.5 text-[15px] placeholder:text-slate-500">
       </div>
     </div>
   </div>
@@ -475,7 +475,8 @@
 
   <div class="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5 lg:gap-4">
 
-    <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
+    <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card"
+             data-product data-search="цемент портландцемент пц м500 м-500 д20 д-20 мешок 50 кг поддон">
       <!-- TODO: фото товара 600x600 на белом фоне -->
       <div class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-sack-xmark text-3xl" aria-hidden="true"></i></div>
       <h3 class="mt-3 text-[15px] font-bold leading-snug">Портландцемент М500 Д20, 50 кг</h3>
@@ -489,7 +490,8 @@
       </div>
     </article>
 
-    <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
+    <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card"
+             data-product data-search="шлакоблок блок стеновой пескоблок 390 190 188 м50 пустотный">
       <!-- TODO: фото товара 600x600 на белом фоне -->
       <div class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-cubes text-3xl" aria-hidden="true"></i></div>
       <h3 class="mt-3 text-[15px] font-bold leading-snug">Шлакоблок стеновой 390х190х188</h3>
@@ -503,7 +505,8 @@
       </div>
     </article>
 
-    <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
+    <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card"
+             data-product data-search="газоблок газобетон блок d500 д500 600 300 200 автоклавный ячеистый">
       <!-- TODO: фото товара 600x600 на белом фоне -->
       <div class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-cube text-3xl" aria-hidden="true"></i></div>
       <h3 class="mt-3 text-[15px] font-bold leading-snug">Газоблок D500 600х300х200</h3>
@@ -517,7 +520,8 @@
       </div>
     </article>
 
-    <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card">
+    <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card"
+             data-product data-search="песок мытый строительный карьерный сыпучие самосвал раствор">
       <!-- TODO: фото товара 600x600 на белом фоне -->
       <div class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-mound text-3xl" aria-hidden="true"></i></div>
       <h3 class="mt-3 text-[15px] font-bold leading-snug">Песок строительный мытый</h3>
@@ -531,7 +535,8 @@
       </div>
     </article>
 
-    <article class="col-span-2 flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card md:col-span-1">
+    <article class="col-span-2 flex flex-col rounded-2xl border border-slate-200 bg-white p-3 transition-shadow duration-200 hover:shadow-card md:col-span-1"
+             data-product data-search="щебень гранитный гранит сыпучие фракция 20-40 20 40 фундамент">
       <!-- TODO: фото товара 600x600 на белом фоне -->
       <div class="ph aspect-square w-full rounded-xl"><i class="fa-solid fa-mountain-sun text-3xl" aria-hidden="true"></i></div>
       <h3 class="mt-3 text-[15px] font-bold leading-snug">Щебень гранитный, фракция 20-40</h3>
@@ -545,6 +550,12 @@
       </div>
     </article>
   </div>
+
+  <p id="search-empty" hidden role="status"
+     class="mt-6 rounded-2xl border border-slate-200 bg-white px-5 py-6 text-center text-[15px] leading-relaxed text-slate-700">
+    По вашему запросу ничего не найдено. Попробуйте изменить запрос или позвоните нам:
+    <a href="tel:+79128054947" class="font-bold text-brand-700 hover:underline">+7 (912) 805-49-47</a>
+  </p>
 </section>
 
 <!-- ============ 6. СНАБЖЕНЦАМ, ПРОРАБАМ И ПОДРЯДЧИКАМ ============ -->
@@ -973,6 +984,67 @@
       faqItems.forEach(function (other) { if (other !== item) other.open = false; });
     });
   });
+
+  /* ---------- Живой поиск по товарной сетке ---------- */
+  var searchInputs = document.querySelectorAll('.js-search');
+  var products = document.querySelectorAll('[data-product]');
+  var emptyState = document.getElementById('search-empty');
+  var productsSection = document.getElementById('ceny');
+
+  /* «м 500» и «м500» должны находить одно и то же, поэтому сравниваем и со снятыми пробелами */
+  function normalize(value) {
+    return value.toLowerCase().replace(/ё/g, 'е').replace(/\s+/g, ' ').trim();
+  }
+
+  function haystackOf(card) {
+    return normalize(card.textContent + ' ' + (card.dataset.search || ''));
+  }
+
+  var haystacks = [];
+  products.forEach(function (card) { haystacks.push(haystackOf(card)); });
+
+  function runSearch(rawValue) {
+    var query = normalize(rawValue);
+    var tight = query.replace(/ /g, '');
+    var found = 0;
+
+    products.forEach(function (card, i) {
+      var hay = haystacks[i];
+      var match = !query || hay.indexOf(query) !== -1 || hay.replace(/ /g, '').indexOf(tight) !== -1;
+      card.hidden = !match;
+      if (match) found++;
+    });
+
+    if (emptyState) emptyState.hidden = !(query && found === 0);
+  }
+
+  if (searchInputs.length && products.length) {
+    var scrolledForQuery = false;
+
+    searchInputs.forEach(function (input) {
+      input.addEventListener('input', function () {
+        runSearch(input.value);
+
+        /* Сетка товаров ниже шапки: при первом вводе подводим ее к глазам */
+        if (input.value.trim()) {
+          if (!scrolledForQuery && productsSection) {
+            scrolledForQuery = true;
+            productsSection.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+          }
+        } else {
+          scrolledForQuery = false;
+        }
+      });
+
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && input.value) {
+          input.value = '';
+          runSearch('');
+          scrolledForQuery = false;
+        }
+      });
+    });
+  }
 
   /* ---------- Маска и проверка телефона ---------- */
   function digitsOf(value) {
