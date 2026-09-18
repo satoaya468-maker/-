@@ -560,6 +560,350 @@
   </p>
 </section>
 
+<!-- ============ 5.1 КАТАЛОГ ТОВАРОВ ПО ФАСОВКЕ ============ -->
+<section id="fasovka" class="bg-white py-12 md:py-16">
+  <div class="mx-auto max-w-content px-4 md:px-6">
+
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <h2 class="text-[26px] font-extrabold tracking-tight md:text-[32px]">Каталог товаров</h2>
+        <p class="mt-2 max-w-[62ch] text-[15px] text-slate-600">
+          Цены склада на Западном шоссе. Переключите фасовку, чтобы увидеть цену в нужной единице отгрузки.
+        </p>
+      </div>
+
+      <div role="group" aria-label="Фасовка" class="inline-flex rounded-xl bg-slate-100 p-1">
+        <button type="button" class="js-pack rounded-lg bg-brand-700 px-5 py-2.5 text-[15px] font-bold text-white transition-colors" data-pack="tonny" aria-pressed="true">Тонны</button>
+        <button type="button" class="js-pack rounded-lg px-5 py-2.5 text-[15px] font-bold text-slate-700 transition-colors hover:text-slate-900" data-pack="meshki" aria-pressed="false">Мешки</button>
+      </div>
+    </div>
+
+    <p class="mt-3 text-[13px] leading-snug text-slate-600">
+      Тонны: отгрузка навалом, поддонами и кубами. Мешки: заводская фасовка и поштучная отгрузка.
+    </p>
+
+    <div class="mt-6 grid gap-4 lg:grid-cols-3">
+
+      <article data-group class="flex flex-col rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
+        <h3 class="text-[18px] font-extrabold tracking-tight">Сыпучие материалы</h3>
+        <p class="mt-1 text-[13px] text-slate-600">Песок, щебень, отсев, ПГС</p>
+
+        <ul class="mt-4 divide-y divide-slate-100">
+          <li data-pack-row data-pack="tonny meshki" class="flex items-start justify-between gap-3 py-3">
+            <div class="min-w-0">
+              <p class="text-[14.5px] font-bold leading-snug">Песок строительный мытый</p>
+              <p class="mt-0.5 text-[12.5px] text-slate-600">Модуль крупности 2.0</p>
+              <button type="button" class="js-modal mt-1.5 text-[12.5px] font-semibold text-brand-700 underline underline-offset-2"
+                      data-subject="Заказ в 1 клик: песок строительный мытый" data-title="Заказ в 1 клик"
+                      data-note="Песок строительный мытый. Уточним объем и посчитаем доставку.">В 1 клик</button>
+            </div>
+            <p class="shrink-0 text-right">
+              <span data-price="tonny" class="num block text-[16px] font-extrabold">380 ₽<span class="block text-[12px] font-semibold text-slate-600">тонна</span></span>
+              <span data-price="meshki" hidden class="num block text-[16px] font-extrabold">95 ₽<span class="block text-[12px] font-semibold text-slate-600">мешок 50 кг</span></span>
+            </p>
+          </li>
+
+          <li data-pack-row data-pack="tonny meshki" class="flex items-start justify-between gap-3 py-3">
+            <div class="min-w-0">
+              <p class="text-[14.5px] font-bold leading-snug">Щебень гранитный 20-40</p>
+              <p class="mt-0.5 text-[12.5px] text-slate-600">Марка прочности 1200</p>
+              <button type="button" class="js-modal mt-1.5 text-[12.5px] font-semibold text-brand-700 underline underline-offset-2"
+                      data-subject="Заказ в 1 клик: щебень гранитный 20-40" data-title="Заказ в 1 клик"
+                      data-note="Щебень гранитный фракция 20-40. Уточним объем и посчитаем доставку.">В 1 клик</button>
+            </div>
+            <p class="shrink-0 text-right">
+              <span data-price="tonny" class="num block text-[16px] font-extrabold">1 250 ₽<span class="block text-[12px] font-semibold text-slate-600">тонна</span></span>
+              <span data-price="meshki" hidden class="num block text-[16px] font-extrabold">130 ₽<span class="block text-[12px] font-semibold text-slate-600">мешок 50 кг</span></span>
+            </p>
+          </li>
+
+          <li data-pack-row data-pack="tonny meshki" class="flex items-start justify-between gap-3 py-3">
+            <div class="min-w-0">
+              <p class="text-[14.5px] font-bold leading-snug">Отсев дробления 0-5</p>
+              <p class="mt-0.5 text-[12.5px] text-slate-600">Подсыпка дорожек и оснований</p>
+              <button type="button" class="js-modal mt-1.5 text-[12.5px] font-semibold text-brand-700 underline underline-offset-2"
+                      data-subject="Заказ в 1 клик: отсев дробления 0-5" data-title="Заказ в 1 клик"
+                      data-note="Отсев дробления 0-5. Уточним объем и посчитаем доставку.">В 1 клик</button>
+            </div>
+            <p class="shrink-0 text-right">
+              <span data-price="tonny" class="num block text-[16px] font-extrabold">640 ₽<span class="block text-[12px] font-semibold text-slate-600">тонна</span></span>
+              <span data-price="meshki" hidden class="num block text-[16px] font-extrabold">85 ₽<span class="block text-[12px] font-semibold text-slate-600">мешок 50 кг</span></span>
+            </p>
+          </li>
+
+          <li data-pack-row data-pack="tonny" class="flex items-start justify-between gap-3 py-3">
+            <div class="min-w-0">
+              <p class="text-[14.5px] font-bold leading-snug">ПГС карьерная</p>
+              <p class="mt-0.5 text-[12.5px] text-slate-600">Обратная засыпка и планировка</p>
+              <button type="button" class="js-modal mt-1.5 text-[12.5px] font-semibold text-brand-700 underline underline-offset-2"
+                      data-subject="Заказ в 1 клик: ПГС карьерная" data-title="Заказ в 1 клик"
+                      data-note="ПГС карьерная. Уточним объем и посчитаем доставку.">В 1 клик</button>
+            </div>
+            <p class="shrink-0 text-right">
+              <span data-price="tonny" class="num block text-[16px] font-extrabold">520 ₽<span class="block text-[12px] font-semibold text-slate-600">тонна</span></span>
+            </p>
+          </li>
+        </ul>
+
+        <p class="js-group-empty mt-4 rounded-xl bg-slate-50 px-4 py-3 text-[13px] leading-snug text-slate-700" hidden>
+          В этой фасовке позиций нет. Переключите на тонны или позвоните: подберем и посчитаем доставку.
+        </p>
+      </article>
+
+      <article data-group class="flex flex-col rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
+        <h3 class="text-[18px] font-extrabold tracking-tight">Сухие смеси</h3>
+        <p class="mt-1 text-[13px] text-slate-600">Цемент, пескобетон, штукатурка, пол</p>
+
+        <ul class="mt-4 divide-y divide-slate-100">
+          <li data-pack-row data-pack="tonny meshki" class="flex items-start justify-between gap-3 py-3">
+            <div class="min-w-0">
+              <p class="text-[14.5px] font-bold leading-snug">Портландцемент М500 Д20</p>
+              <p class="mt-0.5 text-[12.5px] text-slate-600">Заводская упаковка, поддоны</p>
+              <button type="button" class="js-modal mt-1.5 text-[12.5px] font-semibold text-brand-700 underline underline-offset-2"
+                      data-subject="Заказ в 1 клик: портландцемент М500 Д20" data-title="Заказ в 1 клик"
+                      data-note="Портландцемент М500 Д20. Подтвердим наличие и цену.">В 1 клик</button>
+            </div>
+            <p class="shrink-0 text-right">
+              <span data-price="tonny" class="num block text-[16px] font-extrabold">7 300 ₽<span class="block text-[12px] font-semibold text-slate-600">тонна</span></span>
+              <span data-price="meshki" hidden class="num block text-[16px] font-extrabold">385 ₽<span class="block text-[12px] font-semibold text-slate-600">мешок 50 кг</span></span>
+            </p>
+          </li>
+
+          <li data-pack-row data-pack="tonny meshki" class="flex items-start justify-between gap-3 py-3">
+            <div class="min-w-0">
+              <p class="text-[14.5px] font-bold leading-snug">Пескобетон М300</p>
+              <p class="mt-0.5 text-[12.5px] text-slate-600">Стяжка пола, фундаментные работы</p>
+              <button type="button" class="js-modal mt-1.5 text-[12.5px] font-semibold text-brand-700 underline underline-offset-2"
+                      data-subject="Заказ в 1 клик: пескобетон М300" data-title="Заказ в 1 клик"
+                      data-note="Пескобетон М300. Подтвердим наличие и цену.">В 1 клик</button>
+            </div>
+            <p class="shrink-0 text-right">
+              <span data-price="tonny" class="num block text-[16px] font-extrabold">6 900 ₽<span class="block text-[12px] font-semibold text-slate-600">тонна</span></span>
+              <span data-price="meshki" hidden class="num block text-[16px] font-extrabold">285 ₽<span class="block text-[12px] font-semibold text-slate-600">мешок 40 кг</span></span>
+            </p>
+          </li>
+
+          <li data-pack-row data-pack="meshki" class="flex items-start justify-between gap-3 py-3">
+            <div class="min-w-0">
+              <p class="text-[14.5px] font-bold leading-snug">Штукатурка гипсовая машинная</p>
+              <p class="mt-0.5 text-[12.5px] text-slate-600">Слой до 50 мм</p>
+              <button type="button" class="js-modal mt-1.5 text-[12.5px] font-semibold text-brand-700 underline underline-offset-2"
+                      data-subject="Заказ в 1 клик: штукатурка гипсовая машинная" data-title="Заказ в 1 клик"
+                      data-note="Штукатурка гипсовая машинная. Подтвердим наличие и цену.">В 1 клик</button>
+            </div>
+            <p class="shrink-0 text-right">
+              <span data-price="meshki" class="num block text-[16px] font-extrabold">410 ₽<span class="block text-[12px] font-semibold text-slate-600">мешок 30 кг</span></span>
+            </p>
+          </li>
+
+          <li data-pack-row data-pack="meshki" class="flex items-start justify-between gap-3 py-3">
+            <div class="min-w-0">
+              <p class="text-[14.5px] font-bold leading-snug">Наливной пол быстротвердеющий</p>
+              <p class="mt-0.5 text-[12.5px] text-slate-600">Хождение через 4 часа</p>
+              <button type="button" class="js-modal mt-1.5 text-[12.5px] font-semibold text-brand-700 underline underline-offset-2"
+                      data-subject="Заказ в 1 клик: наливной пол" data-title="Заказ в 1 клик"
+                      data-note="Наливной пол быстротвердеющий. Подтвердим наличие и цену.">В 1 клик</button>
+            </div>
+            <p class="shrink-0 text-right">
+              <span data-price="meshki" class="num block text-[16px] font-extrabold">465 ₽<span class="block text-[12px] font-semibold text-slate-600">мешок 25 кг</span></span>
+            </p>
+          </li>
+        </ul>
+
+        <p class="js-group-empty mt-4 rounded-xl bg-slate-50 px-4 py-3 text-[13px] leading-snug text-slate-700" hidden>
+          В этой фасовке позиций нет. Переключите фасовку или позвоните: подберем аналог.
+        </p>
+      </article>
+
+      <article data-group class="flex flex-col rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
+        <h3 class="text-[18px] font-extrabold tracking-tight">Блоки</h3>
+        <p class="mt-1 text-[13px] text-slate-600">Отгрузка поддонами, кубами и поштучно</p>
+
+        <ul class="mt-4 divide-y divide-slate-100">
+          <li data-pack-row data-pack="tonny meshki" class="flex items-start justify-between gap-3 py-3">
+            <div class="min-w-0">
+              <p class="text-[14.5px] font-bold leading-snug">Шлакоблок 390х190х188</p>
+              <p class="mt-0.5 text-[12.5px] text-slate-600">Пустотность 40%, марка М50</p>
+              <button type="button" class="js-modal mt-1.5 text-[12.5px] font-semibold text-brand-700 underline underline-offset-2"
+                      data-subject="Заказ в 1 клик: шлакоблок 390х190х188" data-title="Заказ в 1 клик"
+                      data-note="Шлакоблок стеновой 390х190х188. Подтвердим наличие и цену.">В 1 клик</button>
+            </div>
+            <p class="shrink-0 text-right">
+              <span data-price="tonny" class="num block text-[16px] font-extrabold">3 900 ₽<span class="block text-[12px] font-semibold text-slate-600">поддон 84 шт</span></span>
+              <span data-price="meshki" hidden class="num block text-[16px] font-extrabold">46 ₽<span class="block text-[12px] font-semibold text-slate-600">штука</span></span>
+            </p>
+          </li>
+
+          <li data-pack-row data-pack="tonny meshki" class="flex items-start justify-between gap-3 py-3">
+            <div class="min-w-0">
+              <p class="text-[14.5px] font-bold leading-snug">Газоблок D500 600х300х200</p>
+              <p class="mt-0.5 text-[12.5px] text-slate-600">Автоклавный, первая категория</p>
+              <button type="button" class="js-modal mt-1.5 text-[12.5px] font-semibold text-brand-700 underline underline-offset-2"
+                      data-subject="Заказ в 1 клик: газоблок D500 600х300х200" data-title="Заказ в 1 клик"
+                      data-note="Газоблок D500 600х300х200. Подтвердим наличие и цену.">В 1 клик</button>
+            </div>
+            <p class="shrink-0 text-right">
+              <span data-price="tonny" class="num block text-[16px] font-extrabold">4 150 ₽<span class="block text-[12px] font-semibold text-slate-600">куб 1 м3</span></span>
+              <span data-price="meshki" hidden class="num block text-[16px] font-extrabold">92 ₽<span class="block text-[12px] font-semibold text-slate-600">штука</span></span>
+            </p>
+          </li>
+
+          <li data-pack-row data-pack="tonny meshki" class="flex items-start justify-between gap-3 py-3">
+            <div class="min-w-0">
+              <p class="text-[14.5px] font-bold leading-snug">Керамзитоблок 390х190х188</p>
+              <p class="mt-0.5 text-[12.5px] text-slate-600">Плотность D900, теплый контур</p>
+              <button type="button" class="js-modal mt-1.5 text-[12.5px] font-semibold text-brand-700 underline underline-offset-2"
+                      data-subject="Заказ в 1 клик: керамзитоблок 390х190х188" data-title="Заказ в 1 клик"
+                      data-note="Керамзитоблок 390х190х188. Подтвердим наличие и цену.">В 1 клик</button>
+            </div>
+            <p class="shrink-0 text-right">
+              <span data-price="tonny" class="num block text-[16px] font-extrabold">5 200 ₽<span class="block text-[12px] font-semibold text-slate-600">поддон 72 шт</span></span>
+              <span data-price="meshki" hidden class="num block text-[16px] font-extrabold">78 ₽<span class="block text-[12px] font-semibold text-slate-600">штука</span></span>
+            </p>
+          </li>
+        </ul>
+
+        <p class="js-group-empty mt-4 rounded-xl bg-slate-50 px-4 py-3 text-[13px] leading-snug text-slate-700" hidden>
+          В этой фасовке позиций нет. Переключите фасовку или позвоните: подберем аналог.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5.2 КАЛЬКУЛЯТОР И БЫСТРЫЙ ЗАКАЗ ============ -->
+<section class="mx-auto max-w-content px-4 py-12 md:px-6 md:py-16">
+  <div class="grid gap-4 lg:grid-cols-[1.35fr_1fr] lg:gap-6">
+
+    <!-- Калькулятор: кубы и квадраты в тонны -->
+    <div id="calc" class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+      <h2 class="text-[22px] font-extrabold tracking-tight md:text-[26px]">Калькулятор: кубы и метры в тонны</h2>
+      <p class="mt-2 max-w-[62ch] text-[15px] leading-snug text-slate-600">
+        Сыпучие продаются тоннами, а в проекте объем обычно в кубах или в площади засыпки. Посчитайте массу до звонка.
+      </p>
+
+      <div class="mt-5 grid gap-4 sm:grid-cols-2">
+        <div class="sm:col-span-2">
+          <label for="calc-material" class="mb-1.5 block text-[13px] font-semibold text-slate-700">Материал</label>
+          <div class="relative">
+            <select id="calc-material"
+                    class="w-full appearance-none rounded-xl border border-slate-300 bg-white px-3.5 py-3 pr-10 text-[15px] text-slate-900 outline-none transition-colors focus:border-brand-600">
+              <option value="Песок мытый" data-density="1.5" data-price="380">Песок мытый, 1.5 т на куб</option>
+              <option value="Песок карьерный" data-density="1.6" data-price="320">Песок карьерный, 1.6 т на куб</option>
+              <option value="Щебень 20-40" data-density="1.4" data-price="1250">Щебень гранитный 20-40, 1.4 т на куб</option>
+              <option value="Отсев 0-5" data-density="1.5" data-price="640">Отсев дробления 0-5, 1.5 т на куб</option>
+              <option value="ПГС" data-density="1.65" data-price="520">ПГС карьерная, 1.65 т на куб</option>
+              <option value="Чернозем" data-density="1.3" data-price="450">Чернозем, 1.3 т на куб</option>
+            </select>
+            <i class="fa-solid fa-chevron-down pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-500" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <div class="sm:col-span-2">
+          <p class="mb-1.5 text-[13px] font-semibold text-slate-700">Что известно</p>
+          <div role="group" aria-label="Способ расчета" class="inline-flex rounded-xl bg-slate-100 p-1">
+            <button type="button" class="js-mode rounded-lg bg-brand-700 px-4 py-2 text-[14px] font-bold text-white transition-colors" data-mode="volume" aria-pressed="true">Объем, м3</button>
+            <button type="button" class="js-mode rounded-lg px-4 py-2 text-[14px] font-bold text-slate-700 transition-colors hover:text-slate-900" data-mode="area" aria-pressed="false">Площадь, м2</button>
+          </div>
+        </div>
+
+        <div>
+          <label for="calc-value" class="mb-1.5 block text-[13px] font-semibold text-slate-700">
+            <span class="js-value-label">Объем, м3</span>
+          </label>
+          <input id="calc-value" type="number" min="0" step="0.1" inputmode="decimal" value="10"
+                 class="no-spin w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-[15px] text-slate-900 outline-none transition-colors placeholder:text-slate-500 focus:border-brand-600">
+        </div>
+
+        <div id="calc-thickness-field" hidden>
+          <label for="calc-thickness" class="mb-1.5 block text-[13px] font-semibold text-slate-700">Толщина слоя, см</label>
+          <input id="calc-thickness" type="number" min="1" step="1" inputmode="numeric" value="10"
+                 class="no-spin w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-[15px] text-slate-900 outline-none transition-colors placeholder:text-slate-500 focus:border-brand-600">
+        </div>
+      </div>
+
+      <div class="mt-5 rounded-xl bg-slate-50 p-5">
+        <p class="text-[13px] font-semibold uppercase tracking-[0.12em] text-slate-500">Нужно материала</p>
+        <p class="num mt-1.5 text-[34px] font-extrabold leading-none tracking-tight">
+          <span id="calc-tons">15</span> <span class="text-[18px] font-bold text-slate-600">тонн</span>
+        </p>
+        <dl class="mt-4 grid gap-3 sm:grid-cols-3">
+          <div>
+            <dt class="text-[12.5px] text-slate-600">Объем</dt>
+            <dd class="num mt-0.5 text-[15px] font-bold"><span id="calc-volume">10</span> м3</dd>
+          </div>
+          <div>
+            <dt class="text-[12.5px] text-slate-600">Мешков по 50 кг</dt>
+            <dd class="num mt-0.5 text-[15px] font-bold"><span id="calc-bags">300</span> шт</dd>
+          </div>
+          <div>
+            <dt class="text-[12.5px] text-slate-600">Ориентир по цене</dt>
+            <dd class="num mt-0.5 text-[15px] font-bold text-brand-700"><span id="calc-sum">5 700</span> ₽</dd>
+          </div>
+        </dl>
+      </div>
+
+      <button type="button" id="calc-order"
+              class="js-modal mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-brand-700 px-5 py-3.5 text-[16px] font-bold text-white transition-colors duration-200 hover:bg-brand-800 active:translate-y-px"
+              data-subject="Заказ по расчету калькулятора" data-title="Заказать этот объем"
+              data-note="Уточним массу на весовой при отгрузке.">
+        <i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Заказать этот объем
+      </button>
+
+      <p class="mt-3 text-[12.5px] leading-snug text-slate-600">
+        Расчет справочный: насыпная плотность зависит от влажности и фракции. Точную массу фиксируем на весовой при отгрузке.
+      </p>
+    </div>
+
+    <!-- Быстрый заказ в 1 клик -->
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+      <h2 class="text-[22px] font-extrabold tracking-tight md:text-[24px]">Быстрый заказ в 1 клик</h2>
+      <p class="mt-2 text-[14px] leading-snug text-slate-600">
+        Оставьте номер: перезвоним за 5 минут, уточним объем и стоимость доставки.
+      </p>
+
+      <form class="js-lead mt-5 space-y-4" novalidate data-form="Быстрый заказ в 1 клик">
+        <div>
+          <label for="quick-phone" class="mb-1.5 block text-[13px] font-semibold text-slate-700">
+            Телефон <span class="text-brand-700" aria-hidden="true">*</span>
+          </label>
+          <input id="quick-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+7 (___) ___-__-__"
+                 class="js-phone w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-[15px] text-slate-900 outline-none transition-colors placeholder:text-slate-500 focus:border-brand-600">
+          <p class="js-error mt-1.5 hidden text-[12.5px] font-medium text-red-700" role="alert"></p>
+        </div>
+
+        <div>
+          <label for="quick-item" class="mb-1.5 block text-[13px] font-semibold text-slate-700">Что привезти</label>
+          <input id="quick-item" name="item" type="text" placeholder="Например, 20 тонн щебня 20-40"
+                 class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-[15px] text-slate-900 outline-none transition-colors placeholder:text-slate-500 focus:border-brand-600">
+          <p class="mt-1.5 text-[12.5px] text-slate-600">Необязательно: можно оставить только номер.</p>
+        </div>
+
+        <button type="submit" class="js-submit w-full rounded-xl bg-brand-700 px-5 py-4 text-[16px] font-bold text-white transition-colors duration-200 hover:bg-brand-800 active:translate-y-px disabled:opacity-70">
+          <span class="js-submit-label">Заказать в 1 клик</span>
+          <span class="js-submit-loading hidden items-center justify-center gap-2">
+            <i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i> Отправляем...
+          </span>
+        </button>
+
+        <label class="flex cursor-pointer items-start gap-2.5 text-[12.5px] leading-snug text-slate-600">
+          <input type="checkbox" name="consent" required checked class="mt-0.5 h-4 w-4 shrink-0 accent-brand-700">
+          <span>Согласен на обработку персональных данных</span>
+        </label>
+      </form>
+
+      <div class="js-success hidden">
+        <div class="mt-5 rounded-xl border border-emerald-200 bg-emerald-50 p-5 text-center">
+          <i class="fa-solid fa-circle-check text-3xl text-emerald-700" aria-hidden="true"></i>
+          <p class="mt-3 text-[17px] font-bold text-slate-900">Заявка принята</p>
+          <p class="mt-1.5 text-[14px] leading-snug text-slate-700">Менеджер перезвонит в течение 5 минут в рабочее время.</p>
+          <button type="button" class="js-reset mt-4 text-[14px] font-semibold text-brand-700 underline underline-offset-2">Отправить еще одну заявку</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ 6. СНАБЖЕНЦАМ, ПРОРАБАМ И ПОДРЯДЧИКАМ ============ -->
 <section id="b2b" class="bg-slate-900 py-12 text-white md:py-16">
   <div class="mx-auto grid max-w-content items-start gap-10 px-4 md:px-6 lg:grid-cols-[1.15fr_minmax(340px,420px)] lg:gap-14">
@@ -1160,6 +1504,118 @@
       });
     }
   });
+
+  /* ---------- Каталог: переключение фасовки ---------- */
+  var packButtons = document.querySelectorAll('.js-pack');
+  var packRows = document.querySelectorAll('[data-pack-row]');
+  var packGroups = document.querySelectorAll('[data-group]');
+
+  var PACK_ON = 'js-pack rounded-lg bg-brand-700 px-5 py-2.5 text-[15px] font-bold text-white transition-colors';
+  var PACK_OFF = 'js-pack rounded-lg px-5 py-2.5 text-[15px] font-bold text-slate-700 transition-colors hover:text-slate-900';
+
+  function setPack(pack) {
+    packButtons.forEach(function (button) {
+      var active = button.dataset.pack === pack;
+      button.className = active ? PACK_ON : PACK_OFF;
+      button.setAttribute('aria-pressed', String(active));
+    });
+
+    packRows.forEach(function (row) {
+      var available = row.dataset.pack.split(' ').indexOf(pack) !== -1;
+      row.hidden = !available;
+      row.querySelectorAll('[data-price]').forEach(function (price) {
+        price.hidden = price.dataset.price !== pack;
+      });
+    });
+
+    /* Группа без позиций в выбранной фасовке показывает подсказку вместо пустоты */
+    packGroups.forEach(function (group) {
+      var note = group.querySelector('.js-group-empty');
+      if (note) note.hidden = group.querySelectorAll('[data-pack-row]:not([hidden])').length > 0;
+    });
+  }
+
+  if (packButtons.length) {
+    packButtons.forEach(function (button) {
+      button.addEventListener('click', function () { setPack(button.dataset.pack); });
+    });
+    setPack('tonny');
+  }
+
+  /* ---------- Калькулятор: кубы и квадраты в тонны ---------- */
+  var calcMaterial = document.getElementById('calc-material');
+  var calcValue = document.getElementById('calc-value');
+  var calcThickness = document.getElementById('calc-thickness');
+  var calcThicknessField = document.getElementById('calc-thickness-field');
+  var calcOrder = document.getElementById('calc-order');
+  var calcTons = document.getElementById('calc-tons');
+  var calcVolume = document.getElementById('calc-volume');
+  var calcBags = document.getElementById('calc-bags');
+  var calcSum = document.getElementById('calc-sum');
+  var modeButtons = document.querySelectorAll('.js-mode');
+  var valueLabel = document.querySelector('.js-value-label');
+  var calcMode = 'volume';
+
+  var MODE_ON = 'js-mode rounded-lg bg-brand-700 px-4 py-2 text-[14px] font-bold text-white transition-colors';
+  var MODE_OFF = 'js-mode rounded-lg px-4 py-2 text-[14px] font-bold text-slate-700 transition-colors hover:text-slate-900';
+
+  /* Дробную часть показываем только когда она есть: 7 вместо 7,00 */
+  function ru(value, digits) {
+    return value.toLocaleString('ru-RU', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: digits || 0
+    });
+  }
+
+  function recalc() {
+    if (!calcMaterial || !calcValue) return;
+
+    var option = calcMaterial.options[calcMaterial.selectedIndex];
+    var density = parseFloat(option.dataset.density) || 1.5;
+    var pricePerTon = parseFloat(option.dataset.price) || 0;
+
+    var amount = parseFloat(calcValue.value);
+    if (!isFinite(amount) || amount < 0) amount = 0;
+
+    /* Площадь переводим в объем через толщину слоя, дальше считаем одинаково */
+    var thickness = parseFloat(calcThickness && calcThickness.value);
+    if (!isFinite(thickness) || thickness < 0) thickness = 0;
+    var volume = calcMode === 'volume' ? amount : amount * (thickness / 100);
+    var tons = volume * density;
+
+    calcTons.textContent = ru(tons, tons > 0 && tons < 10 ? 2 : 1);
+    calcVolume.textContent = ru(volume, volume > 0 && volume < 10 ? 2 : 1);
+    calcBags.textContent = ru(Math.ceil(tons / 0.05));
+    calcSum.textContent = ru(Math.round(tons * pricePerTon));
+
+    if (calcOrder) {
+      var summary = option.value + ': ' + ru(tons, 1) + ' т, это ' + ru(volume, 1) + ' м3';
+      calcOrder.dataset.subject = 'Заказ по расчету: ' + summary;
+      calcOrder.dataset.note = summary + '. Точную массу зафиксируем на весовой при отгрузке.';
+    }
+  }
+
+  function setMode(mode) {
+    calcMode = mode;
+    modeButtons.forEach(function (button) {
+      var active = button.dataset.mode === mode;
+      button.className = active ? MODE_ON : MODE_OFF;
+      button.setAttribute('aria-pressed', String(active));
+    });
+    if (calcThicknessField) calcThicknessField.hidden = mode !== 'area';
+    if (valueLabel) valueLabel.textContent = mode === 'volume' ? 'Объем, м3' : 'Площадь, м2';
+    recalc();
+  }
+
+  if (calcMaterial) {
+    modeButtons.forEach(function (button) {
+      button.addEventListener('click', function () { setMode(button.dataset.mode); });
+    });
+    [calcMaterial, calcValue, calcThickness].forEach(function (field) {
+      if (field) field.addEventListener('input', recalc);
+    });
+    setMode('volume');
+  }
 
   /* ---------- Модальное окно ---------- */
   var modal = document.getElementById('modal');
