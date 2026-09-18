@@ -1,0 +1,16 @@
+{
+  "name": "stroybaza-chat-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Прокси к Claude API для чат-виджета СТРОЙ-БАЗА 74",
+  "scripts": {
+    "start": "node chat-server.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.70.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

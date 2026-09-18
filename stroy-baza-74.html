@@ -120,6 +120,25 @@
   .faq summary .chev { transition: transform .25s var(--ease-out-quint); }
   .faq details[open] summary .chev { transform: rotate(180deg); }
 
+  /* Индикатор набора в чате */
+  .typing span {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: #94a3b8;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .typing span { animation: blink 1.2s var(--ease-out-quint) infinite; }
+    .typing span:nth-child(2) { animation-delay: .15s; }
+    .typing span:nth-child(3) { animation-delay: .3s; }
+    @keyframes blink {
+      0%, 60%, 100% { opacity: .35; transform: translateY(0); }
+      30% { opacity: 1; transform: translateY(-2px); }
+    }
+  }
+
   /* Вход первого экрана. Базовое состояние элементов - видимое,
      анимация только добавляет движение, поэтому без JS и в краулерах все на месте. */
   @media (prefers-reduced-motion: no-preference) {
@@ -1141,7 +1160,7 @@
 
 <!-- ============ 9. ВИДЖЕТ РАСЧЕТА ============ -->
 <!-- TODO: заменить заглушку аватара на фото менеджера -->
-<aside id="quiz-widget" class="rise fixed bottom-[88px] right-4 md:bottom-6 md:right-6" style="z-index: var(--z-dock)">
+<aside id="quiz-widget" class="rise fixed bottom-[156px] right-4 md:bottom-[92px] md:right-6" style="z-index: var(--z-dock)">
 
   <!-- Мобильный вид: компактная кнопка, чтобы не перекрывать контент -->
   <button type="button" class="js-scroll-calc relative grid h-14 w-14 place-items-center rounded-full bg-white shadow-xl ring-1 ring-slate-200 md:hidden">
@@ -1172,8 +1191,79 @@
     <button type="button" class="js-scroll-calc mt-3.5 w-full rounded-xl bg-brand-700 px-4 py-2.5 text-[14px] font-bold text-white transition-colors duration-200 hover:bg-brand-800 active:translate-y-px">
       Рассчитать за 2 минуты
     </button>
+
+    <button type="button" class="js-chat-open mt-2 w-full rounded-xl border border-slate-200 px-4 py-2.5 text-[13.5px] font-bold text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-50">
+      <i class="fa-regular fa-comments mr-1.5 text-brand-700" aria-hidden="true"></i> Спросить в чате
+    </button>
   </div>
 </aside>
+
+<!-- Кнопка чата: видна всегда, в отличие от виджета-подсказки -->
+<button type="button" id="chat-launcher"
+        class="js-chat-open fixed bottom-[88px] right-4 grid h-14 w-14 place-items-center rounded-full bg-brand-700 text-white shadow-lift transition-colors hover:bg-brand-800 md:bottom-6 md:right-6"
+        style="z-index: var(--z-dock)">
+  <i class="fa-regular fa-comments text-xl" aria-hidden="true"></i>
+  <span class="sr-only">Открыть чат с менеджером базы</span>
+</button>
+
+<!-- ============ 11. ЧАТ С МЕНЕДЖЕРОМ БАЗЫ ============ -->
+<!-- Отвечает Claude API через свой бэкенд (server/chat-server.mjs).
+     Если эндпоинт недоступен или ключ не задан, виджет переключается на офлайн-заглушку. -->
+<div id="chat-widget" hidden
+     class="fixed bottom-4 right-4 flex w-[min(384px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-form md:bottom-6 md:right-6"
+     style="z-index: var(--z-backdrop); height: min(560px, calc(100dvh - 2rem))"
+     role="dialog" aria-modal="false" aria-labelledby="chat-title">
+
+  <header class="flex items-center gap-3 bg-slate-900 px-4 py-3 text-white">
+    <span class="relative grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/10">
+      <i class="fa-solid fa-user-tie" aria-hidden="true"></i>
+      <span class="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-slate-900 bg-emerald-500"></span>
+    </span>
+    <span class="min-w-0 leading-tight">
+      <span id="chat-title" class="block text-[15px] font-bold">Менеджер базы</span>
+      <span class="mt-0.5 block text-[12px] text-slate-300">ИИ-ассистент, отвечает сразу</span>
+    </span>
+    <button type="button" id="chat-close" class="ml-auto grid h-9 w-9 shrink-0 place-items-center rounded-xl text-slate-300 transition-colors hover:bg-white/10 hover:text-white">
+      <i class="fa-solid fa-xmark text-lg" aria-hidden="true"></i>
+      <span class="sr-only">Закрыть чат</span>
+    </button>
+  </header>
+
+  <div id="chat-log" class="flex-1 space-y-3 overflow-y-auto px-4 py-4" role="log" aria-live="polite" aria-label="История переписки"></div>
+
+  <div id="chat-chips" class="flex flex-wrap gap-2 px-4 pb-3">
+    <button type="button" class="js-chip rounded-full border border-slate-200 px-3 py-1.5 text-[12.5px] font-semibold text-slate-700 transition-colors hover:border-brand-600 hover:text-brand-700">Цена на щебень</button>
+    <button type="button" class="js-chip rounded-full border border-slate-200 px-3 py-1.5 text-[12.5px] font-semibold text-slate-700 transition-colors hover:border-brand-600 hover:text-brand-700">Сколько песка на стяжку 50 м2</button>
+    <button type="button" class="js-chip rounded-full border border-slate-200 px-3 py-1.5 text-[12.5px] font-semibold text-slate-700 transition-colors hover:border-brand-600 hover:text-brand-700">Доставка в Нежный</button>
+  </div>
+
+  <!-- Заявка: появляется, когда разговор дошел до конкретики -->
+  <form id="chat-lead" hidden class="border-t border-slate-200 bg-brand-50 px-4 py-3">
+    <label for="chat-phone" class="block text-[12.5px] font-semibold text-slate-700">Оставьте номер, менеджер перезвонит за 5 минут</label>
+    <div class="mt-2 flex items-center gap-2">
+      <input id="chat-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__"
+             class="js-phone min-w-0 flex-1 rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-[14px] text-slate-900 outline-none transition-colors placeholder:text-slate-500 focus:border-brand-600">
+      <button type="submit" class="shrink-0 rounded-xl bg-brand-700 px-4 py-2.5 text-[14px] font-bold text-white transition-colors hover:bg-brand-800">Жду звонка</button>
+    </div>
+    <p id="chat-lead-error" class="mt-1.5 hidden text-[12px] font-medium text-red-700" role="alert"></p>
+  </form>
+
+  <form id="chat-form" class="border-t border-slate-200 p-3">
+    <div class="flex items-end gap-2">
+      <label for="chat-input" class="sr-only">Сообщение менеджеру</label>
+      <textarea id="chat-input" rows="1" placeholder="Материал, объем или доставка"
+                class="max-h-28 min-h-[44px] min-w-0 flex-1 resize-none rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-[15px] text-slate-900 outline-none transition-colors placeholder:text-slate-500 focus:border-brand-600"></textarea>
+      <button type="submit" id="chat-send" class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-700 text-white transition-colors hover:bg-brand-800 active:translate-y-px disabled:opacity-60">
+        <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+        <span class="sr-only">Отправить</span>
+      </button>
+    </div>
+    <p class="mt-2 text-[11.5px] leading-snug text-slate-600">
+      Отвечает ИИ-ассистент. Наличие и итоговую цену подтверждает менеджер по телефону
+      <a href="tel:+79128054947" class="font-semibold text-brand-700 hover:underline">+7 (912) 805-49-47</a>.
+    </p>
+  </form>
+</div>
 
 <!-- ============ МОБИЛЬНАЯ ПАНЕЛЬ ДЕЙСТВИЙ ============ -->
 <div id="dock" class="fixed inset-x-0 bottom-0 grid grid-cols-2 gap-2 border-t border-slate-200 bg-white/95 p-2.5 backdrop-blur md:hidden" style="z-index: var(--z-dock)">
@@ -1617,6 +1707,297 @@
     setMode('volume');
   }
 
+  /* ---------- Чат с менеджером базы ----------
+     Сообщения уходят на свой бэкенд (POST /api/chat), который разговаривает
+     с Claude API. Ключ лежит на сервере. Если эндпоинта нет или ключ не задан,
+     отвечает встроенная заглушка: прайс и формулы те же, что на странице. */
+  var chatWidget = document.getElementById('chat-widget');
+
+  if (chatWidget) {
+    var chatLog = document.getElementById('chat-log');
+    var chatChips = document.getElementById('chat-chips');
+    var chatForm = document.getElementById('chat-form');
+    var chatInput = document.getElementById('chat-input');
+    var chatSend = document.getElementById('chat-send');
+    var chatClose = document.getElementById('chat-close');
+    var chatLead = document.getElementById('chat-lead');
+    var chatLeadPhone = document.getElementById('chat-phone');
+    var chatLeadError = document.getElementById('chat-lead-error');
+    var chatLauncher = document.getElementById('chat-launcher');
+
+    var history = [];
+    var assistantTurns = 0;
+    var leadSent = false;
+    var waiting = false;
+    var useServer = true;
+    var lastFocused = null;
+
+    var CHAT_PRICES = [
+      { keys: ['песок мыт', 'мытый песок'], name: 'Песок мытый', tonna: 380, meshok: 95, density: 1.5 },
+      { keys: ['песок карьер'], name: 'Песок карьерный', tonna: 320, meshok: null, density: 1.6 },
+      { keys: ['песок'], name: 'Песок строительный мытый', tonna: 380, meshok: 95, density: 1.5 },
+      { keys: ['щеб', 'гравий'], name: 'Щебень гранитный 20-40', tonna: 1250, meshok: 130, density: 1.4 },
+      { keys: ['отсев'], name: 'Отсев дробления 0-5', tonna: 640, meshok: 85, density: 1.5 },
+      { keys: ['пгс'], name: 'ПГС карьерная', tonna: 520, meshok: null, density: 1.65 },
+      { keys: ['цемент', 'м500', 'м-500'], name: 'Портландцемент М500 Д20', tonna: 7300, meshok: 385, density: null },
+      { keys: ['пескобетон'], name: 'Пескобетон М300', tonna: 6900, meshok: 285, density: null },
+      { keys: ['штукатур'], name: 'Штукатурка гипсовая машинная', tonna: null, meshok: 410, density: null },
+      { keys: ['наливной пол', 'налив'], name: 'Наливной пол', tonna: null, meshok: 465, density: null },
+      { keys: ['шлакоблок'], name: 'Шлакоблок 390х190х188', tonna: null, meshok: 46, density: null },
+      { keys: ['газоблок', 'газобетон'], name: 'Газоблок D500', tonna: null, meshok: 92, density: null },
+      { keys: ['керамзитоблок', 'керамзит'], name: 'Керамзитоблок', tonna: null, meshok: 78, density: null }
+    ];
+
+    function chatMoney(value) {
+      return value.toLocaleString('ru-RU') + ' ₽';
+    }
+
+    function chatNumber(value) {
+      return value.toLocaleString('ru-RU', { minimumFractionDigits: 0, maximumFractionDigits: 1 });
+    }
+
+    /* Текст от модели вставляем построчно через textContent: никакого innerHTML */
+    function bubble(role, text) {
+      var wrap = document.createElement('div');
+      wrap.className = role === 'user' ? 'flex justify-end' : 'flex justify-start';
+
+      var box = document.createElement('div');
+      box.className = role === 'user'
+        ? 'max-w-[84%] rounded-2xl rounded-br-md bg-brand-700 px-3.5 py-2.5 text-[14px] leading-snug text-white'
+        : 'max-w-[84%] rounded-2xl rounded-bl-md bg-slate-100 px-3.5 py-2.5 text-[14px] leading-snug text-slate-900';
+
+      String(text).split('\n').forEach(function (line, i) {
+        if (i) box.appendChild(document.createElement('br'));
+        box.appendChild(document.createTextNode(line));
+      });
+
+      wrap.appendChild(box);
+      chatLog.appendChild(wrap);
+      chatLog.scrollTop = chatLog.scrollHeight;
+      return wrap;
+    }
+
+    function typingBubble() {
+      var wrap = document.createElement('div');
+      wrap.className = 'flex justify-start';
+      wrap.innerHTML = '<div class="typing flex items-center gap-1 rounded-2xl rounded-bl-md bg-slate-100 px-4 py-3"><span></span><span></span><span></span></div>';
+      chatLog.appendChild(wrap);
+      chatLog.scrollTop = chatLog.scrollHeight;
+      return wrap;
+    }
+
+    function findMaterial(text) {
+      for (var i = 0; i < CHAT_PRICES.length; i++) {
+        var item = CHAT_PRICES[i];
+        for (var k = 0; k < item.keys.length; k++) {
+          if (text.indexOf(item.keys[k]) !== -1) return item;
+        }
+      }
+      return null;
+    }
+
+    /* Заглушка: прайс, пересчет объемов и доставка без обращения к серверу */
+    function offlineReply(raw) {
+      var text = raw.toLowerCase().replace(/ё/g, 'е');
+      var material = findMaterial(text);
+
+      /* Единицы вида «м2» и «м3» содержат цифру, поэтому убираем их до разбора чисел */
+      var digitsSource = text.replace(/м\s?2|м\s?²|кв\.?\s?м/g, ' площадь ').replace(/м\s?3|м\s?³|куб\.?\s?м/g, ' объем ');
+      var numbers = (digitsSource.match(/\d+([.,]\d+)?/g) || []).map(function (n) {
+        return parseFloat(n.replace(',', '.'));
+      });
+
+      var wantsVolume = /объем|площадь|тонн|сколько|посчита|рассчита|стяжк|засып|подсыпк|квадрат/.test(digitsSource);
+
+      if (wantsVolume && numbers.length) {
+        var density = material && material.density ? material.density : 1.5;
+        var name = material ? material.name : 'Песок строительный мытый';
+        var price = material && material.tonna ? material.tonna : 380;
+        var volume = numbers[0];
+        var basis = 'объем ' + chatNumber(volume) + ' м3';
+
+        if (/площадь|квадрат|стяжк|засып|подсыпк/.test(digitsSource)) {
+          var thickness = numbers.length > 1 ? numbers[1] : 10;
+          volume = numbers[0] * (thickness / 100);
+          basis = chatNumber(numbers[0]) + ' м2 слоем ' + chatNumber(thickness) + ' см, это ' + chatNumber(volume) + ' м3';
+        }
+
+        var tons = volume * density;
+        return name + ': ' + basis + ', при плотности ' + density + ' т/м3 выходит примерно ' +
+          chatNumber(tons) + ' т. По складской цене ' + chatMoney(price) + ' за тонну это ориентировочно ' +
+          chatMoney(Math.round(tons * price)) + ' без доставки. Точную массу зафиксируем на весовой при отгрузке.';
+      }
+
+      if (material) {
+        var parts = [];
+        if (material.tonna) parts.push(chatMoney(material.tonna) + ' за тонну');
+        if (material.meshok) parts.push(chatMoney(material.meshok) + ' за мешок или штуку');
+        return material.name + ': ориентировочно ' + parts.join(', ') +
+          '. От 10 тонн цена договорная. Скажите объем, посчитаю с доставкой.';
+      }
+
+      if (/доставк|привез|поселок|нежн|западн|светл|княж|зелен|машин/.test(text)) {
+        return 'Возим своим транспортом: манипулятор и самосвал. По городу и в поселки Нежный, Западный, Светлый, Княжье Поле, Зеленая Долина отгружаем в день заказа. Скажите адрес и объем, посчитаю стоимость доставки.';
+      }
+
+      if (/оплат|нал|ндс|счет|безнал|карт|отсрочк|документ/.test(text)) {
+        return 'Оплата любая: наличные при выгрузке, карта или безнал с НДС. Организациям выставляем счет и даем УПД, постоянным клиентам открываем отсрочку до 30 дней.';
+      }
+
+      if (/привет|здравств|добр/.test(text)) {
+        return 'Здравствуйте. Склад на Западном шоссе, отгружаем сыпучие, смеси и блоки. Что нужно привезти и в каком объеме?';
+      }
+
+      return 'Уточните материал и объем: песок, щебень, отсев, ПГС, цемент, смеси или блоки. Посчитаю тоннаж и ориентир по цене со склада на Западном шоссе.';
+    }
+
+    function maybeAskPhone() {
+      if (leadSent || !chatLead.hidden) return;
+      if (assistantTurns >= 2) chatLead.hidden = false;
+    }
+
+    async function ask(text) {
+      history.push({ role: 'user', content: text });
+      bubble('user', text);
+      chatChips.hidden = true;
+
+      waiting = true;
+      chatSend.disabled = true;
+      var typing = typingBubble();
+
+      var reply = '';
+
+      if (useServer) {
+        try {
+          var response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ messages: history.slice(-20) })
+          });
+
+          if (response.ok) {
+            var data = await response.json();
+            reply = (data && data.reply) || '';
+          } else if (response.status === 429) {
+            reply = 'Слишком много сообщений подряд. Позвоните напрямую: +7 (912) 805-49-47.';
+          } else {
+            /* 503 без ключа, 404 на статике: дальше отвечаем сами */
+            useServer = false;
+          }
+        } catch (error) {
+          useServer = false;
+        }
+      }
+
+      if (!reply) reply = offlineReply(text);
+
+      typing.remove();
+      bubble('assistant', reply);
+      history.push({ role: 'assistant', content: reply });
+      assistantTurns++;
+
+      /* Телефон в сообщении принимаем сразу, без формы */
+      var typed = text.replace(/\D/g, '');
+      if (typed.length === 11) {
+        sendLead(typed);
+      } else {
+        maybeAskPhone();
+      }
+
+      waiting = false;
+      chatSend.disabled = false;
+      chatInput.focus();
+    }
+
+    function sendLead(digits) {
+      if (leadSent) return;
+      leadSent = true;
+      chatLead.hidden = true;
+
+      /* TODO: тот же эндпоинт кладет заявку в CRM, см. server/chat-server.mjs */
+      fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ phone: digits, messages: history.slice(-20) })
+      }).catch(function () {
+        console.log('lead', { phone: digits, source: 'chat' });
+      });
+
+      bubble('assistant', 'Записал номер. Менеджер перезвонит в течение 5 минут в рабочее время и подтвердит наличие с ценой доставки.');
+    }
+
+    function openChat(trigger) {
+      lastFocused = trigger || document.activeElement;
+      chatWidget.hidden = false;
+      if (quizWidget) quizWidget.hidden = true;
+      if (chatLauncher) chatLauncher.hidden = true;
+
+      if (!chatLog.childElementCount) {
+        bubble('assistant', 'Здравствуйте. Это менеджер базы на Западном шоссе. Подскажу цену, посчитаю объем в тоннах и доставку. Что нужно на объект?');
+      }
+      window.setTimeout(function () { chatInput.focus(); }, 30);
+    }
+
+    function closeChat() {
+      chatWidget.hidden = true;
+      if (chatLauncher) chatLauncher.hidden = false;
+      if (quizWidget && !quizDismissed) quizWidget.hidden = false;
+      if (lastFocused) lastFocused.focus();
+    }
+
+    document.querySelectorAll('.js-chat-open').forEach(function (trigger) {
+      trigger.addEventListener('click', function () { openChat(trigger); });
+    });
+
+    chatClose.addEventListener('click', closeChat);
+
+    chatForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var text = chatInput.value.trim();
+      if (!text || waiting) return;
+      chatInput.value = '';
+      chatInput.style.height = 'auto';
+      ask(text);
+    });
+
+    /* Enter отправляет, Shift+Enter переносит строку */
+    chatInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        chatForm.requestSubmit();
+      }
+    });
+
+    chatInput.addEventListener('input', function () {
+      chatInput.style.height = 'auto';
+      chatInput.style.height = Math.min(chatInput.scrollHeight, 112) + 'px';
+    });
+
+    chatChips.querySelectorAll('.js-chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        if (waiting) return;
+        ask(chip.textContent.trim());
+      });
+    });
+
+    chatLead.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var digits = chatLeadPhone.value.replace(/\D/g, '');
+      if (digits.length !== 11) {
+        chatLeadError.textContent = 'Введите номер полностью: 10 цифр после +7';
+        chatLeadError.classList.remove('hidden');
+        chatLeadPhone.focus();
+        return;
+      }
+      chatLeadError.classList.add('hidden');
+      sendLead(digits);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !chatWidget.hidden && modal.hidden) closeChat();
+    });
+  }
+
   /* ---------- Модальное окно ---------- */
   var modal = document.getElementById('modal');
   var backdrop = document.getElementById('modal-backdrop');
@@ -1686,6 +2067,8 @@
       quizWidget.hidden = true;
       new IntersectionObserver(function (entries) {
         if (quizDismissed) return;
+        /* Открытый чат занимает тот же угол: подсказку не показываем */
+        if (chatWidget && !chatWidget.hidden) return;
         quizWidget.hidden = entries[0].isIntersecting;
       }, { threshold: 0.3 }).observe(hero);
     }
